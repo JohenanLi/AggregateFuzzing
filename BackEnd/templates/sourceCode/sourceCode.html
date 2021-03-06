@@ -26,10 +26,10 @@
                                 </thead>
                                 <tbody>
                                     <tr class="odd gradeX">
-                                        <form method="post" action="/upload/sourceCode/">
+                                        <form enctype="multipart/form-data" action="/upload/sourceCode/" method="post">
                                             {% csrf_token %}
                                             <td>{{obj.id}}</td>
-                                            <td>{{obj.filePath}}</td>
+                                            <td> <input type="file" name="myfile" /></td>
                                             <td><input type="text" name="name" value='{{ obj.name}}'></td>
                                             <td class="center"><input type="text" name="parameter"
                                                     value='{{ obj.parameter}}'></td>
@@ -38,10 +38,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <form enctype="multipart/form-data" action="/upload/uploadFile/" method="post">
-                                <input type="file" name="myfile" />
+                            <form >
+                               
                                 <br />
-                                <input type="submit" value="upload" />
+                                
                             </form>
                         </div>
 

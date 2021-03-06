@@ -15,8 +15,8 @@
     <!-- Custom Styles-->
     <link href="{% static 'css/custom-styles.css' %}" rel="stylesheet" />
     <!-- Google Fonts-->
-    <!--link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /--> 
-     
+    <!--link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /-->
+
 </head>
 
 <body>
@@ -58,16 +58,21 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href=""><i class="fa fa-dashboard"></i>总览</a>
+                        <a class="active-menu" href="/index/"><i class="fa fa-dashboard"></i>总览</a>
                     </li>
-
+                    <li>
+                        <a href="/upload/sourceCode/"><i class="fa fa-dashboard"></i>源代码上传</a>
+                    </li>
+                    <li>
+                        <a href="/upload/sourceProgram/"><i class="fa fa-dashboard"></i>源文件上传</a>
+                    </li>
                 </ul>
             </div>
         </nav>
         <!-- /. NAV SIDE  -->
         {% block content %}
         <div id="page-wrapper">
-            
+
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
@@ -78,32 +83,40 @@
                     </div>
                 </div>
             </div>
-          
-        </div>
-         {% endblock %}
-    <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
-    <!-- Bootstrap Js -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-	 
-    <!-- Metis Menu Js -->
-    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
-    <!-- Morris Chart Js -->
-    <script src="{% static 'js/morris/raphael-2.1.0.min.js' %}"></script>
-    <script src="{% static 'js/morris/morris.js' %}"></script>
-	
-	
-	<script src="{% static 'js/easypiechart.js' %}"></script>
-	<script src="{% static 'js/easypiechart-data.js' %}"></script>
-	
-	 <script src="{% static 'js/Lightweight-Chart/jquery.chart.js' %}"></script>
-	
-    <!-- Custom Js -->
-    <script src="{% static 'js/custom-scripts.js' %}"></script>
- 
 
+        </div>
+        {% endblock %}
+        <!-- /. WRAPPER  -->
+        <!-- JS Scripts-->
+        <!-- jQuery Js -->
+        <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+        <!-- Bootstrap Js -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <!-- Metis Menu Js -->
+        <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+        <!-- Morris Chart Js -->
+        <script src="{% static 'js/morris/raphael-2.1.0.min.js' %}"></script>
+        <script src="{% static 'js/morris/morris.js' %}"></script>
+
+
+        <script src="{% static 'js/easypiechart.js' %}"></script>
+        <script src="{% static 'js/easypiechart-data.js' %}"></script>
+
+        <script src="{% static 'js/Lightweight-Chart/jquery.chart.js' %}"></script>
+
+        <!-- Custom Js -->
+        <script src="{% static 'js/custom-scripts.js' %}"></script>
+
+        <style text=css>
+            @font-face {
+                font-family: 'FontAwesome';
+                src: url("{% static 'fonts/fontawesome-webfont.eot' %");
+                src: url("{% static 'fonts/fontawesome-webfont.eot' %}") format('embedded-opentype'), url("{% static 'fonts/fontawesome-webfont.woff2'%}") format('woff2'), url("{% static 'fonts/fontawesome-webfont.woff'%}") format('woff'), url("{% static 'fonts/fontawesome-webfont.ttf' %}") format('truetype'), url("{% static 'fonts/fontawesome-webfont.svg' %}") format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+        </style>
 </body>
 
 </html>
