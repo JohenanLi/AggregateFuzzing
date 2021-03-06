@@ -7,7 +7,7 @@ services:
     depends_on:
         - fuzzing
     ports:
-        - "10801:80"
+        - "9000:80"
     restart: always
 
   fuzzing:
@@ -15,7 +15,7 @@ services:
       context: ./BackEnd
       dockerfile: ./Dockerfile
     ports:
-      - '10802:10802'
+      - '9001:9001'
     volumes:
       - './BackEnd:/app'
     logging:
