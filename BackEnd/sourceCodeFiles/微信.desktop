@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=微信
+Exec=env WINEPREFIX="/home/minipython/.wine" wine-stable C:\\\\windows\\\\command\\\\start.exe /Unix /home/minipython/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/微信/微信.lnk
+Type=Application
+StartupNotify=true
+Path=/home/minipython/.wine/dosdevices/c:/Program Files/Tencent/WeChat
+Icon=8A76_WeChat.0
+StartupWMClass=wechat.exe
