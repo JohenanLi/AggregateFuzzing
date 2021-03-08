@@ -1,9 +1,8 @@
 import sys
 import os
 import subprocess
-print(sys.path)
-import check
-import config
+from FuzzAll import check,config
+
 
 """
     fuzzer ==> fuzzer's name
