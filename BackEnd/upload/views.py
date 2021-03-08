@@ -19,7 +19,8 @@ def sourceCode(request):
         filePath = request.FILES.get("myfile", None)
         name = request.POST['name']
         parameter = request.POST['parameter']
-        fuzz_one()
+        inputFile = request.FILES.get('',None)
+
         if not filePath:
             return HttpResponse("no files for upload!")
         else:
@@ -33,6 +34,7 @@ def sourceProgram(request):
     if request.method == 'GET':
         return render(request, 'sourceProgram/sourceProgram.html')
     elif request.method == 'POST':
+        print(request.POST)
         filePath = request.FILES.get("myfile", None)
         name = request.POST['name']
         parameter = request.POST['parameter']
