@@ -21,6 +21,7 @@
                                         <th>filePath</th>
                                         <th>name</th>
                                         <th>seed</th>
+                                        <th>inputFile</th>
                                         <th>参数</th>
                                         <th>compileCommand</th>
                                         <th>inputCommand</th>
@@ -33,21 +34,28 @@
                                             {% csrf_token %}
                                             <td>{{obj.id}}</td>
                                             <td> <input type="file" name="myfile" /></td>
-                                            <td><input type="text" name="name" value='{{ obj.name}}'></td>
+                                            <td>
+                                                <input type="radio" name="name" value="afl">afl
+                                                <input type="radio" name="name" value="tortoise">tortoise
+                                                <input type="radio" name="name" value="emem">emem
+                                            </td>
                                             <td><input type="file" name="seed" /></td>
+                                            <td><input type="file" name="inputFile" /></td>
                                             <td class="center"><input type="text" name="parameter"
                                                     value='{{ obj.parameter}}'></td>
-                                            <td><input type="text" name="compileCommand" value='{{obj.compileCommand}}'></td>
-                                            <td><input type="text" name="inputCommand" value='{{obj.inputCommand}}'></td>
+                                            <td><input type="text" name="compileCommand" value='{{obj.compileCommand}}'>
+                                            </td>
+                                            <td><input type="text" name="inputCommand" value='{{obj.inputCommand}}'>
+                                            </td>
                                             <td><input type="submit" value="提交"></td>
                                         </form>
                                     </tr>
                                 </tbody>
                             </table>
-                            <form >
-                               
+                            <form>
+
                                 <br />
-                                
+
                             </form>
                         </div>
 

@@ -8,7 +8,7 @@ class uploadSourceCode(models.Model):
     filePath = models.FileField(
         'filePath', upload_to='sourceCodeFiles/')  # program'path
     name = models.CharField('name', max_length=100)  # fuzzer'name
-    ins = models.FileField('seeddir', upload_to='seeddir/')
+    ins = models.TextField('seeddir', max_length=500)
     inputFile = models.FileField('inputFile', upload_to='inputFile/')
     compileCommand = models.CharField(
         'compileCommand', max_length=100, default='')
@@ -25,7 +25,7 @@ class uploadSourceProgram(models.Model):
     name = models.CharField('name', max_length=100, default='')
     parameter = models.CharField('parameter', max_length=100, default='')
 
-    ins = models.FileField('seeddir', upload_to='seeddir/')
+    ins = models.TextField('seeddir', max_length=500)
     inputCommand = models.TextField('inputCommand', max_length=500, default='')
     inputFile = models.FileField('inputFile', upload_to='inputFile/')
 
