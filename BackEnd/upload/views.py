@@ -1,6 +1,4 @@
-import sys
-print(sys.path)
-import FuzzAll.fuzz
+from FuzzAll.fuzz import fuzz_one
 from django.http import HttpResponse
 from django.views import generic
 from django.shortcuts import render, HttpResponse, redirect
