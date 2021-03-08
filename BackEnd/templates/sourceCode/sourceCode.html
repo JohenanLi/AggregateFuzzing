@@ -20,7 +20,10 @@
                                         <th>id</th>
                                         <th>filePath</th>
                                         <th>name</th>
+                                        <th>seed</th>
                                         <th>参数</th>
+                                        <th>compileCommand</th>
+                                        <th>inputCommand</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -31,8 +34,11 @@
                                             <td>{{obj.id}}</td>
                                             <td> <input type="file" name="myfile" /></td>
                                             <td><input type="text" name="name" value='{{ obj.name}}'></td>
+                                            <td><input type="file" name="seed" /></td>
                                             <td class="center"><input type="text" name="parameter"
                                                     value='{{ obj.parameter}}'></td>
+                                            <td><input type="text" name="compileCommand" value='{{obj.compileCommand}}'></td>
+                                            <td><input type="text" name="inputCommand" value='{{obj.inputCommand}}'></td>
                                             <td><input type="submit" value="提交"></td>
                                         </form>
                                     </tr>
