@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 
@@ -38,6 +39,7 @@ class codeResult(models.Model):
     codeCoverage = models.CharField('codeCoverage', max_length=10)
     bugs = models.TextField('bugs', max_length=1000)
     sample = models.CharField('sample', max_length=100)
+    code = models.OneToOneField(to=uploadSourceCode, on_delete=CASCADE)
 
 
 class programResult(models.Model):
@@ -45,3 +47,4 @@ class programResult(models.Model):
     codeCoverage = models.CharField('codeCoverage', max_length=10)
     bugs = models.TextField('bugs', max_length=1000)
     sample = models.CharField('sample', max_length=100)
+    program = models.OneToOneField(to=uploadSourceProgram, on_delete=CASCADE)
