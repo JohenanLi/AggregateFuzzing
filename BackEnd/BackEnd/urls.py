@@ -21,7 +21,7 @@ from django.views.static import serve
 import upload.views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', upload.views.IndexView.as_view(), name='index'),
+    path('', upload.views.IndexView.as_view(), name='index'),
     path('upload/',include('upload.urls')),
     url(r'^static/(?P<path>.*)$', serve, {"document_root": STATIC_ROOT}),
 

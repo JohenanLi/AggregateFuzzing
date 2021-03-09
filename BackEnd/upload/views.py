@@ -14,20 +14,32 @@ class IndexView(generic.TemplateView):
 
 def sourceCode(request):
     if request.method == 'GET':
-        return render(request, 'sourceCode/sourceCode.html')
+        seedList = ''
+        with open('seed.txt','r') as f:
+            seedList = f.readlines()
+        f.close()
+        return render(request, 'sourceCode/sourceCode.html',{'seedList':seedList})
     elif request.method == 'POST':
+        print(request.POST)
         filePath = request.FILES.get("myfile", None)
         name = request.POST['name']
+        seed = request.POST['seed']
+        inputFile = request.FILES.get('inputFile',None)
         parameter = request.POST['parameter']
-        inputFile = request.FILES.get('',None)
-
+        compileCommand = request.POST['compileCommand']
+        inputCommand = request.POST['inputCommand']
+        fuzz_one()
         if not filePath:
             return HttpResponse("no files for upload!")
         else:
-            # 调用接口传数据
-            uploadSourceCode.objects.create(
-                filePath=filePath, name=name, parameter=parameter)
-            return render(request, 'sourceCode/wait.html')
+            ifile = False
+            if not inputFile:
+                ifile = True
+            else:
+                # 调用接口传数据
+                uploadSourceCode.objects.create(
+                    filePath=filePath, name=name, parameter=parameter)
+                return render(request, 'sourceCode/wait.html')
 
 
 def sourceProgram(request):

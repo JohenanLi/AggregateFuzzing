@@ -39,7 +39,11 @@
                                                 <input type="radio" name="name" value="tortoise">tortoise
                                                 <input type="radio" name="name" value="emem">emem
                                             </td>
-                                            <td><input type="file" name="seed" /></td>
+                                            <td>
+                                                {% for seed in seedList %}
+                                                <input type="checkbox" name="seed" value={{seed}} />{{seed}}
+                                                {% endfor %}
+                                            </td>
                                             <td><input type="file" name="inputFile" /></td>
                                             <td class="center"><input type="text" name="parameter"
                                                     value='{{ obj.parameter}}'></td>
