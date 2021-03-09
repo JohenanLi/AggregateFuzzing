@@ -31,3 +31,17 @@ class uploadSourceProgram(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class codeResult(models.Model):
+    id = models.AutoField('id', primary_key=True)
+    codeCoverage = models.CharField('codeCoverage', max_length=10)
+    bugs = models.TextField('bugs', max_length=1000)
+    sample = models.CharField('sample', max_length=100)
+
+
+class programResult(models.Model):
+    id = models.AutoField('id', primary_key=True)
+    codeCoverage = models.CharField('codeCoverage', max_length=10)
+    bugs = models.TextField('bugs', max_length=1000)
+    sample = models.CharField('sample', max_length=100)
