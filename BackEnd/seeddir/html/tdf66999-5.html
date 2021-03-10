@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!--This file was converted to xhtml by LibreOffice - see http://cgit.freedesktop.org/libreoffice/core/tree/filter/source/xslt for the code.-->
+    <head profile="http://dublincore.org/documents/dcmi-terms/">
+        <title xml:lang="en-US">- no title specified</title>
+        <style type="text/css">
+            span.countheads {
+                counter-reset: chapter;
+            }
+            h1 {
+                
+            }
+            h1.countheads:before {
+                content: "Chapter " counter(chapter) ". ";
+                counter-increment: chapter;
+            }
+            h2.countheads:before {
+                content: counter(chapter) "." counter(section) " ";
+                counter-increment: section;
+            }
+            h3.countheads:before {
+                content: counter(chapter) "." counter(section) "." counter(subsection) " ";
+                counter-increment: subsection;
+            }
+            h1.nocount:before {
+                content: none;
+                counter-increment: none;
+            }
+            h2.nocount:before {
+                content: none;
+                counter-increment: none;
+            }
+            h3.nocount:before {
+                content: none;
+                counter-increment: none;
+            }
+        </style>
+    </head>
+    <body style="counter-reset: chapter;">
+        <h1 class="countheads" style="counter-reset: section;">Numbering headings</h1>
+        <h2 class="countheads" style="counter-reset: subsection;">About</h2>
+        <h2 class="countheads" style="counter-reset: subsection;">Demonstration</h2>
+        <h3 class="countheads">Subheading</h3>
+        <h3 class="countheads">One more subheading</h3>
+
+        <h1 class="countheads" style="counter-reset: section;">Numbering headings</h1>
+        <h2 class="countheads" style="counter-reset: subsection;">About</h2>
+        <h2 class="countheads" style="counter-reset: subsection;">Demonstration</h2>
+        <h3 class="countheads">Subheading</h3>
+        <h3 class="countheads">One more subheading</h3>
+
+        <h1>No numbering headings</h1>
+        <h2>About</h2>
+        <h2>Demonstration</h2>
+        <h3>Subheading</h3>
+        <h3>One more subheading</h3>
+
+        <div style="counter-reset: chapter;"/>
+        <h1 class="countheads" style="counter-reset: section;">Numbering headings</h1>
+        <h2 class="countheads" style="counter-reset: subsection;">About</h2>
+        <h2 class="countheads" style="counter-reset: subsection;">Demonstration</h2>
+        <h3 class="countheads">Subheading</h3>
+        <h3 class="countheads">One more subheading</h3>
+    </body>
+</html>

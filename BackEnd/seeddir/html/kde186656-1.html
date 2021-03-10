@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>example</title>
+<link href="example.css" rel="stylesheet" type="text/css" />
+<script src="example.js" language="javascript" type="text/javascript" ></script>
+</head>
+<body onload="loadbody(<?php print_r($loggedIn); ?>)">
+<div class="menu"><a href="#" onclick="return load('item1');">item1</a><a href="#" onclick="return load('item2');">item2</a></div>
+<div class="item1"><fieldset id="item1"><legend>Item1</legend><input type="text" value="works"/></fieldset></div>
+<div class="item2"><fieldset id="item2"><legend>Item2</legend><input type="text" value="works"/></fieldset></div>
+</body>
+</html>

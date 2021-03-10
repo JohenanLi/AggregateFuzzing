@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" styles="unlocked" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:svg="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.1" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="2.0.11" xml:space="preserve" props="dom-dir:ltr; lang:en-US">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="dc.format">application/x-abiword</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="abiword.date_last_changed">Tue Sep 21 22:10:24 2004</m>
+</metadata>
+<styles>
+<s type="P" name="Heading 1" basedon="Normal" followedby="Normal" props="keep-with-next:1; margin-top:22pt; font-weight:bold; margin-bottom:3pt; font-family:Arial; font-size:17pt"/>
+<s type="P" name="Normal" followedby="Current Settings" props="text-indent:0in; margin-top:0pt; margin-left:0pt; font-stretch:normal; line-height:1.0; text-align:left; bgcolor:transparent; lang:en-US; dom-dir:ltr; margin-bottom:0pt; text-decoration:none; font-weight:normal; font-variant:normal; color:000000; text-position:normal; font-size:12pt; margin-right:0pt; font-style:normal; widows:2; font-family:Times New Roman"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section props="page-margin-footer:0.5in; page-margin-header:0.5in">
+<p style="Heading 1" props="text-align:right; dom-dir:rtl"><c props="lang:he-IL">זוהי כותרת רגילה</c></p>
+<p style="Normal" props="text-align:right; font-family:David CLM; dom-dir:rtl"><c props="font-family:David CLM; lang:he-IL">טקסט רגיל סקירה קצרה של Mandrake Linux 10.1 Community Edition הזמינה בינתיים לחברי המועדון בלבד. בין החידושים: אפשרות התקנה חדשה, mini-install, שמאפשרת להמשיך את ההתקנה בחיבור לרשת. עוד זמינות בעדכון Kontact, יישומון פאנל למעקב אחר מצב החיבור לרשת, בנוסף על drakrom לניהול קישוריות של כרטיסי WiFi, וגם תוספת חדשה במרכז הבקרה המאפשרת לנהל לחיבור למסוף מרוחק, או לאפשר חיבור לתחנה המקומית כשרת.</c></p>
+<p style="Normal" props="text-align:right; font-family:David CLM; dom-dir:rtl"><c props="font-family:David CLM; lang:he-IL"></c></p>
+<p style="Normal" props="text-align:right; font-family:David CLM; dom-dir:rtl"><c props="font-family:David CLM; lang:he-IL">מלבד זה מהדיווח אפשר להתרשם שגירסה זו סובלת כרגיל מבעיות מוכרות במנדרייק - בעיקר חוסר בשלות ובעיות יציבות, אבל גם בצד האסתטי, מנדרייק מפגרת אחרי הפצות כמו סוזה בכל מה שקשור למראה ותחושה. מצד שני, כותב המאמר אוהב את מערכת התפריטים של קנופיקס ותוהה למה זו של מנדרייק מאופקת, אז אפשר להניח שאפשר להטיל ספק ביכולת השיפוט שלו ... :) (מקור: Mandrake 10.1 Review)</c></p>
+</section>
+</abiword>

@@ -1,0 +1,3 @@
+#define w 1351
+#define h 1689
+static char b[] = {0};

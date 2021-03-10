@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Enter Bug: openSUSE 11.0</title>
+  </head>
+  <body>
+<table>
+<tr>
+  <th><label for="data">File</label>:</th>
+  <td>
+    <em>Enter the path to the file on your computer.</em><br>
+    <input type="file" id="data" name="data" size="50">
+  </td>
+</tr>
+<tr>
+  <th>BigFile:</th>
+  <td>
+    <input type="checkbox" id="bigfile"
+           name="bigfile" value="bigfile">
+    <label for="bigfile">
+      Big File - Stored locally and may be purged
+    </label>
+  </td>
+</tr>
+<tr>
+  <th><label for="description">Description</label>:</th>
+  <td>
+    <em>Describe the attachment briefly (required).</em><br>
+    <input type="text" id="description" name="description" size="60" maxlength="200">
+  </td>
+</tr>
+<tr>
+  <th>Content Type:</th>
+  <td>
+    <em>If the attachment is a patch, check the box below.</em><br>
+    <input type="checkbox" id="ispatch" name="ispatch" value="1"
+           onchange="setContentTypeDisabledState(this.form);">
+    <label for="ispatch">patch</label><br><br>
+
+    <em>Otherwise, choose a method for determining the content type.</em><br>
+    <input type="radio" id="autodetect"
+           name="contenttypemethod" value="autodetect" checked="checked">
+      <label for="autodetect">auto-detect</label><br>
+    <input type="radio" id="list"
+           name="contenttypemethod" value="list">
+      <label for="list">select from list</label>:
+      <select name="contenttypeselection" id="contenttypeselection"
+              onchange="this.form.contenttypemethod[1].checked = true;"><option value="text/plain">plain text (text/plain)</option>
+          <option value="text/html">HTML source (text/html)</option>
+          <option value="application/xml">XML source (application/xml)</option>
+          <option value="image/gif">GIF image (image/gif)</option>
+          <option value="image/jpeg">JPEG image (image/jpeg)</option>
+          <option value="image/png">PNG image (image/png)</option>
+          <option value="image/bmp">Bitmap image (image/bmp)</option>
+          <option value="image/tiff">TIFF image (image/tiff)</option>
+          <option value="application/pdf">Adobe PDF Document(application/pdf)</option>
+          <option value="application/x-gzip">gzipped file(application/x-gzip)</option>         
+          <option value="application/x-bzip2">bzip2 file (application/x-bzip2)</option>
+          <option value="application/zip">zip file (application/zip)</option>
+          <option value="application/octet-stream">binary file (application/octet-stream)</option>
+      </select><br>
+    <input type="radio" id="manual"
+                 name="contenttypemethod" value="manual">
+      <label for="manual">enter manually</label>:
+      <input type="text" name="contenttypeentry" id="contenttypeentry"
+             size="30" maxlength="200"
+             onchange="if (this.value) this.form.contenttypemethod[2].checked = true;">
+  </td>
+</tr>
+</table>
+
+</body>
+</html>

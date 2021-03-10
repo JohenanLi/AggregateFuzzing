@@ -1,0 +1,23 @@
+<html><head></head><body><h1>Software error:</h1>
+<pre>DBD::Pg::st execute failed: ERROR:  duplicate key violates unique constraint "flags_pkey"
+ [for Statement "INSERT INTO flags ( type_id, 
+                                    bug_id, attach_id, 
+                                    requestee_id, setter_id, status, 
+                                    creation_date, modification_date)
+                VALUES (16, 
+                        151568, 
+                        NULL,
+                        19562,
+                        202062,
+                        '?', 
+                        '2006-08-15 16:04:50.597037-04',
+                        '2006-08-15 16:04:50.597037-04')"] at Bugzilla/DB.pm line 71
+	Bugzilla::DB::SendSQL('INSERT INTO flags ( type_id, \x{a}                               ...') called at Bugzilla/Flag.pm line 489
+	Bugzilla::Flag::create('HASH(0x1807840)', '\'2006-08-15 16:04:50.597037-04\'') called at Bugzilla/Flag.pm line 409
+	Bugzilla::Flag::process('HASH(0x1809a10)', '2006-08-15 16:04:50.597037-04', 'Bugzilla::CGI=HASH(0x154d4b0)') called at /var/www/html/bugzilla/process_bug.cgi line 2294
+</pre>
+<p>
+For help, please send mail to the webmaster (<a href="mailto:bugzilla-owner@redhat.com">bugzilla-owner@redhat.com</a>), giving this error message 
+and the time and date of the error.
+
+</p></body></html>

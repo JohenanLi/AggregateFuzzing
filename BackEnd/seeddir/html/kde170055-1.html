@@ -1,0 +1,93 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Dynamic Positioning Test</title>
+
+<style type="text/css">
+
+/*body { 
+  border: 1px solid red;
+  margin: 0px;
+}*/
+
+#a,
+#b
+{
+	width: 100px;
+	height: 100px;	
+}
+
+#a
+{
+   background: blue;
+}
+
+#b
+{
+   background: red;
+	position:absolute;
+	top: 0;
+	left: 0;
+}
+
+</style>
+
+<script type="text/javascript">
+
+  out = "";
+  function log(msg) {
+      out += msg + "<br>";
+/*      var c = document.getElementById("output");
+      c.appendChild(document.createTextNode(msg));
+      c.appendChild(document.createElement("br"));*/
+  }
+
+   function getOffset(e, dir)
+   {
+      log(e + ":" + dir + "/" + (e ? e["offset" + dir] : "e is null"));
+      return ! e
+		       ? 0
+		       : e["offset" + dir] + getOffset(e.offsetParent, dir);
+   }
+
+	onload = function()
+	{
+		var a = document.getElementById("a");		
+		var left = getOffset(a, "Left");
+		log("");
+		var top =  getOffset(a, "Top") + a.offsetHeight;
+		log ("the offset height is:" + a.offsetHeight);
+
+ 		var b = document.createElement("div");		
+ 		b.id = "b";
+ 		b.style.left = left + "px";
+ 		b.style.top = top + "px";
+
+		document.body.appendChild(b);
+
+		document.getElementById("output").innerHTML = out;
+	};
+	
+</script>
+
+</head>
+
+<body>
+
+<h3>Dynamic Positioning Test</h3>
+
+<p>The Red square should appear right below the blue square in Konqueror Version 4.0.4, running in openSUSE Linux. But this does not happen.</p>
+
+<p>To see the expected behavior, view in Firefox, Safari or Opera.</p>
+
+<div style="padding: 25px">
+   <div id="a"></div>
+</div>
+<div style="padding:50px"></div>
+
+<div id="output">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+ <title>margin: auto</title>
+ 
+<style type="text/css">
+
+div#maincontents > img
+{
+        display: block;
+	margin: .5em auto .5em auto;
+}
+
+</style>
+ 
+ 
+</head>
+
+
+<body>
+
+<div id="maincontents">
+
+
+<h1>margin: auto does not work when width not given</h1>
+
+<p>
+(See <a href="http://bugs.kde.org/show_bug.cgi?id=69852">bug #69852</a>)
+
+All images should be left and right equally aligned, e.g. centered.
+They have the following style attributes:</p>
+
+<pre>display: block;
+margin: .5em auto .5em auto;</pre>
+
+<h4>1. Width and height given</h4>
+<pre>&lt;img src="http://bugs.kde.org/kde_logo.jpg" width="296" height="79" alt="me" /&gt;</pre>
+
+<img src="http://bugs.kde.org/kde_logo.jpg" width="296" height="79" alt="me" />
+
+<h4>2. Only height given</h4>
+<pre>&lt;img src="http://bugs.kde.org/kde_logo.jpg" height="79" alt="me" /&gt;</pre>
+
+<img src="http://bugs.kde.org/kde_logo.jpg" height="79" alt="me" />
+
+<h4>3. Only width given</h4>
+<pre>&lt;img src="http://bugs.kde.org/kde_logo.jpg" width="296" alt="me" /&gt;</pre>
+
+<img src="http://bugs.kde.org/kde_logo.jpg" width="296" alt="me" />
+
+<h4>4. No width and height given</h4>
+<pre>&lt;img src="http://bugs.kde.org/kde_logo.jpg" alt="me" /&gt;</pre>
+
+<img src="http://bugs.kde.org/kde_logo.jpg" alt="me" />
+
+</div>
+
+
+</body></html>

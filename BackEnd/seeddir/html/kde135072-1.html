@@ -1,0 +1,110 @@
+<!-- saved from:
+http://www.secdev.org/projects/scapy/ -->
+<HTML>
+  <base id="basid" href="http://mydomain/www/ftp/Documents/networking/scapy/Scapy.war/">
+<hEad>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <TITLE>
+      Scapy
+    </TITLE>
+    <LINK REL="stylesheet" HREF="scapy.css" TYPE="text/css">
+    </LINK>
+  </HEAD>
+  <!-- --> <!-- --> <body>
+<!-- Warning box in page begin -->
+<style>
+div.ro_warning {
+	margin-left:auto;margin-right:auto;
+	width:90%;top:+30px;left:+20px;
+	position:fixed;z-index:1000;
+	border:4px solid red;
+	background-color:#ffff40;color:#800000;
+	font-size:12px;
+}
+button.ro_btn {font-size:smaller;height:1em;}
+</style>
+
+<div class="ro_warning" id="warning" style="display:visible;">
+<center>
+
+<button class="ro_btn" id="btnhide" onclick="dohide(this);"  style="float:right;">Transparent</button>
+<b>Saved URL: <a href="http://www.secdev.org/projects/scapy/" style="color:black;">http://www.secdev.org/projects/scapy/</a> &reg; &copy;
+
+<br><sup>Links may not fully working on this page!.</sup>
+<button class="ro_btn" onclick="rebase();" >Try Repair</button>
+
+<br><sup>javascript is disabled where possible!.</sup>
+<button class="ro_btn" id="btnjs" onclick="reload('/www/ftp/Documents/networking/scapy/Scapy.warjs')">Use JS</button>
+</b>
+</center>
+</div>
+
+<script LANGUAGE="JavaScript" type='text/javascript'>
+function reload(url){
+  if (url!='') document.location.href='/www/ftp/Documents/networking/scapy/Scapy.warjs';
+}
+
+function dohide(elm){
+  war=document.getElementById('warning');
+  btn=document.getElementById('btnhide');
+
+dsb=war.style.background
+alert(dsb.length);
+alert(dsb);
+/*
+a: on transparent button
+b: on scroll button
+c: on hide button
+
+kubuntu6.10 konqueror 3.5.5:
+a:
+b:'initial initial initial transparent'
+c:'initial initial initial transparent'
+
+kubuntu6.10 firefox 2.0
+a:
+b:'transparent none repeat scroll 0% 0%'
+c:'transparent none repeat scroll 0% 0%'
+
+*/
+
+  if ( btn.innerText=='Hide') war.style.visibility = 'hidden';
+
+  if (war.style.background != 'initial initial initial transparent') {
+    war.style.background= 'transparent';
+    btn.innerText='Scroll';
+  }else{
+//  war.style.visibility = 'hidden';
+    war.style.position = 'absolute';
+    btn.innerText="Hide";
+  }
+
+}
+
+function rebase(){
+  elm=document.getElementById('basid');
+  url='http://www.secdev.org/projects/scapy/';
+ pos=url.indexOf('?');
+  if (pos>1) url=url.substr(0,pos)
+  pos2=0;
+  while (pos2!=-1) { pos=pos2; pos2=url.indexOf('/',pos+1) }
+  url=url.substr(0,pos+1)
+  elm.href=url;
+}
+
+</script>
+<!-- Warning box in page end -->
+
+    
+
+
+
+    <H1>
+      Scapy
+    </H1>
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>test case</title>
+    <style type="text/css">
+      <!--
+        body { background-color:#ffffff;color:#000000 }
+        div.test { background-color:lime;border:2px solid black }
+        table { border-style:solid;border-width:2px;width:10%;border-spacing:0px; }
+        table.test { margin:60px 20px 20px 30px }
+        td, th {border:1px solid black}
+      -->
+    </style>
+  </head>
+  <body>
+    <h1>Testing a table with KHTML</h1>
+    <table>
+      <tr>
+        <td>
+          <table class="test">
+            <caption>table inside another table</caption>
+            <thead>
+              <tr>
+                <th>head&nbsp;cell&nbsp;1</th>
+                <th>head&nbsp;cell&nbsp;2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>entry&nbsp;1</td>
+                <td>entry&nbsp;2</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <div class="test">
+      <table class="test">
+        <caption>table inside a div</caption>
+        <thead>
+          <tr>
+            <th>head&nbsp;cell&nbsp;1</th>
+            <th>head&nbsp;cell&nbsp;2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>entry&nbsp;1</td>
+            <td>entry&nbsp;2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

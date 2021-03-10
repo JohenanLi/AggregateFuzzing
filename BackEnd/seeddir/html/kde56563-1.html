@@ -1,0 +1,98 @@
+
+<script>
+    var oKey = new ylib_keyevt();
+    oKey.addKey(67,-1,"location='http://uk.f149.mail.yahoo.com/ym/ShowFolder?rb=Inbox'","shift+ctrl"); // Check Mail | CTRL-C
+    oKey.addKey(80,-1,"location='http://uk.f149.mail.yahoo.com/ym/Compose'","shift+ctrl"); // Compose | CTRL-P
+    oKey.addKey(70,-1,"location='http://uk.f149.mail.yahoo.com/ym/Folders'","shift+ctrl"); // Folders | CTRL-F
+    oKey.addKey(83,-1,"location='http://uk.f149.mail.yahoo.com/ym/Search'","shift+ctrl"); // Search | CTRL-S
+    oKey.addKey(72,-1,"location='http://help.yahoo.com/help/uk/mail'","shift+ctrl"); // Help | CTRL-H
+</script>
+
+
+
+<script language=javascript>
+<!--
+    function init()
+    {
+	if (oBw.ie||oBw.dom) {
+
+	    ypim_initMenu('mail','addr','cal','note'); // initiates the drop down menus
+	    document.onkeydown = function(evt) { oKey.keyevent(evt); }
+	}
+	OnLoad(); // do not delete
+    }
+
+    function OnLoad()
+    {
+	// noop by default
+	// redefine as needed
+    }
+
+    onload=init
+    // -->
+</script>
+
+												<table cellpadding=0 cellspacing=0 border=0>
+<tr>
+	<td width=1% class=tabhi>
+		<table cellpadding=0 cellspacing=0 border=0 width=100% id=mailTb>
+		<tr>
+			<td id=mail1 class=tabhia>
+			<table cellpadding=0 cellspacing=0 border=0 width=100%>
+			<tr>
+				<td><a href="http://mail.yahoo.com"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/b/mailbr1.gif" height=24 width=24 border=0 name=iconmail hspace=4 alt="Yahoo! Mail"></a></td>
+				<td class=tabhit nowrap><a href="http://mail.yahoo.com">Mail</a>&nbsp;</td></tr>
+			</table>
+			</td>
+			<td valign=middle id=mailBtn class=tabhia><a href="http://mail.yahoo.com" onclick="ypim_prepareMail(); return ypim_showMenu('mail')"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/bn/downbr1.gif" name=arr_mail border=0 width=10 height=24></a></td>
+		</tr>
+		</table>
+	</td>
+	<td width=1% class=tablor>
+		<table cellpadding=0 cellspacing=0 border=0 width=100% id=addrTb>
+		<tr>
+			<td id=addr1 class=tabloa>
+			<table cellpadding=0 cellspacing=0 border=0 width=100%>
+			<tr>
+				<td><a href="http://uk.address.yahoo.com/yab/uk"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/b/abbr1.gif" height=24 width=24 border=0 name=iconaddr hspace=4 alt="Yahoo! Address Book"></a></td>
+				<td class=tablot nowrap><a href="http://uk.address.yahoo.com/yab/uk">Addresses</a>&nbsp;</td></tr>
+			</table>
+			</td>
+			<td valign=middle id=addrBtn class=tabloa><a href="http://uk.address.yahoo.com/yab/uk" onclick="ypim_prepareAddr(); return ypim_showMenu('addr')"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/bn/downbr1.gif" name=arr_addr border=0 width=10 height=24></a></td>
+		</tr>
+		</table>
+	</td>
+	<td width=1% class=tablor>
+		<table cellpadding=0 cellspacing=0 border=0 width=100% id=calTb>
+		<tr>
+			<td id=cal1 class=tabloa>
+			<table cellpadding=0 cellspacing=0 border=0 width=100%>
+			<tr>
+				<td><a href="http://uk.calendar.yahoo.com"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/b/calbr1.gif" height=24 width=24 border=0 name=iconcal hspace=4 alt="Yahoo! Calendar"></a></td>
+				<td class=tablot nowrap><a href="http://uk.calendar.yahoo.com">Calendar</a>&nbsp;</td></tr>
+			</table>
+			</td>
+			<td valign=middle id=calBtn class=tabloa><a href="http://uk.calendar.yahoo.com" onclick="ypim_prepareCal(); return ypim_showMenu('cal')"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/bn/downbr1.gif" name=arr_cal border=0 width=10 height=24></a></td>
+		</tr>
+		</table>
+	</td>
+	<td width=1% class=tablor>
+		<table cellpadding=0 cellspacing=0 border=0 width=100% id=noteTb>
+		<tr>
+			<td id=note1 class=tabloa>
+			<table cellpadding=0 cellspacing=0 border=0 width=100%>
+			<tr>
+				<td><a href="http://uk.notepad.yahoo.com"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/b/npdbr1.gif" height=24 width=24 border=0 name=iconnote hspace=4 alt="Yahoo! Notepad"></a></td>
+				<td class=tablot nowrap><a href="http://uk.notepad.yahoo.com">Notepad</a>&nbsp;</td></tr>
+			</table>
+			</td>
+			<td valign=middle id=noteBtn class=tabloa><a href="http://uk.notepad.yahoo.com" onclick="ypim_prepareNote(); return ypim_showMenu('note')"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/pim/bn/downbr1.gif" name=arr_note border=0 width=10 height=24></a></td>
+		</tr>
+		</table>
+	</td>
+	<td width=95% align=right class=tabnone>
+		<b>[REMOVED]</b> [<a href="[REMOVED]">Sign Out</a>]&nbsp;
+
+	</td>
+</tr>
+</table>

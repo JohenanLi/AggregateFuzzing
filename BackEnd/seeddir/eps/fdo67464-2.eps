@@ -1,0 +1,113 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%BoundingBox: 16 16 384 384
+%%HiResBoundingBox: 16.000000 16.000000 384.000000 384.000000
+
+%rad n {proc}  atpoly  -
+%call proc having rotated+scaled
+%so (1,0) is each vertex of rad-radius n-polygon
+%%EndComments
+% EPSF created by ps2eps 1.68
+%%BeginProlog
+save
+countdictstack
+mark
+newpath
+/showpage {} def
+/setpagedevice {pop} def
+%%EndProlog
+%%Page 1 1
+/atpoly {
+    %3 args (atpoly)=
+    4 dict begin /p exch def /n exch def % rad 
+    /m matrix currentmatrix def 
+    %(rad2=)print rad2 =
+    %dup (atpoly: rad=)print =
+    dup scale
+    /s matrix currentmatrix def 
+    0 360 n div 359.9 %0 dAng maxAng %{}for
+    ({  
+        {
+            //s setmatrix
+            rotate
+            //p exec
+        } for 
+        //m setmatrix
+    }) token pop exch pop %instantiate code template
+    bind
+    end exec % run loop without dictionary
+} bind def 
+/procs [
+%0 defining circle
+{ rad neg 0 moveto 0 0 rad -180 180 arc closepath }
+%1 venn-euler circs
+{ rad n {
+    %0 0 moveto
+    1 rad2 sub 0 moveto
+    1 0 rad2 -180 180 arc closepath } atpoly }
+%2 defining polygon
+{ rad 0 moveto rad n { 1 0 lineto } atpoly closepath }
+%3 venn-euler polygon approximation
+{ rad n { 1 0 translate rad2 0 moveto rad2 n { 1 0 lineto } atpoly closepath } atpoly }
+%4 radii
+{ rad 0 moveto rad n { 1 0 lineto 0 0 lineto } atpoly closepath }
+%5 v-e radii
+{ rad n { 1 0 translate 0 0 moveto rad2 n { 1 0 lineto 0 0 lineto } atpoly closepath } atpoly }
+%6 rotated defining polygon
+{ 180 n div rotate rad 0 moveto rad n { 1 0 lineto } atpoly closepath }
+%7 rotated polygon approximation
+{ rad n { 1 0 translate 180 n div rotate rad2 0 moveto
+    rad2 n { 1 0 lineto } atpoly closepath } atpoly }
+%8 pie-slice triangulation
+{ rad 0 moveto rad n { 1 0 lineto 0 0 lineto 1 0 lineto } atpoly closepath }
+] def
+%rad n [proc-indices]  venn-euler  -
+/venn-euler { 3 dict begin 3 1 roll /n exch def /rad exch def
+    /rad2 where { pop }{ %/rad2 1 def rad n [8] venn-euler
+        %dup 0 get exch n 2 idiv get dist rad div
+        n 2 lt { 1 }{
+            n 2 idiv 360 n div mul dup cos exch sin 1 0 dist
+        } ifelse
+        /rad2 exch def
+    } ifelse
+    {
+        procs exch get exec
+    } forall
+end } bind def
+%draw a big circle around everything (hopefully)
+/bigcircle {
+    0 0 100 /rad2 where { pop rad2 1 add mul }{ 3 mul } ifelse
+        dup 0 moveto
+        0 360 arc closepath
+} %pop {}
+def
+/black { 0 setgray } def
+/scarlet { .8 .1 .2 setrgbcolor } def
+/redline { scarlet
+    9 n div setlinewidth %smaller lines don't obscure small shapes
+} def
+/blackline { black
+    currentlinewidth 2 mul setlinewidth
+} def
+/rad2 .5 def
+/shrink {1.2 dup scale} def
+/X 400 /Y 400 def def %paper size
+/Center [X 2 div Y 2 div] cvx def
+0 0 400 400 rectclip
+/xpostlogo {
+    Center translate
+    n 2 mod 1 eq { 90 rotate } if
+    shrink
+    redline
+    bigcircle
+    100 n [ 0 1 4 5 ] venn-euler stroke
+    blackline
+    100 n [ 3 6 7 ] venn-euler stroke
+} def
+/n 4 def
+xpostlogo
+%%Trailer
+cleartomark
+countdictstack
+exch sub { end } repeat
+restore
+%%EOF

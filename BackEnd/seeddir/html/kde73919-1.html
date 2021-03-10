@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+ <title>Absolute positioning problem with parent with percentage height</title>
+ <style type="text/css">
+#div1
+{
+        position: absolute;
+        left: 10px;
+        width: 400px;
+        height: 20%;
+        background: #f8f;
+}
+
+#div2
+{
+        position: absolute;
+        left: 10px;
+        width: 400px;
+        height: 180px;
+        background: #f8f;
+}
+
+.child
+{
+        position: absolute;
+        left: 20px;
+        bottom: 0px;
+        width: 360px;
+        height: 20px;
+        background: #c6c;
+}
+ </style>
+        
+</head>
+
+<body>
+
+<h1>Absolute positioning problem with parent with percentage height</h1>
+
+<p>This box is absolutely positioned with percentage height. A darker box should
+appear inside; it should lay on the bottom of its parent, but Konqueror
+puts it above:
+<br />
+<br />
+</p>
+
+<div id="div1">
+
+        <div class="child"> </div>
+
+</div>
+
+<p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+But when the parent has an absolute height (e.g. no percentage), Konqueror
+gets it right:</p>
+
+<div id="div2">
+
+        <div class="child"> </div>
+        
+</div>
+
+
+
+</body>
+</html>

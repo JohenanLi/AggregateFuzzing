@@ -1,0 +1,45 @@
+extra:	Reading recipe "main.aap"
+extra:	Executing recipe "../common.aap"
+changedir:	Entering directory `/var/tmp/portage/app-text/asciidoc-9999/work/asciidoc-9999'
+extra:	Reading recipe "/usr/share/aap/default.aap"
+extra:	Finished reading recipe "/usr/share/aap/default.aap"
+extra:	Reading recipe "common.aap"
+extra:	Finished reading recipe "common.aap"
+depend:	Adding default dependency for "clean"
+depend:	Adding default dependency for "cleanmore"
+depend:	Building the "all" target
+depend:	1 - updating target "all"
+depend:	2 - Using dependency "all : "
+depend:	1 - Updating "all" from "": virtual target
+changedir:	Entering directory `/var/tmp/portage/app-text/asciidoc-9999/work/asciidoc-9999/doc'
+extra:	Finished reading recipe "main.aap"
+depend:	Adding default dependency for "cleanmore"
+depend:	Building targets specified on command line
+depend:	1 - updating target "../CHANGELOG"
+depend:	2 - Using dependency "../CHANGELOG : ../CHANGELOG.text"
+depend:	3 - updating target "../CHANGELOG.text"
+depend:	4 - Using build rule "%.text : %.txt ../README.asciidoc" for target "../CHANGELOG.text"
+depend:	5 - updating target "../CHANGELOG.txt"
+depend:	5 - Target has no build commands and exists: "../CHANGELOG.txt"
+note:	Cannot read sign file "../AAPDIR/sign": [Errno 2] No such file or directory: '/var/tmp/portage/app-text/asciidoc-9999/work/asciidoc-9999/AAPDIR/sign'
+depend:	5 - updating target "../../README.asciidoc"
+depend:	5 - Do not know how to build "../../README.asciidoc"
+depend:	5 - updating target "../README.asciidoc"
+depend:	5 - Target has no build commands and exists: "../README.asciidoc"
+depend:	5 - Unknown type of file, no dependency check for "../README.asciidoc"
+depend:	3 - Updating "../CHANGELOG.text" from "../CHANGELOG.txt ../README.asciidoc": no old signature for "../CHANGELOG.txt"
+changedir:	Entering directory `/var/tmp/portage/app-text/asciidoc-9999/work/asciidoc-9999/doc'
+extra:	Shell commands for updating "../CHANGELOG.text":
+system:	python ../asciidoc.py -a revnumber=8.6.9@ -a "revdate=9 November 2013@" -f ../text.conf -n -b html4 -o - ../CHANGELOG.txt ../README.asciidoc |             lynx -dump -stdin > ../CHANGELOG.text
+depend:	3 - Unknown type of file, no dependency check for "../CHANGELOG.text"
+depend:	1 - Updating "../CHANGELOG" from "../CHANGELOG.text": no old signature for "../CHANGELOG.text"
+info:	Copied "../CHANGELOG.text" to "../CHANGELOG"
+depend:	1 - updating target "../README"
+depend:	2 - Using dependency "../README : ../README.text"
+depend:	3 - updating target "../README.text"
+depend:	4 - Using build rule "%.text : %.txt ../README.asciidoc" for target "../README.text"
+depend:	5 - updating target "../README.txt"
+depend:	5 - Do not know how to build "../README.txt"
+depend:	5 - updating target "README.txt"
+depend:	5 - Do not know how to build "README.txt"
+error:	Do not know how to build "../README.txt"

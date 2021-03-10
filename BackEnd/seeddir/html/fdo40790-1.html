@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>glean/readPixSanity - Details</title>
+		<link rel="stylesheet" href="../result.css"/>
+	</head>
+	<body>
+		<h1>Results for glean/readPixSanity</h1>
+		<h2>Overview</h2>
+		<p>
+			<b>Status:</b> fail<br/>
+			<b>Result:</b> fail<br/>
+		</p>
+		<p>
+			<a href="../index.html">Back to summary</a>
+		</p>
+		<h2>Details</h2>
+		<table>
+			<tr class="head">
+				<th>Detail</th>
+				<th>Value</th>
+			</tr>
+			<tr>
+	<td class="bara">returncode</td>
+	<td class="a">1</td>
+</tr>
+<tr>
+	<td class="barb">time</td>
+	<td class="b">10.0703830719</td>
+</tr>
+<tr>
+	<td class="bara">note</td>
+	<td class="a"><pre>Returncode was 1</pre>
+</td>
+</tr>
+<tr>
+	<td class="barb">command</td>
+	<td class="b"><pre>/home/nicholas/src/git/piglit/framework/../bin/glean -r ./results/glean/readPixSanity -o -v -v -v -t +readPixSanity</pre>
+</td>
+</tr>
+<tr>
+	<td class="bara">errors</td>
+	<td class="a"><ul>
+<li><pre>X Error of failed request:  BadDrawable (invalid Pixmap or Window parameter)</pre>
+</li>
+<li><pre>Major opcode of failed request:  136 (DRI2)</pre>
+</li>
+<li><pre>Minor opcode of failed request:  8 (DRI2SwapBuffers		)</pre>
+</li>
+<li><pre>Resource id in failed request:  0x220000b</pre>
+</li>
+<li><pre>Serial number of failed request:  1280</pre>
+</li>
+<li><pre>Current serial number in output stream:  1280</pre>
+</li>
+
+</ul>
+</td>
+</tr>
+<tr>
+	<td class="barb">info</td>
+	<td class="b"><pre>Returncode: 1
+
+Errors:
+X Error of failed request:  BadDrawable (invalid Pixmap or Window parameter)
+  Major opcode of failed request:  136 (DRI2)
+  Minor opcode of failed request:  8 (DRI2SwapBuffers		)
+  Resource id in failed request:  0x220000b
+  Serial number of failed request:  1280
+  Current serial number in output stream:  1280
+
+
+Output:
+----------------------------------------------------------------------
+This test performs a sanity check of glReadPixels, using as
+few other portions of the GL as possible.  If this test fails,
+it may be pointless to run other tests, since so many of them
+depend on reading the contents of the framebuffer to determine
+if they pass.
+
+The test works by using glClear to fill the framebuffer with a
+randomly-chosen value, reading the contents of the
+framebuffer, and comparing the actual contents with the
+expected contents.  RGB, RGBA, color index, stencil, and depth
+buffers (whichever are applicable to the current rendering
+context) are checked.  The test passes if the actual contents
+are within 1 LSB of the expected contents.
+
+readPixSanity:  FAIL rgba8, db, z24, s8, win+pmap, id 33
+	Depth worst-case error was 8.39711 bits at (31, 31)
+		expected 0.10967; got 0.10965.
+	RGBA largest readback error was 0 bits
+	Depth largest readback error was 8.39711 bits
+readPixSanity:  FAIL rgba8, db, z24, s8, win+pmap, id 34
+	Depth worst-case error was 8.39711 bits at (31, 31)
+		expected 0.10967; got 0.10965.
+	RGBA largest readback error was 0 bits
+	Depth largest readback error was 8.39711 bits
+readPixSanity:  FAIL rgba8, db, z24, s8, win+pmap, id 109
+	Depth worst-case error was 8.39711 bits at (31, 31)
+		expected 0.10967; got 0.10965.
+	RGBA largest readback error was 0 bits
+	Depth largest readback error was 8.39711 bits
+</pre>
+</td>
+</tr>
+
+		</table>
+		<p>
+			<a href="../index.html">Back to summary</a>
+		</p>
+	</body>
+</html>

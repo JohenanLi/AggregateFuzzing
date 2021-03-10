@@ -1,0 +1,60 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<title>hover restyling breakage</title>
+<style type="text/css">
+a {
+ color: gold;
+ background-color: inherit;
+}
+
+a:hover	{
+ color: #FF0000;
+ text-decoration: underline overline;
+ background-color: inherit;
+}
+
+.admin_data {
+ width: 100%;
+ border-style: solid;
+ border-width: 1px;
+ border-collapse: collapse;
+}
+
+.admin_data_line {
+ color: inherit;
+ background-color: #7B7B7B;
+}
+
+.admin_data_multiple {
+ text-align: center;
+ color: #2233AA;
+ background-color: inherit;
+ padding: 0.2em;
+}
+
+.admin_data tr:hover {
+ color: inherit;
+ background-color: #99AACC;
+}
+
+/* try removing the bogus space in the rule below...
+   the erratic behaviour will go away, but the 
+   tr:hover rule still doesn't work
+*/
+
+.admin_submenu_valider :hover {
+ background-color: green; 
+}
+
+</style>
+</head>
+<body>
+<table class='admin_data'>
+<tr class='admin_data_line'>
+<td class='admin_data_multiple'><a href="http://xmoto.free.fr/pages/thumbnail.php?id_level=214" target="minimap" />Acrobat</a></td>
+<td class='admin_data_multiple'>Duuferna</td>
+<td class='admin_data_multiple'>0:33:75</td>
+<td class='admin_data_multiple'>12 july 2006</td>
+</td>

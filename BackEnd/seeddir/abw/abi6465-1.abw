@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" styles="unlocked" version="2.0.3" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.1" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" props="lang:de-DE; dom-dir:ltr">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="dc.format">application/x-abiword</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="abiword.date_last_changed">Sat Mar  6 11:44:00 2004</m>
+</metadata>
+<styles>
+<s type="P" name="Heading 2" basedon="Normal" followedby="Normal" props="keep-with-next:1; margin-top:22pt; font-weight:bold; margin-bottom:3pt; font-family:Bitstream Vera Sans; font-size:14pt"/>
+<s type="P" name="Normal" followedby="Current Settings" props="text-indent:0in; margin-top:0pt; margin-left:0pt; font-stretch:normal; line-height:1.0; text-align:left; bgcolor:transparent; lang:de-DE; dom-dir:ltr; margin-bottom:0pt; text-decoration:none; font-weight:normal; font-variant:normal; color:000000; text-position:normal; font-size:12pt; margin-right:0pt; font-style:normal; widows:2; font-family:Times New Roman"/>
+<s type="C" name="Footnote Reference" basedon="None" followedby="Current Settings" props="text-position:superscript; font-size:10pt"/>
+<s type="C" name="Footnote Text" basedon="Normal" followedby="Current Settings" props="text-position:normal; font-size:10pt"/>
+</styles>
+<pagesize pagetype="A4" orientation="portrait" width="210.000000" height="297.000000" units="mm" page-scale="1.000000"/>
+<section footer="0" props="page-margin-footer:0.5000in; page-margin-header:0.5000in; page-margin-right:1.0000in; page-margin-left:1.0000in; page-margin-top:1.0000in; page-margin-bottom:1.0000in">
+<p style="Heading 2" props="font-family:Courier 10 Pitch; font-size:11pt"><c props="font-size:11pt; font-family:Courier 10 Pitch; font-style:italic">gfdgdf</c><field footnote-id="0" type="footnote_ref" style="Footnote Reference" props="font-family:Courier 10 Pitch; font-style:italic"><c footnote-id="0" type="footnote_ref" style="Footnote Reference" props="width:0in; font-family:Courier 10 Pitch; display:inline; font-variant:normal; font-weight:bold; lang:de-DE; font-style:italic; color:000000; list-style:None; bgcolor:transparent; font-size:11pt; homogeneous:1; text-decoration:none; height:0in; text-position:normal; font-stretch:normal"></c></field><foot footnote-id="0">
+<p footnote-id="0" style="Footnote Text"><c props="list-tag:1; font-style:italic"></c><field footnote-id="0" type="footnote_anchor" style="Footnote Text" props="text-position:superscript; font-style:italic"></field><c footnote-id="0" props="font-style:italic"> test</c></p>
+</foot></p>
+</section>
+<section id="0" listid="0" parentid="0" type="footer">
+<p props="text-align:left">xcsdf sf</p>
+</section>
+</abiword>

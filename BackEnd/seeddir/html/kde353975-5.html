@@ -1,0 +1,20 @@
+<div dir="ltr">I tried removing my xf86-video-intel and let it run only with modsetting, and the issue was fixed for me now.<div><br></div><div>It seems a problem between the combination kde/intel driver?!? o.O</div></div><br><div class="gmail_quote"><div dir="ltr">Em sex, 19 de ago de 2016 às 08:04, via KDE Bugzilla &lt;<a href="mailto:bugzilla_noreply@kde.org">bugzilla_noreply@kde.org</a>&gt; escreveu:<br></div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><a href="https://bugs.kde.org/show_bug.cgi?id=353975" rel="noreferrer" target="_blank">https://bugs.kde.org/show_bug.cgi?id=353975</a><br>
+<br>
+--- Comment #58 from <a href="mailto:tromzy@free.fr" target="_blank">tromzy@free.fr</a> ---<br>
+(In reply to Samuel Suther from comment #56)<br>
+&gt; (In reply to tromzy from comment #55)<br>
+&gt; &gt; Removing the xf86-video-intel driver and using Kernel Modesetting instead<br>
+&gt; &gt; seems to have fixed the problem for me...<br>
+&gt;<br>
+&gt; Ok, thanks you for your reply. Can you explain, what to do to use Kernel<br>
+&gt; Modesetting instead ?<br>
+&gt; Is it load by default, if I have remove xf86-video-intel ?<br>
+<br>
+All you have to do is remove xf86-video-intel AND also remove<br>
+/etc/X11/xorg.conf.d/20-intel.conf if you have it. Reboot and you should be<br>
+using the Modesetting driver.<br>
+<br>
+--<br>
+You are receiving this mail because:<br>
+You are on the CC list for the bug.<br>
+</blockquote></div><div dir="ltr">-- <br></div><div data-smartmail="gmail_signature"><div dir="ltr"><table border="0" cellspacing="0" cellpadding="0" width="470" style="color:rgb(0,0,0);font-family:helvetica,arial,sans-serif;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:left;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;width:470px;background-color:rgb(254,254,254)"><tbody><tr valign="top"><td style="text-align:initial;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;line-height:normal;font-family:arial;color:rgb(100,100,100);padding:0px 10px"><div><b class="inbox-jsvirTokenPrefix-text-color inbox-jsvirTokenPrefix-theme-font">Marcelo Cavalcante Rocha</b><br></div><div style="color:rgb(141,141,141);font-size:13px;padding:5px 0px"><a href="tel:+1 647 215 3317" style="outline:none;color:rgb(141,141,141);text-decoration:none">+1 647 215 3317</a><span class="inbox-jsvirTokenPrefix-Apple-converted-space"> </span><span style="color:rgb(69,102,142);display:inline-block">|</span><span class="inbox-jsvirTokenPrefix-Apple-converted-space"> </span><span style="white-space:nowrap;display:inline-block"><a href="http://www.marcelocavalcante.net/" style="outline:none;color:rgb(141,141,141);text-decoration:none">www.marcelocavalcante.net</a></span><span class="inbox-jsvirTokenPrefix-Apple-converted-space"> </span><span style="color:rgb(69,102,142);display:inline-block">|</span><span class="inbox-jsvirTokenPrefix-Apple-converted-space"> </span><span style="display:inline-block"><span style="color:rgb(141,141,141)">Skype:<span class="inbox-jsvirTokenPrefix-Apple-converted-space"> </span><a href="https://webapp.wisestamp.com/#" style="outline:none;text-decoration:none;color:rgb(141,141,141)">marcelokalib</a></span></span><span style="color:rgb(141,141,141)"></span><span style="color:rgb(141,141,141)"></span></div><div style="margin-top:5px"><a href="http://ca.linkedin.com/in/marcelocrocha/en" style="outline:none"><img width="16" height="16" style="border: 0px; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; border-radius: 0px; width: 16px; height: 16px;" src="https://s3.amazonaws.com/images.wisestamp.com/icons_32/linkedin.png"></a></div></td></tr></tbody></table></div></div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="he">
+<head>
+<base href="http://www.guides.co.il/download.php?guide=54">
+</head>
+<body>
+<div id="mydiv">DIV</div><form id="myform">FORM</form>
+<script>
+var myform = document.getElementById('myform');
+</script>
+<input type="button" onclick="alert(mydiv);" value="check DIV"/>
+<input type="button" onclick="alert(myform);" value="check FORM"/>
+<input type="button" onclick="alert(document.getElementById('myform'));" value="good check FORM"/>
+</body>
+</html>

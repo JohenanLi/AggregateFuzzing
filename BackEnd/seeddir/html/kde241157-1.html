@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+<title>col test</title>
+</head>
+
+<body>
+<div style="width:600px;border:1px solid black;margin:auto;padding:10px">
+<p>The table has a width of 100%, colgroup is set as:<br>
+<tt>&lt;col width="1" span="2"&gt; &lt;col&gt;</tt></p>
+<table border="1" style="width:100%;border-collapse:collapse">
+<colgroup><col width="1" span="2"><col></colgroup>
+<tr><th>Date</th><th>text1</th><th>text2</th><tr>
+<tr><td>13.06.2010</td><td>bla</td><td>blubb</td></tr>
+</table>
+
+<p>Now, the cols’ width is entered separately, i.e.<br>
+<tt>&lt;col width="1"&gt; &lt;col width="1"&gt; &lt;col&gt;</tt></p>
+<table border="1" style="width:100%;border-collapse:collapse">
+<colgroup><col width="1"><col width="1"><col></colgroup>
+<tr><th>Date</th><th>text1</th><th>text2</th><tr>
+<tr><td>13.06.2010</td><td>bla</td><td>blubb</td></tr>
+</table>
+
+<p>Just for comparison, a table without colgroup:</p>
+<table border="1" style="width:100%;border-collapse:collapse">
+<tr><th>Date</th><th>text1</th><th>text2</th><tr>
+<tr><td>13.06.2010</td><td>bla</td><td>blubb</td></tr>
+</table>
+
+</div>
+
+</body>
+</html>

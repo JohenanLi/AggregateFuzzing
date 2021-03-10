@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Konqueror Bug 105250</title>
+</head>
+<body>
+This sentence contains an empty table <table></table> -- right here.<br>
+<br>
+Notice how the &lt;table&gt;&lt/table&gt breaks the line. We'll try with setting the style to <b>inline</b>.<br>
+This sentence contains an emtpy inline table <table style="display:inline;"></table> -- right here.<br>
+<br>
+we'll also try putting an empty table right after this line:<br>
+<table></table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<style>
+div { border:2px solid green; width: 100%; height: 80px; }
+div.x span { border:1px solid; border-left-width:10px;border-right-width:10px;padding:0px 20px; }
+#r { border-left-color: red;border-right-color: purple; }
+#g { border-left-color:  green; border-right-color: lime; }
+#b { border-left-color: blue; border-right-color: maroon; }
+#y { border-left-color: fuchsia; border-right-color: Navy;}
+#l { border-left-color:  olive;   border-right-color: silver;}
+#z { border-left-color:  teal;   border-right-color: aqua;}
+#j { border-left-color:  #FF6347 ;   border-right-color: #F5DEB3;}
+#j { border-left-color:    #4682B4 ;   border-right-color:   #00FF7F;}
+</style>
+<p>Resize the viewport to see how the 6 multicoloured lines below wrap (if they are rendered at all).<br>
+It is expected that only the lines with textual content should wrap, but all lines should be rendered.</p>
+<p>Wrapping should only happen if needed (i.e. when the words or borders would otherwise spill out of the green box)</p>
+
+<div class=x><span id=r><span id=g><span id=b><span id=y><span id=l><span id=z><span id=j><span id=k>Lorem</span> ipsum</span> dolor</span> sit</span> amet</span> consectur</span> in ripa enim</span></span></div>
+
+<div class=x><span id=r><span id=g><span id=b><span id=y><span id=l><span id=z><span id=j><span id=k></span></span></span></span></span></span></span></span></div>
+
+<div class=x><span id=r><span id=g><span id=b><span id=y><span id=l><span id=z><span id=j><span id=k> </span> </span> </span> </span> </span> </span></span></span></div>
+
+<div class=x dir=rtl><span id=r><span id=g><span id=b><span id=y><span id=l><span id=z><span id=j><span id=k>Lorem</span> ipsum</span> dolor</span> sit</span> amet</span> in ripa enim</span>
+dolorem</span></span></div>
+
+<div class=x dir=rtl><span id=r><span id=g><span id=b><span id=y><span id=l><span id=z><span id=j><span id=k></span></span></span></span></span></span></span></span></div>
+
+
+<div class=x dir=rtl><span id=r><span id=g><span id=b><span id=y><span id=l><span id=z><span id=j><span id=k> </span> </span> </span> </span> </span> </span></span></span></div>

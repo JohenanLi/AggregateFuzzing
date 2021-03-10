@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>test case</title>
+  </head>
+  <body>
+  	<form>
+		<table border="1" width="100%">
+			<tr align="center">
+				<td>
+					<input type="text" name="text1" value="some text"/> TR align = center / TD No align<br/>
+					*It is incorrectly picking center alignment from the TR tag
+				</td>
+			</tr>
+			<tr align="right">
+				<td align="center">
+					<input type="text" name="text1" value="some text"/> TR align = right / TD align = center<br/>
+					*It is ignoring the TD and TR alignments (which is goog)
+				</td>
+			</tr>
+			<tr align="right">
+				<td >
+					<input type="text" name="text2" value="some text"/> TR align = right / TD no align<br/>
+					*It is incorrectly picking right alignment from the TR tag
+				</td>
+			</tr>
+			<tr align="left">
+				<td>
+					<input type="text" name="text3" value="some text"/> TR align = left / TD no align<br/>
+					*It is incorrectly picking left alignment from the TR tag
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<div align="center">
+		<div><input type="text" name="text3" value="some text"/> TR align = left / TD no align<br/></div>
+	</div>
+  </body>
+</html>

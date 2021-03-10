@@ -1,0 +1,19 @@
+<html>
+   <head>
+      <title>bug 235923</title>
+
+      <script language="javascript">
+         function submitF() {
+            document.tF0.submit();
+            return true;
+         }
+      </script>
+   </head>
+
+   <body>
+      <form name="tF0">
+         <a onclick="return submitF();">          
+            <input src="" name="image2" height="29" type="image" width="72"></a>         
+      </form>    
+   </body>
+</html>

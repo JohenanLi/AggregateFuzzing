@@ -1,0 +1,36 @@
+<html>
+
+<body>
+
+When clicked, the lines should add a '2' between the '1' and '3'. Only the second line works correctly.
+The only difference is the 'div' block element in the first part.
+
+<script>
+	function update()
+	{
+		document.getElementById(1).style.display='inline';
+		document.getElementById(2).style.display='inline';
+	}
+</script>
+
+<div style=> 
+	<a href='javascript:;' onClick="update()">click me</a>
+</div>
+
+
+<div style='display:inline'>
+	<div></div>
+	<div style='display:inline'>1</div>
+	<div id=1 style='display:none'>2</div>
+	<div style='display:inline'>3</div>
+</div>
+<br>
+<div style='display:inline'>
+	<div style='display:inline'>1</div>
+	<div id=2 style='display:none'>2</div>
+	<div style='display:inline'>3</div>
+</div>
+
+</body>
+
+</html>

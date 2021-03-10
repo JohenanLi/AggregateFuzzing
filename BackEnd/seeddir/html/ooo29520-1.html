@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http:://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>New BASIC Feature &ldquo;dim var as new string&rdquo;</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>New BASIC Feature &ldquo;<code>dim <var>var</var> as new
+<var>string</var></code>&rdquo;</h1>
+
+<p>The introduction of polymorphic struct types into UNO (see
+<a href="http://udk.openoffice.org/common/man/draft/multinherit.html"><!--
+--><cite>Increasing UNO Ease of Use</cite></a>) has lead to the addition of a
+new feature to BASIC (on SRC680 CWS sb18).</p>
+
+<p>The existing feature &ldquo;<code>dim <var>var</var> as new
+<var>type</var></code>&rdquo;, where <code><var>type</var></code> is the name of
+a UNO struct type (see
+<a href="http://udk.openoffice.org/common/man/typesystem.html"><!--
+--><cite>UNO Type System</cite></a>), can be used to create in BASIC instances
+of UNO struct types.  This syntax only works for plain UNO struct types, though.
+To also support the new instantiated polymorphic UNO struct types,
+<code><var>type</var></code> can now be replaced with a string literal that
+gives the UNO name of an arbitrary UNO struct type.  Examples:</p>
+
+<p>&emsp;<code>rem </code>new syntax for instantiated polymorphic struct
+    types:<br/>
+&emsp;<code>dim x as new "com.sun.star.beans.Optional&lt;long&gt;"</code><br/>
+&emsp;<code>rem </code>(circuitous) new syntax for plain struct types:<br/>
+&emsp;<code>dim y as new "com.sun.star.beans.PropertyValue"</code><br/>
+&emsp;<code>rem </code>old syntax for plain struct types:<br/>
+&emsp;<code>dim z as new com.sun.star.beans.PropertyValue</code></p>
+
+<p>One problem for BASIC programmers might be that such a string literal has to
+be a UNO type name, which is rather unrelated to a BASIC type name.  For
+example, the <code>com.sun.star.beans.Optional</code> type instantiated over
+UNO's <code>short</code> type (an integral type corresponding to BASIC's
+<code>integer</code>) has to be named
+<code>"com.sun.star.beans.Optional&lt;short&gt;"</code>, not
+<code>"com.sun.star.beans.Optional&lt;integer&gt;"</code>.</p>
+
+<p>The main need to operate on instantiated polymorphic UNO struct types in
+BASIC will arise once designers of UNO APIs start to use the new features of
+extended interface type attributes, which leverage the three new polymorphic UNO
+struct type templates <code>com.sun.star.beans.Ambigious</code>,
+<code>com.sun.star.beans.Defaulted</code>, and
+<code>com.sun.star.beans.Optional</code>.  (If it turns out then that this new
+syntax is too awkward to use for the average BASIC programmer, it might be
+extended.)</p>
+
+</body>
+</html>

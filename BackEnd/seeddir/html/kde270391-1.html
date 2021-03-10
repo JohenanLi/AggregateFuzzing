@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+><HTML LANG=en 
+><TITLE 
+>Qt Cryptographic Architecture (QCA) version 2.0.2</TITLE 
+><H1 
+><A HREF="http://delta.affinix.com/qca/" 
+>Qt Cryptographic Architecture (QCA) version 2.0.2</A ></H1 
+><DL ><DT >
+Date: <DD >April 24th, 2009
+<DT 
+><A HREF="mailto:Delta%20Project%20%3Cdelta@lists.affinix.com%3E" TITLE="Delta Project"
+>Mailing List</A >
+
+<DT 
+><A HREF="mailto:Justin%20Karneges%20%3Cjustin@affinix.com%3E" TITLE="Justin Karneges"
+>Project Lead/Maintainer (2003-current)</A >:
+<DD >  
+  (March 2007 - August 2007 under Barracuda Networks employment)
+
+<DT 
+><A HREF="mailto:Brad%20Hards%20%3Cbradh@frogmouth.net%3E" TITLE="Brad Hards"
+>Development, Documentation, Unittests (2004-current)</A >
+
+<DT >Special Thanks:
+<DD ><DL ><DT >  Portugal Telecom (SAPO division) <DD >for sponsorship
+<DT >  Alon Bar-Lev <DD >for smart card and design assistance
+<DT >  Jack Lloyd <DD >for Botan and X.509 mentoring
+<DT >  L. Peter Deutsch <DD >for the public domain MD5 implementation
+<DT >  Steve Reid <DD >for the public domain SHA1 implementation
+<DT >  Jason Kim <DD >for the CMS Signer graphics</DL ></DL >
+
+
+<H2 ><A HREF="INSTALL" TITLE="installation or compiling instructions"
+>Install</A ></H2 >
+
+
+<H2 
+><A HREF="COPYING" TITLE="This library is licensed under the Lesser GNU General Public License" 
+>License</A ></H2 >
+
+
+<H2 >Changes</H2 >
+<H3 >  New in 2.0.2 </H3 >
+<UL ><LI > Bugfix release, forward and backward compatible with 2.0.x
+  <LI > Fix compatibility with Qt 4.5 when QCA::Initializer appears before QApp
+  <LI > Do not convert to secure memory when Hash::update(QByteArray) is used
+  <LI > Use configure.exe instead of configwin.bat
+</UL >
+  <H3 >New in 2.0.1</H3 >
+  <UL ><LI > Bugfix release, forward and backward compatible with 2.0.x
+  <LI > Ability to build as a Mac framework (and build this way by default)
+  <LI > On non-Mac Unix, the pkgconfig file is always qca2.pc, even in debug mode
+  <LI > Certificates containing wildcards are now matched properly
+  <LI > DirWatch/FileWatch now work
+<LI >Keystore writes now work
+<LI >Don't delete objects in their event handler (prevents Qt 4.4 warnings)
+<LI >Fix potential hang with TLS in server mode
+<LI >Windows version can be configured/installed using paths with spaces</UL >
+
+
+<H2 >Description</H2 >
+
+<P >  QCA is a library that provides an easy API for a range of cryptographic
+  features, including SSL/TLS, X.509 certificates, SASL, OpenPGP, smartcards,
+  and much more.
+
+<P >  Functionality is supplied via plugins.  This is useful for avoiding
+  dependence on a particular crypto library and makes upgrading easier,
+  as there is no need to recompile your application when adding or
+  upgrading a crypto plugin.
+
+<P >  In order for QCA to be of much use, you will want to install some plugins.
+
+  <P >QCA was originally created to support the security needs of the
+  <A HREF="http://psi-im.org/" >Psi XMPP/Jabber client project</A >.
+
+<H2 >  <A HREF="apidocs/" >API Documentation</A ></H2 >
+
+
+<ADDRESS >Have fun,<BR >
+&mdash;Justin</ADDRESS >

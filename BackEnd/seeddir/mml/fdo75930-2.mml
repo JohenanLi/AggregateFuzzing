@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+ <semantics>
+  <mrow>
+   <mrow>
+    <mstyle mathvariant="italic">
+     <msubsup>
+      <mtext>Q</mtext>
+      <mtext>v</mtext>
+      <mrow>
+       <mstyle mathvariant="italic">
+        <mtext>о</mtext>
+       </mstyle>
+       <mstyle mathvariant="italic">
+        <mtext>т</mtext>
+       </mstyle>
+      </mrow>
+     </msubsup>
+    </mstyle>
+    <mo stretchy="false">=</mo>
+    <mstyle mathvariant="italic">
+     <msub>
+      <mtext>Q</mtext>
+      <mtext>v max</mtext>
+     </msub>
+    </mstyle>
+   </mrow>
+   <mtext/>
+   <mtext/>
+   <mrow>
+    <mo stretchy="false">(</mo>
+    <mfrac>
+     <mrow>
+      <mstyle mathvariant="italic">
+       <msub>
+        <mtext>t</mtext>
+        <mtext>i</mtext>
+       </msub>
+      </mstyle>
+      <mo stretchy="false">−</mo>
+      <mstyle mathvariant="italic">
+       <msub>
+        <mtext>t</mtext>
+        <mtext>oт</mtext>
+       </msub>
+      </mstyle>
+     </mrow>
+     <mrow>
+      <mstyle mathvariant="italic">
+       <msub>
+        <mtext>t</mtext>
+        <mtext>i</mtext>
+       </msub>
+      </mstyle>
+      <mo stretchy="false">−</mo>
+      <mstyle mathvariant="italic">
+       <msub>
+        <mtext>t</mtext>
+        <mtext>o</mtext>
+       </msub>
+      </mstyle>
+     </mrow>
+    </mfrac>
+    <mo stretchy="false">)</mo>
+   </mrow>
+  </mrow>
+  <annotation encoding="StarMath 5.0">{italic &quot;Q&quot;_&quot;v&quot;^{italic &quot;о&quot; italic &quot;т&quot;} = italic &quot;Q&quot;_&quot;v max&quot; &quot;&quot; &quot;&quot; { \(  {italic &quot;t&quot;_&quot;i&quot;  -  italic &quot;t&quot;_&quot;oт&quot;} over {italic &quot;t&quot;_&quot;i&quot;  -  italic &quot;t&quot;_&quot;o&quot;}  \)}}</annotation>
+ </semantics>
+</math>

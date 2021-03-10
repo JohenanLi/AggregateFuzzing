@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<style type="text/css">
+
+#example_one {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 80px;
+	font-size: small;
+	}
+
+#example_two {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 80px;
+	font-size: small;
+}
+
+#example_three {
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	width: 80px;
+	font-size: small;
+}
+
+#example_four {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	width: 80px;
+	font-size: small;
+}
+
+#content {
+	position: absolute;
+	left: 95px;
+	right: 95px;
+	top: 100px;
+	text-align: center;
+	}
+
+</style>
+
+  <title>Konqueror Gets a Little Jumpy</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="GENERATOR" content="Quanta Plus">
+</head>
+<body>
+
+<div id="example_one"><p>This is a paragraph located in the main document.</p></div>
+
+<div id="example_two"><object data="ex1.html" type="text/html" width="80" height="100"></object></div>
+
+<div id="example_three"><object data="ex2.html" type="text/html" width="80" height="100"></object></div>
+
+<div id="example_four"><p>This is another paragraph in the main document.</p></div>
+
+<div id="content">
+<p>When you scroll this page in Konqueror, notice how the upper left and lower right sections remain still.  They are in this main document.  The sections on the upper right and lower left, however, are html files, viewed inline via the &lt;object&gt; tag; they get a little jittery when you scroll. Check out the page in Mozilla - the inline objects sit still the same way as the native bits.</p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p>End</p>
+
+</div>
+
+</body>
+</html>

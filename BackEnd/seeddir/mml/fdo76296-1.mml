@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mtable class="m-equation" displaystyle="true" style="display: block; margin-top: 1.0em; margin-bottom: 2.0em">
+	<mtr>
+		<mtd>
+			<mspace width="6.0em" />
+		</mtd>
+		<mtd columnalign="left">
+			<msub>
+				<mi>G</mi>
+				<mi>x</mi>
+			</msub>
+			<mo>=</mo>
+			<mrow>
+				<mo rspace="0.3em" lspace="0em" stretchy="true" fence="true" form="prefix">[</mo>
+				<mtable class="m-array">
+					<mtr>
+						<mtd columnalign="center">
+							<mo>-</mo>
+							<mn>1</mn>
+						</mtd>
+						<mtd columnalign="center">
+							<mn>0</mn>
+						</mtd>
+						<mtd columnalign="center">
+							<mn>1</mn>
+						</mtd>
+					</mtr>
+					<mtr>
+						<mtd columnalign="center">
+							<mo>-</mo>
+							<mn>2</mn>
+						</mtd>
+						<mtd columnalign="center">
+							<mn>0</mn>
+						</mtd>
+						<mtd columnalign="center">
+							<mn>2</mn>
+						</mtd>
+					</mtr>
+					<mtr>
+						<mtd columnalign="center">
+							<mo>-</mo>
+							<mn>1</mn>
+						</mtd>
+						<mtd columnalign="center">
+							<mn>0</mn>
+						</mtd>
+						<mtd columnalign="center">
+							<mn>1</mn>
+						</mtd>
+					</mtr>
+				</mtable>
+				<mo rspace="0em" lspace="0.3em" stretchy="true" fence="true" form="postfix">]</mo>
+			</mrow>
+		</mtd>
+		<mtd columnalign="right" style="width: 100%">
+			<mtext id="">(1)</mtext>
+			<mspace width="6.0em" />
+		</mtd>
+	</mtr>
+</mtable>
+</math>

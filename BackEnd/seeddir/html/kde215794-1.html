@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<script>
+ function init(){
+  self.eval("function go(){alert('OK')}")
+ }
+ init()
+</script>
+<div><input type="button" value="test self.eval()" onclick="go()"></div>
+<div style="color:red">Konqueror 4.3.3: FAILS</div>
+<div style="color:green">Firefox: OK</div>
+<div style="color:green">Opera: OK</div>
+<div style="color:green">Safari: OK</div>
+<div style="color:green">Chrome: OK</div>

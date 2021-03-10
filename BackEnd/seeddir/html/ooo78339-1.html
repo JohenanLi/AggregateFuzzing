@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice 8  (Win32)">
+	<META NAME="CREATED" CONTENT="20070621;13410109">
+	<META NAME="CHANGED" CONTENT="20070621;13493951">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=0 FRAME=VOID RULES=GROUPS STYLE="page-break-before: always">
+	<COLGROUP>
+		<COL WIDTH=85*>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=85*>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=85*>
+		<COL WIDTH=1*>
+	</COLGROUP>
+	<TBODY>
+		<TR>
+			<TD COLSPAN=3 WIDTH=100%>
+				<H1 ALIGN=CENTER>Testname: Anti Flickering test</H1>
+			</TD>
+			<TD ROWSPAN=3 VALIGN=TOP></TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=33%>
+				<P>Document Owner:</P>
+				<P>Frank Stecher</P>
+			</TD>
+			<TD WIDTH=33%>
+				<P>Last document change:</P>
+				<P><FONT SIZE=3>21.06.2007</FONT></P>
+			</TD>
+			<TD WIDTH=33%>
+				<P>Status of document:</P>
+				<P><FONT SIZE=3>Preliminary</FONT></P>
+			</TD>
+			<TD ROWSPAN=2></TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR>
+			<TD COLSPAN=3 WIDTH=100%></TD>
+			<TD VALIGN=TOP></TD>
+		</TR>
+		<TR>
+			<TD COLSPAN=4 WIDTH=100%>
+				<P>Valid for version: StarOffice8 PP8</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<H3>Test purpose:</H3>
+<P>Test that excessive flickering does not occur</P>
+<HR SIZE=1 NOSHADE>
+<H3>Known issues:</H3>
+<HR SIZE=1 NOSHADE>
+<H3>Preconditions of test:</H3>
+<P>Make sure the OverlayBuffers for Calc and Writer are switched on:
+Shutdown the office Search in
+(install)\share\registry\schema\org\openoffice\Office\Common.xcs the
+flag OverlayBuffer_Writer and OverlayBuffer_CALC and check that they
+are set to 'true' ATTENTION: Delete the cache-directory
+(user_profile_dir)/user/registry/cache/ of the office if you had to
+change the setting!! Pre-rendering Check in the same file as above
+the flag PaintBuffer_Writer and PaintBuffer_Calc. Must be true.
+ATTENTION: Delete the cache-directory
+(user_profile_dir)/user/registry/cache/ of the office if you had to
+change a setting!! 
+</P>
+<HR SIZE=1 NOSHADE>
+<H3>Test documents:</H3>
+<P STYLE="margin-bottom: 0in">test.ods</P>
+<HR SIZE=1 NOSHADE>
+<H3>Testcases:</H3>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR>
+		<TD COLSPAN=3>
+			<HR>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=70%>
+			<P>Flickering on scrolling through selected areas 
+			</P>
+		</TD>
+		<TD WIDTH=20%>
+			<P>Status: Preliminary 
+			</P>
+		</TD>
+		<TD WIDTH=10%>
+			<P>- 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3>
+			<HR>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=100%>
+			<UL>
+				<LI><P STYLE="margin-bottom: 0in">Download and open the
+				testdoc.ods 
+				</P>
+				<LI><P STYLE="margin-bottom: 0in">select the cell range starting
+				at the current cell cursor position up to A1 with the mouse</P>
+				<LI><P STYLE="margin-bottom: 0in">Now use the scrollbar and / or
+				the mouse wheel to scroll the sheet</P>
+				<LI><P>Does the screen flicker with a high rate ? Yes ? File an
+				Issue !</P>
+			</UL>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3>
+			<HR>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=70%>
+			<P>Flickering on moving OLE Objects 
+			</P>
+		</TD>
+		<TD WIDTH=20%>
+			<P>Status: Preliminary 
+			</P>
+		</TD>
+		<TD WIDTH=10%>
+			<P>- 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3>
+			<HR>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=100%>
+			<UL>
+				<LI><P STYLE="margin-bottom: 0in">Open a new Calc and a new
+				Writer document</P>
+				<LI><P STYLE="margin-bottom: 0in">Insert some numbers into a cell
+				range</P>
+				<LI><P STYLE="margin-bottom: 0in">Build a Chart out of these
+				data.</P>
+				<LI><P STYLE="margin-bottom: 0in">Deselect the Chart and select
+				it again (green handles)</P>
+				<LI><P STYLE="margin-bottom: 0in">Move the Chart around</P>
+				<LI><P STYLE="margin-bottom: 0in">Does the screen flicker with a
+				high rate ? Yes ? File an Issue !</P>
+				<LI><P STYLE="margin-bottom: 0in">Drag and Drop the Chart on the
+				Writer document. Screen flickering badly ? File an Issue.</P>
+				<LI><P STYLE="margin-bottom: 0in">Insert some Drawing Objects (a
+				Star, a rectangle, a smiley,...)and group these.</P>
+				<LI><P STYLE="margin-bottom: 0in">Move this grouped Object around</P>
+				<LI><P>D&amp;D this Object to the Writer file with pressed CTRL
+				key. The screen flickers ? File an Issue.</P>
+			</UL>
+		</TD>
+	</TR>
+</TABLE>
+<HR SIZE=1 NOSHADE>
+<H3>References:</H3>
+<P>http://qa.openoffice.org/issues/show_bug.cgi?id=73912<BR><BR>http://qa.openoffice.org/issues/show_bug.cgi?id=73602<BR><BR><BR>
+</P>
+<HR SIZE=1 NOSHADE>
+<H3>Acronyms:</H3>
+<UL>
+	<LI><P>D&amp;D is the abbreviation for Drag and Drop. Click on an
+	Object with the left mouse button and move this Object to another
+	place while the mouse button is pressed. 
+	</P>
+</UL>
+<HR SIZE=1 NOSHADE>
+</BODY>
+</HTML>

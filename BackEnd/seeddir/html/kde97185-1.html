@@ -1,0 +1,24 @@
+<html><body>
+<form name='finalizeform'>
+<table><td>
+<input type='radio' name='memberDeliveryMethod' value='fax'>
+<input type='radio' name='memberDeliveryMethod' value='mail' checked='true'>
+</td></table>
+</form>
+<script language="Javascript">
+function interrogate(what) {
+	for (var i in what) {
+		if (i == "length") {
+			return true;
+		}
+	}
+	return false;
+}
+if (interrogate(document.forms['finalizeform'].memberDeliveryMethod)) {
+	window.alert("YAY");
+} else {
+	window.alert('ERROR');
+}
+</script>
+</body></html>
+

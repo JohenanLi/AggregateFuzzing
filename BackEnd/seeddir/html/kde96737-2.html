@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-type"/>
+    <title>cannot create hidden input using DOM methods</title>
+    <meta content="text/javascript" http-equiv="Content-Script-Type"/>
+    <script language="javascript1.3" type="text/javascript">
+      function OnLoad()
+      {
+        var elmInput = document.createElement("input");
+
+        if (elmInput)
+        {
+          elmInput.type = "hidden";
+	  
+          if (elmInput.type == "hidden")
+            alert("Success.  Input created and type set to hidden.");
+          else
+            alert("Failed.  Input created and type set to " + elmInput.type);
+	    
+	  document.forms[0].appendChild(elmInput);  
+        }
+        else
+          alert("Failed.  Could not create input.");
+      }
+    </script>
+  </head>
+  <body onload="OnLoad();">
+    <form action="foo">
+      <p>
+        Konqueror does not allow the type of an input to be changed once the
+        element has been created using the DOM's createElement() method.  Only
+        inputs of the default type (text) can be created.
+      </p>
+      <p>
+        This page has an onload handler that reports the result of an attempt
+        to create a hidden input. It works with IE 6.0, Firefox 1.0, and Opera
+        7.54, but fails with Konqueror 3.3.2.
+      </p>
+    </form>  
+  </body>
+</html>

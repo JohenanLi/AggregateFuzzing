@@ -1,0 +1,44 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:link="http://beatniksoftware.com/tomboy/link" xmlns:size="http://beatniksoftware.com/tomboy/size"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>xrandr</title><style type="text/css">
+        
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note { overflow: auto;
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="xrandr"><a name="#xrandr"></a><h1>xrandr</h1>
+<b>Without external VGA:</b>
+&gt; xrandr
+Screen 0: minimum 320 x 200, current 1280 x 800, maximum 3840 x 1200
+VGA disconnected (normal left inverted right x axis y axis)
+LVDS connected 1280x800+0+0 (normal left inverted right x axis y axis) 331mm x 207mm
+   1280x800       60.0*+   60.0     58.9  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+TV disconnected (normal left inverted right x axis y axis)
+
+<b>With VGA in mirror mode:</b>
+&gt; xrandr
+Screen 0: minimum 320 x 200, current 1280 x 800, maximum 3840 x 1200
+VGA connected 1280x800+0+0 (normal left inverted right x axis y axis) 376mm x 301mm
+   1280x800       60.0*+   58.9  
+   1280x960       60.0     60.0  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        60.0     59.9  
+LVDS connected 1280x800+0+0 (normal left inverted right x axis y axis) 331mm x 207mm
+   1280x800       60.0*+   60.0     58.9  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+TV disconnected (normal left inverted right x axis y axis)
+</div></body></html>

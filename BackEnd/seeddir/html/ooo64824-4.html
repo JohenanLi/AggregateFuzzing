@@ -1,0 +1,97 @@
+<HTML>
+<head>
+<title>Resource-test for the Chart Data Dialogue.</title>
+<style>
+<!--
+   H5 { text-decoration: underline }
+-->
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<!-- add testplan title here -->
+<H1 ALIGN=CENTER><U>Test Plan: <B>Test Case Specification-test for the Chart Data Dialogue.</B></U></H1>
+<!-- ++++++++++++++++++++++++++++++++ -->
+<HR>
+<!-- add test purpose here -->
+<H3>Test Purpose</H3>
+<UL>
+<LI>Test that the Chart2 Data-Dialogue works when adding a Chart into a Impress-document.
+</UL>
+<!-- ++++++++++++++++++++++++++++++++ -->
+<HR>
+<!-- add Preconditions here -->
+<H3>Preconditions of the test:</H3>
+<UL>
+<LI>An OpenOffice.org (or compatible distribution) Version 2.3 or higher.
+</UL>
+<!-- ++++++++++++++++++++++++++++++++ -->
+<HR>
+<!-- add testdocuments here if needed -->
+<H3>Test documents</H3>
+<UL>
+   <LI>http://qa.openoffice.org/source/browse/qa/qatesttool/chart2/update/ch2_chart_data_dlg_impress.bas?rev=1.1.2.2&only_with_tag=cws_pj_chart2&view=log
+</UL>
+<!-- ++++++++++++++++++++++++++++++++ -->
+<HR>
+<!-- add testcases here -->
+
+<h5>TESTCASE : tChartDataDialogueButtons</h5>
+<ul>
+<LI> Start a new Impress-session. 
+<LI> Insert a new Chart-object, via the Menu: 'Insert - Chart'. 
+<LI> Press 'TAB' once to select the object 
+<LI> Click the button 'RETURN' / 'ENTER' to enter the Chart-Data-dialogue  
+<LI> Check if the dialogue came up. 
+<LI> Check if the 'Insert Row'-button is enabled. 
+<LI> Check if the 'Swap Columns'-button is disabled. 
+<LI> Check if the 'Swap Rows'-button is enabled. 
+<LI> Check if the 'Delete Row'-button is enabled. 
+<LI> Check if the 'Delete Column'-button is enabled. 
+<LI> Press 'TAB' to enter the Data-fields, followed by 'SHIFT TAB' end up in the first field. 
+<LI> Set the text in the marked field to '111'. Then move to the next field by pressing 'TAB'. 
+<LI> Set the text in the marked field to '222'. Then move to the next field by pressing 'TAB'. 
+<LI> Set the text in the marked field to '333'. Then move to the next field by pressing 'TAB'. 
+<LI> Click the button 'Insert Row'. 
+<LI> Click the second button of the six in the upper left corner: Insert Column  
+<LI> Check if a new Column got inserted. And if it's unnamed. 
+<LI> Click the third button of the six in the upper left corner: 'Delete Row'.  
+<LI> Press "TAB" nine times to enter the Data-fields, and end up on the next column we wish to delete. 
+<LI> Click the fourth button of the six in the upper left corner: 'Delete Column'. 
+<LI> Check if the Column got deleted. 
+<LI> Click the fifth button of the six in the upper left corner: 'Swap Columns'. 
+<LI> Click the last button of the six in the upper left corner: 'Swap Rows'. 
+<LI> Close the dialogue 
+<LI> End of test. Close the document. 
+</ul>
+<h5>TESTCASE : tChartDataDialogueFieldsUndo</h5>
+<ul>
+<LI> Start a new Impress-session. 
+<LI> Insert a new Chart-object, via the Menu: 'Insert - Chart'. 
+<LI> Press 'TAB' once to select the object 
+<LI> Click the button 'RETURN' / 'ENTER' to enter the Chart-Data-dialogue  
+<LI> Check if the dialogue came up. 
+<LI> Type the word 'Great' in the Label-textfield (for the Column). 
+<LI> Press 'TAB', followed by 'SHIFT TAB'. To jump from and back to the field. (and deselect and select it again). 
+<LI> Compare the written text with what the field now contains. 
+<LI> Inside the Tables: Press the "TAB"-key seven times. 
+<LI> Inside the Tables: Check if you can type the numbers '774433', followed by 'TAB', and '774411'. 
+<LI> Close the dialogue 
+<LI> Try if we can Undo the changes with 'Edit - Undo'. 
+<LI> And then we enter the dialogue again, to check if the values has returned to what they were before we changed them. 
+<LI> One press on "TAB" to select the object 
+<LI> Followed by one press on "RETURN" / "ENTER" to enter the Chart-Data-dialogue  
+<LI> Inside the Tables: Press the "TAB"-key eight times. 
+<LI> Inside the Tables: Check if the values has returned to what they were before changing them. 
+<LI> Check if the Label we earlier named 'Great', now has changed back. 
+<LI> Close the dialogue 
+<LI> End of test. Close the document. 
+</ul>
+<!-- ++++++++++++++++++++++++++++++++ -->
+<HR>
+<!--  add Problematic areas here if needed  -->
+<H3>Problematic areas</H3>
+<P>no problematic areas</P>
+<!-- ++++++++++++++++++++++++++++++++ -->
+<HR>
+</body>
+</html>

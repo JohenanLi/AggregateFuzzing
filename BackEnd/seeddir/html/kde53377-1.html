@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD W3 HTML//EN">
+<!-- IMP: Copyright 2000, The Horde Project. IMP is under the GPL. -->
+<!-- Horde Project: http://horde.org/ | IMP: http://horde.org/imp/ -->
+<!--    GNU Public License: http://www.fsf.org/copyleft/gpl.html   -->
+
+<html>
+<head>
+<link href="imp.css" rel="stylesheet" text="text/css">
+</head>
+
+<body bgcolor="#002266" text="#ffffff" link="#e0e0e0" vlink="#dddddd" alink="#ffffff">
+<script language="Javascript">
+<!--
+
+function open_compose_win (args) {
+  var base = "compose.php3";
+  var url = "compose.php3";
+  if (url != base)
+    glue = '&';
+  else
+    glue = '?';
+  var now = new Date();
+  var name = "compose_windows_" + now.getTime();
+  if (args != "") {
+      url = url + glue + args + "&uniq=" + now.getTime();
+  } else {
+      url = url + glue + "uniq=" + now.getTime();
+  }
+  param = "toolbar=no,location=no,status=yes,scrollbars=yes,resizable=yes,width=630,height=650,left=0,top=0";
+  eval ("name = window.open(url, name, param)");
+  if (!eval("name.opener"))
+    eval("name.opener = self");
+}
+
+// -->
+</script>
+<script language="JavaScript">
+<!--
+
+
+function open_contacts_win () {
+    param = "directories=no,menubar=no,toolbar=no,resizable=yes,width=" + 600 + ",height=" + 330;
+    contacts_window = window.open("contacts.php3", "contacts", param);
+    if (!contacts_window.opener) contacts_window.opener = self;
+}
+
+function open_add_contact_win (args) {
+    var base = "addcontact.php3";
+    var url = "addcontact.php3";
+    if (base != url)
+	glue = '&';
+    else
+	glue = '?';
+    if (args != "") url = url + glue + args;
+    param = "directories=no,menubar=no,toolbar=no,resizable=yes,width=" + 500 + ",height=" + 
+	200;
+    add_contact_window = window.open(url, "add_contact", param);
+    if (!add_contact_window.opener) add_contact_window.opener=self;
+}
+
+//-->
+</script>
+
+<table border="0" bgcolor="#002266">
+<tr bgcolor="#002266">
+ <td colspan="2" align="center">
+  <img src="/horde/imp/graphics/impsmall.gif" width="80" height="50" border="0" alt="[IMP logo]">
+ </td>
+</tr>
+
+
+<tr bgcolor="#002266">
+  <td><a onclick="refreshFolders(); return true;"  href="mailbox.php3?mailbox=INBOX" target="main"><img border="0" align="middle" src="/horde/imp/graphics/inbox.gif" alt="*" height="18" width="18"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a onclick="refreshFolders(); return true;"  class="menuitem" href="mailbox.php3?mailbox=INBOX" target="main">
+    INBOX</a>
+  </td>
+</tr>
+
+<tr bgcolor="#002266">
+  <td><a href="" onclick="open_compose_win(''); return false;"><img border="0" align="middle" src="/horde/imp/graphics/compose.gif" alt="*" height="18" width="18"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a class="menuitem" href="" onclick="open_compose_win(''); return false;">
+    Compose</a>
+  </td>
+</tr>
+
+      <tr bgcolor="#002266">
+  <td><a href="" onclick="open_contacts_win(); return false;"><img border="0" align="middle" src="/horde/imp/graphics/addressbook.gif" alt="*" height="18" width="18"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a class="menuitem" href="" onclick="open_contacts_win(''); return false;">
+    Contacts</a>
+  </td>
+</tr>
+       
+<tr bgcolor="#002266">
+  <td><a href="folders.php3" target="main"><img border="0" align="middle" src="/horde/imp/graphics/folder.gif" alt="*" height="18" width="18"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a class="menuitem" href="folders.php3" target="main">
+    Folders</a>
+  </td>
+</tr>
+
+<tr bgcolor="#002266">
+  <td><a href="prefs.php3" target="main"><img border="0" align="middle" src="/horde/imp/graphics/prefs.gif" alt="*" height="18" width="18"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a class="menuitem" href="prefs.php3" target="main">
+    Preferences</a>
+  </td>
+</tr>
+
+
+
+<tr bgcolor="#002266">
+  <td><a href="/horde/problem.php3?return_url=/horde/imp/mailbox.php3" target="main"><img border="0" align="middle" src="/horde/imp/graphics/exclamation.gif" width="18" height="18" alt="*"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a class="menuitem" href="/horde/problem.php3?return_url=/horde/imp/mailbox.php3" target="main">
+    Problem?</a>
+  </td>
+</tr>
+
+<tr><td colspan="2">&nbsp;</td></tr>
+<tr bgcolor="#002266">
+  <td><a href="login.php3?reason=logout" target="main"><img border="0" align="middle" src="/horde/imp/graphics/logout.gif" width="18" height="18" alt="*"></a></td>
+  <td>
+    <font size="2" face="Verdana,Geneva,Arial,Helvetica,sans-serif">
+    <a class="menuitem" href="login.php3?reason=logout" target="main">
+    Logout</a>
+  </td>
+</tr>
+
+<tr><td>&nbsp;</td></tr>
+
+
+</table>
+
+<script language="Javascript">
+<!--
+function refreshFolders () {
+	if (parent.impfolder && parent.impfolder.document.mboxSelect) {
+		parent.impfolder.document.mboxSelect.mailbox.selectedIndex = 0;
+	}
+}
+// -->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<html><head>
+<style>
+     .body
+     {
+          margin: 0;
+     }
+     .rcnnav_tab_high_topright
+     {
+          background: #FF0000 url('http://www.rc-network.de/templates/rcnnav_tab_high_rechts.gif') no-repeat top right;
+     }
+
+     .rcnnav_tab_high_topleft
+     {
+          background: url('http://www.rc-network.de/templates/rcnnav_tab_high_links.gif') no-repeat top left;
+
+     }
+     .tab_highlight_center
+     {
+          color: #000000;
+          background: url('http://www.rc-network.de/templates/rcnnav_tab_high_mitte.gif') no-repeat top center;
+          text-align: center;
+          vertical-align:bottom;
+          height: 18px
+     }
+     .tab_highlight_center a:link, .tab_highlight_center a:visited, .tab_highlight_center a:hover, .tab_highlight_center a:active
+     {
+          color: #000000;
+          font: bold 11px tahoma, verdana, geneva, lucida, "lucida grande", arial, helvetica, sans-serif;
+          text-decoration:none;
+          text-align: center;
+     }
+     .rcnnav_tab_high_bottom
+     {
+          color: #000000;
+          background: #FFFFFF;
+          height: 18px;
+          vertical-align: middle;
+     }
+     .rcnnav_tab_high_bottom2
+     {
+          color: #000000;
+          background: #FFFFFF;
+          height: 18px;
+          vertical-align: middle;
+     }
+     .rcnnav_tab_high_topright2
+     {
+          background: #FF0000 url('./rcnnav_tab_high_rechts.png') no-repeat top right;
+     }
+
+     .rcnnav_tab_high_topleft2
+     {
+          background: url('./rcnnav_tab_high_links.png') no-repeat top left;
+
+     }
+</style>
+<body>
+Testcase for bug #172968
+<table>
+ <tbody>
+ <tr>
+  <td class="rcnnav_tab_high_bottom" >
+    <div class="rcnnav_tab_high_topright"><div class="rcnnav_tab_high_topleft"><div class="tab_highlight_center">
+    <span style="vertical-align: top;">SOME TEXT</span>
+    </div></div></div>
+   </td>
+   <td>
+&nbsp;
+   </td>
+  <td class="rcnnav_tab_high_bottom2" >
+    <div class="rcnnav_tab_high_topright2"><div class="rcnnav_tab_high_topleft2"><div class="tab_highlight_center2">
+    <span style="vertical-align: top;">SOME TEXT</span>
+    </div></div></div>
+   </td>
+  </tr>
+ </tbody>
+ </table>
+</body>
+</html>

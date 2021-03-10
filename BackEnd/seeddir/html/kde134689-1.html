@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+
+		<style type='text/css'>
+			/* Border around menu, no border/spacing between menu items. */
+			table {
+				border: 1px solid #000;
+				border-collapse: collapse;
+			}
+
+			/* Menu items must be clickable in full length. */
+			a {
+				width: 100%;
+				display: block;
+			}
+
+			/* Padding on menu items. (needs to be hacky because, well, all browsers are broken, AFAICT.) */
+			td, a {
+				padding: 0 10px;
+			}
+			a {
+				margin: 0 -10px;
+			}
+
+			/* menu item colors and font. */
+			a {
+				text-decoration: none;
+				background-color: #a0a0a0;
+				color: #ffffff;
+			}
+			a:hover {
+				background-color: #d0d0d0;
+				color: #000000;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<table>
+			<tr>
+				<td><a href='#'>item 1</a></td>
+			</tr>
+			<tr>
+				<td><a href='#'>item 2 abcd</a></td>
+			</tr>
+			<tr>
+				<td><a href='#'>item 3 abcdef</a></td>
+			</tr>
+		</table>
+
+	</body>
+
+</html>

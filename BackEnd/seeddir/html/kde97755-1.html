@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+
+<body>
+<h1>Testcase to show error in definition list rendering</h1>
+
+<P>The list below intends to show a rendering error in konqueror using
+definition lists with the 'compact' option when the width of a term is
+less than the indentation of its description and a &lt;pre&gt; is used
+in the description.</p>
+
+<DL compact>
+
+<DT><strong>
+<a>Long term<a>
+</strong></DT>
+<DD>
+First term.<br>No &lt;pre&gt; used in description.
+</DD>
+
+<DT><strong>
+<a>Short<a>
+</strong></DT>
+<DD>
+Second term.<br>No &lt;pre&gt; used in description.
+</DD>
+
+<DT><strong>
+<a>Long term<a>
+</strong></DT>
+<DD>
+Third term.
+<pre>With &lt;pre&gt; used in description.</pre>
+</DD>
+
+<DT><strong>
+<a>Short<a>
+</strong></DT>
+<DD>
+<font color="red">Fourth term. Term missing! Should be displayed before this line.</font>
+<pre>With &lt;pre&gt; used in description.</pre>
+</DD>
+
+<DT><strong>
+<a>Final term<a>
+</strong></DT>
+<DD>
+Fifth term. All OK again.
+</DD>
+
+</DL>
+</body>
+</html>

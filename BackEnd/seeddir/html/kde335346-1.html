@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+        .d1 {width:100px;height:100px;background-color:red;}
+        .d2 {width:100px;height:100px;background-color:green;}
+    </style>
+  </head>
+  <body>
+The red rectangles should be placed over the green ones
+  <div class="d1" style="position:absolute;left:50px;top:50px;z-index:2147483647;">
+  </div>
+  <div class="d2" style="position:absolute;left:70px;top:70px;z-index:2147483646;">
+  </div>
+
+  <div class="d1" style="position:absolute;left:50px;top:200px;z-index:2147483648;">
+  </div>
+  <div class="d2" style="position:absolute;left:70px;top:220px;z-index:2147483646;">
+  </div>
+
+  </body>
+</html>

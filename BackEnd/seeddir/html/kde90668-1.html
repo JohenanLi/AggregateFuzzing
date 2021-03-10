@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+   Testcase of a Konqueror 3.2.3 CSS bug.    Daniel Clemente 
+     ..... as seen in: http://www.meyerweb.com/eric/css/edge/menus/demo.html
+-->
+<html>
+<head>
+  <title>test</title>
+  <style type="text/css">
+	  
+ul {
+  padding: 0; margin: 0; border: 1px solid red; width: 6em;
+}
+	  
+ul li > ul {
+	position: absolute;
+	left: 100%;
+	border: 1px dashed blue;
+}
+
+ul li {
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px 1px 1px 30px; /* Delete this and extra margin disappears */ 
+	list-style-type: none;
+	position: relative; 
+}	
+
+ </style>
+</head>
+<body>
+
+
+<ul id="top">
+	<li>a</li>
+	<li>b</li>
+	<li>More ---&gt;<ul>
+		<li>c</li>
+		<li>d</li>
+		<li>Even more:<ul>
+			<li>1</li>
+			<li>2</li>
+		</ul></li>
+	</ul></li>
+</ul>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<p>All boxes should be touching, but when a border-width is set, it also creates a margin.</p>
+
+
+</body>
+</html>

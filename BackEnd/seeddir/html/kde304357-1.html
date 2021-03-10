@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>CSS Content test</title>
+  <style type="text/css">
+<!--
+h1 { font-size: 100%; clear: both }
+h1 { display:none}
+div.social-share { float: left; margin: 0 0 0.5em 0; padding-top: 0; border-radius: 5px; background: #aaa}
+div.social-share > ul { list-style: none; margin: 2px; padding-top: 0.2em; padding-left: 0 }
+div.social-share > ul > li { display: inline; margin-top: 0; padding-top: 0 }
+div.social-share > ul > li > a.twitter { content: "" }
+/* div.social-share > ul > li > a.facebook { content: "" } */
+div.test div.social-share > ul > li > a.twitter { content: none }
+
+div.clean div.social-share > ul > li > a.twitter:after { content: "Tweet" }
+div.clean div.social-share > ul > li > a.facebook:after { content: "Share on Facebook" }
+
+div.footer {clear:both}
+div.footer > div.social-share { float: left; margin: 0 0 0.5em 0; padding-top: 0; border-radius: 5px; background: #ddd}
+div.footer > div.social-share > ul { list-style: none; margin: 2px; padding-top: 0.2em; padding-left: 0 }
+div.footer > div.social-share > ul > li { display: inline; margin-top: 0; padding-top: 0 }
+div.footer > div.social-share > ul > li > a.twitter { content: "Tweet" }
+div.footer > div.social-share > ul > li > a.facebook { content: "Share on Facebook" }
+div.footer > div.social-share > ul > li > a.facebook:after { content: "(after)" }
+
+.twitter { background: url(http://www.kde.org/images/pics/twitter.png) no-repeat; padding-left: 18px }
+.facebook { background: url(http://www.kde.org/images/pics/facebook.png) no-repeat; padding-left: 18px }
+-->
+  </style>
+</head>
+<body>
+<div class="content">
+<h1>content on first link set to &quot;&quot;</h1>
+<div class="social-share">
+<ul>
+<li><a href="https://twitter.com/" class="twitter twitter-share">Tweet</a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share">Share on Facebook</a></li>
+</ul>
+</div>
+
+<div class="test" style="clear:both; margin:2em 0">
+<h1>content on first link set to <em>none</em></h1>
+<div class="social-share">
+<ul>
+<li><a href="https://twitter.com/" class="twitter twitter-share">Tweet</a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share">Share on Facebook</a></li>
+</ul>
+</div></div>
+
+<div class="clean" style="clear:both; margin:2em 0">
+<h1>links have text only by CSS</h1>
+<div class="social-share">
+<ul>
+<li><a href="https://twitter.com/" class="twitter twitter-share"></a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share"></a></li>
+</ul>
+</div></div>
+
+<h1>links have no text at all</h1>
+<div class="social-share" style="clear:both">
+<ul>
+<li><a href="https://twitter.com/" class="twitter twitter-share"></a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share"></a></li>
+</ul>
+</div>
+
+<h1>link test is a single capital letter</h1>
+<div class="social-share" style="clear:both">
+<ul>
+<li><a href="https://twitter.com/" class="twitter twitter-share">Tweet</a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share">F</a></li>
+</ul>
+</div>
+
+<h1>2 links with same classes, the second one without HTML content, but both with same :after text</h1>
+<footer>
+<div class="footer">
+<div class="social-share">
+<ul>
+<li><a href="https://twitter.com" class="twitter twitter-share">Tweet</a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share">Share on Facebook</a></li>
+<li><a href="https://www.facebook.com/" class="facebook facebook-share"></a></li>
+</ul>
+</div>
+
+</div>
+</footer>
+</div>
+</body>
+</html>

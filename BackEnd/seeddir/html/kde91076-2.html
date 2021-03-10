@@ -1,0 +1,162 @@
+<html>
+<head>
+<style>
+ html { 
+ min-width: 800px;
+ min-height: 600px;
+ margin: 0px; 
+ padding: 0px; 
+ color:#919191; /* colors here because firefox hates it in body for some reason? */
+ /*background: url('images/blue.jpg') no-repeat center center;
+ background-attachment : fixed;*/
+ background-color:#000000;
+ /* 	border: 1px solid #FFE3BC; */
+ }
+ body {
+ 
+ font-family: Verdana, Geneva, sans-serif;
+ font-size: 12px;
+ border: none; 
+ 
+ }
+ hr {
+ border: 1px dotted #5c0000;
+ height: 0px;
+ }
+ a {
+ color: #92826C;
+ text-decoration: none;  /* This was added */
+ }
+ 
+ a:hover {
+ color: #92826C;
+ border-bottom: 1px solid #FFE3BC;
+ }
+ 
+ a span {
+ display: none;
+ }
+ 
+ label,input {
+ display: block;
+ width: 150px;
+ float: left;
+ margin-bottom: 10px;
+ }
+ 
+ label {
+ text-align: right;
+ width: 75px;
+ padding-right: 20px;
+ }
+ 
+ br {
+ clear: left;
+ }
+ .page {
+ width:770px;
+ height: 600px;
+ display: block;
+ overflow: hidden;
+ }
+ .page_top {
+ border-right: 1px solid #ccc;
+ border-bottom: 1px solid #ccc;
+ border-left: 1px solid #ccc;
+ border-top: 1px solid #4E453A;
+ text-align:center;
+ color: #D12A00;
+ padding-bottom: 5px;
+ }
+ .page_left { 
+ top:10%;
+ width: 97px;
+ border-right: 1px solid #ccc;
+ border-top: 1px solid #ccc;
+ }
+ 
+ .page_middle {
+ top:10%; 
+ width:650px;
+ height: 91%;
+ border-left: 1px solid #ccc;
+ border-top: 1px solid #ccc;
+ }
+ .table_cell {
+ float:left;
+ margin: 4px 0% 0% 4px; 
+ padding: 3px;
+ clear:right;
+ }
+ .center {
+ left: 50%;
+ right: 50%;
+ margin-right:auto;
+ margin-left:auto;
+ margin-top:10px;
+ }
+ 
+ .copy {
+ font-size : 9px; 
+ font-style : italic;
+ text-align: right;
+ margin-right:2%;
+ float: right;
+ }
+ 
+ .footer {
+ position: fixed;
+ text-align:left;
+ border-left: 1px solid #ccc;
+ border-top: 1px solid #ccc;
+ right: 1%;
+ bottom: 1%;
+ width: 2%;
+ height: 2%;
+ background-color: #92826C;
+ }
+ .footer div { 
+ display: none;
+ }
+ .footer:hover div {
+ display: block;
+ }
+ .footer:hover {
+ width: 300px;
+ height: 35px;
+ float:left;
+ background-color: transparent;
+ }
+ a:hover span.tt {
+ display: block;
+ /*
+ position:absolute;
+ top: 400px; 
+ left: 300px; 
+ padding: 3px; 
+ margin: 1px; 
+ width: 40%
+ */
+ float: left;
+ clear: left;
+ width: 95%;
+ z-index: 100;
+ font-size: 15px ; 
+ font-style:italic;
+ text-align:left;
+ background-color: black;
+ border: 1px solid #ccc;
+ border-top: 1px solid #ccc;
+ color: red;
+ left: 1%;
+ overflow: hidden;
+ bottom: 1%;
+ }
+ 
+</style>
+</head>
+<body>
+	<div class="footer"><div>some text<div class="copy">Copyright &copy; 2004 <a href="mail.php">OneOfOne</a>. All rights reserved.</div></div></div> 
+
+</body>
+</html>

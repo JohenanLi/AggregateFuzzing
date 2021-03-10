@@ -1,0 +1,20 @@
+<html>
+<body onLoad="doload()">
+<iframe id="googleid" name="googlename" width="300" height="300" src="http://www.google.de"></iframe>
+<iframe name="heisename" id="heiseid"  width="300" height="300" src="http://www.heise.de"></iframe>
+
+<script>
+function doload() {
+  mygoogle=frames["googlename"];
+  alert(mygoogle);
+  mygoogle=frames["googleid"];
+  alert(mygoogle);
+  myheise=frames["heisename"];
+  alert(myheise);
+  myheise=frames["heiseid"];
+  alert(myheise);
+}
+</script>
+
+</body>
+</html>

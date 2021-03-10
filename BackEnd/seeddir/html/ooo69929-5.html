@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Test Specification: i69929
+</head>
+<body dir="ltr" bgcolor="#ffffff" lang="de-DE" text="#000000">
+
+    <!-- add testplan title here -->
+    <h1 align="center"><u>Test Specification: <i>i69929</i></u></h1>
+    <!-- ++++++++++++++++++++++++++++++++ -->        
+    <hr>				    
+    <h3>Test Purpose:</h3>
+    <p>SDW Import &amp; HTML Export Test (Writer/WEB). Verify issue 69929</p>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+    <!-- add Preconditions here -->
+    <h3>Preconditions of the test:</h3>
+    <p>Working test environment</p>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+    <!-- add testdocuments here if needed -->
+    <h3>Test documents:</h3>
+    <ul>
+        <li><a href="http://www.openoffice.org/nonav/issues/showattachment.cgi/39406/rahmen.sdw">rahmen.sdw</a></li>
+        <li><a href="http://www.openoffice.org/nonav/issues/showattachment.cgi/39408/export.sdw">export.sdw</a></li>
+        <li><a href="http://www.openoffice.org/nonav/issues/showattachment.cgi/39409/vexport2.sdw">vexport2.sdw</a></li>
+        <li><a href="http://www.openoffice.org/nonav/issues/showattachment.cgi/39410/vexport3.sdw">vexport3.sdw</a></li>
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+    <!-- add testcases here -->
+    <h3>Testcase</h3>
+    <h5>Verify issue 69929</h5>
+    <ul>
+        <li>Tools / Options / Load and Save / HTML Compatibility</li>
+        <li>Browser export: Microsoft Internet Explorer</li>
+        <li>Load one of the test documents</li>
+        <li>The Macro Security dialog occours</li>
+        <li>Click on <i>enabled macros</i> one time and next time on <i>disable macros</i>
+        <li>Save the document as HTML.</li>
+        <li>Load as ASCII.</li>        
+        <li>Close document.</li>
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+    <!--  add Problematic areas here if needed  -->
+    <h3>Problematic areas</h3>
+    <!-- <P>something that looks like a bug</P> -->
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+</body>
+</html>

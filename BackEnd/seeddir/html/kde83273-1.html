@@ -1,0 +1,22 @@
+<img src="" name="testimage">
+
+<script language="javascript1.1">
+
+sourceimage = new Image()
+sourceimage.src = "test"
+
+document.images.testimage.src = sourceimage.src
+
+if(document.images.testimage.src == sourceimage.src)
+  {
+   document.write("sourceimage equals testimage.<br>")
+  }
+else
+  {
+   document.write("sourceimage does NOT match testimage.<br>")
+   document.write("sourceimage: ")
+   document.write(sourceimage.src)
+   document.write("<br>testimage: ")
+   document.write(document.images.testimage.src)
+  }
+</script>

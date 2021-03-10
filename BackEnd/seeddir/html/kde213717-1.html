@@ -1,0 +1,51 @@
+{% extends "fundelivery/base_user.html" %}
+
+<!-- TITULO -->
+{% block title %}
+	Fun Delivery - Assine
+{% endblock %}
+
+<!-- CSS -->
+{% block extra_css %}
+	<link rel="stylesheet" type="text/css" href="/mediafiles/css/user_04.css" />
+{% endblock %}
+
+<!-- CONTEUDO -->
+{% block conteudo %}
+	<div id="passos"> Passo-a-passo do processo de assinatura </div>
+	
+	<div id="coluna_conta_gratis">
+ 		<p>
+			Antes de assinar um plano você pode criar uma conta grátis e simular todos os procedimentos do site
+		</p>	
+		
+		<a onclick="mostrar_div('wrap_criar_conta_2'); mostrar_div('fundo_preto')" href="#"> <b> Criar conta gratis </b> </a>
+		
+		<div id="wrap_criar_conta_2">
+			<div id="fechar_box_login"> <a onclick="esconder_div('wrap_criar_conta_2'); esconder_div('fundo_preto')" href="#"> </a> </div>
+			
+			<div id="box_login_topo"> </div>
+			<div id="box_login_content">
+				  <form action="/fundelivery/criarusuario/" method="post">	
+						{% include "fundelivery/form_user_create_basic.html" %}
+				  </form>
+			</div>
+			<div id="box_login_base"> </div>
+			
+			<div class="clear"> </div>
+		</div>
+	</div>
+	
+	{% for p in planos %}
+	<div id="coluna_plano"> 
+		<h2>{{ p.name }}</h2> </br>
+		  R$ {{ p.value }},00   <br/>
+		<br/>
+		{{ p.description }} <br/>
+		<br/>
+		Pontos disponiveis:<br/>
+		<h3>{{ p.limit_points }} PONTOS</h3><br/>
+		Assine <a href="/fundelivery/assine/escolheplano/?plano={{p.pk}}"> Aqui! </a>
+	</div>
+	{% endfor %}
+{% endblock %}

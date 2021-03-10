@@ -1,0 +1,24 @@
+<h1>Changes to StarOffice 8 Developer's Guide, June 2005 (generated from
+SRC680m150)</h1>
+
+
+<em>Appendix D: UNOIDL Syntax Specification</em>
+
+<pre>
+<var>idl-specification</var> ::= <var>declaration</var>*
+
+<var>exception-decl</var> ::= [<b>"published"</b>] <b>"exception"</b> <!--
+--><var>identifier</var> [<var>single-inheritance</var>]
+                   <b>"{"</b> <var>struct-member-decl</var>* <b>"}"</b> <!--
+--><b>";"</b>
+
+<var>constants-decl</var> ::= [<b>"published"</b>] <var>identifier</var> <!--
+--><b>"{"</b> <var>const-decl</var>+ <b>"}"</b> <b>";"</b>
+
+<var>module-decl</var> ::= <b>"module"</b> <var>identifier</var> <!--
+--><b>"{"</b> <var>declaration</var>* <b>"}"</b> <b>";"</b>
+
+<var>accumulated-service-decl</var> ::= [<b>"published"</b>] <!--
+--><b>"service"</b> <var>identifier</var> <b>"{"</b> <!--
+--><var>service-member-decl</var>* <b>"}"</b> <b>";"</b>
+</pre>

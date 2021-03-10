@@ -1,0 +1,25 @@
+<HTML>
+<BODY>
+<!-- BEGIN MENU -->
+<SCRIPT LANGUAGE="JavaScript">
+	function formattedTime()
+	{
+		var clock = document.getElementById("clock");
+		d = new Date();
+		clock.innerHTML = d.getSeconds();
+		setTimeout('formattedTime()', 500);
+		//return s;
+		
+	}
+</SCRIPT>
+<TABLE CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <TR ALIGN="center"><TD><SPAN ID="clock" CLASS="menuClock">02:19:03 PM</SPAN></TD></TR>
+
+<!-- start clock -->
+<SCRIPT LANGUAGE="JavaScript">
+	setTimeout('formattedTime()', 500);
+</SCRIPT>
+
+</TABLE>
+</BODY>
+</HTML>

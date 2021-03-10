@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<title>'list-style' parsing ambiguities</title>
+<style type="text/css">
+td, th { text-align: left; }
+ul, li { margin-top: 0; margin-bottom: 0; }
+</style>
+
+<table id="table" border>
+<tr>
+  <th rowspan="2">Value</th>
+  <th rowspan="2">Appearance</th>
+  <th colspan="3">Resulting list-style-...</th>
+</tr>
+<tr>
+  <th>position</th>
+  <th>type</th>
+  <th>image</th>
+</tr>
+
+</table>
+
+<script type="text/ecmascript">
+
+var values = [
+  "disc outside",
+  "outside outside",
+  "disc disc",
+  "none outside",
+  "outside none",
+  "unknown value",
+  "outside none url(404.png)",
+  "outside url(404.png) none",
+  "none url(404.png) outside",
+  "none outside url(404.png)",
+  "url(404.png) none outside",
+  "url(404.png) outside none",
+  "outside none disc",
+  "outside disc none",
+  "none disc outside",
+  "none outside disc",
+  "disc none outside",
+  "disc outside none",
+  "none none",
+  "outside none none",
+  "none outside none",
+  "none none outside",
+  "none none none"
+];
+
+var table = document.getElementById("table");
+
+for (var i = 0; i < values.length; ++i) {
+  var v = values[i];
+  var tr = document.createElement("tr");
+
+  var cell = document.createElement("th");
+  cell.appendChild(document.createTextNode(v));
+  tr.appendChild(cell);
+
+  cell = document.createElement("td");
+  var ul = document.createElement("ul");
+  ul.style.listStyle = v;
+  var li = document.createElement("li");
+  li.appendChild(document.createTextNode("item"));
+  ul.appendChild(li);
+  cell.appendChild(ul);
+  tr.appendChild(cell);
+
+  cell = document.createElement("td");
+  cell.appendChild(document.createTextNode(ul.style.listStylePosition));
+  tr.appendChild(cell);
+
+  cell = document.createElement("td");
+  cell.appendChild(document.createTextNode(ul.style.listStyleType));
+  tr.appendChild(cell);
+
+  cell = document.createElement("td");
+  cell.appendChild(document.createTextNode(ul.style.listStyleImage));
+  tr.appendChild(cell);
+
+  table.appendChild(tr);
+}
+
+</script>
+

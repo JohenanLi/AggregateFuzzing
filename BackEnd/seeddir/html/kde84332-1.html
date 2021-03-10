@@ -1,0 +1,22 @@
+<script type="text/javascript">
+
+function ShowLogin() {
+  document.getElementById("login").style.display = "";
+  return false;
+}
+
+function HideLogin() {
+  document.getElementById("login").style.display = "none";
+}
+
+</script> 
+
+
+<body onload="HideLogin()" > 
+<div id="browser">
+  <a href="#" onclick="return ShowLogin()">click me</a>
+</div> 
+  
+<iframe src="http://www.kde.org" id="login"> 
+</iframe> 
+  

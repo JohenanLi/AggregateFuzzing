@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" styles="unlocked" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="5" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.0" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="0.99.2" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-US; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="dc.format">application/x-abiword</m>
+<m key="abiword.generator">AbiWord</m>
+</metadata>
+<history version="1" edit-time="24" last-saved="1150184164" uid="36ed4ce0-faaf-11da-98e9-e999fd6200d7">
+<version id="1" started="1150184164" uid="44c8f800-faaf-11da-98e9-e999fd6200d7" auto="0" top-xid="5"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; color:000000; margin-left:0pt; text-position:normal; widows:2; font-style:normal; text-indent:0in; font-variant:normal; margin-right:0pt; lang:en-US; line-height:1.0; font-size:12pt; text-decoration:none; margin-bottom:0pt; font-weight:normal; bgcolor:transparent; text-align:left; font-stretch:normal"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section header="0" xid="4" props="page-margin-footer:0.5in; page-margin-header:0.5in">
+<p style="Normal" xid="5"></p>
+</section>
+<section id="0" listid="0" parentid="0" type="header" xid="1">
+<p xid="2" props="text-align:left"><math dataid="MathLatex0" latexid="LatexMath0" xid="3" props="width:776; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; ascent:224; font-variant:normal; text-position:normal; list-style:None; lang:en-US; height:227; font-size:12pt; homogeneous:1; text-decoration:none; descent:3; color:000000; font-stretch:normal"><image dataid="snapshot-png-MathLatex0" props="height:0.157639in; width:0.538889in"/></math></p>
+</section>
+<data>
+<d name="snapshot-png-MathLatex0" mime-type="image/png" base64="yes">
+iVBORw0KGgoAAAANSUhEUgAAADMAAAAPCAIAAADGe2CrAAAAmUlEQVR4nM1UWw7AIAgbhvtf
+2X2wIaFsmmiUfjFktDyUaq1XSvBpAQ1EJIY0K4syItLpiV3OClLgUmVRhkinTMfK1iXGzG2V
+vC5VmPnLqZ+MLmtjIouwBpfKhulRSOd4GV1StGMdb2T3R6TTGmwjs7waWECb5nYxHTzKusMa
+37NViKc5s2erUK535X9krQXShWGM0RvaM0J3A/cnfhf8j/fuAAAAAElFTkSuQmCC
+</d>
+<d name="LatexMath0" base64="yes">
+ZSA9IG1jIF4gMg==
+</d>
+<d name="MathLatex0" base64="yes">
+PG1hdGggeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzE5OTgvTWF0aC9NYXRoTUwnIGRpc3Bs
+YXk9J2Jsb2NrJz48bWk+ZTwvbWk+PG1vPj08L21vPjxtc3VwPjxtaT5tYzwvbWk+IDxtbj4y
+IDwvbW4+PC9tc3VwPjwvbWF0aD4=
+</d>
+</data>
+</abiword>

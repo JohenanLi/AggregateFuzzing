@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Test case for bug 138606</title>
+</head>
+<body>
+<h1>Problems with image maps</h1>
+<ul><li>
+The standard way of defining clickable rectangular areas in image maps is
+
+<pre>&lt;area shape="rect" alt="KDE" coords="x1,y1,x2,y2" href="http://www.kde.org/"&gt;</pre>
+
+where (x1,y1) and (x2,y2) are the coordinates of the <b>top left</b> and the <b>bottom right</b> corner, respectively (see example A).</li>
+<li>In Example B, (x1,y1) and (x2,y2) are the coordinates of the <b>bottom left</b> and <b>top right</b> corner, respectively. This works fine in Firefox, but not in Konqueror 3.5.9 and SVN trunk rev. 820315.</li>
+</ul>
+
+<map name="KDE1">
+<area shape="rect" alt="KDE" coords="25,25,225,125" href="http://www.kde.org/">
+</map>
+<map name="KDE2">
+<area shape="rect" alt="KDE" coords="25,125,225,25" href="http://www.kde.org/">
+</map>
+
+<table cellpadding="0" cellspacing="20">
+<tr><td>A</td>
+<td><img src="http://bugs.kde.org/attachment.cgi?id=25317&amp;action=view" usemap="#KDE1" width="250" height="150" alt=""></td></tr>
+<tr><td>B</td>
+<td><img src="http://bugs.kde.org/attachment.cgi?id=25317&amp;action=view" usemap="#KDE2" width="250" height="150" alt=""></td></tr>
+</table>
+</body></html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document
+  xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+  xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+  xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+  xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
+  office:mimetype="application/vnd.oasis.opendocument.text"
+  office:version="1.2"
+>
+  <office:styles>
+    <style:default-style style:family="paragraph">
+      <style:text-properties
+        fo:language="en"
+        fo:country="US"
+      />
+    </style:default-style>
+  </office:styles>
+  <office:automatic-styles>
+    <style:style style:name="Ru1" style:family="ruby">
+      <style:ruby-properties 
+        style:ruby-align="center" 
+        style:ruby-position="below"
+      />
+    </style:style>
+  </office:automatic-styles>
+  <office:body>
+    <office:text>
+      <text:p>
+        <text:ruby text:style-name="Ru1">
+          <text:ruby-base>A base text long enough to demonstrate the bug.</text:ruby-base>
+          <text:ruby-text>Should be centered</text:ruby-text>
+        </text:ruby>
+      </text:p>
+    </office:text>
+  </office:body>
+</office:document>

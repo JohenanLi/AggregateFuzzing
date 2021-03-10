@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>Konquerer margin problem with floats</title>
+<style>
+
+	p {
+		margin-left: 50px;
+		margin-right: 50px;
+		border: solid 1px black;
+		background-color: #ddffdd;
+	}
+
+	.floater_left, .floater_right{
+		margin: 10px;
+		width: 150px;
+		border: dotted 1px black;
+	}
+	.floater_left { float: left; }
+	.floater_right { float: right; }
+
+	.main {
+		margin: 10px;
+		width: 500px;
+		border: dashed 1px black;
+		background-color: #ddddff;
+	}
+
+</style>
+</head>
+<body>
+
+<div class="main">
+
+<div class="floater_right">
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+</div>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+</div>
+
+<div class="main">
+
+<div class="floater_left">
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+</div>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+<p>All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.
+All work and no code makes Jack a dull boy.  All work and no code makes Jack a dull boy.</p>
+
+</div>
+
+</body>
+</html>

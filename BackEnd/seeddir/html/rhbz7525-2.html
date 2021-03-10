@@ -1,0 +1,30 @@
+'<HTML>
+<BODY>
+<applet archive="mindterm.jar" code=mindbright.application.MindTerm.class width=580 height=400>
+<!-- These parameters are parameters that are listed in paragraph 5. -->
+<param name=port value="22">
+<param name=cipher value="blowfish">
+<param name=gm value="80x32+0-0">
+<param name=forcpty value="true">
+<param name=local0 value="4711:wintermute:23">
+<param name=local1 value="/ftp/4712:wintermute:21">
+<!-- Any parameters listed in paragraph 5. can be included here -->
+
+<!-- These parameters are special for the applet, most have an equivalent -->
+<!-- command-line option when run as a stand-alone client -->
+<param name=sepframe value="false"><!-- wheter to run in a separate frame or not -->
+<param name=verbose value="true"><!-- output verbose debug-info to java-console -->
+<param name=debug value="true"><!-- give more debug-info to java-console -->
+<param name=quiet value="true"><!-- quiet mode, don''t query for server/username if given -->
+<param name=cmdsh value="true"><!-- enable/disable local command-shell -->
+<param name=menus value="pop2"><!-- enable/disable pulldown or popup menus -->
+<param name=autoprops value="both"><!-- enable/disable automatic save/load of settings -->
+<param name=propsfile value="c:\ssh\ourserver.mtp"><!-- file containing settings (properties) to load -->
+<param name=commandline value="mc -x -c"><!-- complete commandline if running a single command only -->
+<param name=sshhome value="c:\ssh\"><!-- If authorized to access local files, this is home-dir -->
+<param name=appletbg value="black"><!-- Color of unused space in Applet''s Panel -->
+</applet>
+</BODY>
+</HTML>
+
+'

@@ -1,0 +1,20 @@
+<html>
+<head>
+<script>
+function switcher() {
+    var objs = document.getElementsByTagName('p');
+    for (i = 0; i < objs.length; i++) {
+		objs[i].dir = objs[i].dir == 'rtl' ? 'ltr' : 'rtl';
+    }
+}
+</script>
+</head>
+<body>
+<p dir="ltr" id="test">
+<bdo dir="ltr">[ 10:30:59 ]</bdo>
+<bdo dir="inherit">&lt;<bdo dir="inherit">Guss</bdo>&gt;</bdo>
+<bdo dir="inherit">this is a test message</bdo><br/>
+</p>
+<input type="button" onclick="switcher()" value="switch">
+</body>
+</html>

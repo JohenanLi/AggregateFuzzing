@@ -1,0 +1,19 @@
+<html>
+<head>
+<script>
+function framesFunc(){
+	document.frameForm.myform.edit1.focus();
+//	document.frameForm.myform.edit1.select();
+
+}
+</script>
+</head>
+
+<frameset rows="50, *" bordercolor="#DCDCDC" border=1 onLoad="framesFunc()">
+
+<frame name="empty">
+<frame name="frameForm" src="form.html">
+
+<noframes><body><p>This page uses frames, but your browser doesn't support them.</p>
+</body></noframes>
+</frameset>

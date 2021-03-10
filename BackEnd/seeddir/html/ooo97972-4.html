@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Test case specification document</title>
+    <style>
+    <!--
+        H5 { text-decoration: underline }
+    -->
+    </style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+    
+    <!-- add test title here - Second -->
+    <H1 ALIGN=CENTER><U>Test Name: <B>Changing pen color and stroke width in presentation mode</B></U></H1>    
+    <!-- ++++++++++++++++++++++++++++++++ -->        
+    <HR>
+    <TABLE WIDTH=100% BORDER=1 CELLSPACING=0>
+      <COL WIDTH=30%>
+      <COL WIDTH=40%>
+      <COL WIDTH=30%>
+		   <TR>
+			   <TD>
+            <!-- Your name should be written here -->
+				<P><FONT STYLE="font-size: 8pt"><B>Document Owner:</B><BR></FONT><SPAN STYLE="font-weight: medium">Fr&eacute;d&eacute;ric Gelot</SPAN></P>
+            </TD>
+			   <TD>
+            <!-- Date has to be written in form like this: 10. Nov. 2005 -->
+				<P><FONT STYLE="font-size: 8pt"><B>Last Document Change:</B><BR></FONT><SPAN STYLE="font-weight: medium">28. 01. 2009</SPAN></P>
+            </TD>
+			   <TD>
+            <!-- Status of this document can be: Preliminary, Standard, Obsolete -->
+				<P><FONT STYLE="font-size: 8pt"><B>Status of Document:</B><BR></FONT><SPAN STYLE="font-weight: medium">Preliminary</SPAN></P>
+            </TD>
+         </TR>
+   </TABLE>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <!-- add test purpose here -->
+    <H3>Test purpose </H3>
+    <P>Test if change pen color and pen stroke width in presentation mode works well when "mouse pointer as pen" option is active.</P>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>    
+    <!-- add major known issues here -->
+    <h3>Known issues:</h3>
+    <ul>
+        <li><p>no known issues</p>
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+    <!-- add Preconditions here -->
+    <H3>Preconditions of the test:</H3>
+    <UL>
+        <li>"Mouse pointer as pen" option active </li>
+        <li>language settings : en-US for the beginning </li>
+        <li>a mouse with right click or a pen of a tablet PC</li>.        
+    </UL>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>
+    <!-- add test documents here if needed -->
+    <H3>Test documents</H3>
+    <UL>
+        <LI><a href="http://www.openoffice.org/nonav/issues/showattachment.cgi/59723changingpencolorandstrokewidth.odp">changingpencolorandstrokewidth.odp</a>
+    </UL>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>
+    <!-- add test cases here -->
+    <H3>Test cases</H3>
+    <H5>Changing pen color during presentation</H5>
+    <UL>
+        <LI>load the bugdoc
+        <LI>activate "mouse pointer as pen" option in the slideshow settings window
+	<LI>start the presentation
+	<LI>draw a curve with default settings for pen color
+	<LI>right click 
+	<LI>click on "change color" in the context menu
+	<LI>select a color through the widget which is normally opened.
+	<LI>draw a new curve
+    </UL>
+    <H5>Changing pen stroke width during presentation</H5>
+    <UL>
+        <LI>load the bugdoc
+	<LI>activate "mouse pointer as pen" option in the slideshow settings window
+	<LI>start the presentation
+	<LI>draw a curve with default settings for pen color
+	<LI>right click 
+	<LI>put the mouse over "pen width" in the context menu
+	<LI>select a stroke width through the different items (5).
+	<LI>draw a new curve
+    </UL>
+    <H5>Testing pen stroke width and color persistence during presentation</H5>
+    <UL>
+        <LI>load the bugdoc
+	<LI>activate "mouse pointer as pen" option in the slideshow settings window
+	<LI>start the presentation
+	<LI>choose a color and a stoke witdh (as described in the first two tests)
+	<LI>draw a line
+	<LI>go to next slide
+	<LI>draw a new line and check if pen color and stoke width have changed.
+    </UL>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>
+    <!--  add Problematic areas here if needed  -->
+    <H3>Problematic areas</H3>
+    <P>no problematic areas known </P>
+    <!-- ++++++++++++++++++++++++++++++++ -->    
+    <hr>
+    <!-- add Acronyms here if needed -->
+    <h3>Acronyms:</h3>
+    <ul>
+        <li>no acronyms
+    </ul><!-- ++++++++++++++++++++++++++++++++ -->
+    <hr><!-- add link to specification here -->
+    <h3>References (specification, API-documentation, ...):</h3>
+    <ul>
+        <li><a href="#">no reference for now</a>
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+</body>
+</html>
+

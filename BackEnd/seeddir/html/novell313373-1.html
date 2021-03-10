@@ -1,0 +1,111 @@
+<%@ Page Language="vb" AutoEventWireup="false" Codebehind="Default.aspx.vb" Inherits="jasb.jasb.HomePage"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<title>Andy80's Blog - Made With JASB: Just Another Simple Blog</title>
+		<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
+		<meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE">
+		<meta content="JavaScript" name="vs_defaultClientScript">
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="Styles.css" type="text/css" rel="stylesheet">
+	</HEAD>
+	<body MS_POSITIONING="GridLayout">
+		<form id="Form1" method="post" runat="server">
+			<TABLE id="MainTable" style="Z-INDEX: 101; LEFT: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 455px"
+				cellSpacing="1" cellPadding="1" width="100%" border="0" runat="server">
+				<TBODY>
+					<TR>
+						<TD vAlign="middle" bgColor="#3399cc" colSpan="2">
+							<P>
+							<P></P>
+							<P align="center"><asp:label id="Label1" runat="server" Font-Bold="True" Font-Names="Tahoma" Font-Size="Large">.: Andy80's Blog - Made With JASB: Just Another Simple Blog :.</asp:label></P>
+						</TD>
+					</TR>
+					<TR>
+						<TD style="WIDTH: 727px" vAlign="top"><asp:repeater id="blog" runat="server">
+								<HeaderTemplate>
+									<table width="100%" border="0">
+										<tr>
+											<td>
+								</HeaderTemplate>
+								<ItemTemplate>
+									<asp:Literal Runat="server" ID="DayBox"></TD>
+					</TR>
+			</TABLE>
+			<table width="100%" border="0">
+				<tr>
+					<td>
+						</asp:Literal>
+						<asp:Panel Runat="server" ID="DayTitle">
+							<h3><%# DataBinder.Eval(Container.DataItem, "MsgDate", "{0:dddd d MMMM yyyy}") %></h3>
+						</asp:Panel>
+						<!-- here is the rest of the template that shows the data... -->
+						<asp:Label CssClass="TitoloMessaggio" Runat="server" ID="Titolo" text='<%# DataBinder.Eval(Container.DataItem, "Title") %>'>
+						</asp:Label><br>
+						<asp:Label CssClass="Messaggio" Runat="server" ID="Messaggio" text='<%# DataBinder.Eval(Container.DataItem, "Message") %>'>
+						</asp:Label><br>
+						<asp:HyperLink Runat="server" CssClass="A" ID="hlAddViewCommenti" NavigateUrl='<%# "Commenti.aspx?id=" & DataBinder.Eval(Container.DataItem, "MessageID") %>' text='<%# "Scrivi/Leggi commenti(" & DataBinder.Eval(Container.DataItem, "NumeroCommenti") & ")" %> '>
+						</asp:HyperLink>
+						<br>
+						<br>
+						</ItemTemplate>
+						<FooterTemplate>
+					</td>
+				</tr>
+			</table>
+			</FooterTemplate> </asp:repeater></TD>
+			<TD vAlign="top" width="200">
+				<P>&nbsp;</P>
+				<P align="center">
+					<TABLE id="Table1" style="WIDTH: 197px; HEIGHT: 72px" cellSpacing="1" cellPadding="1" width="197"
+						border="0">
+						<TR>
+							<TD>
+								<P><asp:calendar id="calendario" runat="server" Font-Names="Tahoma" Font-Size="X-Small" BorderStyle="None"></asp:calendar></P>
+							</TD>
+						</TR>
+						<TR>
+							<TD>
+								<P align="center"><asp:hyperlink id="hlAdmin" runat="server" NavigateUrl="GestioneMessaggi.aspx">Gestione Messaggi</asp:hyperlink></P>
+							</TD>
+						</TR>
+						<TR>
+							<TD>&nbsp;</TD>
+						</TR>
+						<TR>
+							<TD align="center" bgColor="gainsboro"><asp:label id="Label2" runat="server" CssClass="TitoliSezioni">CERCA</asp:label></TD>
+						</TR>
+						<TR>
+							<TD>
+								<P class="ScrittePiccole" align="center"><asp:label id="Label3" runat="server" CssClass="ScrittePiccole">Cerca nel Blog</asp:label><BR>
+									<asp:textbox id="TextBox1" runat="server"></asp:textbox><BR>
+									<asp:button id="btnCerca" runat="server" Text="Cerca"></asp:button></P>
+							</TD>
+						</TR>
+						<TR>
+							<TD>&nbsp;</TD>
+						</TR>
+						<TR>
+							<TD align="center" bgColor="gainsboro">
+								<asp:Label id="Label4" runat="server" CssClass="TitoliSezioni">Ultimi 10 messaggi</asp:Label></TD>
+						</TR>
+						<TR>
+							<TD>
+								<P>&nbsp;</P>
+								<P>&nbsp;</P>
+								<P>&nbsp;</P>
+							</TD>
+						</TR>
+					</TABLE>
+				</P>
+				<P>&nbsp;</P>
+				<P>&nbsp;</P>
+				<P>&nbsp;</P>
+			</TD>
+			</TR>
+			<TR>
+				<TD colSpan="2"></TD>
+			</TR>
+			</TBODY></TABLE>&nbsp;</form>
+	</body>
+</HTML>

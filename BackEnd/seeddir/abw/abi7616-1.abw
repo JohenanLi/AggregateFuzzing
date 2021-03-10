@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" styles="unlocked" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:svg="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="0.99.2" xml:space="preserve" props="lang:en-US; dom-dir:ltr">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="dc.format">application/x-abiword</m>
+<m key="abiword.generator">AbiWord</m>
+</metadata>
+<history version="8" edit-time="1478" last-saved="1096751258" uid="6129d020-11a2-11d9-9e85-ec74d4e51f46">
+<version id="4" started="1096412579" uid="5d3db0fc-11a3-11d9-9e85-ec74d4e51f46" auto="0"/>
+<version id="5" started="1096519002" uid="539a23bc-129a-11d9-8ce8-a7a234368409" auto="0"/>
+<version id="8" started="1096750427" uid="17208b14-14b7-11d9-9552-b72e69be0b29" auto="0"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="text-indent:0in; margin-top:0pt; margin-left:0pt; font-stretch:normal; line-height:1.0; text-align:left; font-variant:normal; lang:en-US; dom-dir:ltr; margin-bottom:0pt; text-decoration:none; font-weight:normal; bgcolor:transparent; color:000000; text-position:normal; font-size:12pt; margin-right:0pt; font-style:normal; widows:2; font-family:Times New Roman"/>
+<s followedby="Current Settings" name="Footnote Reference" basedon="None" type="C" props="bgcolor:eaeaea; font-size:10pt; font-family:Arial; color:f61818"/>
+<s type="C" name="Footnote Text" basedon="Normal" followedby="Current Settings" props="text-position:normal; font-size:10pt"/>
+<s type="C" name="Endnote Reference" basedon="None" followedby="Current Settings" props="text-position:superscript; font-size:10pt"/>
+<s type="C" name="Endnote Text" basedon="Normal" followedby="Current Settings" props="text-position:normal"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section props="page-margin-footer:0.5in; page-margin-header:0.5in">
+<p style="Normal">This is body text with a footnote<field footnote-id="0" type="footnote_ref" style="Footnote Reference"></field><foot footnote-id="0">
+<p footnote-id="0" style="Footnote Text"><field footnote-id="0" type="footnote_anchor" style="Footnote Text" props="text-position:superscript"></field><c footnote-id="0"> This is Footnote 1.</c></p>
+</foot>.</p>
+<p style="Normal">This is body text with an endnote<field endnote-id="0" style="Endnote Reference" type="endnote_ref"></field><endnote endnote-id="0">
+<p endnote-id="0" style="Endnote Text"><field endnote-id="0" style="Endnote Text" type="endnote_anchor" props="text-position:superscript"></field> This is endnote 1.</p>
+</endnote>.</p>
+<p style="Normal">This is more body text with a second endnote<field endnote-id="1" style="Endnote Reference" type="endnote_ref"></field><endnote endnote-id="1">
+<p endnote-id="1" style="Endnote Text"><field endnote-id="1" style="Endnote Text" type="endnote_anchor" props="text-position:superscript"></field> This is endnote 2.</p>
+</endnote>.</p>
+<p style="Normal">This is more body text with a second footnote<field footnote-id="1" type="footnote_ref" style="Footnote Reference"></field><foot footnote-id="1">
+<p footnote-id="1" style="Footnote Text"><field footnote-id="1" type="footnote_anchor" style="Footnote Text" props="text-position:superscript"></field><c footnote-id="1"> This is Footnote 2.</c></p>
+</foot>.</p>
+</section>
+</abiword>

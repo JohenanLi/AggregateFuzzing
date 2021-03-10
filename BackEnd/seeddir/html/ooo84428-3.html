@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+<TITLE>QS Testdokument</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#ffffff">
+
+<H2>Tabellen mit Parametern im &lt;TR&gt;-, &lt;TH&gt;- oder &lt;TD&gt;-Tag</H2>
+
+<P><B><U>TEST:</U> Die Tabellen sollten entsprechend der Parameter korrekt angezeigt werden.</B></P>
+
+<P>Zellenausrichtung <I>links, rechts oder zentriert</I> in &lt;TR&gt;, &lt;TH&gt; und &lt;TD&gt; mit &lt;ALIGN=<I>Richtung</I>&gt;</P>
+
+<TABLE BORDER WIDTH=100%>
+  <TR>
+    <TH ALIGN=LEFT>&lt;TH ALIGN=LEFT&gt;</TH>
+    <TH ALIGN=CENTER>&lt;TH ALIGN=CENTER&gt;</TH>
+    <TH ALIGN=RIGHT>&lt;TH ALIGN=RIGHT&gt;</TH>
+  </TR>
+  <TR>
+    <TD ALIGN=LEFT>&lt;TD ALIGN=LEFT&gt;</TD>
+    <TD ALIGN=CENTER>&lt;TD ALIGN=CENTER&gt;</TD>
+    <TD ALIGN=RIGHT>&lt;TD ALIGN=RIGHT&gt;</TD>
+  </TR>
+  <TR ALIGN=LEFT>
+    <TD>&lt;TR ALIGN=LEFT&gt;</TD>
+  </TR>
+  <TR ALIGN=CENTER>
+    <TD>&lt;TR ALIGN=CENTER&gt;</TD>
+  </TR>
+  <TR ALIGN=RIGHT>
+    <TD>&lt;TR ALIGN=RIGHT&gt;</TD>
+  </TR>
+</TABLE>
+
+<P>Zellenausrichtung <I>hoch, mittig oder tief</I> in &lt;TR&gt;-, &lt;TH&gt;- und &lt;TD&gt;-Tag mit VALIGN=<I>Richtung</I></P>
+
+<TABLE BORDER WIDTH=100%>
+  <TR>
+    <TH VALIGN=TOP>&lt;TH VALIGN=TOP&gt;</TH>
+    <TH VALIGN=MIDDLE>&lt;TH VALIGN=MIDDLE&gt;</TH>
+    <TH VALIGN=BOTTOM>&lt;TH VALIGN=BOTTOM&gt;</TH>
+    <TH>Fuelltext<BR>Fuelltext<BR>Fuelltext</TH>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>&lt;TD VALIGN=TOP&gt;</TD>
+    <TD VALIGN=MIDDLE>&lt;TD VALIGN=MIDDLE&gt;</TD>
+    <TD VALIGN=BOTTOM>&lt;TD VALIGN=BOTTOM&gt;</TD>
+    <TD>Fuelltext<BR>Fuelltext<BR>Fuelltext</TD>
+  </TR>
+  <TR VALIGN=TOP>
+    <TD>&lt;TR VALIGN=TOP&gt;</TD>
+    <TD>Fuelltext<BR>Fuelltext<BR>Fuelltext</TD>
+  </TR>
+  <TR VALIGN=MIDDLE>
+    <TD>&lt;TR VALIGN=MIDDLE&gt;</TD>
+    <TD>Fuelltext<BR>Fuelltext<BR>Fuelltext</TD>
+  </TR>
+  <TR VALIGN=BOTTOM>
+    <TD>&lt;TR VALIGN=BOTTOM&gt;</TD>
+    <TD>Fuelltext<BR>Fuelltext<BR>Fuelltext</TD>
+  </TR>
+</TABLE>
+
+<P>Zellbreiten in &lt;TH&gt;- und &lt;TD&gt;-Tags mit WIDTH=<I>Prozent- oder Absolutangabe<I></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH WIDTH=50%>&lt;TH WIDTH=50%&gt;</TH>
+    <TH WIDTH=25%>&lt;TH WIDTH=25%&gt;</TH>
+    <TH WIDTH=25%>&lt;TH WIDTH=25%&gt;</TH>
+  </TR>
+  <TR>
+    <TD>&lt;TD&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+  </TR>
+</TABLE>
+
+<P><BR></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH>&lt;TH&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+  </TR>
+  <TR>
+    <TD WIDTH=50%>&lt;TD WIDTH=50%&gt;</TD>
+    <TD WIDTH=25%>&lt;TD WIDTH=25%&gt;</TD>
+    <TD WIDTH=25%>&lt;TD WIDTH=25%&gt;</TD>
+  </TR>
+</TABLE>
+
+<P><BR></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH WIDTH=200>&lt;TH WIDTH=200&gt;</TH>
+    <TH WIDTH=100>&lt;TH WIDTH=100&gt;</TH>
+    <TH WIDTH=100>&lt;TH WIDTH=100&gt;</TH>
+  </TR>
+  <TR>
+    <TD>&lt;TD&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+  </TR>
+</TABLE>
+
+<P><BR></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH>&lt;TH&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+  </TR>
+  <TR>
+    <TD WIDTH=200>&lt;TD WIDTH=200&gt;</TD>
+    <TD WIDTH=100>&lt;TD WIDTH=100&gt;</TD>
+    <TD WIDTH=100>&lt;TD WIDTH=100&gt;</TD>
+  </TR>
+</TABLE>
+
+<P>Zellhoehen in &lt;TH&gt;, &lt;TD&gt; mit HEIGHT=<I>Pprozent- oder Absolutangabe</I></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH HEIGHT=50%>&lt;TH HEIGHT=50%&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+  </TR>
+  <TR>
+    <TD HEIGHT=50%>&lt;TD HEIGHT=50%&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+  </TR>
+</TABLE>
+
+<P><BR></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH HEIGHT=100>&lt;TH HEIGHT=100&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+    <TH>&lt;TH&gt;</TH>
+  </TR>
+  <TR>
+    <TD HEIGHT=100>&lt;TD HEIGHT=100&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+    <TD>&lt;TD&gt;</TD>
+  </TR>
+</TABLE>
+
+<P><BR></P>
+
+<TABLE BORDER=1>
+  <TR>
+    <TH HEIGHT=100>&lt;TH HEIGHT=100&gt;</TH>
+    <TH HEIGHT=50>&lt;TH HEIGHT=50&gt;</TH>
+    <TH HEIGHT=50>&lt;TH HEIGHT=50&gt;</TH>
+  </TR>
+  <TR>
+    <TD HEIGHT=100>&lt;TD HEIGHT=100&gt;</TD>
+    <TD HEIGHT=50>&lt;TD HEIGHT=50&gt;</TD>
+    <TD HEIGHT=50>&lt;TD HEIGHT=50&gt;</TD>
+  </TR>
+</TABLE>
+
+<P>Hintergrundfarbe in &lt;TR&gt;, &lt;TH&gt; und &lt;TD&gt; mit BGCOLOR=<I>Farbe</I></P>
+
+<TABLE WIDTH=100%>
+  <TR>
+    <TH BGCOLOR=#ff0000>&lt;TH BGCOLOR=#ff0000&gt; rot</TH>
+    <TH BGCOLOR=#00ff00>&lt;TH BGCOLOR=#00ff00&gt; gruen</TH>
+    <TH BGCOLOR=#0000ff>&lt;TH BGCOLOR=#0000ff&gt; blau</TH>
+  </TR>
+  <TR>
+    <TD BGCOLOR=#ff0000>&lt;TD BGCOLOR=#ff0000&gt; rot</TD>
+    <TD BGCOLOR=#00ff00>&lt;TD BGCOLOR=#00ff00&gt; gruen</TD>
+    <TD BGCOLOR=#0000ff>&lt;TD BGCOLOR=#0000ff&gt; blau</TD>
+  </TR>
+  <TR BGCOLOR=#ff0000>
+    <TD>&lt;TR BGCOLOR=#ff0000&gt; rot</TD>
+  </TR>
+  <TR BGCOLOR=#00ff00>
+    <TD>&lt;TR BGCOLOR=#00ff00&gt; gruen</TD>
+  </TR>
+  <TR BGCOLOR=#0000ff>
+    <TD>&lt;TR BGCOLOR=#0000ff&gt; blau</TD>
+  </TR>
+</TABLE>
+
+</BODY>
+</HTML>
+
+<P STYLE="font-size:8pt">&copy; (JSI) - letzte Aenderung: 16.12.1998 (JSI)</P>

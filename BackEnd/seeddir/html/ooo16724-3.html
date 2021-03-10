@@ -1,0 +1,163 @@
+<h2>
+   Release Notes for the OpenOffice.org 1.1 RC Release
+</h2>
+
+<p>
+   <i>Last updated May 2003</i>
+</p>
+
+<p>
+
+</p>
+
+<p>
+   jump to:<br>
+   <a href="#building">General</a><br>
+   <a href="#features">Features</a><br>
+   <a href="#test">Test results</a><br>
+</p>
+
+<hr>
+<br>
+<p>
+</p>
+
+<h3>
+  <a name="building"><b>General</b></a>
+</h3>
+
+<ul>
+
+   <li>
+   <p>
+      <u>System variable requirement</u><br>
+      The configure process requires that the system variables CC and CXX point to 
+      the correct version of C and C++ compilers, for example gcc and g++, . 
+   </p>
+   </li>
+   <li>
+   <p>
+      <u>autoconf</u><br>
+      In case you want to change configure.in, you will need now autoconf version 2.53 to 
+      create the configure script.
+   </p>
+   </li>
+
+   <li>
+   <p>
+      <u>Windows build</u><br>
+	The windows build experience was improved and should be easier to go through now.
+      <ul>
+	<li>
+		Up-to-date cygwin are now required to run the configure script. The 
+		no longer supported historical version "b20" is also no longer supported to build Openoffice.org. 
+		The cygwin tools are available at <a href="http://www.cygwin.com/">
+		www.cygwin.com</a>.
+	</li>
+	<li>
+		As a new requirement,  parts of the February 2003 version of the Microsoft Platfrom SDK
+		have to be installed, in particular the MDAC SDK, the Core SDK and the Internet
+		Development SDK. You can download this from
+    		<a href="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/">
+    		http://www.microsoft.com/msdownload/platformsdk/sdkupdate</a>.
+		The location of the MS PSDK on your system can be passed to configure with the 
+		--with-psdk-home option, if configure doesn't find it by itself. 
+  	</li>
+	<li>
+		As a consequence of the above, the previous requirements of downloading and copying 
+		the header files AdoCtint.h and SqlUcode.h into external/downloads is no longer 
+		necessary. Newer versions of these headers are part of the MS PSDK. Note that 
+		the patches for these files in external/ado and external/odbc had to be 
+		adjusted. This has been taken care of in the new sources. 
+	</li>
+	<li>
+		All these changes are described in detail in the build documentation, available at 
+		<a href="http://tools.openoffice.org/dev_docs/build_windows.html">
+		http://tools.openoffice.org/dev_docs/build_windows.html</a>.
+
+	</li>
+	<p></p>
+	<li>
+		<b>Experimental:</b> Instead of using the proprietary 4NT Software you can now use the tcsh
+		shell from the cygwin tools to build Openoffice.org. This is described in an extra build
+		documentation only for the tcsh case at:
+		<a href="http://tools.openoffice.org/dev_docs/build_windows_tcsh.html">
+		http://tools.openoffice.org/dev_docs/build_windows_tcsh.html</a>.
+	</li>
+
+	</ul>
+   <p></p>
+   </li>
+
+   <li>
+   <p>
+      <u>Solaris/sparc</u><br>
+      The Solaris/sparc version needs the following patches:
+      <ul>
+	<li>
+	   If you have Solaris 8 (sparc), patches 108434-01 and 108435-01
+	</li>
+	<li>
+	   The patches are available at
+           <a href="http://sunsolve.sun.com">sunsolve.sun.com</a>.
+           <ul>
+		Instructions:
+		<li>
+		   Search for the appropriate patch numbers and download
+		</li>
+		<li>
+		   Uncompress the files
+		</li>
+		<li>
+		   cd to the directory containing the patches
+		</li>
+		<li>
+		   As root, execute the following: <br>
+		   <pre>prompt> patchadd [patchnumber]</pre>
+		</li>
+	   </ul>
+	</li>
+      </ul>
+   </li>
+	<p>It is suggested that you use one of the following compilers for building on Solaris/Sparc:</P>
+	<ul>
+		<li>Forte C++ 6 Update 1
+		<li>Forte C++ 6 Update 2
+		<li>Forte C++ 7
+	</ul>
+   <li>
+	<p><u>Linux</u></p>
+	<ul>
+		<li>You should use gcc version 3.0.x (x > 0) or gcc 3.2.x 
+		<li>You can use a bash shell instead of tcsh - in which case you should use the LinuxIntelEnv.Set.sh file for setting up teh environment
+		<li>gtk+ 2.0 is required to build the crash reporter
+	</ul>
+
+   </li>
+	
+</ul>
+
+<hr>
+<h3><b><a name="features">Features</a></b></h3><br>
+<dl>
+<p>New features in OpenOffice.org 1.1rc over OpenOffice.org beta2 release:</p>
+<ul>
+	<li> a "talkback" style crash reporter to collect stacktrace and error information
+	<li> new command line parameter -start to automatically start a presentation after the document is loaded
+	<li> ability to update existing OpenOffice.org 1.0.x single user installations
+	<li> support for drawing objects in headers and footers
+	<li> an example XSLT filter for Office 2003 XML format
+	<li> support for MS Excel 95 and older form controls
+	<li> UNO python bridge - python is now a first class language for creating UNO components for OpenOffice.org
+	<li> built in spell checking dictionaries for English (UK) and Italian
+	<li> built in hyphenation support for Danish, English (UK), German and Russian
+	<li> integrated Bitstream Vera fonts 
+	<li> improved spelling suggestions using n-gram scoring
+
+</ul>
+<p>For full list of features please see the OpenOffice.org 1.1 RC <a href="http://www.openoffice.org/dev_docs/source/1.1rc/features.html">features list</a>.
+</dl>
+
+<hr>
+
+<h3><b><a name="test">Test results</a></b></h3><br>

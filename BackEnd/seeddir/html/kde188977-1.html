@@ -1,0 +1,7 @@
+<body>
+ <div>Please press Insert on keyboard</div>
+ <div>Should alert: 45</div>
+ <script>
+  document.onkeypress=document.onkeydown=function(e){alert((e?e:event).keyCode)}
+ </script>
+</body>

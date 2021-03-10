@@ -1,0 +1,72 @@
+<style type="text/css">
+
+html, body {
+   color: black;
+   background-color: white;
+}
+
+/* All links */
+#topnav a {
+   text-decoration: none;
+   color: inherit;
+   padding-left: 0.5em;
+   padding-right: 0.5em;
+}
+#topnav a:hover {
+   color: white;
+   background-color: black;
+}
+#topnav ul {
+   list-style: none;
+}
+
+/* Main horizontal menu */
+#topnav ul li {
+   float: left;
+}
+
+/* Submenus */
+#topnav li > ul {
+   display: none;
+}
+#topnav li:hover > ul {
+   display: block;
+}
+#topnav li ul {
+   position: absolute;
+   float: none;
+   padding-left: 0;
+   border: 2px solid black;
+}
+#topnav li ul li {
+   display: block;
+   position: relative;
+   float: none;
+}
+#topnav li ul li a {
+   display: block;
+}
+
+</style>
+
+<div id=topnav>
+<ul>
+<li><a href="#">File</a>
+    <ul>
+    <li><a href="#">New</a>
+    <li><a href="#">Open</a>
+    <li><a href="#">Close</a>
+    <li><a href="#">Save</a>
+    <li><a href="#">Quit</a>
+    </ul>
+<li><a href="#">Edit</a>
+    <ul>
+    <li><a href="#">Undo</a>
+    <li><a href="#">Cut</a>
+    <li><a href="#">Copy</a>
+    <li><a href="#">Paste</a>
+    </ul>
+<li><a href="#">View</a>
+<li><a href="#">Help</a>
+</ul>
+</div>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+	<title>Color-scale vs Boolean conditional formatting</title>
+	<meta name="generator" content="LibreOffice 4.3.0.4 (Windows)"/>
+	<meta name="created" content="2014-08-09T18:44:55.025000000"/>
+	<meta name="changed" content="2014-08-09T21:00:19.157000000"/>
+	<meta name="description" content="Samples using LibreOffice menu
+Format / Conditional Formatting / Color Scale ...
+
+2-color sample:
+white (value 0) to light red (value 40)
+
+3-color sample: 
+light blue (value 0) to white (value 23) to light red (value 40)
+
+Boolean sample:
+light blue (value &lt; 20), red (value &gt; 28)
+
+As of LibreOffice 4.3, neither
+File / Export ... /   format: html
+nor
+File / Save as ... / format: html
+produces html with cell background colors from color-scale.
+
+The boolean background colors do not appear for 
+File / Export ... / format: html
+but the boolean backgrounds colors DO appear for
+File / Save as ... / format: html
+
+
+
+"/>
+	
+	<style type="text/css">
+		body,div,table,thead,tbody,tfoot,tr,th,td,p { font-family:"Liberation Sans"; font-size:x-small }
+	</style>
+	
+</head>
+
+<body>
+<table cellspacing="0" border="0">
+	<colgroup span="8" width="85"></colgroup>
+	<tr>
+		<td height="17" align="left" bgcolor="#C0C0C0"><b>(2-color)</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Mo</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Tu</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>We</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Th</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Fr</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Sa</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Su</b></td>
+	</tr>
+	<tr>
+		<td height="17" align="right" bgcolor="#C0C0C0" sdval="41848" sdnum="1033;0;YYYY-MM-DD"><b>2014-07-28</b></td>
+		<td align="right" sdval="32" sdnum="1033;">32</td>
+		<td align="right" sdval="29" sdnum="1033;">29</td>
+		<td align="right" sdval="23" sdnum="1033;">23</td>
+		<td align="right" sdval="18" sdnum="1033;">18</td>
+		<td align="right" sdval="14" sdnum="1033;">14</td>
+		<td align="right" sdval="20" sdnum="1033;">20</td>
+		<td align="right" sdval="25" sdnum="1033;">25</td>
+	</tr>
+	<tr>
+		<td height="17" align="left" sdnum="1033;0;YYYY-MM-DD"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+	</tr>
+	<tr>
+		<td height="17" align="left" bgcolor="#C0C0C0"><b>(3-color)</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Mo</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Tu</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>We</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Th</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Fr</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Sa</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Su</b></td>
+	</tr>
+	<tr>
+		<td height="17" align="right" bgcolor="#C0C0C0" sdval="41848" sdnum="1033;0;YYYY-MM-DD"><b>2014-07-28</b></td>
+		<td align="right" sdval="32" sdnum="1033;">32</td>
+		<td align="right" sdval="29" sdnum="1033;">29</td>
+		<td align="right" sdval="23" sdnum="1033;">23</td>
+		<td align="right" sdval="18" sdnum="1033;">18</td>
+		<td align="right" sdval="14" sdnum="1033;">14</td>
+		<td align="right" sdval="20" sdnum="1033;">20</td>
+		<td align="right" sdval="25" sdnum="1033;">25</td>
+	</tr>
+	<tr>
+		<td height="17" align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+		<td align="left"><br></td>
+	</tr>
+	<tr>
+		<td height="17" align="left" bgcolor="#C0C0C0"><b>(boolean)</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Mo</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Tu</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>We</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Th</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Fr</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Sa</b></td>
+		<td align="left" bgcolor="#C0C0C0"><b>Su</b></td>
+	</tr>
+	<tr>
+		<td height="17" align="right" bgcolor="#C0C0C0" sdval="41848" sdnum="1033;0;YYYY-MM-DD"><b>2014-07-28</b></td>
+		<td align="right" bgcolor="#FF3366" sdval="32" sdnum="1033;">32</td>
+		<td align="right" bgcolor="#FF3366" sdval="29" sdnum="1033;">29</td>
+		<td align="right" sdval="23" sdnum="1033;">23</td>
+		<td align="right" bgcolor="#9999FF" sdval="18" sdnum="1033;">18</td>
+		<td align="right" bgcolor="#9999FF" sdval="14" sdnum="1033;">14</td>
+		<td align="right" sdval="20" sdnum="1033;">20</td>
+		<td align="right" sdval="25" sdnum="1033;">25</td>
+	</tr>
+</table>
+<!-- ************************************************************************** -->
+</body>
+
+</html>

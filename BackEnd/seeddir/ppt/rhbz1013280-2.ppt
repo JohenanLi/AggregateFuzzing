@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-10-12 14:27-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <svg><metadata><rdf:RDF><cc:Work><dc:format>
+#: AskFedoraprojectorg.svg:20 Make-Fedora-Better.svg:20 Cd-or-dvd.svg:20 Libreoffice.svg:20 Rhythmbox.svg:20
+#, no-wrap
+msgid "image/svg+xml"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: AskFedoraprojectorg.svg:275
+#, no-wrap
+msgid "ask.fedoraproject.org"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: AskFedoraprojectorg.svg:284
+#, no-wrap
+msgid "Have a Question?"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: AskFedoraprojectorg.svg:293
+#, no-wrap
+msgid "We have Answers."
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Make-Fedora-Better.svg:185
+#, no-wrap
+msgid "Want to make Fedora better? We can help you help us."
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Make-Fedora-Better.svg:192
+#, no-wrap
+msgid "Fedoraproject.org/join-fedora"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Cd-or-dvd.svg:729
+#, no-wrap
+msgid "Using CD or DVD to install F"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan><tspan>
+#: Cd-or-dvd.svg:731
+#, no-wrap
+msgid "edora?"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Cd-or-dvd.svg:734
+#, no-wrap
+msgid "Share it with a friend whe"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan><tspan>
+#: Cd-or-dvd.svg:736
+#, no-wrap
+msgid "n you are done."
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Libreoffice.svg:272
+#, no-wrap
+msgid "Need to do some work? Install LibreOffice to"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Libreoffice.svg:275
+#, no-wrap
+msgid "edit documents, spreadsheets, and more."
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Rhythmbox.svg:210
+#, no-wrap
+msgid "With "
+msgstr ""
+
+#. type: Content of: <svg><text><tspan><tspan>
+#: Rhythmbox.svg:212
+#, no-wrap
+msgid "Rhythmbox"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Rhythmbox.svg:212
+#, no-wrap
+msgid ", you can sync your music"
+msgstr ""
+
+#. type: Content of: <svg><text><tspan>
+#: Rhythmbox.svg:215
+#, no-wrap
+msgid "with media players and smartphones."
+msgstr ""

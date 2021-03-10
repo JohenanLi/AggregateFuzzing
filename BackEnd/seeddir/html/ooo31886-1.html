@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1255" >
+<title>rab</title>
+<script language="JavaScript">
+var PreEl ;
+var orgBColor;
+var orgTColor;
+function HighLightTR(backColor,textColor){
+if(typeof(preEl)!='undefined') {
+preEl.bgColor=orgBColor;
+try{ChangeTextColor(preEl,orgTColor);}catch(e){;}
+}
+var el = event.srcElement;
+el = el.parentElement;
+orgBColor = el.bgColor;
+orgTColor = el.style.color;
+el.bgColor=backColor;
+try{ChangeTextColor(el,textColor);}catch(e){;}
+preEl = el;
+}
+function ChangeTextColor(a_obj,a_color){ ;
+for (i=0;i<a_obj.cells.length;i++) {
+a_obj.cells(i).style.color=a_color;
+}
+}
+</script>
+</head>
+
+<body>
+<b><font size="5" color="#0099FF">rab</font></b>
+<table border=3 frame=box bordercolor="#0099ff">
+<colgroup span=5 align=center style="font: 9pt Courier New">
+<col span=5>
+<thead style="font: 12pt Courier New">
+<br><tr>
+<th nowrap>author
+<th nowrap>title
+<th nowrap>pub
+<th nowrap>mynotes
+<th nowrap>year
+<tbody>
+<tr onclick="HighLightTR('#c9cc99','cc3333');">
+<td>Alderman, Geoffrey</td>
+<td>Modern British Jewry</td>
+<td>Oxford: Clarendon Press</td>
+<td>See index under "chief rabbinate" and then by names of chief rabbis, Hirschel, Adler, Hertz, Brodie and Jakobovitts</td>
+<td>1992</td>
+</tr>
+<tr onclick="HighLightTR('#c9cc99','cc3333');">
+<td>דון-יחיא, אליעזר</td>
+<td>הדת בישראל : מעמד, ארגונים, שירותים</td>
+<td>ירושלים : מרכז ההסברה</td>
+<td>לא ממש מדעי אבל שימושי</td>
+<td>1975</td>
+</tr>
+<tr onclick="HighLightTR('#c9cc99','cc3333');">
+<td>ורהפטיג, איתמר ושמואל כ"ץ (עורכים</td>
+<td>והרבנות הראשית לישראל שבעים שנה לייסודה:</td>
+<td>ירושלים: היכל שלמה</td>
+<td>המשך כותר: תרפ"א-תנש"א, סמכותה, פעולותיה, תולדותיה. 
+תכן: א. סמכויות ותפקידים. ב. פעולות וכיוונים. כ. תולדות ואישים.</td>
+<td>2002</td>
+</tr>
+<tr onclick="HighLightTR('#c9cc99','cc3333');">
+<td>ורהפטיג, זרח</td>
+<td>תקנות הרבנות הראשית</td>
+<td>בתוך: ספרו של ורהפטיג</td>
+<td>המשך כותר: תרפ"א-תנש"א, סמכותה, פעולותיה, תולדותיה. 
+תכן: א. סמכויות ותפקידים. ב. פעולות וכיוונים. כ. תולדות ואישים.</td>
+<td>2002</td>
+</tr>
+<tr onclick="HighLightTR('#c9cc99','cc3333');">
+<td>ליכטנשטיין, אהרן</td>
+<td>הרבנות הראשית לישראל: מבט הלכתי עכשווי</td>
+<td>בתוך: ספרו של ורהפטיג, כרך א'</td>
+<td>המשך כותר: תרפ"א-תנש"א, סמכותה, פעולותיה, תולדותיה. 
+תכן: א. סמכויות ותפקידים. ב. פעולות וכיוונים. כ. תולדות ואישים.</td>
+<td>2002</td>
+</tr>
+<tr onclick="HighLightTR('#c9cc99','cc3333');">
+<td>מורגנשטרן, אריה</td>
+<td>הקמת הרבנות הראשית בארץ-ישראל</td>
+<td>בתוך: ורהפטיג איתמר וכו'</td>
+<td>חשיבות לסעיף ז' לגבי חרדים
+ראה גם קובץ pict1.bmp
+
+</td>
+<td>2002</td>
+</tr>
+</table>
+</body>
+</html>

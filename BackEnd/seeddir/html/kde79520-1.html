@@ -1,0 +1,45 @@
+<html>
+<head>
+</head>
+<script type="text/javascript">
+   function show(id) {
+      document.getElementById(id).style.visibility='visible';
+/* Changing the "display" property shouldn't be necessary however is the only way to completely hide a div containing a textarea */
+      document.getElementById(id).style.display='block';
+   } 
+   function hide(id) {
+      document.getElementById(id).style.visibility='hidden';
+      document.getElementById(id).style.display='none';
+   } 
+</script>
+<body>
+   <div id="a" style="top:0;left:0;position:absolute;display:block;z-index:10;">
+       <form>
+         <input type="text" name="a1" value="text field"/>
+	 <br/>
+         <input type="radio" name="a2"></textarea>
+	 <br/>
+         <textarea name="a3">I am here to stay visible!</textarea>
+         <table style="width:300;height:300"><tr><td>
+            If the "a" div is not hidden beforehand the textarea element of the "a" div pierces the "b" div. <br/>
+            <input type="button" value="click me to see the 1st bug"  onclick="show('b')"/>
+	  <br/>
+	  If the "a" div is closed before showing the "b" div (this couldn't be wanted) the content of the "a3" textarea is cleared when the "a" div is shown again.<br/>
+	
+            <input type="button" value="click me to see the 2nd bug"  onclick="hide('a');show('c')"/>
+         </td></tr></table>
+       </form>
+   </div>
+   <div id="b" style="top:0;left:0;position:absolute;visibility:hidden;background:red;display:block;;z-index:100">
+         <table style="width:300;height:300"><tr><td>
+         <input type="button" value="click me to close" onclick="hide('b')"/>
+         </td></tr></table>
+   </div>
+   <div id="c" style="top:0;left:0;position:absolute;visibility:hidden;background:blue;display:block;;z-index:100">
+         <table style="width:300;height:300"><tr><td>
+         <input type="button" value="click me to close and clear the content of the textarea" onclick="hide('c');show('a');"/>
+         </td></tr></table>
+   </div>
+</body>
+</body>
+</html>

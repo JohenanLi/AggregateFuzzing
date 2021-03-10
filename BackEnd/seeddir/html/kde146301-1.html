@@ -1,0 +1,112 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="EXPIRES" CONTENT="0">
+<link rel="stylesheet" type="text/css" href="/ube/css/tmpl.css">
+<link rel="stylesheet" type="text/css" href="/ube/css/global.css">
+<title>Searching for flights</title>
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="JavaScript" type="text/javascript">
+function chkBrs(sInp) {
+	var sUA = navigator.userAgent.toLowerCase();
+	var bFound = sUA.indexOf(sInp) + 1;
+	return bFound;
+}
+	 var imgLdr = new Array();
+	 imgLdr[0] = new Image();
+
+	 if (chkBrs('msie') && chkBrs('windows')) {
+     try {
+	  imgLdr[0].src = "https://www.united.com/ual/asset/united2005.gif";
+		}
+		catch(err) {
+		 imgLdr[0].src = "/ube/images/icns/united1005.gif";
+		}
+	 }
+	 else {
+	 	try {
+		//Kaunish change the src below to be http:// version of line 48, https://www.united.com/ual/asset/united2005.gif
+	   	imgLdr[0].src = "http://www.united.com/ual/asset/united2005.gif";
+		}
+		catch(err) {
+		imgLdr[0].src = "/ube/images/icns/united1005.gif";
+		}
+	 }
+	 imgLdr[1] = new Image();
+	 imgLdr[1].src = "/ube/images/icns/united1005.gif";
+
+
+	function waitScrn() {
+	  	location.replace("/ube/core/us/myitin.do?waitingPageFlag=true");
+		showWaitMsg();
+	}
+
+	function showWaitMsg() {
+		if (document.getElementById) {
+			document.getElementById('waitPage').style.visibility = 'hidden';
+			document.getElementById('waitPage').style.visibility = '';
+		}
+		else if (document.layers) {
+			document.layers['waitPage'].visibility = 'hide';
+			document.layers['waitPage'].visibility = '';
+		}
+		else {
+			document.all.waitPage.style.visibility = 'hidden';
+			document.all.waitPage.style.visibility = '';
+		}
+	}
+
+</script>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0033CC" vlink="#0066ff" alink="#000000">
+<form action="/ube/core/us/myitin.do" >
+	<input type=hidden name="waitingPageFlag" value="true">
+</form>
+<div id="waitPage" style="width:80%;margin-top:40px;margin-left:auto;margin-right:auto;text-align:center;">
+<!--adminable image-->
+
+<script language="JavaScript" type="text/javascript">
+ if (chkBrs('msie') && chkBrs('windows') || chkBrs('safari')) {
+imgOutput="<img src='"+imgLdr[0].src+"' id='mainpromo' width='598' height='307' border='0' alt='' onerror='this.src = imgLdr[1].src'>";
+}
+else {
+imgOutput="<img src='"+imgLdr[0].src+"' onerror='this.src = imgLdr[1].src' id='mainpromo' width='598' height='307' border='0' alt='' onload='waitScrn();'>";
+}
+if (chkBrs('msie') && chkBrs('windows') || chkBrs('safari')) {
+	altIE="<img src='/ube/images/wait_clear.gif' width='1' height='1' alt='' onload='waitScrn();'>";
+}
+else {
+	altIE="<img src='/ube/images/wait_clear.gif' width='1' height='1' alt=''>";
+}
+document.write(imgOutput);
+document.write('</div>');
+document.write(altIE);
+</script>
+</body>
+</html>
+

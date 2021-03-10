@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="4" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="2.4.2" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-US; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="meta:editing-duration">PT2M26S</m>
+<m key="meta:editing-cycles">4</m>
+<m key="dc.date">2006-02-16T14:38:51</m>
+<m key="abiword.date_last_changed">2006-02-16T14:41:17</m>
+<m key="dc.language">en-US</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="dc.format">application/x-abiword</m>
+</metadata>
+<history version="1" edit-time="0" last-saved="1140118885" uid="373c9f98-9f24-11da-90f5-f5f35031a613">
+<version id="1" started="1140118885" uid="3741644c-9f24-11da-90f5-f5f35031a613" auto="0" top-xid="4"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; color:000000; margin-left:0pt; text-position:normal; widows:2; font-style:normal; text-indent:0in; font-variant:normal; margin-right:0pt; lang:en-US; line-height:1.0; font-size:12pt; text-decoration:none; margin-bottom:0pt; font-weight:normal; bgcolor:transparent; text-align:left; font-stretch:normal"/>
+<s type="P" name="Text body" basedon="Normal" followedby="Text body" props="margin-bottom:0.0835in; margin-top:0in"/>
+<s type="P" name="Heading" basedon="Normal" followedby="Text body" props="margin-top:0.1665in; keep-with-next:yes; margin-bottom:0.0835in; font-family:Arial; font-size:14pt"/>
+<s type="P" name="Caption" basedon="Normal" followedby="Caption" props="margin-top:0.0835in; font-size:12pt; margin-bottom:0.0835in; font-style:italic"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section xid="1" props="page-margin-right:0.7874in; page-margin-left:0.7874in; page-margin-top:0.7874in; page-margin-bottom:0.7874in">
+<p style="Normal" xid="2"></p>
+<frame xid="3" props="bot-style:1; xpos:1.0264in; wrap-mode:wrapped-both; frame-type:textbox; ypos:-0.0665in; frame-height:2.0311in; left-style:1; position-to:block-above-text; frame-width:1.4854in; right-style:1; top-style:1">
+<p style="Text body" xid="4"></p>
+</frame></frame></section>
+</abiword>

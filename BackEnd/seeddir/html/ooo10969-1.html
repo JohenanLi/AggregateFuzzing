@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 1.0.2  (Win32)">
+	<META NAME="CREATED" CONTENT="20030127;71400">
+	<META NAME="CHANGED" CONTENT="20030127;73300">
+	<STYLE>
+	<!--
+		@page { size: 21.59cm 27.94cm; margin-left: 3.18cm; margin-right: 3.18cm; margin-top: 2.54cm; margin-bottom: 2.54cm }
+		P { margin-bottom: 0.21cm }
+		H2 { margin-bottom: 0.21cm }
+		H2.western { font-family: "Arial", sans-serif; font-size: 12pt; font-style: italic }
+		H2.cjk { font-size: 14pt; font-style: italic }
+		H2.ctl { font-size: 14pt; font-style: italic }
+		TD P { margin-bottom: 0.21cm }
+		TH P { margin-bottom: 0.21cm; font-style: italic }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US">
+<H2 CLASS="western">Text selection</H2>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<THEAD>
+		<TR VALIGN=TOP>
+			<TH WIDTH=50%>
+				<P>Current behavior</P>
+			</TH>
+			<TH WIDTH=50%>
+				<P>Suggested behavior</P>
+			</TH>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=50%>
+				<P>Double-clicking selects a word.</P>
+				<P>Triple-clicking selects a line.</P>
+			</TD>
+			<TD WIDTH=50%>
+				<P>Holding the <SPAN STYLE="font-style: normal">ctrl</SPAN> key
+				and clicking on the mouse should select the current sentence,
+				from the previous period (&ldquo;.&rdquo;) to the next period
+				(&ldquo;.&rdquo;). To double-click in text should select the
+				current paragraph. The current behavior of line selection on
+				triple-clicking is aberrant. A line of text is not an object for
+				a word processor.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=50%>
+				<P>The mouse pointer does not change from the i-beam to the mouse
+				pointer until the user begins to drag text.</P>
+			</TD>
+			<TD WIDTH=50%>
+				<P>Behavior of mouse should change when dragging text. The
+				pointer should change to from the i-beam to the arrow on selected
+				text when the mouse button is help down after a few milli-seconds
+				and not once the user starts dragging the text. Holding down the
+				ctrl key while dragging should make a copy of the text or any
+				object, or group of object, being dragged.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=50%>
+				<P>When moving the mouse pointer outside a text area, the mouse
+				pointer still appears as an i-beam.</P>
+			</TD>
+			<TD WIDTH=50%>
+				<P>When moving the mouse pointer outside of the text boundaries,
+				the mouse pointer should change from the i-beam to the arrow.
+				Dragging the mouse outside the text boundary should be a means by
+				which text should be selected. Click once and the nearest line is
+				then selected. Click twice and the paragraph is selected. Also,
+				when dragging a paragraph, the entire paragraph should move,
+				include the paragraph delimiter.</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>

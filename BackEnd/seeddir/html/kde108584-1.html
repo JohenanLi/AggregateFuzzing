@@ -1,0 +1,26 @@
+<html> 
+ <body> 
+ <script type="text/javascript"> 
+ function toggle() { 
+     var d=document.getElementById('k3').style; 
+     if ( d.display == "none" ) { 
+         d.display = "block"; 
+     } else { 
+         d.display = "none"; 
+     } 
+ } 
+ </script> 
+ 
+ <iframe src="x"> 
+ </iframe> 
+ 
+ <div id=k3 style="display:none"> 
+     <iframe src="y"> 
+     </iframe> 
+ </div> 
+ 
+ <hr> 
+ <input type=button value="Hide/Show" onclick="toggle()"> 
+ <input type=button value="Count" onclick="alert(window.frames.length)"> 
+ </body> 
+ </html> 

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Test page</title>
+    <style>
+      .box { position: absolute; visibility: hidden; border: 1px solid #FF0000;
+        width: 100px; height: 18px; text-align: center; font-weight: bold; }
+    </style>
+    <script>
+      function calculateOffset(number)
+      {
+        // Calculate left and top of the anchor associated with this number.
+        var left = 0, top = 0, obj = document.anchors["anchor" + number];
+        while (obj.offsetParent)
+        {
+          left += obj.offsetLeft;
+          top += obj.offsetTop;
+          obj = obj.offsetParent;
+        }
+        // left and top are now calculated. Now display the corresponding box
+        // at the calculated offset of the anchor. It *should* be placed right
+        // over the anchor.
+        var box = document.getElementById("box" + number);
+        box.innerHTML = number + ": (" + left + ", " + top + ")";
+        box.style.visibility = "visible";
+        box.style.left = left;
+        box.style.top = top;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <div class="box" id="box3"></div>
+    <div class="box" id="box4"></div>
+    <div class="box" id="box5"></div>
+    <div class="box" id="box6"></div>
+    <table width="100%" border="1" cellspacing="10" cellpadding="5">
+      <tr>
+        <td>
+          <table width="100%" border="1" cellspacing="5" cellpadding="5">
+            <tr>
+              <td>
+                <a href="javascript:calculateOffset(1);" name="anchor1">anchor1</a>
+                text text text text text
+                text text text text text
+              </td>
+              <td>
+                <a href="javascript:calculateOffset(2);" name="anchor2">anchor2</a>
+                text text text text text
+                text text text text text
+                text text text text text
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="javascript:calculateOffset(3);" name="anchor3">anchor3</a>
+                text text text text text
+                text text text text text
+                text text text text text
+                text text text text text
+              </td>
+              <td>
+                <a href="javascript:calculateOffset(4);" name="anchor4">anchor4</a>
+                text text text text text
+                text text text text text
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="javascript:calculateOffset(5);" name="anchor5">anchor5</a>
+                text text text text text
+                text text text text text
+                text text text text text
+              </td>
+              <td>
+                <a href="javascript:calculateOffset(6);" name="anchor6">anchor6</a>
+                text text text text text
+                text text text text text
+                text text text text text
+              </td>
+            </tr>
+          <table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

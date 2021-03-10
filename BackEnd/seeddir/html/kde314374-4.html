@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en-US' lang='en-US'>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<title>GParted Details</title>
+</head>
+<body>
+<p>GParted 0.12.1 --enable-libparted-dmraid</p>
+<p>Libparted 2.3</p>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<b>Delete /dev/sdd1 (fat32, 505.00 GiB) from /dev/sdd</b>&nbsp;&nbsp;00:14:37&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+calibrate /dev/sdd1&nbsp;&nbsp;00:04:15&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>path: /dev/sdd1<br />start: 1,640<br />end: 1,059,061,759<br />size: 1,059,060,120 (505.00 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table border='0'>
+<tr>
+<td colspan='2'>
+delete partition&nbsp;&nbsp;00:10:22&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p>========================================</p>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<b>Create Primary Partition #1 (ext3, 505.00 GiB) on /dev/sdd</b>&nbsp;&nbsp;12:52:16&nbsp;&nbsp;&nbsp;&nbsp;( ERROR )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+create empty partition&nbsp;&nbsp;00:17:32&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>path: /dev/sdd1<br />start: 2,048<br />end: 1,059,061,759<br />size: 1,059,059,712 (505.00 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table border='0'>
+<tr>
+<td colspan='2'>
+set partition type on /dev/sdd1&nbsp;&nbsp;00:07:16&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>new partition type: ext3</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table border='0'>
+<tr>
+<td colspan='2'>
+create new ext3 file system&nbsp;&nbsp;12:27:28&nbsp;&nbsp;&nbsp;&nbsp;( ERROR )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<b><i>mkfs.ext3 -L &quot;ark1&quot; /dev/sdd1</i></b>
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>Filesystem label=ark1<br />OS type: Linux<br />Block size=4096 (log=2)<br />Fragment size=4096 (log=2)<br />Stride=0 blocks, Stripe width=0 blocks<br />33095680 inodes, 132382464 blocks<br />6619123 blocks (5.00%) reserved for the super user<br />First data block=0<br />Maximum filesystem blocks=0<br />4040 block groups<br />32768 blocks per group, 32768 fragments per group<br />8192 inodes per group<br />Superblock backups stored on blocks: <br />	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, <br />	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, <br />	102400000<br /><br />Allocating group tables: done                            <br />Writing inode tables: done                            <br />Creating journal (32768 blocks): done<br />Writing superblocks and filesystem accounting information:    1/4040</i>
+</td>
+</tr>
+</table>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>mke2fs 1.42.5 (29-Jul-2012)<br /><br />Warning, had trouble writing out superblocks.</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p>========================================</p>
+</body>
+</html>

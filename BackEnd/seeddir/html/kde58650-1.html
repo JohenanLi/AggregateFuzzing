@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+	<HEAD>
+		<TITLE>Popup Testcase</TITLE>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+
+		<form name='flauncher' action='http://www.kde.org'
+			target='adv' method='post' onSubmit='focus();'>
+			<input type='hidden' name='id' value='2439'>
+		</form>
+
+
+		<script language=JavaScript>
+			<!--//
+			function loadpopup()
+			{
+				document.flauncher.submit();
+				focus();
+				setTimeout('focus()',2000);
+			}
+
+			loadpopup();
+			// -->
+		</script>
+	</HEAD>
+	<BODY>
+		<h1>Testcase for Popup.</h1>
+	</BODY>
+</HTML>

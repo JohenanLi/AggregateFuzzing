@@ -1,0 +1,73 @@
+
+<html>
+  <head>
+    <title>Test</title>
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <style type="text/css">
+      div.test_presence {
+	border-style: solid;
+	border-width: 1px;
+	border-color: blue;
+      }
+      div.test_presence[attr] {
+	border-style: solid;
+	border-width: 1px;
+	border-color: red;
+      }
+      div.test_value {
+	border-style: solid;
+	border-width: 1px;
+	border-color: blue;
+      }
+      div.test_value[attr='1'] {
+	border-style: solid;
+	border-width: 1px;
+	border-color: red;
+      }
+    </style>
+    <script>
+      var i = 0;
+      function toggle_presence(e) {
+	i += 1;
+	if (e.hasAttribute("attr")) {
+	  e.removeAttribute("attr");
+	} else {
+	  e.setAttribute("attr", "");
+	}
+	alert("e.hasAttribute(attr) " + e.hasAttribute("attr"));
+      }
+      function toggle_value(e) {
+	i += 1;
+	if (e.getAttribute("attr") == "1") {
+	  e.setAttribute("attr", "0");
+	} else {
+	  e.setAttribute("attr", "1");
+	}
+      }
+    </script>
+  </head>
+  <body>
+    <div class='test_presence' onclick='toggle_presence(this)'>
+      Test presence of attribute. First click change the border to red.
+      Subsequent clicks makes the attribute come and go, but have no effect on
+      the display
+    </div>
+    <br>
+    <div class='test_value' onclick='toggle_value(this)'>
+      Test value of attribute. Clicks makes the border color toggle between
+      blue and red as expected
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

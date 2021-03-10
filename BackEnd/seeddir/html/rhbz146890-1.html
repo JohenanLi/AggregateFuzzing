@@ -1,0 +1,74 @@
+<html><head><title>Bug in Mailman version 2.1.5</title></head><body bgcolor="#ffffff"><h2>Bug in Mailman version 2.1.5</h2>
+<p></p><h3>We're sorry, we hit a bug!</h3>
+
+<p>If you would like to help us identify the problem,
+please email a copy of this page to the webmaster for this site with
+a description of what happened.  Thanks!
+
+</p><h4>Traceback:</h4><p></p><pre>Traceback (most recent call last):
+  File "/usr/lib/mailman/scripts/driver", line 87, in run_main
+    main()
+  File "/usr/lib/mailman/Mailman/Cgi/create.py", line 55, in main
+    process_request(doc, cgidata)
+  File "/usr/lib/mailman/Mailman/Cgi/create.py", line 187, in process_request
+    mlist.Create(listname, owner, pw, langs, emailhost)
+  File "/usr/lib/mailman/Mailman/MailList.py", line 454, in Create
+    self._full_path = Site.get_listpath(name, create=1)
+  File "/usr/lib/mailman/Mailman/Site.py", line 65, in get_listpath
+    _makedir(path)
+  File "/usr/lib/mailman/Mailman/Site.py", line 40, in _makedir
+    os.makedirs(path, 02775)
+  File "/usr/src/build/475206-i386/install/usr/lib/python2.3/os.py", line 154, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/var/lib/mailman/lists/foobar'
+
+
+</pre><p></p><hr><h4>Python information:</h4>
+
+<p><table>
+<tbody><tr><th>Variable</th><th>Value</th></tr>
+
+<tr><td><tt>sys.version</tt></td><td> 2.3.4 (#1, Oct 26 2004, 16:42:40) 
+[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] </td></tr>
+<tr><td><tt>sys.executable</tt></td><td> /usr/bin/python </td></tr>
+<tr><td><tt>sys.prefix</tt></td><td> /usr </td></tr>
+<tr><td><tt>sys.exec_prefix</tt></td><td> /usr </td></tr>
+<tr><td><tt>sys.path</tt></td><td> /usr </td></tr>
+<tr><td><tt>sys.platform</tt></td><td> linux2 </td></tr>
+</tbody></table>
+</p><p></p><hr><h4>Environment variables:</h4>
+
+<p><table>
+<tbody><tr><th>Variable</th><th>Value</th></tr>
+
+<tr><td><tt> HTTP_COOKIE </tt></td><td> mailman+admin=280200000069e4f40042732800000033373235613139343930363165396630303934343233636332633762653464643338666364306465 </td></tr>
+<tr><td><tt> SERVER_SOFTWARE </tt></td><td> Apache/2.0.52 (Fedora) </td></tr>
+<tr><td><tt> SCRIPT_NAME </tt></td><td> /mailman/create </td></tr>
+<tr><td><tt> SERVER_SIGNATURE </tt></td><td> <address>Apache/2.0.52 (Fedora) Server at mailtest.lab.boston.redhat.com Port 80</address>
+</td></tr>
+<tr><td><tt> REQUEST_METHOD </tt></td><td> POST </td></tr>
+<tr><td><tt> HTTP_KEEP_ALIVE </tt></td><td> 300 </td></tr>
+<tr><td><tt> SERVER_PROTOCOL </tt></td><td> HTTP/1.1 </td></tr>
+<tr><td><tt> QUERY_STRING </tt></td><td>  </td></tr>
+<tr><td><tt> CONTENT_LENGTH </tt></td><td> 147 </td></tr>
+<tr><td><tt> HTTP_ACCEPT_CHARSET </tt></td><td> ISO-8859-1,utf-8;q=0.7,*;q=0.7 </td></tr>
+<tr><td><tt> HTTP_USER_AGENT </tt></td><td> Mozilla/5.0 (X11; U; Linux i686; rv:1.7.3) Gecko/20041020 Firefox/0.10.1 </td></tr>
+<tr><td><tt> HTTP_CONNECTION </tt></td><td> keep-alive </td></tr>
+<tr><td><tt> HTTP_REFERER </tt></td><td> http://mailtest.lab.boston.redhat.com/mailman/create </td></tr>
+<tr><td><tt> SERVER_NAME </tt></td><td> mailtest.lab.boston.redhat.com </td></tr>
+<tr><td><tt> REMOTE_ADDR </tt></td><td> 172.16.80.36 </td></tr>
+<tr><td><tt> SERVER_PORT </tt></td><td> 80 </td></tr>
+<tr><td><tt> SERVER_ADDR </tt></td><td> 192.168.76.132 </td></tr>
+<tr><td><tt> DOCUMENT_ROOT </tt></td><td> /var/www/html </td></tr>
+<tr><td><tt> PYTHONPATH </tt></td><td> /usr/lib/mailman </td></tr>
+<tr><td><tt> SCRIPT_FILENAME </tt></td><td> /usr/lib/mailman/cgi-bin/create </td></tr>
+<tr><td><tt> SERVER_ADMIN </tt></td><td> root@localhost </td></tr>
+<tr><td><tt> HTTP_HOST </tt></td><td> mailtest.lab.boston.redhat.com </td></tr>
+<tr><td><tt> REQUEST_URI </tt></td><td> /mailman/create </td></tr>
+<tr><td><tt> HTTP_ACCEPT </tt></td><td> text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5 </td></tr>
+<tr><td><tt> GATEWAY_INTERFACE </tt></td><td> CGI/1.1 </td></tr>
+<tr><td><tt> REMOTE_PORT </tt></td><td> 58305 </td></tr>
+<tr><td><tt> HTTP_ACCEPT_LANGUAGE </tt></td><td> en-us,en;q=0.5 </td></tr>
+<tr><td><tt> CONTENT_TYPE </tt></td><td> application/x-www-form-urlencoded </td></tr>
+<tr><td><tt> HTTP_ACCEPT_ENCODING </tt></td><td> gzip,deflate </td></tr>
+</tbody></table></p></body></html>

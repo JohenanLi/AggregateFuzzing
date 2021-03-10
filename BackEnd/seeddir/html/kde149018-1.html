@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset-utf-8">
+        <title>Konqueror bug #149018 testcase</title>
+        <style type="text/css">
+
+            div {
+                margin: 1em;
+                visibility: hidden;
+            }
+
+            div a {
+                visibility: visible;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Konqueror bug #149018 testcase</h1>
+        <p>
+            According to <a href="http://www.w3.org/TR/CSS21/visufx.html#visibility ">the CSS 2.1 specification</a>, child elements marked as { visibility: visible } that are inside parent elements marked { visibility: hidden } should still be displayed, even though their parent elements are not.
+        </p>
+        <p>
+            Konqueror handles this correctly, but in the case of links with inline parent elements, the links are shown, but are unresponsive — the mouse pointer doesn't change when you hover over them and they do nothing when you click them.
+        </p>
+        <p>
+            In the case where the parent element is a block-level element, the links work properly.  It doesn't matter how deeply the { visibility: hidden } property value has been inherited, it doesn't have to be explicitly specified for the parent element.
+        </p>
+        <div>
+            <span>
+                <a href="/">This link is inside an invisible &lt;span> element.</a>
+            </span>
+        </div>
+        <div>
+            <a href="/">This link is <em>not</em> inside an invisible &lt;span> element.</a>
+        </div>
+    </body>
+</html>

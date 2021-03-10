@@ -1,0 +1,52 @@
+--- scripts_old/localize.pl	2004-11-10 15:25:08.000000000 +0100
++++ scripts/localize.pl	2004-11-10 15:22:41.000000000 +0100
+@@ -6,9 +6,9 @@
+ #
+ #   $RCSfile: localize.pl,v $
+ #
+-#   $Revision: 1.4 $
++#   $Revision: 1.4.2.1 $
+ #
+-#   last change: $Author: pjunck $ $Date: 2004/11/02 16:03:14 $
++#   last change: $Author: ihi $ $Date: 2004/11/10 14:22:41 $
+ #
+ #   The Contents of this file are made available subject to the terms of
+ #   either of the following licenses
+@@ -69,6 +69,7 @@
+ use IO::Handle;
+ use File::Find;
+ use File::Temp;
++use File::Copy;
+ 
+ # ver 1.1
+ #
+@@ -252,11 +253,26 @@
+                 print DESTFILE ( $index{ $key } , "\n" );
+             }
+             close DESTFILE;
+-        }else {
+-            print STDERR "Can't open/create '$localizeFile'";  
++         }else {
++            print STDOUT "Warning: File $localizeFile is not writable , try to merge ...\n";
++            my ( $TMPFILE , $tmpfile ) = File::Temp::tempfile();
++            if( open DESTFILE , "+> $tmpfile " ){
++                @mykeys = keys( %index );
++                foreach my $key( @mykeys ){
++                    print DESTFILE ( $index{ $key } , "\n" );
++                }
++                close DESTFILE;
++                if( move( $localizeFile , $localizeFile.".backup" ) ){
++                    if( copy( $tmpfile , $localizeFile ) ){ 
++                        unlink $tmpfile;
++                        unlink $localizeFile.".backup";
++                    } else { print STDERR "Can't open/create '$localizeFile', original file is renamed to  $localizeFile.backup\n"; }
++                } else { print STDERR "Can't open/create '$localizeFile'\n"; }
++            }else{
++                print STDERR "Can't open/create '$localizeFile'\n";  
++            }
+         }
+     }
+-    
+     sort_outfile( $localizeFile );
+ }
+ 

@@ -1,0 +1,49 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf540
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ql\qnatural
+
+\f0\fs24 \cf0 --- /etc/udev/OLDRULES/50-udev.rules.EL-5.6-ORIG-20110126       2011-01-26 15:57:48.000000000 +0000\
++++ /etc/udev/rules.d/50-udev.rules     2011-02-10 17:06:33.000000000 +0000\
+@@ -255,26 +255,30 @@\
+\
+ KERNEL=="dm-[0-9]*", GOTO="persistent_end"\
+\
++SUBSYSTEM!="scsi_tape", GOTO="persistent_storage_tape_end"\
++\
+ KERNEL=="st*[0-9]|nst[0-9]*", IMPORT\{parent\}=="ID_*"\
+-KERNEL=="st*[0-9]|nst[0-9]*", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="", \\\
+-       IMPORT\{program\}="scsi_id -u -g -x -s %p -d $tempnode"\
+-KERNEL=="st*[0-9]|nst[0-9]*", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="", \\\
+-       IMPORT\{program\}="scsi_id -u -g -x -a -s %p -d $tempnode"\
+-KERNEL=="nst[0-9]*", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="?*", \\\
+-       SYMLINK+="tape/by-id/$env\{ID_BUS\}-$env\{ID_SERIAL\}"\
++KERNEL=="st*[0-9]|nst[0-9]*", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="", IMPORT\{program\}="scsi_id -u -g -x -s %p -d $tempnode"\
++KERNEL=="st*[0-9]|nst[0-9]*", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="", IMPORT\{program\}="scsi_id -u -g -x -a -s %p -d $tempnode"\
++KERNEL=="nst*[0-9]", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="?*", SYMLINK+="tape/by-id/$env\{ID_BUS\}-$env\{ID_SERIAL\}-nst"\
++KERNEL=="st*[0-9]", SUBSYSTEM=="scsi_tape", ENV\{ID_SERIAL\}=="?*",  SYMLINK+="tape/by-id/$env\{ID_BUS\}-$env\{ID_SERIAL\}-st"\
+\
+-SUBSYSTEM!="scsi_tape", GOTO="persistent_storage_tape_end"\
+ # by-path (parent device path)\
+ KERNEL=="st*[0-9]|nst*[0-9]", IMPORT\{program\}="path_id %p"\
+ KERNEL=="st*[0-9]", ENV\{ID_PATH\}=="?*", SYMLINK+="tape/by-path/$env\{ID_PATH\}"\
+-KERNEL=="nst*[0-9]", ENV\{ID_PATH\}=="?*", SYMLINK+="tape/by-path/$env\{ID_PATH\}-nst"\
++KERNEL=="nst*[0-9]", ENV\{ID_PATH\}=="?*", SYMLINK+="tape/by-path/$env\{ID_PATH\}"\
+ LABEL="persistent_storage_tape_end"\
+\
+ # type 8 devices are "Medium Changers"\
+ KERNEL=="sg*", IMPORT\{parent\}=="ID_*"\
+ KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="8", ENV\{ID_SERIAL\}=="", IMPORT\{program\}="scsi_id -g -u -x -s %p -d $tempnode"\
+ KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="8", ENV\{ID_SERIAL\}=="", IMPORT\{program\}="scsi_id -g -u -x -a -s %p -d $tempnode"\
+-KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="8", ENV\{ID_SERIAL\}=="?*", SYMLINK+="tape/by-id/$env\{ID_BUS\}-$env\{ID_SERIAL\}"\
++KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="8", ENV\{ID_SERIAL\}=="?*", SYMLINK+="tape/by-id/$env\{ID_BUS\}-$env\{ID_SERIAL\}-changer"\
++\
++# type 1 devices are "Scsi Tape"\
++KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="1", ENV\{ID_SERIAL\}=="", IMPORT\{program\}="scsi_id -g -u -x -s %p -d $tempnode"\
++KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="1", ENV\{ID_SERIAL\}=="", IMPORT\{program\}="scsi_id -g -u -x -a -s %p -d $tempnode"\
++KERNEL=="sg*", SUBSYSTEM=="scsi_generic", SYSFS\{type\}=="1", ENV\{ID_SERIAL\}=="?*", SYMLINK+="tape/by-id/$env\{ID_BUS\}-$env\{ID_SERIAL\}-sg"\
+\
+ SUBSYSTEM!="block", GOTO="persistent_end"\
+}

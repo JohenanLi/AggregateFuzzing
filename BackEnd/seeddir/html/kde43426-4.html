@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Marquee Simulation</title>
+<!--  for more details ee
+    http://www.widomaker.com/~reboughner/W3C/scrollbanner/scroll.html
+  -->
+<SCRIPT LANGUAGE="Javascript">
+<!--
+function browserCheck() {
+   if (document.getElementById)
+     centerBanner();
+   else {
+     document.open();
+     document.write('<TABLE WIDTH="100%" HEIGHT="100%" BORDER="0">');
+     document.write('<TR><TD ALIGN="CENTER" VALIGN="MIDDLE">');
+     document.write('<B>This example requires either IE5 or Netscape Gecko</B>');
+     document.write('<\/TD><\/TR><\/TABLE>');
+     document.close();
+   }
+}
+
+//   Library / Functions
+var msgWidth = 570, bannerWidth;
+var timerID;
+/* This function centers the banner window in the main browser window */
+function centerBanner() {
+  if (bannerWidth == null) setBannerWidth();
+  var el = document.getElementById('canvas');
+  var scrnWidth = (document.all ? document.body.clientWidth : window.innerWidth);
+  el.style.left = parseInt(0.5*(scrnWidth - bannerWidth)) + "px";
+  el.style.visibility = 'visible';
+}
+
+/* Gets the banner window width from the select box value */
+function setBannerWidth() {
+  var selEL = document.getElementById('banWidth');
+  bannerWidth = parseInt(selEL.options[selEL.selectedIndex].text);
+  document.getElementById('canvas').style.width = bannerWidth + "px";
+  document.getElementById('canvasText').style.left = bannerWidth + "px";
+  centerBanner();
+}
+
+/* Function to start and stop scrolling */
+function scroll(type) {
+   if (type == 'start') {
+     scrollIt(bannerWidth, 10, 250);
+   } else 
+     if (timerID != null) clearTimeout(timerID);
+}
+
+/* Function to reset the text layer for next scroll */
+function clearText() {
+  scroll('stop');
+  var el = document.getElementById('canvasText');
+/* Reposition the scrolling text */
+  el.style.left = bannerWidth + "px";
+}
+
+/* Function which toggles the display of the script code.
+ * Rather than going through the textNode creation shown here
+ * the node value can be directly set to accomplish the
+ * same thing */
+function showCode() {
+  var toggleEL = document.getElementById('toggleCode');
+  var scrpEL = document.getElementById('scriptContainer');
+  if (toggleEL.childNodes[0].nodeValue.indexOf('Show') != -1) {
+     var eTEXT = document.createTextNode("Hide Script Code");
+     toggleEL.replaceChild(eTEXT, toggleEL.childNodes[0]);
+     scrpEL.className = 'scrShow';
+  } else {
+     var eTEXT = document.createTextNode("Show Script Code");
+     toggleEL.replaceChild(eTEXT, toggleEL.childNodes[0]);
+     scrpEL.className = 'scrHidden';
+  }
+  return false; 
+}
+
+/* Function that does the actually scrolling */
+function scrollIt(Left, dx, speed) {
+  var text = document.getElementById('canvasText');
+  Left -= dx;
+  text.style.left = Left + "px";
+  if (Left > -msgWidth)
+    timerID = setTimeout("scrollIt(" + Left + ", " + dx + ", " + speed + ")", speed);
+}
+//-->
+</SCRIPT>
+
+<STYLE type=text/css>#canvas {
+	BACKGROUND-COLOR: #ffe0e0; 
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; 
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; 
+	CLIP: rect(auto auto auto auto); 
+	FONT-FAMILY: Arial; FONT-SIZE: 18px; FONT-WEIGHT: bold; HEIGHT: 24px; LEFT: 50px; 
+	OVERFLOW: hidden; POSITION: absolute; TOP: 50px; VISIBILITY: hidden; WIDTH: 250px
+}
+#canvasText {
+	LEFT: 250px; POSITION: relative; TOP: 0px; WIDTH: 570px
+}
+</STYLE>
+
+</head>
+
+<BODY onload=browserCheck();>
+<DIV id=canvas>
+<DIV id=canvasText>Thank you for visiting our web site. Please stop back again 
+soon!</DIV>
+</DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 100px">
+ 
+ <FORM>    
+<TABLE cellPadding=4 cellSpacing=0 width="75%">
+      <TBODY>
+      <TR>
+        <TD align=middle><B>Banner Window</B><BR><SELECT id=banWidth 
+          name=Select1 onchange=setBannerWidth(); size=1> <OPTION 
+            selected>250</OPTION> <OPTION>400</OPTION> 
+          <OPTION>600</OPTION></SELECT><BR><B>Width (in Pixels)</B></TD>
+        <TD><INPUT name=Button1 onclick="scroll('start');" 
+		 style="FONT-FAMILY: Arial; FONT-SIZE: 9pt; FONT-WEIGHT: bold" type=button 
+		 value="Start Scroll">
+		 </TD>
+        <TD><INPUT name=Button2 onclick="scroll('stop');" 
+		style="FONT-FAMILY: Arial; FONT-SIZE: 9pt; FONT-WEIGHT: bold" type=button 
+		value="Stop Scroll">
+		</TD>
+        <TD><INPUT name=Button3 onclick=clearText(); 
+		style="FONT-FAMILY: Arial; FONT-SIZE: 9pt; FONT-WEIGHT: bold" type=button 
+		value="Clear Text">
+		</TD>
+	</TR>
+  </TBODY>
+  </TABLE>
+ </FORM>
+</DIV>  
+
+
+</body>
+</html>

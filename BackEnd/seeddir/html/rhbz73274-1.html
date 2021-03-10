@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="fr">
+  <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+    <style type="text/css" title="style léger">
+
+body {
+color: black;
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+background: #fcfbea
+}
+
+h1, h1 a, h2, li span {
+font-family: times new roman, palatino, times, serif;
+font-weight: bold;
+color: #1f843e
+}
+
+h1 {
+font-size: 350%;
+font-weight: bold;
+font-style: italic
+}
+
+h2 {
+display: block;
+position: relative;
+right: 30%;
+font-size: 225%;
+text-align: right;
+border-bottom: solid 0.1em
+}
+
+h1, div#coord {
+display: block;
+position: relative;
+left: 10%;
+}
+
+a { text-decoration: none }
+div#coord {
+font-size: 90%
+}
+
+li span {
+font-size: 120%
+}
+
+address {
+font-size: 90%;
+text-align: right
+}
+
+@media print {
+
+@page { margin: 10% }
+
+*, body, h1 a, h2, li span {
+color: black;
+background: white
+}
+
+body { font-size: 12pt }
+
+p, ul { font-family: times new roman, palatino, times, serif; }
+
+h1, h2 {
+page-break-after: avoid;
+page-break-inside: avoid
+}
+
+ul { page-break-before: avoid }
+
+}
+    </style>
+
+    <style type="text/css" title="bleu historique">
+
+body {
+color: #fffafa;
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+background: #36648b
+}
+
+a:link {
+color: #eedc82;
+text-decoration: none
+}
+
+a:visited {
+color: #87cefa;
+text-decoration: none
+}
+
+h1,h2 { font-family:tahoma,arial, helvetica, sans-serif }
+
+h1 {
+font-size: 225%;
+font-weight: bold;
+font-variant: small-caps;
+color: #ffd700;
+text-align: center
+}
+
+h1 a:link, h1 a:visited { color: #ffd700 }
+
+h1 a:link:hover, h1 a:visited:hover { color: #fffafa }
+
+h2 {
+font-size: 150%;
+font-style: italic;
+color: #36648b;
+background : #4f94cd
+}
+
+sup { font-size: 60% }
+
+a sup {text-decoration: none}
+
+em { font-style: normal;
+font-variant: small-caps;
+font-size: 115%;
+color:  #ffd700;
+}
+
+div#coord {
+position: relative;
+left: 50%;
+display: block;
+background: #396b96;
+font-size: 90%
+}
+
+ul { list-style-type: square }
+
+address {
+display: block;
+margin-top: 16px;
+padding-top: 8px;
+border-top: 2px solid #fffafa;
+color: #fffafa;
+background: #396b96;
+font-size: 90%
+}
+
+li span {
+font-weight: bold;
+font-style: italic
+}
+
+
+@media print {
+
+@page { margin: 10% }
+
+*, body,body> *, em, a:link, a:visited, h1 a:link, h1 a:visited {
+color: black;
+background: white
+}
+
+body { font-size: 12pt }
+
+p, ul { font-family: times new roman, palatino, times, serif; }
+
+h1, h2 {
+page-break-after: avoid;
+page-break-inside: avoid
+}
+
+ul { page-break-before: avoid }
+
+}
+    </style>
+
+    <title>Testcase</title>
+  </head>
+
+<body>
+
+    <h1><a href="mailto:foo@bar">Bob</a></h1>
+
+<div id="coord">
+<ul>
+<li><span>Adresse :</span> ##############</li>
+<li><span>Tél :</span> ##############</li>
+<li><span>Fax :</span> ################</li>
+<li><span>Courriel :</span> <a href="mailto:foo@bar">Bob</a></li>
+</ul>
+</div>
+
+    <h2>Alpha</h2>
+
+    <ul>
+      <li>
+	<span>1994-1997 :</span> foo</a>.
+      </li>
+    </ul>
+
+  </body>
+</html>

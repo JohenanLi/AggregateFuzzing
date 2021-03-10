@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <semantics>
+  <mrow>
+   <mrow>
+    <mo stretchy="false">∫</mo>
+    <mrow>
+     <msup>
+      <mi mathvariant="normal">e</mi>
+      <mi>x</mi>
+     </msup>
+     <mrow>
+      <mstyle mathvariant="normal">
+       <mrow>
+        <mi mathvariant="normal">d</mi>
+       </mrow>
+      </mstyle>
+      <mi>x</mi>
+     </mrow>
+    </mrow>
+   </mrow>
+  </mrow>
+ </semantics>
+</math>

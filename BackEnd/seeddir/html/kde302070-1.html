@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>test textarea text alignment</title>
+<script type="text/javascript">
+   function toggleAlign() {
+       var al = document.getElementById("ta").style.textAlign;
+       if (al == "right") {
+           document.getElementById("ta").style.textAlign = "left";
+       }
+       else
+       {
+           document.getElementById("ta").style.textAlign = "right";
+       }
+   }
+   function displaySelectedText() {
+       var t = (ta.value).substring(ta.selectionStart, ta.selectionEnd);
+       alert('Selected text:\n' + t);
+   }
+   function fillTextarea() {
+       document.getElementById("ta").value = "line1\nline2\nline3\nline4\nline5\nline6\nline7";
+   }
+   function clearTextarea() {
+       document.getElementById("ta").value = "";
+   }
+   function selectAll() {
+       document.getElementById("ta").select();
+   }
+</script>
+</head>
+
+<body onLoad="fillTextarea();">
+
+<p>
+textarea (style="text-align:right;")<br />
+<textarea rows="4" cols="10" style="text-align:right;"></textarea>
+
+<p>
+textarea (style="text-align:right;")<br />
+<textarea rows="4" cols="10" style="text-align:right;">line1
+line2
+line3
+line4
+line5
+line6
+line7</textarea>
+<p>--------------------------------------------------------</p>
+<p>
+textarea filled onLoad (style="text-align:right;")<br />
+<textarea id="ta" rows="4" cols="10" style="text-align:right;"></textarea>
+
+<p>
+<input type="button" value="Toggle TextAlign Right/Left" onClick="toggleAlign()" /><br />
+------<br />
+<input type="button" value="Display Selected Text" onClick="displaySelectedText()" /><br />
+<input type="button" value="Fill Textarea" onClick="fillTextarea()" /><br />
+<input type="button" value="Clear Textarea" onClick="clearTextarea()" /><br />
+<input type="button" value="Select All Text" onClick="selectAll()" /><br />
+</body>
+</html>

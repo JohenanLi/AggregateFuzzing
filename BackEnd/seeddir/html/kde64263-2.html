@@ -1,0 +1,23 @@
+<FORM>
+  <TEXTAREA NAME=message COLS="80" ROWS="5" style="height:100px; width:100px;"></TEXTAREA>
+</FORM>
+
+NOT WORKING:
+<a href="javascript://" onClick="document.getElementById('message').cols += 5;">&#8658;</a>
+<a href="javascript://" onClick="document.getElementById('message').rows += 10;">&#8659;</a>
+<a href="javascript://" onClick="document.getElementById('message').cols -= 5;">&#8656;</a>
+<a href="javascript://" onClick="document.getElementById('message').rows -= 10;">&#8657;</a>
+
+<br>WORKING FINE:
+<a href="javascript://" onClick="return alter_box('message', 10, 0);">&#8658;</a>
+<a href="javascript://" onClick="return alter_box('message', 0, 50);">&#8659;</a>
+<a href="javascript://" onClick="return alter_box('message', -10, 0);">&#8656;</a>
+<a href="javascript://" onClick="return alter_box('message', 0, -50);">&#8657;</a>
+<script type="text/javascript"> 
+function alter_box(objname, col_inc, row_inc) {
+  var obj = document.all[objname]; 
+  obj.style.height = parseInt(obj.style.height) + row_inc + "px";
+  obj.style.width  = parseInt(obj.style.width)  + col_inc + "px";
+}
+</script> 
+

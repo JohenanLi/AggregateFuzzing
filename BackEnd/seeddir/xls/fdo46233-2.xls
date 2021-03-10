@@ -1,0 +1,44 @@
+﻿<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>Előadói ív</TITLE>
+    <META charset="utf-8">
+    <STYLE>
+		.PageBreak {page-break-after: always}
+	</STYLE>
+  </HEAD>
+  <BODY>
+    <span style="position:absolute;left:224mm;top:10mm">
+      <FONT style="FONT-SIZE: 11pt" face="Arial CE" color="#000000">PEI/***/2014.</FONT>
+    </span>
+    <span style="position:absolute;left:313mm;top:10mm">
+      <FONT style="FONT-SIZE: 14pt" face="Arial CE" color="#000000">
+        <B>B*** Dóra</B>
+      </FONT>
+    </span>
+    <span style="position:absolute;left:224mm;top:16mm">
+      <FONT style="FONT-SIZE: 13pt" face="Arial CE" color="#000000"></FONT>
+    </span>
+    <span style="position:absolute;left:224mm;top:22mm">
+      <FONT style="FONT-SIZE: 11pt" face="Arial CE" color="#000000">Budapest *** Hivatal ***</FONT>
+    </span>
+    <span style="position:absolute;left:224mm;top:28mm">
+      <FONT style="FONT-SIZE: 11pt" face="Arial CE" color="#000000">I05415 Szakhatósági hozzájárulás, szakmai vélemény</FONT>
+    </span>
+    <span style="position:absolute;left:231mm;top:42mm">
+      <FONT style="FONT-SIZE: 11pt" face="Arial CE" color="#000000">Budapest *** felújítása </FONT>
+    </span>
+    <span style="position:absolute;left:209mm;top:70mm">
+      <FONT style="FONT-SIZE: 13pt" face="Arial CE" color="#000000">2014.06.04</FONT>
+    </span>
+    <span style="position:absolute;left:239mm;top:70mm">
+      <FONT style="FONT-SIZE: 13pt" face="Arial CE" color="#000000">
+      </FONT>
+    </span>
+    <span style="position:absolute;left:346mm;top:247mm">
+      <FONT style="FONT-SIZE: 17pt" face="Arial CE" color="#000000">
+        <B>***</B>
+      </FONT>
+    </span>
+  </BODY>
+</HTML>

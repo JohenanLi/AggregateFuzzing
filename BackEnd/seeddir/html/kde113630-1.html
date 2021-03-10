@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>  UA handling of percentage widths</title>
+</head>
+<body>
+<h1>The bug</h1>
+<p>When dealing with percentage widths (and I assume height), certain UAs do the following</p>
+<ol>
+<li>Rounds the percentage down to the nearest integer percentage (i.e. strips off anything after the decimal point). That is &#8212; 99.999999% is treated as 99.0%</li>
+<li>Uses this wrong percentage for all calculations that follow</li>
+</ol>
+<div style="width: 1000px;background-color: pink;">
+<div style="width: 509px;float: left;height: 60px;background-color: lightgreen;">I am 509px wide</div>
+<div style="width: 50.9%;float: left;clear:both;height: 60px;background-color: cyan;">I am 50.9% wide in a box 1000px wide, so I should be 509px wide. Some browsers round me down to 50% - which then computes to 500px.</div>
+<div style="width: 500px;float: left;clear: both;height: 60px;background-color: yellow;">I am 500px wide</div>
+<p style="clear: both;">This pink container &lt;div&gt; is 1000px wide. There is no reason for rounding here!</p>
+</div>
+<h2>Something to consider when rounding <em>is</em> required</h2>
+<div style="width: 1004px; background-color: pink;">
+<div style="float: left; width: 12.5%; background-color: cyan;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: magenta;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: green;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: lightgreen;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: yellow;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: white;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: red;">12.5% Menu Item</div>
+<div style="float: left; width: 12.5%; background-color: orange;">12.5% Menu Item</div>
+<p style="clear: both">This 1004px box represents the body of a maximised browser in a resolution of 1024&#215;768</p>
+</div>
+<p>In 50% of possible browser widths, strict rounding means that the 8 floats with percentages summing 100% have a computed width of &gt; 100%. Win/IE takes this approach and draws 8 floats of 126px, so the last float actually wraps onto the next line, ruining the intended display. Gecko appears to take a &#8217;smart&#8217; approach and draws a mixture of 125px and 126px boxes, so that 100% is indeed 100% - IMHO all browsers should do the same. At the very least, they should play it &#8217;safe&#8217;, and draw 8&#215;125px boxes.</p>
+	
+</body>
+</html>
+	

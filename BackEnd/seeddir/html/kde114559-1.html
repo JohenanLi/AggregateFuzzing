@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>margin on 100% width floating object</title>
+<style type="text/css">
+ .a { 
+     width: 100%; 
+     margin-left: 200px; 
+     border: 2px solid blue; 
+     margin-bottom: 20px
+ }
+ .b { 
+     float: right 
+ }
+</style>
+</head>
+<body>
+    <div class="a">Width 100%. 200px left margin.</div>
+    <div class="a b">Same with float: right. Gecko, where's my margin?</div>
+</body>
+</html>

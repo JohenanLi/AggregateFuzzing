@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Bug#147789 Test Case</title>
+        <style type='text/css'>
+            .test {
+                overflow: hidden;
+                width: 200px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+        This test case shows three examples of the object element being used
+        in an overflow situation.  There is no meaningful way to apply an
+        overflow to an object containing an image, so no example is provided
+        for that situation.  Note that the CSS in question is as follows:
+        <pre>
+            .test {
+                overflow: hidden;
+                width: 200px;
+                height: 100px;
+            }
+        </pre>
+        </p>
+        <h2>Descriptions</h2>
+        <ol>
+            <li>An object element containing a <a href='http://gamercard.xbox.com/JVz.card'>Gamer Card</a>
+            that is given the class <code>test</code>.</li>
+            <li>A div element with the class <code>test</code> containing the
+            previous object element sans a class.</li>
+            <li>Another identical div element but with an image object with a
+            known size of 512x512.  Note that this image is partially covered
+            by the above object because although the div thinks it is actually
+            hiding its overflow'd contents, the HTML object <em>still</em> shows
+            as if it were defined with <code>overflow:visible</code>.</li>
+        </ol>
+        <h2>Test Cases</h2>
+        <ol>
+            <li>
+            <object class='test' type='text/html' data='http://gamercard.xbox.com/JVz.card'>
+                <a href='http://gamercard.xbox.com/JVz.card'>JVz</a>
+            </object>
+            </li>
+            <li>
+            <div class='test'>
+                <object type='text/html' data='http://gamercard.xbox.com/JVz.card'>
+                    <a href='http://gamercard.xbox.com/JVz.card'>JVz</a>
+                </object>
+            </div>
+            </li>
+            <li>
+            <div class='test'>
+                <object type='image/png' data='https://bugs.kde.org/attachment.cgi?id=21119&action=view'>
+                    Test image
+                </object>
+            </div>
+            </li>
+        </ol>
+    </body>
+</html>

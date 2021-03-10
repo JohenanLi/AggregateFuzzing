@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>testcase wide accents</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+<p>Old code:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <semantics>
+  <mrow>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="false">̃</mo>
+   </mover>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="false">̂</mo>
+   </mover>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="false">⃗</mo>
+   </mover>
+  </mrow>
+  <annotation encoding="StarMath 5.0">widetilde abcd  widehat abcd widevec abcd</annotation>
+ </semantics>
+</math></p>
+
+<p>New code:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <semantics>
+  <mrow>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="true">^</mo>
+   </mover>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="true">~</mo>
+   </mover>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="true">⃗</mo>
+   </mover>
+  </mrow>
+  <annotation encoding="StarMath 5.0">widehat abcd widetilde abcd widevec abcd</annotation>
+ </semantics>
+</math></p>
+
+<p>U+2192 RIGHTWARDS ARROW:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+   <mover accent="true">
+    <mi mathvariant="italic">abcd</mi>
+    <mo stretchy="true">&#x2192;</mo>
+   </mover>
+  </mrow>
+</math>
+</p>
+
+  </body>
+</html>

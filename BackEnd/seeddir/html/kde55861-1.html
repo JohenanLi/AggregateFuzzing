@@ -1,0 +1,66 @@
+<html><head>
+<style type="text/css">
+BODY, P, TR, TD, INPUT, SELECT, OPTION, TEXTAREA {font-family: Tahoma, Verdana, Arial Cyr, Arial, Helvetica, sans-serif; font-size: 8pt;}
+A {text-decoration: none; color: #00008f}
+A:hover {color: #ff0000}
+.menus A {color: #ffffff}
+.menus A:hover {color: #ffffff}
+.menub A {color: #000000}
+.expandable {cursor:hand}
+.win_expandable {cursor:hand}
+.expanded {display:}
+.collapsed {display:none}
+.menug A {color: #555555}
+.redref A {color: #ff0000}
+</style><title>=SCIENTIFIC=DIGITAL=LIBRARY=</title>
+
+
+
+<script language="JavaScript1.2">
+//window.onerror=null;
+w_down=new Image();
+w_down.src="/pic/w_show.gif";
+w_up=new Image();
+w_up.src="/pic/w_hide.gif";
+
+function authors_add(){
+  anewwin=window.open("search_authors_add.asp", "addwin", "resizable=yes,scrollbars=yes,height=300,width=500,top=0,left=0");
+}
+function authors_new(aid,anam){
+  var frm = document.forms["results"];
+  isinbox=0;
+  for (var i=0; i<frm.authors.length; i++){
+    if(frm.authors[i].value==aid){isinbox=1; break}
+  }
+  if (isinbox==0){
+    var el = new Option(anam,aid);
+    frm.authors.options[frm.authors.length] = el;
+    check_change();
+  }
+}
+function authors_del(){
+  var frm = document.forms["results"];
+  var sel=new Array();
+  var ind=0;
+  for (var i=0; i<frm.authors.length; i++){
+    if (frm.authors[i].selected){
+      ind=sel.length;
+      sel[ind]=new Object;
+      sel[ind].value=frm.authors[i].value;
+      sel[ind].index=i;
+    }
+  }
+  for (var i=0; i<sel.length; i++){
+    frm.authors.options.remove(sel[i].index-i);
+    check_change();
+    if (sel[i].index-i<frm.authors.length){
+      frm.authors[sel[i].index-i].selected=true}
+  }
+}
+</script></head>
+
+<table width="580" cellspacing="1" cellpadding="0" border="0" bgcolor="#ffffff">
+<tbody><tr valign="top" class="menus"><td rowspan="2" width="80" align="center" valign="middle" bgcolor="#dddddd" nowrap="nowrap"><font color="#000000">Authors</font></td><td rowspan="2" colspan="2" width="400" align="center" valign="middle" bgcolor="#eeeeee"><select name="authors" style="background: rgb(238, 238, 238) none repeat scroll 0%; width: 396px; -moz-background-clip: initial; -moz-background-origin: initial;" size="3"></select></td><td width="100" align="center" valign="middle" bgcolor="#555555" nowrap="nowrap"><a href="javascript:authors_add()">Add</a></td></tr>
+<tr class="menus"><td width="100" align="center" valign="middle" bgcolor="#555555" nowrap="nowrap"><a href="javascript:authors_del()">Delete</a></td></tr>
+</tbody></table>
+</body></html>

@@ -1,0 +1,64 @@
+Index: svtools/source/control/inettbc.cxx
+===================================================================
+--- svtools/source/control/inettbc.cxx	(revision 270745)
++++ svtools/source/control/inettbc.cxx	(working copy)
+@@ -374,8 +374,8 @@
+ 
+ 	sal_Bool bExectMatch = bPureHomePath
+ 				|| aText.CompareToAscii( "." ) == COMPARE_EQUAL
+-				|| aText.Len() > 1 && aText.Copy( aText.Len() - 2, 2 ).CompareToAscii( "/." ) == COMPARE_EQUAL
+-				|| aText.Len() > 1 && aText.Copy( aText.Len() - 3, 3 ).CompareToAscii( "/.." ) == COMPARE_EQUAL;
++				|| (aText.Len() > 1 && aText.Copy( aText.Len() - 2, 2 ).CompareToAscii( "/." ) == COMPARE_EQUAL)
++				|| (aText.Len() > 1 && aText.Copy( aText.Len() - 3, 3 ).CompareToAscii( "/.." ) == COMPARE_EQUAL);
+ 
+ 	// for pure home pathes ( ~username ) the '.' at the end of rMatch
+ 	// means that it poits to root catalog
+@@ -641,7 +641,7 @@
+     // if the user input is a valid URL, go on with it
+ 	// otherwise it could be parsed smart with a predefined smart protocol
+ 	// ( or if this is not set with the protocol of a predefined base URL )
+-    if( eProt == INET_PROT_NOT_VALID || eProt == eSmartProt || eSmartProt == INET_PROT_NOT_VALID && eProt == eBaseProt )
++    if( eProt == INET_PROT_NOT_VALID || eProt == eSmartProt || (eSmartProt == INET_PROT_NOT_VALID && eProt == eBaseProt) )
+ 	{
+         // not stopped yet ?
+         if( schedule() )
+Index: svtools/source/control/filectrl.cxx
+===================================================================
+--- svtools/source/control/filectrl.cxx	(revision 270745)
++++ svtools/source/control/filectrl.cxx	(working copy)
+@@ -47,7 +47,7 @@
+ FileControl::FileControl( Window* pParent, WinBits nStyle, FileControlMode nFlags ) :
+ 	Window( pParent, nStyle|WB_DIALOGCONTROL ),
+ 	maEdit( this, (nStyle&(~WB_BORDER))|WB_NOTABSTOP ),
+-	maButton( this, nStyle&(~WB_BORDER)|WB_NOLIGHTBORDER|WB_NOPOINTERFOCUS|WB_NOTABSTOP ),
++	maButton( this, (nStyle&(~WB_BORDER))|WB_NOLIGHTBORDER|WB_NOPOINTERFOCUS|WB_NOTABSTOP ),
+ 	maButtonText( SvtResId( STR_FILECTRL_BUTTONTEXT ) ),
+ 	mnFlags( nFlags ),
+ 	mnInternalFlags( FILECTRL_ORIGINALBUTTONTEXT )
+@@ -164,11 +164,11 @@
+ 	Size aOutSz = GetOutputSizePixel();
+ 	long nButtonTextWidth = maButton.GetTextWidth( maButtonText );
+ 	if ( ((mnInternalFlags & FILECTRL_ORIGINALBUTTONTEXT) == 0) ||
+-		nButtonTextWidth < aOutSz.Width()/3 &&
++		( nButtonTextWidth < aOutSz.Width()/3 &&
+ 		( mnFlags & FILECTRL_RESIZEBUTTONBYPATHLEN
+ 		? ( maEdit.GetTextWidth( maEdit.GetText() )
+ 			<= aOutSz.Width() - nButtonTextWidth - ButtonBorder )
+-		: TRUE )
++		: TRUE ) )
+ 	   )
+ 	{
+ 		maButton.SetText( maButtonText );
+Index: svtools/source/brwbox/brwbox1.cxx
+===================================================================
+--- svtools/source/brwbox/brwbox1.cxx	(revision 270745)
++++ svtools/source/brwbox/brwbox1.cxx	(working copy)
+@@ -1711,7 +1711,7 @@
+ 	if (!bRowColMove && !IsCursorMoveAllowed( nCurRow, nColId ) )
+ 		return FALSE;
+ 
+-	if ( nColId != nCurColId || bMakeVisible && !IsFieldVisible(nCurRow, nColId, TRUE))
++	if ( nColId != nCurColId || (bMakeVisible && !IsFieldVisible(nCurRow, nColId, TRUE)))
+ 	{
+         USHORT nNewPos = GetColumnPos(nColId);
+         BrowserColumn* pColumn = pCols->GetObject( nNewPos );

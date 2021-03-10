@@ -1,0 +1,190 @@
+# Russian translation of Gnome-Shell.
+# Copyright (C) 2009
+# This file is distributed under the same license as the GNOME-SHELL package.
+# Sergey V. Kovylov, 2009.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"shell&component=general\n"
+"POT-Creation-Date: 2009-10-08\n"
+"PO-Revision-Date: 1.0\n"
+"Last-Translator: Sergey V. Kovylov\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ../data/gnome-shell.desktop.in.in.h:1
+msgid "GNOME Shell"
+msgstr ""
+
+#: ../data/gnome-shell.desktop.in.in.h:2
+msgid "Window management and application launching"
+msgstr "Управление окнами и запуском приложений"
+
+#. left side
+#: ../js/ui/panel.js:272
+msgid "Activities"
+msgstr "Консоль"
+
+#. Translators: This is a time format.
+#: ../js/ui/panel.js:464
+msgid "%a %l:%M %p"
+msgstr "%a, %H:%M"
+
+#: ../js/ui/dash.js:283
+msgid "Find..."
+msgstr "Искать..."
+
+#: ../js/ui/dash.js:400
+msgid "More"
+msgstr "Больше"
+
+#: ../js/ui/dash.js:543
+msgid "(see all)"
+msgstr "(смотреть все)"
+
+#. **** Applications ****
+#: ../js/ui/dash.js:763 ../js/ui/dash.js:825
+msgid "APPLICATIONS"
+msgstr "ПРИЛОЖЕНИЯ"
+
+#. **** Places ****
+#. Translators: This is in the sense of locations for documents,
+#. network locations, etc.
+#: ../js/ui/dash.js:783
+msgid "PLACES"
+msgstr "МЕСТА"
+
+#. **** Documents ****
+#: ../js/ui/dash.js:790 ../js/ui/dash.js:835
+msgid "RECENT DOCUMENTS"
+msgstr "НЕДАВНИЕ ДОКУМЕНТЫ"
+
+#. **** Search Results ****
+#: ../js/ui/dash.js:815 ../js/ui/dash.js:955
+msgid "SEARCH RESULTS"
+msgstr "РЕЗУЛЬТАТ ПОИСКА"
+
+#: ../js/ui/dash.js:830
+msgid "PREFERENCES"
+msgstr "ПРЕДПОЧТЕНИЯ"
+
+#: ../js/ui/runDialog.js:96
+msgid "Please enter a command:"
+msgstr "Введите команду"
+
+#: ../js/ui/runDialog.js:173
+#, c-format
+msgid "Execution of '%s' failed:"
+msgstr "Невозможно выполнить '%s'"
+
+#: ../src/shell-global.c:812
+msgid "Less than a minute ago"
+msgstr "Менее минуты назад"
+
+#: ../src/shell-global.c:815
+#, c-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d минут(у) назад"
+msgstr[1] "%d минут(у) назад"
+
+#: ../src/shell-global.c:818
+#, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d часа(ов) назад"
+msgstr[1] "%d часа(ов) назад"
+
+#: ../src/shell-global.c:821
+#, c-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d дня(ей) назад"
+msgstr[1] "%d дня(ей) назад"
+
+#: ../src/shell-global.c:824
+#, c-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d недели(ль) назад"
+msgstr[1] "%d недели(ль) назад"
+
+#: ../src/shell-status-menu.c:156
+msgid "Unknown"
+msgstr "Неизвестные"
+
+#: ../src/shell-status-menu.c:212
+#, c-format
+msgid "Can't lock screen: %s"
+msgstr "Невозможно экран: %s"
+
+#: ../src/shell-status-menu.c:227
+#, c-format
+msgid "Can't temporarily set screensaver to blank screen: %s"
+msgstr "Невозможно временно установить заставку на пусктом экране: %s"
+
+#: ../src/shell-status-menu.c:351
+#, c-format
+msgid "Can't logout: %s"
+msgstr "Невозможно выйти: %s"
+
+#: ../src/shell-status-menu.c:492
+msgid "Account Information..."
+msgstr "Профиль..."
+
+#: ../src/shell-status-menu.c:502
+msgid "Sidebar"
+msgstr "Боковая панель"
+
+#: ../src/shell-status-menu.c:510
+msgid "System Preferences..."
+msgstr "Администрирование..."
+
+#: ../src/shell-status-menu.c:525
+msgid "Lock Screen"
+msgstr "Блокировать экран"
+
+#: ../src/shell-status-menu.c:535
+msgid "Switch User"
+msgstr "Сменить пользователя"
+
+#. Only show switch user if there are other users
+#. Log Out
+#: ../src/shell-status-menu.c:546
+msgid "Log Out..."
+msgstr "Выход..."
+
+#. Shut down
+#: ../src/shell-status-menu.c:557
+msgid "Shut Down..."
+msgstr "Выключение..."
+
+#: ../src/shell-uri-util.c:87
+msgid "Home Folder"
+msgstr "Домашняя папка"
+
+#. Translators: this is the same string as the one found in
+#. * nautilus
+#: ../src/shell-uri-util.c:102
+msgid "File System"
+msgstr "Файловая система"
+
+#: ../src/shell-uri-util.c:248
+msgid "Search"
+msgstr "Искать"
+
+#. Translators: the first string is the name of a gvfs
+#. * method, and the second string is a path. For
+#. * example, "Trash: some-directory". It means that the
+#. * directory called "some-directory" is in the trash.
+#.
+#: ../src/shell-uri-util.c:298
+#, c-format
+msgid "%1$s: %2$s"
+msgstr ""

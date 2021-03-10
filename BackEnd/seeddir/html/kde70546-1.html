@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>
+h3 + span crash test
+</title>
+<style type="text/css">
+	h3:first-letter {
+		font-size: 16px;
+		color: red;
+	}
+	
+	h3 :before {
+		content: "(";
+	}
+	
+	h3 :after {
+		content: ")";
+	}
+</style>
+</head>
+<body>
+	<h3><span>Do you see me?</span></h3>
+	<p>If yes, the browser passes this test</p>
+</body>
+</html

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <style type="text/css">@import url("/css/dba.css");</style>
+    <title>OpenOffice.org Database Access - Project Home</title>
+  </head>
+  <body>
+  <p>
+      <a href="../../index.html">Documentation</a>
+    / <a href="../index.html">User FAQ</a>
+    / <a href="index.html">Maintainers' FAQ</a>
+    / <a href="033.html" accesskey="p">Previous</a>-<a href="035.html" accesskey="n">Next</a>
+  </p>
+  <h3>Why is the issue marked FIXED when I still see the bug in the latest version?</h3>
+
+  <p>The life cycle of an issue has several stages, and FIXED does not automatically mean
+  that the fix for the problem is really available in the latest snapshot version. Instead,
+  if an issue is marked as FIXED, then it just means that the developer
+  checked in the fix - it doesn't imply the fix is available in a snapshot</p>
+
+  <p>Developers work on branches only (so-called <a href="http://tools.openoffice.org" target="_blank">child
+  workspaces</a> or CWS</a>), while the snapshot is made from cvs-HEAD. FIXED only means the fix
+  made it into a CWS, within any information when it will be publicly available.</p>
+
+  <p>If you want to see the status of the CWS where an issue is fixed,
+    <ul><li>go to <a href="http://eis.services.openoffice.org">http://eis.services.openoffice.org</a></li>
+        <li>log on as guest</li>
+        <li>in the menu, select "Child Workspaces" and "Search"
+        <li>enter the number of the issue, preceded by an "i" (for instance "i12345" to search
+            for issue 12345) into the "TaskId" field</li>
+        <li>press the "Find" button</li>
+    </ul>
+  </p>
+
+  <p>This will give you a list of CWS' to which the respective task has been added to (usually exactly
+  one). Also, administrative information about the CWS is shown, the most interesting being the
+  "Milestone (integrated)" column. Only if you have a snapshot with a milestone number greater or equal
+  to the one shown here, you can expect the bug to be fixed.</p>
+
+  <p>Note that if the "Milestone (integrated)" field is empty for the CWS you found, this simply means
+  the fix is not yet available in any snapshot.</p>
+
+  <p>If all of the above is too much to know for you, the easy rule is: If a bug is CLOSED, it should
+  be fixed in a snapshot. If it's only FIXED, don't expect anything.<br/>
+  The reasoning is in the task handling policies, as written down on the <a href="http://qa.openoffice.org/issue_handling/">
+  QA pages</a>, in particular in
+  <a href="http://qa.openoffice.org/issue_handling/workflowcharts/taskhandling_workflow_issuetracker_fix_close.html">A Bug's lifetime</a>.</p>
+
+  <p>
+      <a href="../../index.html">Documentation</a>
+    / <a href="../index.html">User FAQ</a>
+    / <a href="index.html">Maintainers' FAQ</a>
+    / <a href="033.html" accesskey="p">Previous</a>-<a href="035.html" accesskey="n">Next</a>
+  </p>
+
+  </body>
+ </html>

@@ -1,0 +1,36 @@
+<html>
+
+<!-- Testcase BUG #109331 - Kostja Siefen -->
+
+<style type="text/css">
+
+#WithClipAuto      { position: absolute; top: 10; left: 10; width:210; clip:auto; }
+#WithClipAuto2     { position: absolute; top: 10; left: 10; width:210; clip:auto; }
+#WithoutClipAuto   { position: absolute; top: 10; left: 220; width:420; }
+#WithoutClipAuto2  { position: absolute; top: 10; left: 220; with:420; }
+
+</style>
+
+
+<div id="WithClipAuto">
+<div id="WithClipAuto2">
+<table width="200" bgcolor="gray">
+<tr><td>This is a gray box with the clip:auto property
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+<div id="WithoutClipAuto">
+<div id="WithoutClipAuto2">
+<table width="200" bgcolor="gray">
+<tr><td>This is a gray box without the clip:auto property
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+
+</html>

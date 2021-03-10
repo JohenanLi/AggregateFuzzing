@@ -1,0 +1,18 @@
+<img id=i1 width="3000" height="3000" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD%2FgAIDAAAANElEQVR4nO3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfgx1lAABqFDyOQAAAABJRU5ErkJggg%3D%3D">
+<!-- this is a good image, 100x100 -->
+
+<script>
+function doIt() {
+    inode = document.getElementById("i1");
+    inode.src="data:image/jpeg;base64,%2F9j%2F4AAQSkZJRgABAQEASABIAAD%2F%2FgAXQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q%2F9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy%2F9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy%2F8AAEQgABAAEAwEiAAIRAQMRAf%2FEABUAAQEAAAAAAAAAAAAAAAAAAAAH%2F8QAFBABAAAAAAAAAAAAAAAAAAAAAP%2FEABQBAQAAAAAAAAAAAAAAAAAAAAD%2FxAAUEQEAAAAAAAAAAAAAAAAAAAAA%2F9oADAMBAAIRAxEAPwC%2F";
+    // this is a broken image, 4x4, but doesn't trigger error since the JPEG
+    // loader tries to display partly-broken images
+}
+setTimeout("doIt()", 200);
+</script>
+
+
+<!-- Explanation:
+since the original image is loaded fully, it's used to paint instead of new one, since that one is 
+"in progress". But the intrinsic size is based on the 4x4 broken one, so the scaling ratio is wrong
+-->

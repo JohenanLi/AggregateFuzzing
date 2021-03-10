@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script>
+function corrige() {
+//    document.getElementById('cible').style.position = 'absolute'
+    document.getElementById('cible').style.top  = "400px"
+    document.getElementById('cible').style.left  = "400px"
+  }
+
+document.onmousemove=get_mouse
+    </script>
+  </head>
+
+  <body>
+    <div id="cible" style="{position:absolute; top:100px; left:100px;}" onClick="corrige()">
+      Hello
+    </div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8>
+<title>1280x1024 - Mouse event call to functions failure - Konqueror 4.80 (default browser settings) on Win7 (x86)</title>
+<style type=text/css>
+body{font-size:17px;font-family:tahoma;background:#10597e;color:#fff;margin:0 3px}
+td,h1,hr,p,.td4,.td5,.td6,#td1,#td2,.td3,#td1,#td2{position:relative}
+hr{width:100}
+h1{font-size:19px}
+p,.td4{height:10px}
+#td1,#td2{background:#000;text-align:center;color:#ffa;border:2px solid pink;width:252px}
+.td3,.td6{width:22px}
+.td3,.td6,#td1,#td2{height:30px}
+.td3{text-align:left}
+.td5{width:230px}
+</style>
+<script type=text/javascript>
+function roll(arg1,arg2){document.getElementById(arg2).style.background=arg1<2?"#82b7ed":"#000"}
+function konqueror(){location.href="http://kde.org/"}
+</script>
+</head>
+<body>
+<h1>Example 1 - simulates a menu (table or image) roll-over and mouse event function calls.</h1>
+<p>Roll mouse over buttons and out again + click buttons!
+<table>
+<tr>
+  <td id=td1 onmouseover=roll(1,"td1") onmouseout=roll(2,"td1") onclick=alert("Clicked!")>Works not in Konqueror.</td>
+  <td class=td3></td>
+  <td><code>&#60;td... onmouseover=roll(1,"td1") onmouseout=roll(2,"td1") onclick=alert("Clicked!")&#60;/td&#62;</code></td>
+</tr>
+<tr>
+  <td class=td4></td>
+</tr>
+<tr>
+  <td id=td2 onmouseover='roll(1,"td2")' onmouseout='roll(2,"td2")' onclick='alert("Clicked!")'>Works in Konqueror.</td>
+  <td class=td3></td>
+  <td><code>&#60;td... onmouseover='roll(1,"td2")' onmouseout='roll(2,"td2")' onclick='alert("Clicked!")'&#60;/td&#62;</code></td>
+</tr>
+</table>
+<p>Both instances above work on latest Windows based: FF, IE, Safari, Chrome and Opera browsers. (alpha / beta too).
+<p><hr>
+<h1>Example 2 - shows &#60;img&#62; tag with an onclick inside the tag.</h1>
+<table>
+<tr>
+  <td class=td5>1. Click Icon to open kde.org</td><td class=td3><img id=img1 width=22 height=22 onclick=location.href='http://kde.org/'></td>
+  <td class=td6></td>
+  <td><code>&#60;img... onclick=location.href='http://kde.org/'&#62;</code></td>
+</tr>   
+<tr>
+  <td class=td4></td>
+</tr>
+<tr>
+  <td class=td5>2. Click Icon to open kde.org</td><td class=td3><img id=img2 width=22 height=22 onclick=konqueror()></td>
+  <td class=td6></td>
+  <td><code>&#60;img... onclick=konqueror()&#62; - and - function konqueror(){location.href='http://kde.org/'}</code></td>
+</tr>   
+</table>  
+<p>Both case 1. and 2. works on latest Windows based: FF, IE, Safari, Chrome and Opera browsers. (alpha / beta too).
+<p><hr>
+<script type=text/javascript>
+image='data:image/x-png;base64,'+
+	  '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'+
+	  'E7gOeN31H1IDp2dl3tAoAAAAAElFTkSuQmCC',d=document;
+d.getElementById("img1").src=d.getElementById("img2").src=image;
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf420
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12000\viewh14000\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 Dec 12 10:13:00 clio kernel: Unable to handle kernel NULL pointer dereference at 0000000000000010 \
+RIP: Dec 12 10:13:00 clio kernel:  [<ffffffff80225942>] __rb_rotate_left+0x7/0x5b\
+Dec 12 10:13:00 clio kernel: PGD 3a828067 PUD 3d934067 PMD 0 Dec 12 10:13:00 clio kernel: Oops: \
+0000 [1] SMP Dec 12 10:13:00 clio kernel: last sysfs file: /block/hdb/size\
+Dec 12 10:13:00 clio kernel: CPU 1 Dec 12 10:13:00 clio kernel: Modules linked in: ipv6 nfs lockd \
+fscache nfs_acl rfcomm l2cap bluetooth sunrpc dm_mirror dm_mod video sbs i2c_ec i2c_core button \
+battery asu\
+s_acpi ac lp parport_pc parport sg tg3 ide_cd cdrom shpchp k8_edac edac_mc ohci_hcd serio_raw \
+floppy ehci_hcd pcspkr raid1 ext3 jbd sata_svw libata sd_mod scsi_mod\
+Dec 12 10:13:00 clio kernel: Pid: 27406, comm: suexec Not tainted 2.6.18-1.2239.fc5 #1\
+Dec 12 10:13:00 clio kernel: RIP: 0010:[<ffffffff80225942>]  [<ffffffff80225942>] __rb_rotate_left\
++0x7/0x5b\
+Dec 12 10:13:00 clio kernel: RSP: 0018:ffff810151397df0  EFLAGS: 00010282\
+Dec 12 10:13:00 clio kernel: RAX: ffff81005a1ded48 RBX: ffff810102505508 RCX: 0000000000000000\
+Dec 12 10:13:00 clio kernel: RDX: 0000000000000000 RSI: ffffffff806de5e0 RDI: ffff810203166088\
+Dec 12 10:13:00 clio kernel: RBP: ffff810203166088 R08: ffff8102031668c8 R09: 0000000000000000\
+Dec 12 10:13:00 clio kernel: R10: 000000005e4ae5f3 R11: ffff810151397c70 R12: ffff810102505508\
+Dec 12 10:13:00 clio kernel: R13: ffff81005a1ded48 R14: ffffffff806de5e0 R15: 0000000000000026\
+Dec 12 10:13:00 clio kernel: FS:  00002aaaaaabb850(0000) GS:ffff810103c3b1c0(0000) knlGS:\
+00000000f7fee8d0\
+Dec 12 10:13:00 clio kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 000000008005003b\
+Dec 12 10:13:00 clio kernel: CR2: 0000000000000010 CR3: 00000000da38b000 CR4: \
+00000000000006e0\
+Dec 12 10:13:00 clio kernel: Process suexec (pid: 27406, threadinfo ffff810151396000, task \
+ffff8101d7cf5080)\
+Dec 12 10:13:00 clio kernel: Stack:  ffffffff80212aff ffff81005a1ded40 ffff810102505518 \
+0000000000000000\
+Dec 12 10:13:00 clio kernel:  ffff81005a1ded40 ffff810151397eb8 ffffffff80312779 \
+0000000046f0a978\
+Dec 12 10:13:00 clio kernel:  0000000000000000 1f3f0000aa8adfff ffff8101d7cf5080 000003eaffffffff\
+Dec 12 10:13:00 clio kernel: Call Trace:\
+Dec 12 10:13:00 clio kernel:  [<ffffffff80212aff>] rb_insert_color+0xb2/0xda\
+Dec 12 10:13:00 clio kernel:  [<ffffffff80312779>] key_alloc+0x2b0/0x384\
+Dec 12 10:13:00 clio kernel:  [<ffffffff8031377b>] keyring_alloc+0x29/0x5f\
+Dec 12 10:13:00 clio kernel:  [<ffffffff80314ea2>] alloc_uid_keyring+0x3d/0xa6\
+Dec 12 10:13:00 clio kernel:  [<ffffffff80293a5c>] alloc_uid+0xa9/0x16f\
+Dec 12 10:13:00 clio kernel:  [<ffffffff802963d6>] set_user+0xf/0x97\
+Dec 12 10:13:00 clio kernel:  [<ffffffff80297b5c>] sys_setuid+0x7d/0x154\
+Dec 12 10:13:00 clio kernel:  [<ffffffff8025c00e>] system_call+0x7e/0x83\
+Dec 12 10:13:00 clio kernel: DWARF2 unwinder stuck at system_call+0x7e/0x83\
+Dec 12 10:13:00 clio kernel: Leftover inexact backtrace:\
+Dec 12 10:13:00 clio kernel: Dec 12 10:13:00 clio kernel: Dec 12 10:13:00 clio kernel: Code: 48 8b 51 \
+10 49 83 e0 fc 48 85 d2 48 89 57 08 74 0c 48 8b 02 Dec 12 10:13:00 clio kernel: RIP  \
+[<ffffffff80225942>] __rb_rotate_left+0x7/0x5b\
+Dec 12 10:13:00 clio kernel:  RSP <ffff810151397df0>\
+Dec 12 10:13:00 clio kernel: CR2: 0000000000000010\
+Dec 12 10:13:01 clio kernel:  <0>BUG: spinlock cpu recursion on CPU#1, suexec/27413 (Not tainted)\
+Dec 12 10:13:01 clio kernel:  lock: ffffffff80566200, .magic: dead4ead, .owner: hazel.cgi/\
+27408, .owner_cpu: 1\
+Dec 12 10:13:01 clio kernel: Dec 12 10:13:01 clio kernel: Call Trace:\
+Dec 12 10:13:01 clio kernel:  [<ffffffff802691d9>] show_trace+0x34/0x47\
+Dec 12 10:13:01 clio kernel:  [<ffffffff802691fe>] dump_stack+0x12/0x17\
+Dec 12 10:13:01 clio kernel:  [<ffffffff80207749>] _raw_spin_lock+0x5d/0xf3\
+Dec 12 10:13:01 clio kernel:  [<ffffffff803126dd>] key_alloc+0x214/0x384\
+Dec 12 10:13:01 clio kernel:  [<ffffffff8031377b>] keyring_alloc+0x29/0x5f\
+Dec 12 10:13:01 clio kernel:  [<ffffffff80314ea2>] alloc_uid_keyring+0x3d/0xa6\
+Dec 12 10:13:01 clio kernel:  [<ffffffff80293a5c>] alloc_uid+0xa9/0x16f\
+Dec 12 10:13:01 clio kernel:  [<ffffffff802963d6>] set_user+0xf/0x97\
+Dec 12 10:13:01 clio kernel:  [<ffffffff80297b5c>] sys_setuid+0x7d/0x154\
+Dec 12 10:13:01 clio kernel:  [<ffffffff8025c00e>] system_call+0x7e/0x83\
+Dec 12 10:13:01 clio kernel: DWARF2 unwinder stuck at system_call+0x7e/0x83\
+Dec 12 10:13:01 clio kernel: Leftover inexact backtrace:\
+Dec 12 10:13:01 clio kernel: }

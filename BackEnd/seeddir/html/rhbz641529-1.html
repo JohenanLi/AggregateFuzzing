@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>C_RFC3315_18_1_1_RetransReq.seq - Check MRC of Request</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@ipv6tester.nay.redhat.com" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+<!--
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#target">TARGET</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#initialization">INITIALIZATION</a></li>
+	<li><a href="#test_procedure">TEST PROCEDURE</a></li>
+	<li><a href="#judgement">JUDGEMENT</a></li>
+	<li><a href="#termination">TERMINATION</a></li>
+	<li><a href="#reference">REFERENCE</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+</ul>
+
+-->
+
+
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<pre>
+  C_RFC3315_18_1_1_RetransReq.seq - Check MRC of Request</pre>
+<p>
+</p>
+<hr />
+<h1><a name="target">TARGET</a></h1>
+<pre>
+  Client</pre>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<PRE>
+  <A HREF="./C_RFC3315_18_1_1_RetransReq.seq"> C_RFC3315_18_1_1_RetransReq.seq</A> [-tooloption...] <BR>  -pkt  <A HREF="./C_RFC3315_18_1_1_RetransReq.def"> C_RFC3315_18_1_1_RetransReq.def</A> <BR>  -tooloption : v6eval tool option
+<BR>
+  See Also <A HREF="./DHCPv6.def"> DHCPv6.def </A> 
+</PRE><p>
+</p>
+<hr />
+<h1><a name="initialization">INITIALIZATION</a></h1>
+<ul>
+  <li><STRONG>Network Topology</STRONG></li> 
+   <PRE>
+          NUT(Client)
+          |           
+          |                        
+Link0   --+--------+------------------------ 3ffe:501:ffff:100::/64
+                   |
+                   |          
+                   TN(Server) 
+   </PRE>
+  </ul>
+  <ul>  
+  <li><STRONG>Verification Points</STRONG></li><br>
+   <PRE>
+   The client transmits the message using the following parameters:<BR>
+     IRT   REQ_TIMEOUT <BR>
+     MRT   REQ_MAX_RT <BR>
+     MRC   REQ_MAX_RC <BR>
+     MRD   0 <BR>
+   The client retransmits Request for MRC times.  
+  </PRE>
+  </ul>
+  <ul> 
+  <li><STRONG>Configurations</STRONG></li><br>
+   <BR>
+    <TABLE BORDER="1">
+    <TR>
+    <TD><TT>Device Name</TT></TD>
+    <TD><TT>Device Type</TT></TD>
+    <TD><TT>Interface</TT></TD>
+    <TD><TT>Assigned Prefix</TT></TD>
+    <TD><TT>Link Local Addr</TT></TD>
+    <TD><TT>MAC Addr</TT></TD>
+    </TR>
+    <TR>
+    <TD><TT>Client</TT></TD>
+    <TD><TT>NUT</TT></TD>
+    <TD><TT>Link0</TT></TD>
+    <TD><TT>3ffe:501:ffff:100::/64</TT></TD>
+    <TD><TT>NUT's Linklocal address</TT></TD>
+    <TD><TT>NUT's MAC address</TT></TD>
+    </TR>
+    <TR>
+    <TD><TT>Server</TT></TD>
+    <TD><TT>TN</TT></TD>
+    <TD><TT>Link0</TT></TD>
+    <TD><TT>3ffe:501:ffff:100::/64</TT></TD>
+    <TD><TT>fe80::200:ff:fe00:a1a1</TT></TD>
+    <TD><TT>00:00:00:00:a1:a1</TT></TD>
+    </TR>
+    </TABLE>
+  </ul><p>
+</p>
+<hr />
+<h1><a name="test_procedure">TEST PROCEDURE</a></h1>
+<PRE>
+<BR>
+       NUT      TN
+        |       |
+        |       |Initialize NUT(as a DHCPv6 client)
+        |       |
+        | ----> |<B>Solicit</B> 
+        | <---- |<B>Advertise</B> 
+        | ----> |<B>Request</B> 
+        |       |
+        .       .Retransmit REQ_MAX_RC times.
+        |       |
+        | ----> |<B>Request</B> (4*)
+        |       |
+<BR>
+</PRE><p>
+</p>
+<hr />
+<h1><a name="judgement">JUDGEMENT</a></h1>
+<PRE>
+<BR>  
+  (4*)PASS: NUT does not retransmit Request message. 
+</PRE><p>
+</p>
+<hr />
+<h1><a name="termination">TERMINATION</a></h1>
+<PRE>
+  N/A
+</PRE><p>
+</p>
+<hr />
+<h1><a name="reference">REFERENCE</a></h1>
+<PRE>
+  Also see RFC3315
+<BR>
+  18.1.1. Creation and Transmission of Request Messages
+<BR>
+</PRE><p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<PRE>
+<BR>
+  perldoc  V6evalTool
+<BR>
+</PRE>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editor embedding test page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      iframe {
+        width: 99%;
+        height: 400px;
+      }
+      table {
+        border: 2px solid darkslateblue;
+        border-collapse: collapse;
+      }
+      td,th {
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <table border="1" width="100%">
+        <thead>
+          <tr>
+            <th>Col1</th>
+            <th>Col2</th>
+            <th>Col3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <iframe src="http://localhost:8080/business-central/?standalone&amp;path=git://master@uf-playground/mortgages/src/main/java/org/mortgages/Applicant.java"></iframe>
+            </td>
+            <td>
+              <iframe src="http://localhost:8080/business-central/?standalone&amp;path=git://master@uf-playground/mortgages/src/main/resources/org/mortgages/credit%2520ratings.enumeration"></iframe>
+            </td>
+            <td>
+              <iframe src="http://localhost:8080/business-central/?standalone&amp;path=git://master@uf-playground/mortgages/src/main/resources/org/mortgages/ApplicantDsl.dsl"></iframe>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <iframe src="http://localhost:8080/business-central/?standalone&amp;path=git://master@uf-playground/mortgages/src/main/resources/org/mortgages/Dummy%2520rule.drl"></iframe>
+            </td>
+            <td>
+              <iframe src="http://localhost:8080/business-central/?standalone&amp;path=git://master@uf-playground/mortgages/src/main/resources/org/mortgages/Underage.rdrl"></iframe>
+            </td>
+            <td>
+              <iframe src="http://localhost:8080/business-central/?standalone&amp;path=git://master@uf-playground/mortgages/src/test/resources/org/mortgages/NINJAs.scenario"></iframe>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

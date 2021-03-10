@@ -1,0 +1,25 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>WebYaST 11</title><link rel="stylesheet" href="susebooks.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.75.2"><link rel="home" href="index.html" title="WebYaST Vendor Guide"><link rel="up" href="cha.webyast.vendor.options.html" title="Chapter 5. Configuring WebYaST Modules"><link rel="prev" href="ch05s05.html" title="5.5. Configuring the Status Module"><link rel="next" href="cha.webyast.info.html" title="Chapter 6. Additional Developer Information"><link rel="copyright" href="ln-id305636.html" title="Legal Notice"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header" border="0" class="bctable"><tr><td width="80%"><div class="breadcrumbs"><p><a href="index.html">WebYaST Vendor Guide</a><span class="breadcrumbs-sep"> &gt; </span><a href="cha.webyast.vendor.options.html">Configuring WebYaST Modules</a><span class="breadcrumbs-sep"> &gt; </span><strong><a accesskey="p" title="5.5. Configuring the Status Module" href="ch05s05.html"><span>&#9664;</span></a>  <a accesskey="n" title="Chapter 6. Additional Developer Information" href="cha.webyast.info.html"><span>&#9654;</span></a></strong></p></div></td><td width="20%"><div class="bgnavi"><p class="title">Quick Navigation:</p><p class="bg-part"></p><p class="bg-chapter"></p></div></td></tr></table></div><div class="sect1" title="5.6. Custom Link in the Control Panel"><div class="titlepage"><div><div><h1 class="title"><a name="id311682"></a>Custom Link in the Control Panel</h1></div></div></div><p>
+  You can create an icon linking to an arbitrary site (such as your own web
+  interface) in the WebYaST control panel Configuration area.
+ </p><p>
+  To create such a link, create a file named <code class="filename">shortcuts.yml</code>
+  in the top directory of any WebYaST plugin or YaST2 Webclient root directory.
+  The <code class="filename">shortcuts.yml</code> should have the following structure:
+ </p><pre class="screen">
+main:
+  icon: '<em class="replaceable"><code>/icons/custom-icon.png</code></em>' <a name="co.webyast.vendor.link.icon"></a><img src="callouts/1.png" alt="1" border="0">
+  url: <em class="replaceable"><code>http://example.com</code></em> <a name="co.webyast.vendor.link.url"></a><img src="callouts/2.png" alt="2" border="0">
+  groups: [ <em class="replaceable"><code>System</code></em> ] <a name="co.webyast.vendor.link.groups"></a><img src="callouts/3.png" alt="3" border="0">
+  title: <em class="replaceable"><code>Title</code></em> <a name="co.webyast.vendor.link.title"></a><img src="callouts/4.png" alt="4" border="0">
+ </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co.webyast.vendor.link.icon"><img src="callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>
+     The path to an icon file in a public directory. First, the module public
+     directory (<code class="filename">/srv/www/yast/vendor/plugins/<em class="replaceable"><code>MODULE</code></em>/public/</code>)
+     is used. If the icon is not found there, the common WebYaST
+     <code class="filename">/srv/www/yast/public/</code> directory is used.
+    </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co.webyast.vendor.link.url"><img src="callouts/2.png" alt="2" border="0"></a> </p></td><td valign="top" align="left"><p>
+     The URL of the link.
+    </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co.webyast.vendor.link.groups"><img src="callouts/3.png" alt="3" border="0"></a> </p></td><td valign="top" align="left"><p>
+     The module group the link should belong to.
+    </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co.webyast.vendor.link.title"><img src="callouts/4.png" alt="4" border="0"></a> </p></td><td valign="top" align="left"><p>
+     The title displayed under the icon.
+    </p></td></tr></table></div></div><div class="userfootercontent"><!--htdig_noindex--><hr><center>WebYaST WebYaST Vendor Guide 11</center><!--/htdig_noindex--></div><div class="navfooter"><table width="100%" summary="Navigation footer" border="0" class="bctable"><tr><td width="80%"><div class="breadcrumbs"><p><a href="index.html">WebYaST Vendor Guide</a><span class="breadcrumbs-sep"> &gt; </span><a href="cha.webyast.vendor.options.html">Configuring WebYaST Modules</a><span class="breadcrumbs-sep"> &gt; </span><strong><a accesskey="p" title="5.5. Configuring the Status Module" href="ch05s05.html"><span>&#9664;</span></a>  <a accesskey="n" title="Chapter 6. Additional Developer Information" href="cha.webyast.info.html"><span>&#9654;</span></a></strong></p></div></td><td width="20%"><div class="bgnavi"><p class="title">Quick Navigation:</p><p class="bg-part"></p><p class="bg-chapter"></p></div></td></tr></table></div></body></html>

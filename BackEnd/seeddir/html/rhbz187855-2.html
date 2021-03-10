@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Ligature Test</title></head>
+<body>
+<table border="1" cellpadding="10">
+<tbody><tr>
+<th>Monospace</th>
+<th>DejaVu Sans,<br/>left aligned</th>
+<th>DejaVu Sans,<br/>justified</th>
+</tr>
+<tr>
+<td style="font-family: monospace; font-size: 150%;">
+<p>մնասդֆ<br/>
+մասդֆ</p>
+<p>մեասդֆ<br/>
+մասդֆ</p>
+<p>միասդֆ<br/>
+մասդֆ</p>
+<p>վնասդֆ<br/>
+վասդֆ</p>
+<p>մխասդֆ<br/>
+մասդֆ</p>
+</td>
+<td style="font-family: 'DejaVu Sans'; font-size: 150%; text-align: left;">
+<p>մնասդֆ<br/>
+մասդֆ</p>
+<p>մեասդֆ<br/>
+մասդֆ</p>
+<p>միասդֆ<br/>
+մասդֆ</p>
+<p>վնասդֆ<br/>
+վասդֆ</p>
+<p>մխասդֆ<br/>
+մասդֆ</p>
+</td>
+<td style="font-family: 'DejaVu Sans'; font-size: 150%; text-align: justify;">
+<p>մնասդֆ<br/>
+մասդֆ</p>
+<p>մեասդֆ<br/>
+մասդֆ</p>
+<p>միասդֆ<br/>
+մասդֆ</p>
+<p>վնասդֆ<br/>
+վասդֆ</p>
+<p>մխասդֆ<br/>
+մասդֆ</p>
+</td>
+</tr>
+</tbody></table>
+<p>Note: if the bug occurs, then the two lines in each paragraph
+will be of the same length and the first line will contain overlapping
+text.  If it does not occur, then the lines will be of different
+lengths with no rendering bugs.</p>
+</body></html>

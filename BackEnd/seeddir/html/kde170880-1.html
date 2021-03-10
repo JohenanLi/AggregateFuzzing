@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Test case for bug 170880</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+  div.trimmed .hentry {
+    background: #f5f5f5;
+  }
+</style>
+<script type="text/javascript" src="http://blogsport.de/plugins/k2_final/jquery.js.php"></script>
+<script type="text/javascript" src="http://blogsport.de/plugins/jquery-lightbox-balupton-edition/js/jquery.lightbox.packed.js.php"></script>
+
+<script type="text/javascript">
+  if (typeof K2 == 'undefined') var K2 = {};
+
+  function smartPosition(obj) {
+    jQuery('body').addClass('smartposition');
+  };
+
+  function RollingArchives(url, pagetext) {};
+
+  jQuery(window).scroll(function(){
+    if (typeof K2.RollingArchives != 'undefined' && K2.RollingArchives.active) {
+      smartPosition('#dynamic-content');
+   }
+  });
+
+  jQuery(document).ready(function(){
+    K2.RollingArchives = new RollingArchives("", "Seite");
+  });
+
+  jQuery(document).ready(function() { K2.RollingArchives.active = true; });
+</script>
+</head>
+<body>
+<marquee>
+</marquee>
+</body>
+</html>

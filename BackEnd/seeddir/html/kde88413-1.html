@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<style type="text/css">
+			#header			{ border: solid 1px purple;  }
+			#main			{  }
+			#leftcolumn		{ border: solid 1px red; float: left; width: 150px; }
+			#rightcolumn		{ border: solid 1px blue; float: right; width: 150px; }
+			#maincontent		{ border: solid 1px green; margin: 0px 150px 0px 150px; }
+			#footer			{ border: solid 1px purple; }
+
+			.floats			{ border: solid 1px brown; margin-left: auto; margin-right: auto; width: 92%; }
+			.floatedleft		{ border: solid 1px black; float: left; font-size: x-large; text-align: center; width: 32%; }
+			.clear			{ clear: both; }
+		</style>
+		<title>Konqueror Test Case</title>
+	</head>
+	<body>
+		<div id="header">This is the header</div>
+		</div>
+		<div id="main">
+			<div id="leftcolumn">
+				<p>This is the left column. It is floated left. It is the tallest floated element.</p>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+			</div>
+			<div id="rightcolumn">
+				<p>This is the right column. It is floated right.</p>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+			</div>
+			<div id="maincontent">
+				<div>This is some text. Right below this there are some DIVs, floated left</div> 
+				<div class="floats">
+					<div class="floatedleft">ONE</div>
+					<div class="floatedleft">TWO</div>
+					<div class="floatedleft">THREE</div>
+					<div class="clear">This is the clearing DIV. It should be just below the left-floated DIVs, without any gap between them. In no case should it be placed further down.</div>
+				</div>
+				<div>This is some more text.</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="footer">This is the footer</div>
+	</body>
+</html>

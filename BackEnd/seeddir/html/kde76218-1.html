@@ -1,0 +1,140 @@
+<HTML><HEAD>
+<TITLE>khtml bug or nor ... </TITLE>
+<STYLE>
+BODY {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: white;
+}
+PRE {
+  margin-left:2ex;
+  margin-top:1.5ex;
+  margin-bottom:2ex;
+}
+DIV.head1 {
+  font-family: Helvetica, Arial, sans-serif; font-size:10pt;
+  color:white;
+  background-color:#339933;
+  padding:4px;
+  font-weight:bold;
+}
+DIV.head2 {
+  font-family: Helvetica, Arial, sans-serif; font-size:10pt;
+  color:white;
+  background-color:silver;
+  padding:4px;
+  font-weight:bold;
+}
+SPAN.loghead { text-decoration:underline }
+SPAN.hi { background-color:#ffff66 }
+SPAN.overdue { background-color:pink }
+TABLE { font-family: Helvetica, Arial, sans-serif }
+TABLE.body, DIV.body { font-size:10pt }
+TABLE.links { font-size:10pt }
+TR.tablehead { background-color:yellow }
+A { text-decoration:none }
+A.body { text-decoration:underline }
+A:hover { text-decoration:underline }
+@media print {
+ SPAN.noprint { display: none }
+}
+</STYLE>
+<META name=robots content="nofollow,noindex">
+<LINK REL="SHORTCUT ICON" HREF="/favicon.ico">
+</HEAD><BODY>
+<SPAN class=noprint>
+<p></p>
+<tt><br>Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(using KDE KDE 3.2.0)
+<br>
+Installed from:&nbsp;&nbsp;&nbsp;&nbsp;SuSE RPMs
+<br>
+OS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux
+<br>
+
+<br>
+Using konqueror as usual just browsing and things like that.
+<br>
+I decide to print the page.&nbsp;&nbsp;Select the print button and the printer
+<br>
+widget pops up.&nbsp;&nbsp;Select 'print', at that moment a warning/error
+<br>
+window pops up stating that the application/x-zerosize is not
+<br>
+supported.
+<br>
+
+<br>
+When the html source is altered it is possible to have the document
+<br>
+printed from konqueror.&nbsp;&nbsp;The html code to be removed is:
+<br>
+
+<br>
+-@media print {
+<br>
+- SPAN.noprint { display: none }
+<br>
+-}
+<br>
+
+<br></tt>
+  <br>
+    <i>------- Additional Comment
+      <a name="c1" href="#c1">#1</a> From 
+      <a href="mailto:richard.bos@xs4all.nl">Richard Bos</a>
+      2004-02-17 10:22 -------
+    </i>
+    
+<tt><br>For completion: an example of the code that is used with the noprint class:
+<br>
+
+<br>
+&lt;SPAN class=noprint&gt;[More]&lt;/SPAN&gt;
+<br>
+
+<br></tt>
+  <br>
+    <i>------- Additional Comment
+      <a name="c2" href="#c2">#2</a> From 
+      <a href="mailto:maksim@kde.org">Maksim Orlovich</a>
+      2005-01-06 00:10 -------
+    </i>
+    
+<tt><br>That's what the webpage's CSS specifies.
+<br>
+
+<br></tt>
+  <br>
+    <i>------- Additional Comment
+      <a name="c3" href="#c3">#3</a> From 
+      <a href="mailto:richard.bos@xs4all.nl">Richard Bos</a>
+      2005-01-06 20:29 -------
+    </i>
+    
+<tt><br>Maksim,
+<br>
+
+<br>
+that is not what the CSS specifies.&nbsp;&nbsp;The CSS specifies that the
+<br>
+text in the &lt;SPAN class=noprint&gt; tag is not printed, like links
+<br>
+that can not be selected from paper.&nbsp;&nbsp;Please note that any other
+<br>
+browser I use can deal with.&nbsp;&nbsp;Konqueror is the only one that does
+<br>
+not print the page at all.
+<br>
+
+<br></tt>
+  <br>
+    <i>------- Additional Comment
+      <a name="c4" href="#c4">#4</a> From 
+      <a href="mailto:maksim@kde.org">Maksim Orlovich</a>
+      2005-01-06 20:58 -------
+    </i>
+    
+<tt><br>I stand corrected. Do you have a sample page/testcase where something inappropriate happens?</tt>
+<br>
+</SPAN>
+<P>This is text-2 before &lt;span class=noprint></P>
+</BODY></HTML>

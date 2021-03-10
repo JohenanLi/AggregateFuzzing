@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+<title></title>
+<style type="text/css">
+body {
+	background: white url(http://www.kde.org/img/full_logo.jpg) bottom right no-repeat fixed;
+	border: 1px solid blue;
+}
+h1 {
+	border: 1px solid red;
+}
+p {
+	border: 1px solid yellow;
+}
+h1 {
+	background: white url(http://www.kde.org/img/full_logo.jpg) bottom right no-repeat fixed;
+}
+</style>
+
+</head>
+<body>
+<h1>The background appears in this header.</h1>
+<p>
+According to the css specification, a fixed background image of any box should be fixed with respect to the canvas. CSS1 paragraph 5.3.5:</p>
+<blockquote>
+If a background image is specified, the value of 'background-attachment' determines if it is fixed with regard to the canvas or if it scrolls along with the content.
+</blockquote><p>
+This is correct in this page, where this value is set to 'fixed'. The problem is with the background-repeat property. This is set to 'no-repeat' here. This normally works when it is specified for the &lt;body> element, but not if it is overridden in a subelement, such as &lt;h1> in this page. 
+Only for a very small canvas size, should the image be visible in this page. However it is visible for all canvas sizes.
+</p><p>Mozilla does handle this correctly.
+</p>
+</body>
+</html>

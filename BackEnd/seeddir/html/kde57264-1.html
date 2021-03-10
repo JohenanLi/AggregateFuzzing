@@ -1,0 +1,33 @@
+<html>
+<body>
+<script language="JavaScript" type="text/javascript">
+
+function showDesc(el,dname) {
+    var div = document.getElementById('describe');
+    var divo=document.getElementById(dname);
+    div.innerHTML=divo.innerHTML;
+    div.style.display="";
+}
+</script>
+<table>
+	<tr>
+		<td onmouseover="showDesc(this,'desc_mailserver');">Mouse over this</td>
+		<td valign="top">
+			<div id="describe" style=
+				"position:absolute; ;width:250px; height:240px; z-index:1;display:none;">
+			</div>
+			<table>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<div id="desc_mailserver" style="display:none">
+    <table>
+    <tr>
+        <td>
+        Text
+        </td>
+    </tr>
+    </table>
+</div>

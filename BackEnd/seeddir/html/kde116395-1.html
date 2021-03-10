@@ -1,0 +1,146 @@
+<style>
+ .c { margin: 10px; width: 350px; min-height: 50px; border: 1px solid red }
+ .d { border: 1px solid blue; width: 200px; height: 50px; overflow: scroll }
+</style>
+
+<h2>align=left/right vs. CSS float</h2>
+
+<div style="width: 1150px">
+<div style="float: left; margin: 20px">
+
+<h3>Tables using 'align' attribute</h3>
+1)<div class=c>
+ <table align=right width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+</div>
+
+<br clear=all>
+
+2)<div class=c>
+ <table align=right width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+  <table align=right width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+</div>
+
+<br clear=all>
+
+3)<div class=c>
+<table align=left width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+ <div class=d></div> 
+</div>
+
+
+<br clear=all>
+
+4)<div class=c>
+ <table align=left width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+  <table align=left width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+ <div class=d></div> 
+</div>
+
+</div>
+
+<!-- xxx  -->
+
+<div style="float: right; margin: 20px">
+<h3>Tables using CSS float property</h3>
+1)<div class=c>
+ <table style="float: right" width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+</div>
+
+<br clear=all>
+
+2)<div class=c>
+ <table style="float: right" width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+  <table style="float: right" width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+</div>
+
+<br clear=all>
+
+3)<div class=c>
+ <table style="float: left" width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+ <div class=d></div> 
+</div>
+
+<br clear=all>
+
+4)<div class=c>
+ <table style="float: left" width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+  <table align=left width=200 border=1>
+  <tr><td>lorem ipsum dolor sit amet</td>
+ </table>
+ <div class=d></div> 
+</div>
+
+</div>
+
+<br clear=all>
+
+<hr>
+<h3>Only closest floating object is considered, thus:</h3>
+<h4>for left</h4>
+<p>align/align/faf: shouldn't break</p>
+<div style="width:300px; border: blue solid 1px">
+  <table align="left" border=1 width=100><tr><td>lorem</table>
+  <table align="left" border=1 width=100><tr><td>ipsum</table>
+  <div style="overflow:scroll; width: 150px">lorem</div>
+</div>
+<br clear=all>
+<p>float/align/faf: shouldn't break</p>
+<div style="width:300px; border: blue solid 1px">
+  <table style=float:left border=1 width=100><tr><td>lorem</table>
+  <table align="left" border=1 width=100><tr><td>ipsum</table>
+  <div style="overflow:scroll; width: 150px">lorem</div>
+</div>
+<br clear=all>
+<p>align/float/faf: should break</p>
+<div style="width:300px; border: blue solid 1px">
+  <table align="left" border=1 width=100><tr><td>lorem</table>
+  <table style=float:left border=1 width=100><tr><td>ipsum</table>
+  <div style="overflow:scroll; width: 150px">lorem</div>
+</div>
+<br clear=all>
+
+<h4>for right</h4>
+
+<p>faf/align/align: shouldn't break</p>
+<div style="width:300px; border: blue solid 1px">
+  <table align="right" border=1 width=100><tr><td>lorem</table>
+  <table align="right" border=1 width=100><tr><td>ipsum</table>
+  <div style="overflow:scroll; width: 150px">lorem</div>
+</div>
+<br clear=all>
+<p>faf/align/float: shouldn't break</p>
+<div style="width:300px; border: blue solid 1px">
+  <table style=float:right border=1 width=100><tr><td>lorem</table>
+  <table align="right" border=1 width=100><tr><td>ipsum</table>
+  <div style="overflow:scroll; width: 150px">lorem</div>
+</div>
+<br clear=all>
+<p>faf/float/align: should break</p>
+<div style="width:300px; border: blue solid 1px">
+  <table align="right" border=1 width=100><tr><td>lorem</table>
+  <table style=float:right border=1 width=100><tr><td>ipsum</table>
+  <div style="overflow:scroll; width: 150px">lorem</div>
+</div>
+<br clear=all>

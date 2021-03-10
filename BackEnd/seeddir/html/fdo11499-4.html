@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>mplayer-gl2-log</title>
+</head>
+<body>
+VO: [gl] 592x256 =&gt; 592x256 Planar YV12 <br>
+VO: Description: X11 (OpenGL)<br>
+VO: Author: Arpad Gereoffy &lt;arpi@esp-team.scene.hu&gt;<br>
+libGL warning: 3D driver claims to not support visual 0x4b<br>
+OpenGL extensions string:<br>
+GL_ARB_fragment_program GL_ARB_imaging GL_ARB_multisample
+GL_ARB_multitexture GL_ARB_texture_border_clamp
+GL_ARB_texture_compression GL_ARB_texture_cube_map
+GL_ARB_texture_env_add GL_ARB_texture_env_combine
+GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3
+GL_MESAX_texture_float GL_ARB_texture_mirrored_repeat
+GL_ARB_texture_rectangle GL_ARB_transpose_matrix
+GL_ARB_vertex_buffer_object GL_ARB_vertex_program GL_ARB_window_pos
+GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color
+GL_EXT_blend_equation_separate GL_EXT_blend_func_separate
+GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_clip_volume_hint
+GL_EXT_compiled_vertex_array GL_EXT_convolution GL_EXT_copy_texture
+GL_EXT_draw_range_elements GL_EXT_gpu_program_parameters
+GL_EXT_histogram GL_EXT_packed_pixels GL_EXT_polygon_offset
+GL_EXT_rescale_normal GL_EXT_secondary_color
+GL_EXT_separate_specular_color GL_EXT_stencil_two_side
+GL_EXT_stencil_wrap GL_EXT_subtexture GL_EXT_texture GL_EXT_texture3D
+GL_EXT_texture_edge_clamp GL_EXT_texture_env_add
+GL_EXT_texture_env_combine GL_EXT_texture_env_dot3
+GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias
+GL_EXT_texture_mirror_clamp GL_EXT_texture_object
+GL_EXT_texture_rectangle GL_EXT_vertex_array GL_APPLE_packed_pixels
+GL_ATI_blend_equation_separate GL_ATI_texture_env_combine3
+GL_ATI_texture_mirror_once GL_IBM_rasterpos_clip
+GL_IBM_texture_mirrored_repeat GL_INGR_blend_func_separate
+GL_MESA_pack_invert GL_MESA_ycbcr_texture GL_MESA_window_pos
+GL_NV_blend_square GL_NV_light_max_exponent GL_NV_texture_rectangle
+GL_NV_texgen_reflection GL_NV_vertex_program GL_OES_read_format
+GL_SGI_color_matrix GL_SGI_color_table GL_SGIS_generate_mipmap
+GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_lod GLX_ARB_get_proc_address GLX_ARB_multisample
+GLX_EXT_import_context GLX_EXT_visual_info GLX_EXT_visual_rating
+GLX_MESA_copy_sub_buffer GLX_MESA_swap_control
+GLX_MESA_swap_frame_usage GLX_OML_swap_method GLX_SGI_make_current_read
+GLX_SGI_swap_control GLX_SGI_video_sync GLX_SGIS_multisample
+GLX_SGIX_fbconfig GLX_SGIX_visual_select_group <br>
+[gl] Creating 1024x256 texture...<br>
+[gl] generated fragment program:<br>
+!!ARBfp1.0<br>
+OPTION ARB_precision_hint_fastest;TEMP coord, coord2, cdelta, parmx,
+parmy, a, b, yuv;TEX yuv.r, fragment.texcoord[0], texture[0], 2D;TEX
+yuv.g, fragment.texcoord[1], texture[1], 2D;TEX yuv.b,
+fragment.texcoord[2], texture[2], 2D;PARAM ycoef = {1.1640, 1.1640,
+1.1640};PARAM ucoef = {0.0000, -0.3910, 2.0180};PARAM vcoef = {1.5960,
+-0.8130, 0.0000};PARAM offsets = {-0.8742, 0.5313, -1.0860};TEMP
+res;MAD res.rgb, yuv.rrrr, ycoef, offsets;MAD res.rgb, yuv.gggg, ucoef,
+res;MAD result.color.rgb, yuv.bbbb, vcoef, res;END<br>
+[gl] Program statistics:<br>
+[gl]&nbsp;&nbsp; instructions: 7/1024<br>
+[gl]&nbsp;&nbsp; native instructions: 7/128<br>
+[gl]&nbsp;&nbsp; temporaries: 9/128<br>
+[gl]&nbsp;&nbsp; native temporaries: 9/32<br>
+[gl]&nbsp;&nbsp; parameters: 4/64<br>
+[gl]&nbsp;&nbsp; native parameters: 4/16<br>
+[gl]&nbsp;&nbsp; attribs: 0/12<br>
+[gl]&nbsp;&nbsp; native attribs: 0/11<br>
+[gl]&nbsp;&nbsp; ALU instructions: 0/48<br>
+[gl]&nbsp;&nbsp; TEX instructions: 0/24<br>
+[gl]&nbsp;&nbsp; TEX indirections: 0/4<br>
+[gl]&nbsp;&nbsp; native ALU instructions: 0/64<br>
+[gl]&nbsp;&nbsp; native TEX instructions: 0/64<br>
+[gl]&nbsp;&nbsp; native TEX indirections: 0/4<br>
+[gl] Resize: 592x256<br>
+*** [vo] Allocating (slices) mp_image_t, 592x256x12bpp YUV planar,
+227328 bytes<br>
+[gl] Resize: 592x256<br>
+XXX initial&nbsp; v_pts=0.000&nbsp; a_pos=96000 (0.500)&nbsp; 1 ??% ??%
+??,?% 0 0 <br>
+*** [vo] Allocating (slices) mp_image_t, 592x256x12bpp YUV planar,
+227328 bytes<br>
+get_path('subfont.ttf') -&gt; '/home/guest/.mplayer/subfont.ttf'<br>
+Unicode font: 255 glyphs.
+</body>
+</html>

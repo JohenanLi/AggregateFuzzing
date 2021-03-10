@@ -1,0 +1,61 @@
+<html><head>
+      <base href="https://bugs.freedesktop.org/" />
+    
+    </head><body>My apologies as it seems I didn&#39;t fully understand the proposed workaround.  I&#39;ll test this out.<br><br><div class="gmail_quote">On July 30, 2017 2:12:23 PM PDT, bugzilla-daemon@freedesktop.org wrote:<blockquote class="gmail_quote" style="margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
+
+    
+      <p>
+        </p><div>
+            <b><a class="bz_bug_link             bz_status_NEW" title="NEW - Gigabyte R9 380 card fails to load, kernel reports bug" href="https://bugs.freedesktop.org/show_bug.cgi?id=101377#c7">Comment # 7</a>
+              on <a class="bz_bug_link             bz_status_NEW" title="NEW - Gigabyte R9 380 card fails to load, kernel reports bug" href="https://bugs.freedesktop.org/show_bug.cgi?id=101377">bug 101377</a>
+              from <span class="vcard"><a class="email" href="mailto:r380bug@safetymail.info" title="r380bug@safetymail.info">r380bug@safetymail.info</a>
+</span></b>
+        <pre>Either you have a different problem than me (unlikely, as we have the exact
+same symptoms), or you misunderstood my workaround. Or my workaround somehow
+doesn't work for you. However, since you talk about actually upgrading the
+firmware to a newer version, I'm guessing you didn't understand the workaround.
+
+For my workaround, I neither upgraded nor downgraded any firmware version.
+However, Linux 4.8 and Linux 4.9 try to load different files for the same
+graphics card. Linux 4.8 loads tonga_smc.bin where as Linux 4.9 loads
+tonga_k_smc.bin. Linux 4.8 fully works for me, including 3D acceleration, Linux
+4.9 runs into the symptoms you described (black screen, fans running full
+speed).
+
+Now, if I replace tonga_k_smc.bin with tonga_smc.bin, then Linux 4.9 _also_
+fully works for me, including 3D acceleration. That's without upgrading or
+downgrading any firmware files. All I did was this:
+
+cp /lib/firmware/amdgpu/tonga_smc.bin /lib/firmware/amdgpu/tonga_k_smc.bin
+
+Here's the md5sum of all my Tonga firmware files:
+fa6590cc9c9c1b2e7c92874fe98460fa  tonga_ce.bin
+16bb427918581c29c2e910b5757a1b5b  tonga_k_smc.bin
+73befe8abbaa7589d4e701ff77291e62  tonga_k_smc.bin.orig
+8ab907852fc93520ad5f0e06dc23298e  tonga_mc.bin
+a0fcc61ba211ab74829219a4e2282654  tonga_me.bin
+f904f1835656036fd83b0440ddc28528  tonga_mec2.bin
+f904f1835656036fd83b0440ddc28528  tonga_mec.bin
+89b0391b91ff7159a7b0670c8aace566  tonga_pfp.bin
+55f0a189959a11f07d4064a9f96adfb4  tonga_rlc.bin
+a61b84ca64068fa6842887a1519ecd4b  tonga_sdma1.bin
+8324b832498cb27c0919647df17968b4  tonga_sdma.bin
+16bb427918581c29c2e910b5757a1b5b  tonga_smc.bin
+fe37ee3d6138cd852215b318cbe65d0a  tonga_uvd.bin
+1a81cffe8a10460b8ca9eaad537e7286  tonga_vce.bin
+
+Note that tonga_k_smc.bin and tonga_smc.bin have the same md5sum on my system,
+because I copied tonga_smc.bin to tonga_k_smc.bin to make Linux 4.9 work.</pre>
+        </div>
+
+
+      <hr />
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You reported the bug.</li>
+      </ul>
+    
+</blockquote></div><br>
+-- <br>
+Sent from a Glade Plug-In.</body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en-US' lang='en-US'>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<title>GParted Details</title>
+</head>
+<body>
+<p>GParted 0.23.0 --enable-libparted-dmraid --enable-online-resize</p>
+<p>Libparted 3.2</p>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<b>Shrink /dev/sda4 from 908.31 GiB to 810.66 GiB</b>&nbsp;&nbsp;00:00:01&nbsp;&nbsp;&nbsp;&nbsp;( ERROR )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+calibrate /dev/sda4&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>path: /dev/sda4 (partition)<br />start: 1615872<br />end: 1906485504<br />size: 1904869633 (908.31 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table border='0'>
+<tr>
+<td colspan='2'>
+check file system on /dev/sda4 for errors and (if possible) fix them&nbsp;&nbsp;00:00:01&nbsp;&nbsp;&nbsp;&nbsp;( ERROR )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<b><i>ntfsresize -i -f -v /dev/sda4</i></b>
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i>ntfsresize v2015.3.14 (libntfs-3g)<br />ERROR(2): Failed to check &apos;/dev/sda4&apos; mount state: No such file or directory<br />Probably /etc/mtab is missing. It&apos;s too risky to continue. You might try<br />an another Linux distro.<br /></i>
+</td>
+</tr>
+</table>
+<table border='0'>
+<tr>
+<td colspan='2'>
+<i></i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p>========================================</p>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://dev71.qa.atl2.redhat.com:7080/" />
+<title>rhq-x</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">rhq-x</td></tr>
+</thead><tbody>
+<tr>
+	<td>store</td>
+	<td>/tmp/mylogfile1</td>
+	<td>logfile1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>/tmp/mylogfile2</td>
+	<td>logfile2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/Login.do</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_username</td>
+	<td>rhqadmin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_password</td>
+	<td>rhqadmin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Login']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Browse Resources</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(text(),'Servers')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(text(),'RHQ Server,&nbsp;&nbsp;JBossAS 4.2.1.GA default (0.0.0.0:2099)')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[contains(@src,'nventory')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>viewConnectionPropertiesForm:j_id358</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[.='Add New']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@type='text']</td>
+	<td>${logfile1}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@type='radio' and following-sibling::label[normalize-space(.)='Yes']]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='OK']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[.='Add New']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@type='text']</td>
+	<td>${logfile2}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@type='radio' and following-sibling::label[normalize-space(.)='Yes']]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='OK']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='OK']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>viewConnectionPropertiesForm:j_id358</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tr[td[starts-with(normalize-space(.),'${logfile1}')]]//a[.='Delete']/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tr[td[starts-with(normalize-space(.),'${logfile2}')]]//a[.='Edit']/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='OK']</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

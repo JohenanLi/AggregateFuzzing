@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" styles="unlocked" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="9" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.0" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="0.99.2" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-US; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="dc.format">application/x-abiword</m>
+<m key="abiword.generator">AbiWord</m>
+</metadata>
+<history version="9" edit-time="34936" last-saved="1133947315" uid="9122c16e-66b1-11da-9cc9-91778a07410e">
+<version id="3" started="1133460726" uid="9b253382-6296-11da-8183-e32cfc15bf07" auto="0" top-xid="2"/>
+<version id="4" started="1133461091" uid="d47b5274-6296-11da-964b-9bc06838e505" auto="0" top-xid="3"/>
+<version id="5" started="1133693210" uid="469298ea-64b3-11da-964b-9bc06838e505" auto="0" top-xid="3"/>
+<version id="9" started="1133912677" uid="e9078f30-6702-11da-9cc9-91778a07410e" auto="0" top-xid="3"/>
+</history>
+<styles>
+<s followedby="Current Settings" name="Normal" type="P" props="text-indent:0in; margin-top:0pt; margin-left:0pt; font-stretch:normal; line-height:1.0; text-align:right; bgcolor:transparent; lang:he-IL; dom-dir:rtl; margin-bottom:0pt; font-weight:normal; text-decoration:none; font-variant:normal; color:000000; text-position:normal; font-size:12pt; margin-right:0pt; font-style:normal; widows:2; font-family:ProtocolMF"/>
+<s followedby="Normal" name="Heading 1" basedon="Normal" type="P" props="margin-top:22pt; color:000000; font-size:17pt; margin-bottom:3pt; bgcolor:transparent; font-weight:bold; keep-with-next:1; font-family:ProtocolMF"/>
+<s followedby="Normal" name="Heading 2" basedon="Normal" type="P" props="font-size:14pt; margin-top:22pt; font-weight:bold; margin-bottom:3pt; font-family:Arial; keep-with-next:1"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section xid="1" props="page-margin-footer:0.5in; page-margin-header:0.5in">
+<p style="Normal" xid="2"><c props="font-family:David CLM">שינוי תבנית ברירת המחדל של AbiWord על גנום</c></p>
+<p style="Normal" xid="4" props="text-align:right; dom-dir:rtl"><c props="font-family:David CLM">AbiWord הוא מעבד תמלילים קל משקל עבור לינוקס חלונות ומקינטוש התומך בעברית.  משום מה ברירת המחדל של Abiword ביצירת מסמכים חדשים הוא השימוש בפונט Times New Roman, וסימון הטקסט כטקסט אנגלי.</c></p>
+</section>
+</abiword>

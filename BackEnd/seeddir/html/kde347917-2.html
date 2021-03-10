@@ -1,0 +1,31 @@
+<div dir="ltr">Yes, of course, i had done it, and it&#39;s ok. No problem. thank&#39;s<br></div><div class="gmail_extra"><br><div class="gmail_quote">2015-09-04 14:36 GMT+02:00 Wolfgang Bauer <span dir="ltr">&lt;<a href="mailto:wbauer@tmo.at" target="_blank">wbauer@tmo.at</a>&gt;</span>:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><a href="https://bugs.kde.org/show_bug.cgi?id=347917" rel="noreferrer" target="_blank">https://bugs.kde.org/show_bug.cgi?id=347917</a><br>
+<br>
+Wolfgang Bauer &lt;<a href="mailto:wbauer@tmo.at">wbauer@tmo.at</a>&gt; changed:<br>
+<br>
+           What    |Removed                     |Added<br>
+----------------------------------------------------------------------------<br>
+                 CC|                            |<a href="mailto:wbauer@tmo.at">wbauer@tmo.at</a><br>
+<br>
+--- Comment #38 from Wolfgang Bauer &lt;<a href="mailto:wbauer@tmo.at">wbauer@tmo.at</a>&gt; ---<br>
+(In reply to Doug from comment #35)<br>
+&gt; (In reply to Doug from comment #30)<br>
+&gt; &gt; removing libvlccore7 fixed it.<br>
+&gt;<br>
+&gt; This fix seems to generate Dolphin crashes.  Granting the u+s permission on<br>
+&gt; knotify4 avoids crashes.<br>
+<br>
+The correct &quot;fix&quot; is to uninstall phonon-backend-vlc (and/or<br>
+phonon4qt5-backend-vlc).<br>
+libvlccore7 itself should not harm (because its just unused then), and it<br>
+shouldn&#39;t be reinstalled automatically either.<br>
+<br>
+I don&#39;t see how u+s permissions for knotify (i.e. running knotify as root)<br>
+should help at all with this problem.<br>
+If it helps with *your* problem, you might try to add your user to the &quot;audio&quot;<br>
+group instead.<br>
+<div class="HOEnZb"><div class="h5"><br>
+--<br>
+You are receiving this mail because:<br>
+You are on the CC list for the bug.<br>
+</div></div></blockquote></div><br><br clear="all"><br>-- <br><div class="gmail_signature">herwigswelt powered by google</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="a">
+<math id="b"/>
+
+
+<vectorproduct style="display: table-row; width: 0.1rem;"/><msqrt/>
+<html:script xmlns:html="http://www.w3.org/1999/xhtml">
+function doe() {
+document.getElementById('c').appendChild(document.getElementById('b'));
+document.documentElement.getBoundingClientRect();
+document.getElementById('a').setAttribute('style', 'display: table;margin-left: 1px;-moz-transition-property: margin-left;-moz-transition-duration: 0.1s;');
+}
+setTimeout(doe, 0);
+</html:script>
+<xul:popup id="c" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"/>
+
+</math>

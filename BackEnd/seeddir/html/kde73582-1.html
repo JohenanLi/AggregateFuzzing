@@ -1,0 +1,63 @@
+<head><title>MARC: msg 'KHTML from Today's CVS has problems rendering HP LaserJet Web Pages'</title></head>
+<META NAME="robots" CONTENT="noarchive">
+
+<body bgcolor="#ffffff" text="#000000" link="#500000" alink="#0000ff" vlink="#000070"><script><!--
+function PrivoxyWindowOpen(){return(null);}
+//--></script>
+<pre><b>[<a href="?l=kfm-devel&m=107514468917133&w=2">prev in list</a>] [<font color="#c0c0c0">next in list</font>] [<font color="#c0c0c0">prev in thread</font>] [<font color="#c0c0c0">next in thread</font>] </b>
+<b><font size=+1>
+List:       <a href="?l=kfm-devel&r=1&w=2">kfm-devel</a>
+Subject:    KHTML from Today's CVS has problems rendering HP LaserJet Web Pages
+From:       <a href="?a=99441144200007&r=1&w=2">David Joham &lt;djoham () yahoo ! com&gt;</a>
+Date:       <a href="?l=kfm-devel&r=1&w=2&b=200401">2004-01-27 0:07:12</a>
+Message-ID: <a href="?i=&lt;20040127000712.26564.qmail%20()%20web9902%20!%20mail%20!%20yahoo%20!%20com&gt;">&lt;20040127000712.26564.qmail () web9902 ! mail ! yahoo ! com&gt;</a></font>
+[<a href="?l=kfm-devel&m=107516204106525&q=raw">Download message RAW</a>]</b>
+
+
+Hello all!
+
+In my "other life", when I'm not working with the HierMenus dude, I design and develop web content
+for HP LaserJet Printers. Up until now, KHTML has been able to render the XHTML that I use to draw
+some of my tabs just fine with the exception of some minor z-index issues (described in bug
+43546).
+
+However, KHTML from current CVS has some more serious issues with this tabs. I've attached a quick
+XHTML test case.
+
+The basic problem seems to be that &lt;a&gt; tags with margins seem to be mucking around with the
+relative positioning of &lt;img&gt; elements surrounding them. In the test case, if you remove the
+margin-left and margin-right CSS rules from a.hpSelectedTabLabel, then the tab renders as it
+should - sans the margins of course.
+
+For what it's worth, I think Safari (pre 1.0) had this problem as well. Safari 1.0 did not have
+the problem, but I have no idea what they did to fix it.
+
+
+If someone could look at this, I would greatly appreciate it and perhaps even buy beer/soda/pizza
+for whomever fixes the problem. There are a *lot* of LaserJets out there with this code and I
+don't want their web pages to look goofy in Konqueror - especially since they used to work.
+
+Also, if there is anything else that I can do to help debug the problem, please let me know.
+
+Best regards,
+
+David
+
+__________________________________
+Do you Yahoo!?
+Yahoo! SiteBuilder - Free web site building tool. Try it!
+<a href="http://webhosting.yahoo.com/ps/sb/">http://webhosting.yahoo.com/ps/sb/</a>
+<a href="?l=kfm-devel&m=107516204106525&q=p3"><b>["laserjetTabs.tar.gz" (application/x-tgz)]</b></a>
+
+<b>[<a href="?l=kfm-devel&m=107514468917133&w=2">prev in list</a>] [<font color="#c0c0c0">next in list</font>] [<font color="#c0c0c0">prev in thread</font>] [<font color="#c0c0c0">next in thread</font>] </b>
+</pre>
+  </pre><br><center>
+    <a href="?q=configure">Configure</a> | 
+
+    <a href="http://www.kde.org/">The&nbsp;K&nbsp;Desktop&nbsp;Environment&nbsp;home&nbsp;page</a> |
+    <a href="http://marc.theaimsgroup.com/">Other&nbsp;List&nbsp;Archives&nbsp;at&nbsp;AIMS</a>
+</center>
+<script><!--
+function PrivoxyWindowOpen(a, b, c){return(window.open(a, b, c));}
+//--></script></body>
+</html>

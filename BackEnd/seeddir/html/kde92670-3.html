@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+   #BLUE { background-color: blue; }
+</style>
+</head>
+<body>
+    <div style="display:none">
+      <img src="Normal.gif"/>
+      <img src="Normal.gif"/>
+      <img src="Normal.gif"/>
+    </div>
+    <script>
+      function output(str) {
+       document.body.appendChild(document.createTextNode(str));
+       document.body.appendChild(document.createElement("br"));
+      }
+
+      // Test1: getElementsByTagName. Should be case insensitive since this is served as text/html,
+      // according to the compatibility guidelines.
+      var images = document.getElementsByTagName('IMG'); 
+      output( "IMG: " + images.length + " elements found (3 in Mozilla-1.6 - Mozilla BUG 264609)" );
+      images = document.getElementsByTagName('img'); 
+      output( "img: " + images.length + " elements found" );
+      output( "tagname: " + images[0].tagName );
+
+      // Test2: CSS parser remains case sensitive, since we're in strict mode
+      output(document.compatMode + " (CSS1Compat in Mozilla)" )
+    </script>
+    <div id="blue">No blue background, due to strict mode</div>
+</body>
+</html>

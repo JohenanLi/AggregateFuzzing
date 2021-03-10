@@ -1,0 +1,28 @@
+ID;PCALCOOO32
+C;X1;Y1;K"det_cod"
+C;X2;Y1;K"magasin"
+C;X3;Y1;K"centre"
+C;X4;Y1;K"sema"
+C;X5;Y1;K"valmoy"
+C;X6;Y1;K"promo"
+C;X7;Y1;K"lib_calcul"
+C;X8;Y1;K"facteur"
+C;X1;Y2;K4655
+C;X2;Y2;K"Intermarché Lomme"
+C;X3;Y2;K"LILLE"
+C;X4;Y2;K"28/04/2014"
+C;X5;Y2;K0.6
+C;X6;Y2;K0
+C;X1;Y3;K4655
+C;X2;Y3;K"Intermarché Castelsarrasin"
+C;X3;Y3;K"TOULOUSE"
+C;X4;Y3;K"28/04/2014"
+C;X5;Y3;K0.65
+C;X6;Y3;K0
+C;X1;Y4;K4655
+C;X2;Y4;K"Intermarché Montbéliard"
+C;X3;Y4;K"STRASBOURG"
+C;X4;Y4;K"28/04/2014"
+C;X5;Y4;K0.99
+C;X6;Y4;K0
+E

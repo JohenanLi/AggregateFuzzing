@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<body>
+
+<table border="1">
+<caption><b>PKI Subsystem Default Instance Ports<br>(February 25, 2009)</b></caption>
+<tbody><tr>
+<th bgcolor="#cccccc">PKI Subsystem</th>
+<th bgcolor="#cccccc">agent_secure_port</th>
+
+<th bgcolor="#cccccc">ee_secure_port</th>
+<th bgcolor="#cccccc">admin_secure_port</th>
+<th bgcolor="#cccccc">secure_port</th>
+<th bgcolor="#cccccc">non_clientauth_secure_port</th>
+<th bgcolor="#cccccc">unsecure_port</th>
+<th bgcolor="#cccccc">tomcat_port</th>
+</tr>
+<tr>
+<th>Certificate Authority (CA)</th>
+<td>9443<sup><b>†</b></sup></td>
+
+<td>9444<sup><b>†</b></sup></td>
+<td>9445<sup><b>†</b></sup></td>
+<td>9443<sup><b>††</b></sup></td>
+<td>&nbsp;</td>
+<td>9180</td>
+<td>9701</td>
+</tr>
+<tr>
+<th>Data Recovery Manager (DRM)</th>
+
+<td>10443<sup><b>†</b></sup></td>
+<td>10444<sup><b>†</b></sup></td>
+<td>10445<sup><b>†</b></sup></td>
+<td>10443<sup><b>††</b></sup></td>
+<td>&nbsp;</td>
+<td>10180</td>
+<td>10701</td>
+
+</tr>
+<tr>
+<th>Online Certificate Status Protocol Manager (OCSP)</th>
+<td>11443<sup><b>†</b></sup></td>
+<td>11444<sup><b>†</b></sup></td>
+<td>11445<sup><b>†</b></sup></td>
+<td>11443<sup><b>††</b></sup></td>
+<td>&nbsp;</td>
+
+<td>11180</td>
+<td>11701</td>
+</tr>
+<tr>
+<th>Registration Authority (RA)</th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>12889</td>
+<td>12890</td>
+<td>12888</td>
+
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>Token Key Service (TKS)</th>
+<td>13443<sup><b>†</b></sup></td>
+<td>13444<sup><b>†</b></sup></td>
+<td>13445<sup><b>†</b></sup></td>
+<td>13443<sup><b>††</b></sup></td>
+
+<td>&nbsp;</td>
+<td>13180</td>
+<td>13701</td>
+</tr>
+<tr>
+<th>Token Processing System (TPS)</th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>7889</td>
+<td>7890</td>
+<td>7888</td>
+
+<td>&nbsp;</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<td><sup>†</sup></td>
+<td>-</td>
+<td><b>Defined ONLY if 'secure_port' is left undefined!</b></td>
+</tr>
+<tr>
+<td><sup>††</sup></td>
+<td>-</td>
+
+<td><b>Defined ONLY if 'agent_secure_port', 'ee_secure_port', AND 'admin_secure_port' are left undefined!</b></td>
+</tr>
+</tbody></table>
+
+</body></html>
+

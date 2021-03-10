@@ -1,0 +1,123 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN"><html>
+<head><title>Replication Status</title>
+<style text/css>
+Body, p, table, td, ul, li {color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 12px;}
+A {color:blue; text-decoration: none;}
+BODY {font-family: arial, helvetica, sans-serif}
+P {font-family: arial, helvetica, sans-serif}
+TH {font-weight: bold; font-family: arial, helvetica, sans-serif}
+TD {font-family: arial, helvetica, sans-serif}
+.bgColor1  {background-color: #003366;}
+.bgColor4  {background-color: #cccccc;}
+.bgColor5  {background-color: #999999;}
+.bgColor9  {background-color: #336699;}
+.bgColor13 {background-color: #ffffff;}
+.bgColor16 {background-color: #6699cc;}
+.text8  {color: #0099cc; font-size: 11px; font-weight: bold;}
+.text28 {color: #ffcc33; font-size: 12px; font-weight: bold;}
+.areatitle {font-weight: bold; color: #ffffff; font-family: arial, helvetica, sans-serif}
+.page-title {font-weight: bold; font-size: larger; font-family: arial, helvetica, sans-serif}
+.page-subtitle {font-weight: bold; font-family: arial, helvetica, sans-serif}
+</style></head>
+<body class=bgColor4>
+<table border=0 cellspacing=0 cellpadding=10 width=100% class=bgColor1>
+<tr><td><font class=text8>Mon Jul 26 2010 12:39:32</font></td>
+<td align=center class=page-title><font color=#0099CC>Directory Server Replication Status</font>
+</td><td align=right valign=center width=25%><font class=text8>Version 1.0</font></td></table>
+
+<center><p><font class=page-subtitle color=#0099cc>Time Lag Legend:</font><p>
+<table cellpadding=6 cols=3 width=40%>
+<tr>
+
+<td bgcolor=#ccffcc><center>within 5 min</center></td>
+
+<td bgcolor=#FFFFCC><center>within 60 min</center></td>
+
+<td bgcolor=#FFCCCC><center>over 60 min</center></td>
+
+<td bgcolor=red><center>server n/a</center></td>
+</table></center>
+<p><p><hr><p>
+
+<p><center class=page-subtitle><font color=#0099cc>
+Master:&nbsp <a href="ldap://mach1.idm.lab.bos.redhat.com:38900/">mach1.idm.lab.bos.redhat.com:38900</a></center>
+
+<p><table border=0 cellspacing=1 cellpadding=6 cols=10 width=100% class=bgColor9>
+
+<tr><td colspan=10><center>
+<font class=areatitle>Replica ID:&nbsp;</font><font class=text28>2</font>
+<font class=areatitle>Replica Root:&nbsp;</font><font class=text28>dc=scal_02,dc=com</font>
+<font class=areatitle>Max CSN:&nbsp;</font><font class=text28>4c1da16d000000020000 (06/19/2010 22:04:45)</font>
+
+<tr class=bgColor16>
+<th nowrap>Receiver</th>
+<th nowrap>Time Lag</th>
+<th nowrap>Max CSN</th>
+<th nowrap>Last Modify Time</th>
+<th nowrap>Supplier</th>
+<th nowrap>Sent/Skipped</th>
+<th nowrap>Update Status</th>
+<th nowrap>Update Started</th>
+<th nowrap>Update Ended</th>
+<th nowrap colspan=2>Schedule</th>
+<th nowrap>SSL?</th>
+</tr>
+
+<tr class=bgColor13>
+<td rowspan=1 width=5% class=bgColor5><a href="ldap://hulk:38907/">hulk:38907</a><BR>Type: _</td>
+<td rowspan=1 width=5% nowrap bgcolor=red><center>n/a</center></td>
+<td rowspan=1 width=15% nowrap>_</td>
+<td rowspan=1 width=15% nowrap></td>
+<td width=5% nowrap><center>mach1.idm.lab.bos.redhat.com:38900</center></td>
+<td width=3% nowrap>565 / 0</td>
+<td width=20% nowrap>0 Incremental update succeeded</td>
+<td nowrap>06/19/2010 22:04:48</td>
+<td nowrap>06/19/2010 22:04:49</td>
+<td colspan=2 width=10% nowrap>always in sync</td>
+<td width=3% nowrap class=bgColor5>n</td>
+</table>
+
+<p><table border=0 cellspacing=1 cellpadding=6 cols=10 width=100% class=bgColor9>
+
+<tr><td colspan=10><center>
+<font class=areatitle>Replica ID:&nbsp;</font><font class=text28>3</font>
+<font class=areatitle>Replica Root:&nbsp;</font><font class=text28>dc=users,dc=scal_02,dc=com</font>
+<font class=areatitle>Max CSN:&nbsp;</font><font class=text28>4c22028a000200030000 (06/23/2010 05:48:10 2 0)</font>
+
+<tr class=bgColor16>
+<th nowrap>Receiver</th>
+<th nowrap>Time Lag</th>
+<th nowrap>Max CSN</th>
+<th nowrap>Last Modify Time</th>
+<th nowrap>Supplier</th>
+<th nowrap>Sent/Skipped</th>
+<th nowrap>Update Status</th>
+<th nowrap>Update Started</th>
+<th nowrap>Update Ended</th>
+<th nowrap colspan=2>Schedule</th>
+<th nowrap>SSL?</th>
+</tr>
+
+<tr class=bgColor13>
+<td rowspan=1 width=5% class=bgColor5><a href="ldap://hulk:38901/">hulk:38901</a><BR>Type: _</td>
+<td rowspan=1 width=5% nowrap bgcolor=red><center>n/a</center></td>
+<td rowspan=1 width=15% nowrap>_</td>
+<td rowspan=1 width=15% nowrap></td>
+<td width=5% nowrap><center>mach1.idm.lab.bos.redhat.com:38900</center></td>
+<td width=3% nowrap>8288344 / 0</td>
+<td width=20% nowrap>0 Incremental update succeeded</td>
+<td nowrap>06/23/2010 05:48:12</td>
+<td nowrap>06/23/2010 05:48:12</td>
+<td colspan=2 width=10% nowrap>always in sync</td>
+<td width=3% nowrap class=bgColor5>n</td>
+</table>
+
+<p><table border=0 cellspacing=1 cellpadding=6 cols=10 width=100% class=bgColor9>
+
+<tr><td colspan=10><center>
+<font class=areatitle>Replica ID:&nbsp;</font><font class=text28>1</font>
+<font class=areatitle>Replica Root:&nbsp;</font><font class=text28>o=netscaperoot</font>
+<font class=areatitle>Max CSN:&nbsp;</font><font class=text28>none</font>
+</table>

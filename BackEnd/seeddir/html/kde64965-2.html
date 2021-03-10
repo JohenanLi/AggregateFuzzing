@@ -1,0 +1,23 @@
+<html><head><style>td { padding: 0.5em; }</style></head><body>
+<h2>Correctly Staggered</h2>
+<table border=1>
+<tr><td>--</td><td rowspan=2>A</td><td>--</td><td rowspan=2>B</td></tr>
+<tr><td rowspan=1>C</td><td rowspan=1>D</td></tr>
+</table>
+
+<h2>Correctly Staggered (Konq)</h2>
+<table border=1>
+<tr><td>--</td><td rowspan=2>A</td><td>--</td><td rowspan=2>B</td></tr>
+<tr><td rowspan=1>C</td><td rowspan=1>D</td></tr>
+<tr><td>--</td><td rowspan=2>E</td><td>--</td><td rowspan=2>F</td></tr>
+<tr><td rowspan=1>G</td><td rowspan=1>H</td></tr>
+</table>
+
+<h2>Incorrectly Staggered (Konq)</h2>
+<table border=1>
+<tr><td>--</td><td rowspan=2>A</td><td>--</td><td rowspan=2>B</td></tr>
+<tr><td rowspan=2>C</td><td rowspan=2>D</td></tr>
+<tr><td rowspan=2>E</td><td rowspan=2>F</td></tr>
+<tr><td rowspan=1>G</td><td rowspan=1>H</td></tr>
+</table>
+

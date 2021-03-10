@@ -1,0 +1,88 @@
+<script>
+function test() {
+    var R1 = /(<(?:.|\s)*>)(?:.|\s)+>/; /* == R3 */
+    var R2 = /(<(.|\s)+>)(.|\s)+>/; /* == R4 */
+    var R3 = /(<[\w\W]*>)[\w\W]+>/;
+    var R4 = /(<[\w\W]*([\w\W])>)[\w\W]*([\w\W])>/;
+    var RUNS = 300;
+    var txt  = document.getElementById("firehose-4619337").innerHTML;
+    var s1 = new Date();
+    var match1, match2, match3, match4;
+    try {
+        for (var t = 0; t < RUNS; ++t)
+            match1 = R1.exec(txt);
+    } catch (e) {
+        alert("Failure #1:" + e);
+    }
+    var s2 = new Date();
+    try {
+        for (var t = 0; t < RUNS; ++t)
+            match2 = R2.exec(txt);
+    } catch (e) {
+        alert("Failure #2:" + e);
+    }
+    var s3 = new Date();
+    try {
+        for (var t = 0; t < RUNS; ++t)
+            match3 = R3.exec(txt);
+    } catch (e) {
+        alert("Failure #3:" + e);
+    }
+    var s4 = new Date();
+    try {
+        for (var t = 0; t < RUNS; ++t)
+            match4 = R4.exec(txt);
+    } catch (e) {
+        alert("Failure #4:" + e);
+    }
+    var s5 = new Date();
+    document.write("<div> Matching time for R1: " + (s2 - s1) + "ms  -- " + R1.source + "</div>");
+    document.write("<div> Matching time for R2: " + (s3 - s2) + "ms  -- " + R2.source + "</div>");
+    document.write("<h3> ---------- Equivalent RegExps:</h3>");
+    document.write("<div> Matching time for R3: " + (s4 - s3) + "ms  -- " + R3.source + "</div>");
+    document.write("<div> Matching time for R4: " + (s5 - s4) + "ms  -- " + R4.source + "</div>");
+    document.write("<br><div> Matched strings are identical: " + 
+                  ((match1[1] == match2[1] && match2[1] == match3[1] && match3[1] == match4[1]) && 
+                   (match2[2] == match4[2] && match2[3] == match4[3])) + "</div>");
+}
+</script>
+
+<body onload="test()">
+<div id="firehose-4619337" class="fhitem fhitem-story article usermode thumbs" style="display:none">
+<span class="sd-info-block" style="display: none">
+	<span class="sd-key-firehose-id">4619337</span>
+	<span class="type">story</span>
+
+</span>
+							<div class="body" id="fhbody-4619337">
+
+								<span class="media topic topicicon" id="topic-4619337">
+									<a href="//slashdot.org/index2.pl?fhfilter=security" onclick="return addfhfilter('security');">
+
+
+
+			<div class="topicsecurity" style="width:59px; height:78px;"></div>
+
+	</a>
+								</span>
+
+
+
+										<div id="text-4619337">
+										<a href="http://psychicblast.com/" rel="nofollow">gbickford</a> writes <i>"Adeona, the first open source system for tracking the location of your lost or stolen laptop, was <a href="//it.slashdot.org/article.pl?sid=08/07/14/1339219&amp;tid=172">featured on Slashdot</a> last year. I was stoked when I read about how it worked and I installed it immediately. I just went to look for updates on the site and was greeted with a giant warning message stating, 'Adeona is currently not working.' It seems that OpenDHT, the distributed hash table that stores the location information and photos, has been fairly unstable lately. The developers claim that this is "largely because the back-end OpenDHT system is not able to tolerate the load imposed by Adeona. <a href="http://www.opendht.org/">OpenDHT</a> removed the need for a centralized database with tracking information, which in effect prevents a 3rd party from tracking a user's whereabouts. OpenDHT was Sean Rhea's Ph.D. project back in 2005 and he has decided to officially bow out of maintaining it as of July 1st, which has left the developers of Adeona looking for another back end to store location information and photos. The <a href="https://edge.launchpad.net/adeona">source code for Adeona</a> is available and they are actively seeking developer contributions on <a href="http://groups.google.com/group/adeona-developers/browse_thread/thread/81aa1831d09517f7">the developer's list</a>. Do any developers have ideas on where to put scads of information in a free, reliable, anonymous, and secure manner?"</i></div>
+
+
+
+
+
+							<span class="vballoon-firehoselist rd_5">
+								<span>Comments:</span>
+								<a href="//it.slashdot.org/comments.pl?sid=1243923" id="commentcnt-4619337">81</a>
+							</span>
+
+
+
+						<hr>
+
+
+</div>

@@ -1,0 +1,20 @@
+<html> 
+ <head> 
+  <style type="text/css"> 
+   .foo { 
+     background: url('http://msquadrat.de/favicon.png') no-repeat; 
+   } 
+   .bar { 
+     background-image: url('http://msquadrat.de/favicon.png'); 
+     background-repeat: no-repeat; 
+   } 
+  </style> 
+ </head> 
+ <body> 
+  <p>The background image must appear only once at the beginning of each line:</p>
+  <span class="foo">Fooooooooooooooo</span> 
+  <div class="foo">Baaaaaaaaaaaaar</div> 
+  <span class="bar">Fooooooooooooooo</span> 
+  <div class="bar">Baaaaaaaaaaaaar</div> 
+ </body> 
+</html> 

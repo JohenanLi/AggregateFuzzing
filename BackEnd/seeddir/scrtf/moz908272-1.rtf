@@ -1,0 +1,81 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls1\ilvl0
+\f0\fs24 \cf0 Traceback (most recent call last):\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/core/handlers/base.py", line 111, in get_response\
+    response = callback(request, *callback_args, **callback_kwargs)\
+\
+  File "/usr/lib64/python2.6/site-packages/newrelic-1.11.0.55/newrelic/api/object_wrapper.py", line 216, in __call__\
+    self._nr_instance, args, kwargs)\
+\
+  File "/usr/lib64/python2.6/site-packages/newrelic-1.11.0.55/newrelic/hooks/framework_django.py", line 475, in wrapper\
+    return wrapped(*args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/admin/options.py", line 366, in wrapper\
+    return self.admin_site.admin_view(view)(*args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 91, in _wrapped_view\
+    response = view_func(request, *args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/views/decorators/cache.py", line 89, in _wrapped_view_func\
+    response = view_func(request, *args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/admin/sites.py", line 196, in inner\
+    return view(request, *args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/views/decorators/debug.py", line 69, in sensitive_post_parameters_wrapper\
+    return view(request, *args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 25, in _wrapper\
+    return bound_func(*args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 91, in _wrapped_view\
+    response = view_func(request, *args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 21, in bound_func\
+    return func(self, *args2, **kwargs2)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/db/transaction.py", line 224, in inner\
+    return func(*args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/auth/admin.py", line 114, in add_view\
+    extra_context)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 25, in _wrapper\
+    return bound_func(*args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 91, in _wrapped_view\
+    response = view_func(request, *args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/utils/decorators.py", line 21, in bound_func\
+    return func(self, *args2, **kwargs2)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/db/transaction.py", line 224, in inner\
+    return func(*args, **kwargs)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/admin/options.py", line 938, in add_view\
+    new_object = self.save_form(request, form, change=False)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/admin/options.py", line 703, in save_form\
+    return form.save(commit=False)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/auth/forms.py", line 102, in save\
+    user.set_password(self.cleaned_data["password1"])\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/auth/models.py", line 294, in set_password\
+    self.password = make_password(raw_password)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/lib/python/django/contrib/auth/hashers.py", line 70, in make_password\
+    return hasher.encode(password, salt)\
+\
+  File "/data/www/mozillians.allizom.org/mozillians/vendor/src/django-sha2/django_sha2/hashers.py", line 88, in encode\
+    raise NotImplementedError()\
+\
+NotImplementedError}

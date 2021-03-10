@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <semantics>
+      <mrow>
+        <mover accent="true">
+          <mi>a</mi>
+          <mo stretchy="false">́</mo>
+        </mover>
+        <mover accent="true">
+          <mi>b</mi>
+          <mo stretchy="false">̀</mo>
+        </mover>
+        <mover accent="true">
+          <mi>c</mi>
+          <mo stretchy="false">̌</mo>
+        </mover>
+        <mover accent="true">
+          <mi>d</mi>
+          <mo stretchy="false">̆</mo>
+        </mover>
+        <mover accent="true">
+          <mi>e</mi>
+          <mo stretchy="false">̊</mo>
+        </mover>
+        <mover accent="true">
+          <mi>f</mi>
+          <mo stretchy="false">˙</mo>
+        </mover>
+        <mover accent="true">
+          <mi>g</mi>
+          <mo stretchy="false">¨</mo>
+        </mover>
+        <mover accent="true">
+          <mi>h</mi>
+          <mo stretchy="false">⃛</mo>
+        </mover>
+        <mover accent="true">
+          <mi>i</mi>
+          <mo stretchy="false">̄</mo>
+        </mover>
+        <mover accent="true">
+          <mi>j</mi>
+          <mo stretchy="false">⃗</mo>
+        </mover>
+        <mover accent="true">
+          <mi>k</mi>
+          <mo stretchy="false">̃</mo>
+        </mover>
+        <mover accent="true">
+          <mi>l</mi>
+          <mo stretchy="false">̂</mo>
+        </mover>
+    </mrow>
+  </semantics>
+</math>

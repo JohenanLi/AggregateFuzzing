@@ -1,0 +1,50 @@
+<table bgcolor=#FFFFFF><tr><td>
+<table width="100%" cellspacing="1" cellpadding="1">
+<tr bgcolor="000000"><td><font color="#FFFFFF">Summary</font></td></tr>
+<tr><td><font color="000000">
+    SELinux is preventing qemu (qemu-kvm) "read" to HelpdeskRHEL4-RHEL4.x86_64 (fixed_disk_device_t).
+    </font></td></tr>
+<tr bgcolor="000000"><td><font color="#FFFFFF">Detailed Description</font></td></tr>
+<tr><td><font color="000000">
+    SELinux denied qemu access to the block device HelpdeskRHEL4-RHEL4.x86_64.
+    If this is a virtualization image, it needs to be labeled with a virtualization file context (virt_image_t). You can relabel HelpdeskRHEL4-RHEL4.x86_64 to be virt_image_t using chcon.  You also need to execute semanage fcontext -a -t virt_image_t 'HelpdeskRHEL4-RHEL4.x86_64' to add this
+    new path to the system defaults. If you did not intend to use HelpdeskRHEL4-RHEL4.x86_64 as a qemu
+    image it could indicate either a bug or an intrusion attempt.
+    </font></td></tr>
+<tr bgcolor="000000"><td><font color="#FFFFFF">Allowing Access</font></td></tr>
+<tr><td><font color="000000">
+    You can alter the file context by executing chcon -t virt_image_t 'HelpdeskRHEL4-RHEL4.x86_64'
+    You must also change the default file context files on the system in order to preserve them even on a full relabel.  "semanage fcontext -a -t virt_image_t 'HelpdeskRHEL4-RHEL4.x86_64'"
+    </font></td></tr>
+<tr bgcolor="000000"><td><font color="#FFFFFF">Fix Command</font></td></tr>
+<tr><td><font color="000000">chcon -t virt_image_t 'HelpdeskRHEL4-RHEL4.x86_64'</font></td></tr>
+<tr bgcolor="000000"><td><font color="#FFFFFF">Additional Information</font></td></tr>
+<tr><td><font color="000000"></font></td></tr>
+</table>
+<table border="0" cellspacing="1" cellpadding="1">
+<tr><td><font color="000000">Source Context:&nbsp;&nbsp;</td><td>system_u:system_r:qemu_t:s0</font></td></tr>
+<tr><td><font color="000000">Target Context:&nbsp;&nbsp;</td><td>system_u:object_r:fixed_disk_device_t:s0</font></td></tr>
+<tr><td><font color="000000">Target Objects:&nbsp;&nbsp;</td><td>HelpdeskRHEL4-RHEL4.x86_64 [ blk_file ]</font></td></tr>
+<tr><td><font color="000000">Source:&nbsp;&nbsp;</td><td>qemu-kvm</font></td></tr>
+<tr><td><font color="000000">Source Path:&nbsp;&nbsp;</td><td>/usr/bin/qemu-kvm</font></td></tr>
+<tr><td><font color="000000">Port:&nbsp;&nbsp;</td><td>&lt;Unknown&gt;</font></td></tr>
+<tr><td><font color="000000">Host:&nbsp;&nbsp;</td><td>dhcppc2</font></td></tr>
+<tr><td><font color="000000">Source RPM Packages:&nbsp;&nbsp;</td><td>kvm-74-2.fc10</font></td></tr>
+<tr><td><font color="000000">Target RPM Packages:&nbsp;&nbsp;</td><td></font></td></tr>
+<tr><td><font color="000000">Policy RPM:&nbsp;&nbsp;</td><td>selinux-policy-3.5.7-1.fc10</font></td></tr>
+<tr><td><font color="000000">Selinux Enabled:&nbsp;&nbsp;</td><td>True</font></td></tr>
+<tr><td><font color="000000">Policy Type:&nbsp;&nbsp;</td><td>targeted</font></td></tr>
+<tr><td><font color="000000">MLS Enabled:&nbsp;&nbsp;</td><td>True</font></td></tr>
+<tr><td><font color="000000">Enforcing Mode:&nbsp;&nbsp;</td><td>Enforcing</font></td></tr>
+<tr><td><font color="000000">Plugin Name:&nbsp;&nbsp;</td><td>qemu_blk_image</font></td></tr>
+<tr><td><font color="000000">Host Name:&nbsp;&nbsp;</td><td>localhost.localdomain</font></td></tr>
+<tr><td><font color="000000">Platform:&nbsp;&nbsp;</td><td>Linux localhost.localdomain 2.6.27-0.305.rc5.git6.fc10.x86_64 #1 SMP Thu Sep 4 21:42:09 EDT 2008 x86_64 x86_64</font></td></tr>
+<tr><td><font color="000000">Alert Count:&nbsp;&nbsp;</td><td>1</font></td></tr>
+<tr><td><font color="000000">First Seen:&nbsp;&nbsp;</td><td>Tue Jul 22 08:19:48 2008</font></td></tr>
+<tr><td><font color="000000">Last Seen:&nbsp;&nbsp;</td><td>Tue Jul 22 08:19:48 2008</font></td></tr>
+<tr><td><font color="000000">Local ID:&nbsp;&nbsp;</td><td>f327c428-a924-44f2-9fc2-29bb20fd51dc</font></td></tr>
+<tr><td><font color="000000">Line Numbers:&nbsp;&nbsp;</td><td>1</font></td></tr>
+</table><p>Raw Audit Messages
+:<br><br>host=dhcppc2 type=AVC msg=audit(1216729188.853:241): avc:  denied  { read } for pid=14066 comm=&quot;qemu-kvm&quot; name=&quot;HelpdeskRHEL4-RHEL4.x86_64&quot; dev=tmpfs ino=333 scontext=system_u:system_r:qemu_t:s0 tcontext=system_u:object_r:fixed_disk_device_t:s0 tclass=blk_file host=dhcppc2 type=SYSCALL msg=audit(1216729188.853:241): arch=c000003e syscall=2 success=no exit=-13 a0=7fff6f654680 a1=0 a2=1a4 a3=3342f67a70 items=0 ppid=2953 pid=14066 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm=&quot;qemu-kvm&quot; exe=&quot;/usr/bin/qemu-kvm&quot; subj=system_u:system_r:qemu_t:s0 key=(null)
+<br></td></tr></table>
+

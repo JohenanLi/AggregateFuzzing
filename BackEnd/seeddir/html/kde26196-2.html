@@ -1,0 +1,28 @@
+<html>
+<head>
+<script language="JavaScript">
+//preloaded images
+var pvul      = new Image; pvul.src      = 'http://www.wehkamp.nl/images/vul.gif';
+var pverwerkn = new Image; pverwerkn.src = 'http://www.wehkamp.nl/images/but_verwerk.gif';
+	
+function SwitchAndSubmit() {
+		alert(document.new_basket.verwerken);
+		document.new_basket.verwerken.src = pvul.src;
+		setTimeout('document.new_basket.submit()', 100);
+}
+</script></head>
+<body>
+<table>
+ <form name="new_basket" method="get" action="">
+  <tr>
+  <td valign="top" class="normal">
+	<input type="hidden" name="NoFrames" value="">
+	<a href="javascript:SwitchAndSubmit();">
+		<img name="verwerken" src="http://www.wehkamp.nl/images/but_verwerk.gif">
+	</a>
+  </td>
+  </tr>
+</form>
+</table>
+</body>
+</html>

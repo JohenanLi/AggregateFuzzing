@@ -1,0 +1,100 @@
+<html><head><title>Differences Analysis</title></head>
+<style type="text/css">
+<!--
+.HDNormal {  }
+.HDDeleted {  color: #00ff00;background:  #ffffff;text-decoration:line-through ; font-family: Courier New ; font-size: 10pt;}
+.HDAdded {  color: #000000;background:  #ffff00;text-decoration:none ; font-family: Courier New ; font-size: 10pt;}
+-->
+</style>
+<body>
+<pre>
+785:    static void HandleSelectionEvents(
+786:        Widget widget,
+787:        XtPointer closure,
+788:        XEvent *event,
+789:        Boolean *cont)
+790:    {
+791:        Select ctx;
+792:        XSelectionEvent ev;
+793:        Atom target;
+794:        int count;
+795:        Boolean writeback = FALSE;
+796:    
+797:        ctx = (Select) closure;
+798:        switch (event-&gt;type) {
+799:          case SelectionClear:
+800:        /* if this event is not for the selection we registered for,
+801:         * don't do anything */
+802:        if (ctx-&gt;selection != event-&gt;xselectionclear.selection ||
+803:            ctx-&gt;serial &gt; event-&gt;xselectionclear.serial)
+804:            break;
+805:        (void) LoseSelection(ctx, widget, event-&gt;xselectionclear.selection,
+806:                event-&gt;xselectionclear.time);
+807:        break;
+808:          case SelectionRequest:
+809:        /* if this event is not for the selection we registered for,
+810:         * don't do anything */
+811:        if (ctx-&gt;selection != event-&gt;xselectionrequest.selection)
+812:            break;
+813:        ev.type = SelectionNotify;
+814:        ev.display = event-&gt;xselectionrequest.display;
+815:        ev.requestor = event-&gt;xselectionrequest.requestor;
+816:        ev.selection = event-&gt;xselectionrequest.selection;
+817:        ev.time = event-&gt;xselectionrequest.time;
+818:        ev.target = event-&gt;xselectionrequest.target;
+819:        if (event-&gt;xselectionrequest.property == None) /* obsolete requestor */
+820:           event-&gt;xselectionrequest.property = event-&gt;xselectionrequest.target;
+821:        if (ctx-&gt;widget != widget || ctx-&gt;was_disowned
+822:           || ((event-&gt;xselectionrequest.time != CurrentTime)
+823:                &amp;&amp; (event-&gt;xselectionrequest.time &lt; ctx-&gt;time)))<a name="diff" id="c0"><span class="HDAdded"> {</span></a>
+824:            ev.property = None;
+<a name="diff" id="c1"><span class="HDAdded">825:    </span></a><span class="HDAdded">        StartProtectedSection(ev.display, ev.requestor);
+</span>826:    <span class="HDDeleted">        </span><span class="HDAdded">    }</span> else {
+827:           if (ev.target == ctx-&gt;prop_list-&gt;indirect_atom) {
+828:              IndirectPair *p;
+829:              int format;
+830:              unsigned long bytesafter, length;
+831:              unsigned char *value;
+832:              ev.property = event-&gt;xselectionrequest.property;
+833:              StartProtectedSection(ev.display, ev.requestor);
+834:              (void) XGetWindowProperty(ev.display, ev.requestor,
+835:                event-&gt;xselectionrequest.property, 0L, 1000000,
+836:                False,(Atom)AnyPropertyType, &amp;target, &amp;format, &amp;length,
+837:                &amp;bytesafter, &amp;value);
+838:              count = BYTELENGTH(length, format) / sizeof(IndirectPair);
+839:              for (p = (IndirectPair *)value; count; p++, count--) {
+840:              EndProtectedSection(ctx-&gt;dpy);
+841:              if (!GetConversion(ctx, (XSelectionRequestEvent*)event,
+842:                         p-&gt;target, p-&gt;property, widget)) {
+843:    
+844:                p-&gt;target = None;
+845:                writeback = TRUE;
+846:                StartProtectedSection(ctx-&gt;dpy, ev.requestor);
+847:              }
+848:              }
+849:              if (writeback)
+850:            XChangeProperty(ev.display, ev.requestor,
+851:                event-&gt;xselectionrequest.property, target,
+852:                format, PropModeReplace, value, (int)length);
+853:              XFree((char *)value);
+854:          } else /* not multiple */ {
+855:               if (GetConversion(ctx, (XSelectionRequestEvent*)event,
+856:                     event-&gt;xselectionrequest.target,
+857:                     event-&gt;xselectionrequest.property,
+858:                     widget))
+859:               ev.property = event-&gt;xselectionrequest.property;
+860:               else {
+861:               ev.property = None;
+862:               StartProtectedSection(ctx-&gt;dpy, ev.requestor);
+863:               }
+864:           }
+865:          }
+866:          (void) XSendEvent(ctx-&gt;dpy, ev.requestor, False, (unsigned long)NULL,
+867:               (XEvent *) &amp;ev);
+868:    
+869:          EndProtectedSection(ctx-&gt;dpy);
+870:    
+871:          break;
+872:        }
+873:    }
+</body></html>

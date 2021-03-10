@@ -1,0 +1,35 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>H - V alignment in table cents</title>
+</head>
+<body>
+
+<p>For def. see HTML 4.0.1 spec, page 133 (in pdf):  "inheritance of alignment specification".</p>
+
+
+<table border=1>
+<caption>h align col/colgroup inheritance</caption>
+<colgroup><col align="right"></colgroup><colgroup span=2 align="center"></colgroup>
+<tbody>
+<tr><td>--------fill--------------</td><td>---------fill--------</td><td>--------fill-----------</td></tr>
+<tr><td>right aligned             </td><td>centered             </td><td>centered               </td></tr>
+<tr><td>right aligned             </td><td>centered             </td><td>centered               </td></tr>
+</tbody>
+</table>
+
+
+<table border=1>
+<caption>v align col/colgroup inheritance</caption>
+<colgroup><col valign="top"></colgroup><colgroup span=2 valign="bottom"></colgroup><colgroup>
+<tbody>
+<tr><td>--------fill--------------</td><td>---------fill--------</td><td>--------fill-----------</td><td></td></tr>
+<tr><td>top                       </td><td>bottom               </td><td>bottom                 </td><td>-<br>-</td></tr>
+<tr><td>top                       </td><td>bottom               </td><td>bottom                 </td><td>-<br>-</td></tr>
+</tbody>
+</table>
+
+
+</body>
+</html>

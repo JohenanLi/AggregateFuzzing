@@ -1,0 +1,79 @@
+<html>
+<body >
+<table >
+<tr> 
+  <td class="categorybar"> 
+
+<!--put js here -->
+	
+<script language="Javascript">
+<!-- Hide script from old browsers
+document.WM = new Object();
+document.WM.menu = new Object();
+document.WM.menu.dropdown = new Array();
+
+function WM_initializeToolbar(){
+    var i;
+    if (document.all){
+	for(i = 0; i < document.all('container').all.length; i++){
+	    if ((document.all('container').all[i].className == 'header') ||
+(document.all('container').all[i].className == 'links')){
+		document.WM.menu.dropdown[document.WM.menu.dropdown.length]
+= document.all('container').all[i];
+	    }
+	}
+    } else if (document.getElementsByTagName && document.getElementById){
+	var contained =
+document.getElementById('container').getElementsByTagName('div');
+	for(i = 0; i < contained.length; i++){
+	    if ((contained[i].getAttribute('class') == 'header') ||
+(contained[i].getAttribute('class') == 'links')){
+		document.WM.menu.dropdown[document.WM.menu.dropdown.length]
+= contained[i];
+	    }
+	}
+    }
+}
+
+function WM_collapse(item){
+    if(document.WM.menu.dropdown.length){
+	if (document.WM.menu.dropdown[item + 1].style.display == 'none'){
+	    document.WM.menu.dropdown[item + 1].style.display = '';
+	    if(document.WM.menu.dropdown[item].id == 'webmonkey'){
+		document.images[document.WM.menu.dropdown[item].id + 'Img'].src = '/pcsuperstore/images/plus_gray.gif';
+	    } else {
+		document.images[document.WM.menu.dropdown[item].id +  'Img'].src = '/pcsuperstore/images/minus.gif';
+	    }
+	} else {
+	    document.WM.menu.dropdown[item + 1].style.display = 'none';
+	    if(document.WM.menu.dropdown[item].id == 'webmonkey'){
+		document.images[document.WM.menu.dropdown[item].id +  'Img'].src = '/pcsuperstore/images/plus_gray.gif';
+	    } else {
+		document.images[document.WM.menu.dropdown[item].id +  'Img'].src = '/pcsuperstore/images/plus.gif';
+	    }
+	}
+    }
+}
+
+// End the hiding -->
+</script>
+
+<body onload="WM_initializeToolbar();" > 
+
+<div id="container">
+
+	<div id="accessories" class="header">
+	<img src="plus.gif" name="accessoriesImg" <a href="#" onclick="WM_collapse(0);
+	return false;" class="headerlink"><b>Accessories</b></a>
+	</div>
+	<div class="links"> 
+		Cpen<br>
+		Games Controllers<br>
+	</div>
+
+</td></tr>
+
+</table>  
+</body>
+</html>
+

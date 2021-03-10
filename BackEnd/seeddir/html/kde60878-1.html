@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>Bugreport CSS KHTML</title>
+</head>
+
+<style type="text/css">
+<!--
+.hidden {
+	display:none;
+}
+.visible {
+	display:compact;
+}
+.top {
+	background-color: #BBBBBB;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-top: solid 1px #006395;
+	border-left: solid 1px #006395;
+	border-bottom: solid 1px #006395;
+	border-right: solid 1px #006395;
+	font-size: 12px;
+	text-align: center;
+	font-weight: bold;
+}
+.content {
+	background-color: #EEEEEE;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-left: solid 1px #006395;
+	border-right: solid 1px #006395;
+	border-bottom: solid 1px #006395;
+	font-size: 12px;
+}
+A:active {
+	color: #000000;
+	text-decoration: none;
+}
+A:link {
+	color: #000000;
+	text-decoration: none;
+}
+A:visited {
+	color: #000000;
+	text-decoration: none;
+}
+A:hover{
+	color: #F5D300;
+	text-decoration: none;
+}
+-->
+</style>
+
+<script language="JavaScript">
+<!--
+function showbox(id) {
+	var obj    = document.getElementById(id);
+	if(obj.className == "hidden"){
+		obj.className = "visible";
+	} else {
+		obj.className = "hidden";
+	}
+}
+-->
+</SCRIPT>
+
+
+<body>
+<h2>Bugreport KHTML Engine</h2>
+<p>
+  with click on the Link you change the CSS class of
+  the &lt;tr&gt; element. The class consits of a single
+  display setting to change the visible status.
+</p>
+
+<table cellpadding=2 cellspacing=0 border=0 width=150>
+  <tr>
+    <td class="top"><a onClick="showbox('box1');" href="#">Show/Hide Box A</a></td>
+  </tr>
+  <tr id="box1">
+    <td class="content">
+      <li>Text A1</li>
+      <li>Text A2</li>
+      <li>Text A3</li>
+      <li>Text A4</li>
+    </td>
+  </tr>
+  <tr><td style="font-size:1px;">&nbsp;</td></tr>
+  <tr>
+    <td class="top"><a onClick="showbox('box2');" href="#">Show/Hide Box B</a></td>
+  </tr>
+  <tr id="box2">
+    <td class="content">
+      <li>Text B1</li>
+      <li>Text B2</li>
+      <li>Text B3</li>
+      <li>Text B4</li>
+    </td>
+  </tr>
+  <tr><td style="font-size:1px;">&nbsp;</td></tr>
+  <tr>
+    <td class="top"><a onClick="showbox('box3');" href="#">Show/Hide Box C</a></td>
+  </tr>
+  <tr id="box3">
+    <td class="content">
+      <li>Text C1</li>
+      <li>Text C2</li>
+      <li>Text C3</li>
+      <li>Text C4</li>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

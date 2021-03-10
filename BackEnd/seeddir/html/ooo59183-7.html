@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>Test case specification document</title>
+    <style>
+    <!--
+        H5 { text-decoration: underline }
+    -->
+    </style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+    
+    <!-- add test title here - Second -->
+    <H1 ALIGN=CENTER><U>Test Name: <B>Slackware Desktop-Integration package</B></U></H1>    
+    <!-- ++++++++++++++++++++++++++++++++ -->        
+    <HR>
+    <TABLE WIDTH=100% BORDER=1 CELLSPACING=0>
+      <COL WIDTH=30%>
+      <COL WIDTH=40%>
+      <COL WIDTH=30%>
+		   <TR>
+			   <TD>
+            <!-- Your name should be written here -->
+				<P><FONT STYLE="font-size: 8pt"><B>Document Owner:</B><BR></FONT><SPAN STYLE="font-weight: medium">Christian Lohmaier</SPAN></P>
+            </TD>
+			   <TD>
+            <!-- Date has to be written in form like this: 10. Nov. 2005 -->
+				<P><FONT STYLE="font-size: 8pt"><B>Last Document Change:</B><BR></FONT><SPAN STYLE="font-weight: medium">02. Aug. 2006</SPAN></P>
+            </TD>
+			   <TD>
+            <!-- Status of this document can be: Preliminary, Standard, Obsolete -->
+				<P><FONT STYLE="font-size: 8pt"><B>Status of Document:</B><BR></FONT><SPAN STYLE="font-weight: medium">Preliminary</SPAN></P>
+            </TD>
+         </TR>
+   </TABLE>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <!-- add test purpose here -->
+    <H3>Test purpose</H3>
+    <P>Verify that the Slackware-menus package can be installed and uninstalled and that Desktop-Integration works properly.</P>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>    
+    <!-- add major known issues here -->
+    <h3>Known issues:</h3>
+    <ul>
+        <li>none</li><!-- <a href="http://www.openoffice.org/issues">issue </a> -->
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <hr>
+    <!-- add Preconditions here -->
+    <H3>Preconditions of the test:</H3>
+    <UL>
+        <LI>Have Slackware installed
+	<LI>Have the main OpenOffice.org packages (application) installed
+    </UL>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>
+    <!-- add test documents here if needed -->
+    <H3>Test documents</H3>
+    <UL>
+        <LI>none<!-- <a href="http://www.openoffice.org/testdocument.sxw">Test document</a> -->
+    </UL>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>
+    <!-- add test cases here -->
+    <H3>Test cases</H3>
+    <H5>Installation</H5>
+    <UL>
+        <LI>Become root (run su)
+	<LI>run installpkg openoffice.org-slackware-menus-&lt;mainversion&gt;-noarch-&lt;release&gt;.tgz
+</UL>
+	To verify 
+	<ul>
+		<li>Log in to KDE as regular user
+		<li>Verify that you can launch OpenOffice.org Applications from the main KDE menu
+		<li>Verify that you can open OpenOffice.org documents by simply clicking on them in the filemanager
+		<li>Verify that you can launch OpenOffice.org from a terminal by running "soffice"
+	</ul>
+    <H5>Deinstallation</H5>
+    <UL>
+	    <LI>Become root (run su)
+	    <li>run removepkg openoffice.org-slackware-menus
+    </UL>
+    To verify
+    <ul>
+	    <li>Log in to KDE as regular user
+	    <li>There should no longer be launchers for OpenOffice.org Applications in the main KDE -menu
+	    <li>the link /etc/openoffice.org-&lt;version&gt; should have been removed
+	    <li>You should no longer be able to launch OpenOffice.org from a terminal by running "soffice" (specifying the full path - e.g. /opt/openoffice.org2.0/program/soffice - should still work)
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+    <HR>
+    <!--  add Problematic areas here if needed  -->
+    <H3>Problematic areas</H3>
+    <P>If you did install while being logged-in to KDE, the changes might not be in effect immeadiately - you might have to logout of KDE and then log in to KDE again.</P>
+    <!-- ++++++++++++++++++++++++++++++++ -->    
+    <hr>
+    <!-- add Acronyms here if needed -->
+    <h3>Acronyms:</h3>
+    <ul>
+        <li>none
+    </ul><!-- ++++++++++++++++++++++++++++++++ -->
+    <hr><!-- add link to specification here -->
+    <h3>References (specification, API-documentation, ...):</h3>
+    <ul>
+	    <li><a href="http://specs.openoffice.org/native_installer/Slackware-desktop-integration.odt">http://specs.openoffice.org/native_installer/Slackware-desktop-integration.odt</a> (not published there yet)
+	    <li><a href="http://de.openoffice.org/testdir/Slackware-desktop-integration.odt">http://de.openoffice.org/testdir/Slackware-desktop-integration.odt</a> (temporary location)
+	<li><a href="http://www.openoffice.org/issues/show_bug.cgi?id=59183">Issue 59183</a></li>
+    </ul>
+    <!-- ++++++++++++++++++++++++++++++++ -->
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Bug 66894</title>
+</head>
+
+<body>
+<table width="629">
+  <tr>
+     <td valign="top" width="416">
+        <font size="0">
+          <p>
+             One leading line
+          </p>           
+          <table width="208" align="right">
+	  <tr>
+            <td style="background-color: yellow">
+	      This is a very useless quote!
+            </td>
+          </tr>
+	  </table>
+         <p>
+          This line will write into the quote, and all that just because of the font tag. But
+          I still wonder why that should be a problem. Anyway, that line has to be to long
+        </p>
+     </font>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

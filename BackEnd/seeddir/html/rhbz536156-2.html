@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>jbn-1215</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">jbn-1215</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/Login.do</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_username</td>
+	<td>rhqadmin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_password</td>
+	<td>rhqadmin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Login']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Browse Resources</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(text(),'Servers')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(text(),'RHQ Server,&nbsp;&nbsp;JBossAS 4.2.1.GA default')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[contains(@src,'Alert')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='NEW DEFINITION']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>JBNADM-1215</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>description</td>
+	<td>mydesc</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@name='condition[0].trigger' and @value='onEvent']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>condition[0].eventSeverity</td>
+	<td>label=DEBUG</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>condition[0].eventDetails</td>
+	<td>java.lang.OutOfMemoryError</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>You can view the stack trace</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

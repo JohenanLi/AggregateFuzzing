@@ -1,0 +1,152 @@
+/* Copyright (C) 2010, Argonne National Laboratory, Department of Energy, 
+ *    and UChicago Argonne, LLC.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ */
+
+/* Test case to demonstrate cfq oops when performing a large number of
+ * concurrent reads from different threads to an md or btrfs raid block
+ * device.  Reproduced on 2.6.33.5, 2.6.34, and 2.6.35rc3, using a raw raid0
+ * md device, ext3 on top of a raid0 md device, btrfs on top of a raid0 md
+ * device, or btrfs internal raid0. 
+ *
+ * This test program creates a set of detached threads, each of which reads
+ * a different offset in the specified file.  Each thread in turn creates
+ * another detached thread before exiting.  Test case runs indefinitely.
+ *
+ * Example:
+ *
+ * gcc -Wall -O2 concurrent-read.c -o concurrent-read -lpthread
+ * mdadm --create -f /dev/md0 --level=raid0 --raid-devices=2 /dev/sdb1 /dev/sdc1
+ * echo 3 > /proc/sys/vm/drop_caches
+ * ./concurrent-read /dev/md0
+ *
+ * 2010-06-15
+ * Phil Carns (carns@mcs.anl.gov)
+ */
+
+#define _FILE_OFFSET_BITS 64
+#define _LARGEFILE64_SOURCE
+#define _XOPEN_SOURCE 500
+
+#include <stdio.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <assert.h>
+#include <stdlib.h>
+
+#define DEFAULT_SIZE 16384
+#define DEFAULT_THREADS 32
+
+off_t total_size = 1024*1024*100;  /* 100 MiB */
+off_t current_offset = 0;
+pthread_mutex_t current_offset_mutex = PTHREAD_MUTEX_INITIALIZER;
+const char* file;
+
+void* thread_fn(void* arg);
+
+int main(int argc, char **argv) 
+{
+    int i;
+    int ret;
+    pthread_t tmp_id;
+    pthread_attr_t attr;
+
+    if(argc != 2)
+    {
+        fprintf(stderr, "Usage: concurrent-read <filename or devicename>\n");
+        return(-1);
+    }
+    
+    file = argv[1];
+
+    for(i=0; i<DEFAULT_THREADS; i++)
+    {
+	ret = pthread_attr_init(&attr);
+	assert(ret == 0);
+        ret = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+        assert(ret == 0);
+        ret = pthread_create(&tmp_id, &attr, thread_fn, NULL);
+        assert(ret == 0);
+        pthread_attr_destroy(&attr);
+    }
+    
+    /* let the test run forever */
+    while(1)
+    {
+        sleep(10);
+    }
+
+    return(0);
+}
+
+void* thread_fn(void* arg)
+{
+    off_t this_offset;
+    char* buffer;
+    ssize_t pread_ret;
+    int ret;
+    pthread_attr_t attr;
+    pthread_t tmp_id;
+    int fd = -1;
+
+    buffer = malloc(DEFAULT_SIZE);
+    assert(buffer);
+
+    /* get next offset and update offset for next caller */
+    pthread_mutex_lock(&current_offset_mutex);
+    this_offset = current_offset;
+    current_offset += DEFAULT_SIZE;
+    if((current_offset + DEFAULT_SIZE) > total_size)
+    {
+        /* wrap around to beginning */
+        current_offset = 0;
+    }
+    pthread_mutex_unlock(&current_offset_mutex);
+
+    /* open file and read from it */
+    fd = open(file, O_RDONLY);
+    assert(fd >= 0);
+    pread_ret = pread(fd, buffer, DEFAULT_SIZE, this_offset);
+    assert(pread_ret == DEFAULT_SIZE);
+    ret = close(fd);
+    assert(ret == 0);
+
+    free(buffer);
+
+    /* launch another thread */
+    ret = pthread_attr_init(&attr);
+    assert(ret == 0);
+    ret = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+    assert(ret == 0);
+    ret = pthread_create(&tmp_id, &attr, thread_fn, NULL);
+    assert(ret == 0);
+    pthread_attr_destroy(&attr);
+
+    return(NULL);
+}
+
+/*
+ * Local variables:
+ *  c-indent-level: 4
+ *  c-basic-offset: 4
+ * End:
+ *
+ * vim: ts=8 sts=4 sw=4 expandtab
+ */
+

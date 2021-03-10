@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>Installing Exim Mail Service</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="NEXT"
+TITLE="Exim Configuration"
+HREF="x71.html"></HEAD
+><BODY
+CLASS="article"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+><A
+NAME="install_exim"
+></A
+>Installing Exim Mail Service</H1
+><A
+HREF="ln4.html"
+>Legal Notice</A
+><DIV
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="50%"
+CELLSPACING="0"
+CELLPADDING="0"
+ALIGN="CENTER"
+><TR
+><TD
+VALIGN="TOP"
+><B
+>Abstract</B
+></TD
+></TR
+><TR
+><TD
+VALIGN="TOP"
+><P
+>This article describes the installation and configuration of exim as an alternative MTA to sendmail.</P
+></TD
+></TR
+></TABLE
+></DIV
+><HR
+WIDTH="75%"
+ALIGN="CENTER"
+COLOR="#000000"
+SIZE="1"></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="t1.html#compilation"
+>Getting and Compiling Exim</A
+></DT
+><DT
+><A
+HREF="x71.html"
+>Exim Configuration</A
+></DT
+><DT
+><A
+HREF="x140.html"
+>Installing Exim as an Alternative to Sendmail</A
+></DT
+><DT
+><A
+HREF="x244.html"
+>Testing Exim</A
+></DT
+><DT
+><A
+HREF="x278.html"
+>References and Related Links</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="compilation"
+></A
+>Getting and Compiling Exim</H1
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Get the latest version of exim from <A
+HREF="http://www.exim.org/mirrors.html"
+TARGET="_top"
+>http://www.exim.org/mirrors.html</A
+> , e.g.:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;<TT
+CLASS="prompt"
+>bash$</TT
+> <B
+CLASS="command"
+>wget ftp://ftp.csx.cam.ac.uk/pub/software/email/exim/exim4/exim-4.42.tar.gz .</B
+>
+</PRE
+></TD
+></TR
+></TABLE
+>
+Get also the latest docs, e.g.:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;<TT
+CLASS="prompt"
+>bash$</TT
+> <B
+CLASS="command"
+>wget ftp://ftp.csx.cam.ac.uk/pub/software/email/exim/exim4/exim-html-4.30.tar.gz .</B
+>
+<TT
+CLASS="prompt"
+>bash$</TT
+> <B
+CLASS="command"
+>wget ftp://ftp.csx.cam.ac.uk/pub/software/email/exim/exim4/exim-html-4.30.tar.gz .</B
+>
+</PRE
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>Extract it in <TT
+CLASS="filename"
+>/usr/local/src/</TT
+> :
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>mv exim-*.tar.gz /usr/local/src/tgz/</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>cd /usr/local/src/</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>tar xfz tgz/exim-4.42.tar.gz</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>cd exim-4.42/</B
+>
+</PRE
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>Create <TT
+CLASS="filename"
+>Local/Makefile</TT
+> :
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>cp src/EDITME Local/Makefile</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>vi Local/Makefile</B
+>
+</PRE
+></TD
+></TR
+></TABLE
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;BIN_DIRECTORY=/usr/local/exim/bin
+CONFIGURE_FILE=/usr/local/exim/exim.conf
+EXIM_USER=ref:mail
+SPOOL_DIRECTORY=/var/spool/exim
+SUPPORT_MAILDIR=yes
+# EXIM_MONITOR=eximon.bin
+LOG_FILE_PATH=/var/log/exim_%s.log
+USE_TCP_WRAPPERS=yes
+EXTRALIBS_EXIM=-lwrap -ldl
+</PRE
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>Make sure that <I
+CLASS="emphasis"
+>db4</I
+> and <I
+CLASS="emphasis"
+>db4-devel</I
+> packages are installed and install them if they aren't:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;<TT
+CLASS="prompt"
+>bash$</TT
+> <B
+CLASS="command"
+>rpm -q db4</B
+>
+<TT
+CLASS="prompt"
+>bash$</TT
+> <B
+CLASS="command"
+>rpm -q db4-devel</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>rpm -Uhv db4-....rpm</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>rpm -Uhv db4-devel-....rpm</B
+>
+</PRE
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>Compile and install:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;<TT
+CLASS="prompt"
+>bash$</TT
+> <B
+CLASS="command"
+>make</B
+>
+<TT
+CLASS="prompt"
+>bash#</TT
+> <B
+CLASS="command"
+>make install</B
+>
+</PRE
+></TD
+></TR
+></TABLE
+></P
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x71.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Exim Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,89 @@
+'<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (X11; U; Linux 2.2.12-20 i686) [Netscape]">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+There appears to be a bug in the install procedure which results in the
+"boot=" line of /etc/lilo.conf identifying the wrong device. At least this
+was so with my particular disk configuration.
+<p><b>Details:</b>
+<br>
+<hr WIDTH="100%">
+<br><b>RedHat Linux 6.1: </b>text based custom install
+<p><b>Disk Configuration:</b>
+<table BORDER WIDTH="100%" NOSAVE >
+<tr VALIGN=TOP NOSAVE>
+<td NOSAVE>Primary IDE channel: disk 0&nbsp;</td>
+
+<td NOSAVE><tt>Disk /dev/hda: 255 heads, 63 sectors, 1583 cylinders</tt>
+<br><tt>Units = cylinders of 16065 * 512 bytes</tt><tt></tt>
+<p><tt>&nbsp;&nbsp; Device Boot&nbsp;&nbsp;&nbsp; Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+End&nbsp;&nbsp;&nbsp; Blocks&nbsp;&nbsp; Id&nbsp; System</tt>
+<br><tt>/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 686&nbsp;&nbsp; 5510263+&nbsp; 1b&nbsp;
+Hidden Win95 FAT32</tt>
+<br><tt>/dev/hda2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+687&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1019&nbsp;&nbsp; 2674822+&nbsp; 1b&nbsp;
+Hidden Win95 FAT32</tt>
+<br><tt>/dev/hda3&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1021&nbsp;&nbsp;&nbsp;&nbsp; 16065&nbsp;&nbsp; 83&nbsp; Linux&nbsp;</tt></td>
+</tr>
+
+<tr>
+<td>Secondary IDE channel: disk 0</td>
+
+<td>CD ROM</td>
+</tr>
+
+<tr ALIGN=LEFT VALIGN=TOP NOSAVE>
+<td NOSAVE>SCSI 0</td>
+
+<td><tt>Disk /dev/sda: 255 heads, 63 sectors, 1106 cylinders</tt>
+<br><tt>Units = cylinders of 16065 * 512 bytes</tt><tt></tt>
+<p><tt>&nbsp;&nbsp; Device Boot&nbsp;&nbsp;&nbsp; Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+End&nbsp;&nbsp;&nbsp; Blocks&nbsp;&nbsp; Id&nbsp; System</tt>
+<br><tt>/dev/sda1&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; 128488+&nbsp;
+82&nbsp; Linux swap</tt>
+<br><tt>/dev/sda2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1106&nbsp;&nbsp; 8755425&nbsp;&nbsp;&nbsp;
+5&nbsp; Extended</tt>
+<br><tt>/dev/sda5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 781&nbsp;&nbsp; 6144831&nbsp;&nbsp;
+83&nbsp; Linux&nbsp;</tt></td>
+</tr>
+</table>
+
+<p>From the above you will see that there are 2 IDE drives and one SCSI.&nbsp;
+The documentation is pretty clear that given the above configuration that
+the <tt>/boot</tt> partition a) must reside on the IDE drive, b) be entirely
+below cylinder 1024 and c) be no more than 16MB.&nbsp; You will also see
+that these conditions have been met.
+<p>Prior to the installation I used Partition Magic v5.0 to create and
+format <tt>/dev/hda3</tt><font face="Courier New,Courier"> </font>as a
+Linux&nbsp; partition.&nbsp; Also note that PowerQuest''s BootMagic was
+installed to allow booting to one of two Windows98 configurations (<tt>/dev/hda1</tt>
+or <tt>/dev/hda2</tt> respectively).
+<p>During RedHat''s text based install I elected to install /boot on the
+existing Linux partition <tt>/dev/hda3,</tt> swap of 124MB on <tt>/dev/sda1</tt>
+and <tt>/</tt><font face="Courier New,Courier"> </font>on <tt>/dev/sda5</tt>.&nbsp;
+LILO was installed to the root partition.&nbsp; The install proceeded without
+difficulty.&nbsp; However, the system was not able to boot from except
+from floppy.
+<p>Upon subsequent inspection /etc/lilo.conf was written to specify:<font face="Courier New,Courier"></font>
+<p><tt>boot = /dev/sda</tt>
+<p>rather than the correct device:
+<p><tt>boot = /dev/hda3</tt>
+<p>Altering the <tt>boot</tt> line as indicated immediately above (manually)
+resolved the problem.
+<p>Ken Brown
+<br>kbrown@trentu.ca
+<br>705.748.1121 x1540
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>
+'

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://www.kde.org/media/css.php" type="text/css" />
+  </head>
+
+  <body onload="test('resultOnload', 'onload')">
+    <div id="resultInlineJavascript"></div>
+    <div id="resultOnload"></div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+    function test(id, description) {
+      var element = document.getElementById(id);
+      element.innerHTML = "document.styleSheets.length value in " + description + ": " + document.styleSheets.length;
+    }
+
+    test("resultInlineJavascript", "inline javascript");
+    //]]>
+    </script>
+  </body>
+</html>

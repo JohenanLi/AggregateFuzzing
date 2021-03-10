@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>Verification letter</title>
+
+<link rel="stylesheet" HREF="brev.css" type="text/css">
+	</head>
+	<body>
+		<table border="0">
+			<tr>
+				<td width="20px">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td  colspan="2" align="right" valign="top">
+					Unicornis AS<br />
+					Post: M&oslash;llergata 28, 0179 OSLO<br />
+					Bes&oslash;k: Mariboesggate 4, 0183 OSLO<br />
+					E-post: postkasse@unicornis.no<br />
+					T: 22 20 33 45, Fax: 22 20 33 46<br />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" colspan="2" valign="top">
+					<img src="{{lettercode}}.png" /><br />
+					{{ member.name }} {{ member.surname }}<br />
+				{{ member.address1 }}<br />
+				{{ member.address2 }}<br />
+				{{ member.postal_code}} <br />
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td width="20px">&nbsp;</td>
+			</tr>
+			<tr><td></td><td></td><td></td><td align="right" colspan="2">{{ date }}</td></tr>
+			<tr>
+				<td></td>
+				<td colspan="3">
+					<strong>Verifiseringsn&oslash;kkel for {{domain}}</strong><br />
+					<p>For at v&aring;rt system {{domain}} skal vite at din brukar er deg i r&oslah;ynda, ber vi deg om &aring; taste inn koden
+					du finn under i verifiseringsfeltet. Du vil d&aring; kunne signere p&aring; dokument digitalt. Merk at denne signaturen er like
+					bindande som ein vanleg "papir-signatur".</p>
+					<p>N&aring;r du logger inn p&aring; {{domain}} med epostadressa: {{ member.email }} og passordet ditt 
+					(ikkje verifiseringsnykkelen under), f&aring;r du opp ei direkteval for verifiseringsnykkel.</p>
+					<p>Hugs &aring; alltid halde kontakinformasjonen din oppdatert slik at informasjon ikkje blir avvist. Vi ber deg og om &aring; markere
+					*.hypersys.noo som "venn" eller "whitelist" i e-postklienten din, for &aring; sikre at e-postmeldinger
+					ikkje blir rekna som s&oslash;ppelpost.</p>
+					<p>Du kan og velje spr&aring;k, personvernniv&aring; og meir p&aring; {{domain}}</p>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td><td></td>
+				<td align="center" border="1">
+					Verifiseringsnykkel:<br />
+					<font color="#ff0000">{{ vercode }}</font>
+				</td>
+			<tr>
+				<td>
+				</td>
+				<td>Med vennleg helsing,<br />{{organisation}}</td>
+			</tr>
+		</table>
+	</body>
+</html>
+

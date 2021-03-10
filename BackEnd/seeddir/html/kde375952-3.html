@@ -1,0 +1,19 @@
+<div dir="ltr">Just noticed, this doesnt look like a segfault but an unhandled exception.<div>It is valid for Exiv2 to abort if it doesnt support APNGs.</div><div>So it would seem issues are also Gwenview calling Exiv2 on APNGs and not catching the exception (in <span style="color:rgb(0,0,0);white-space:pre-wrap">Exiv2ImageLoader::load or </span><span style="color:rgb(0,0,0);white-space:pre-wrap">LoadingDocumentImplPrivate::loadMetaInfo</span>), maybe there is a catch further up the (semantic) call chain, but it cannot be unwinded because of the intervening QtConcurrent threading ?<br></div></div><div class="gmail_extra"><br><div class="gmail_quote">On Mon, Feb 6, 2017 at 1:49 PM, Matthias Fauconneau <span dir="ltr">&lt;<a href="mailto:matthias.fauconneau@gmail.com" target="_blank">matthias.fauconneau@gmail.com</a>&gt;</span> wrote:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir="ltr">As a workaround, I disabled PNG support in exiv2.<div>I wonder why when I open an image, Gwenview tries to load metadata of another one though.</div></div><div class="HOEnZb"><div class="h5"><div class="gmail_extra"><br><div class="gmail_quote">On Mon, Feb 6, 2017 at 12:39 PM, Christoph Feck <span dir="ltr">&lt;<a href="mailto:bugzilla_noreply@kde.org" target="_blank">bugzilla_noreply@kde.org</a>&gt;</span> wrote:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span><a href="https://bugs.kde.org/show_bug.cgi?id=375952" rel="noreferrer" target="_blank">https://bugs.kde.org/show_bug.<wbr>cgi?id=375952</a><br>
+<br>
+Christoph Feck &lt;<a href="mailto:cfeck@kde.org" target="_blank">cfeck@kde.org</a>&gt; changed:<br>
+<br>
+           What    |Removed                     |Added<br>
+------------------------------<wbr>------------------------------<wbr>----------------<br>
+</span>             Status|NEEDSINFO                   |RESOLVED<br>
+         Resolution|BACKTRACE                   |UPSTREAM<br>
+<br>
+--- Comment #3 from Christoph Feck &lt;<a href="mailto:cfeck@kde.org" target="_blank">cfeck@kde.org</a>&gt; ---<br>
+The crash is in libexiv2.so.14<br>
+<br>
+If you know the image that it fails with, please report this issue directly to<br>
+libexiv2 developers via <a href="http://dev.exiv2.org/projects/exiv2/issues" rel="noreferrer" target="_blank">http://dev.exiv2.org/projects/<wbr>exiv2/issues</a><br>
+<div class="m_-2907293276896489606HOEnZb"><div class="m_-2907293276896489606h5"><br>
+--<br>
+You are receiving this mail because:<br>
+You reported the bug.</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>

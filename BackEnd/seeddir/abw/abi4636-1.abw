@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword xmlns="http://www.abisource.com/awml.dtd" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.0.5pre" fileformat="1.0" styles="unlocked">
+<!-- =====================================================================  -->
+<!-- This file is an AbiWord document.                                      -->
+<!-- AbiWord is a free, Open Source word processor.                         -->
+<!-- You may obtain more information about AbiWord at www.abisource.com     -->
+<!-- You should not edit this file by hand.                                 -->
+<!-- =====================================================================  -->
+
+<styles>
+<s type="P" name="Normal" basedon="" followedby="Current Settings" props="font-family:Times New Roman; dom-dir:ltr; font-style:normal; margin-left:0pt; text-indent:0in; margin-top:0pt; text-position:normal; font-weight:normal; font-variant:normal; color:000000; text-decoration:none; line-height:1.000000; margin-bottom:0pt; text-align:left; margin-right:0pt; bgcolor:transparent; font-size:12pt; widows:2; font-stretch:normal"/>
+<s type="P" name="ISO" props="line-height:1.000000; font-family:Courier New; font-size:10pt"/>
+<s type="P" name="Sample" basedon="Normal" props="tabstops:0.625000in/L0; line-height:1.000000; margin-left:2.1250in"/>
+</styles>
+<pagesize pagetype="Custom" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section>
+<p style="Normal"><c props="lang:en-AU"></c><c props="lang:en-US">American	world		worldx</c><c props="lang:en-US"></c></p>
+<p style="Normal"><c props="lang:en-GB">British		world		worldx</c><c props="lang:en-GB"></c></p>
+<p style="Normal"><c props="lang:de-DE">German	Welt		weltx</c><c props="lang:de-DE"></c></p>
+<p style="Normal"><c props="lang:es-ES">spanish	mundo		mundox</c><c props="lang:es-ES"></c></p>
+<p style="Normal"><c props="lang:eo">esperanto	mondo		mondox</c><c props="lang:eo"></c></p>
+<p style="Normal"><c props="lang:fr-FR">french		</c><c props="font-family:Times New Roman; font-size:12pt; color:000000; text-decoration:none; text-position:normal; font-weight:normal; font-style:normal; lang:fr-FR">monde</c><c props="lang:fr-FR">		</c><c props="font-family:Times New Roman; font-size:12pt; color:000000; text-decoration:none; text-position:normal; font-weight:normal; font-style:normal; lang:fr-FR">mondex</c></p>
+<p style="Normal"><c props="lang:it-IT">italian		mondo		mondox</c><c props="lang:it-IT"></c></p>
+<p style="Normal"><c props="lang:nl-NL">dutch		wereld		wereldx</c><c props="lang:nl-NL"></c></p>
+<p style="Normal"><c props="lang:nb-NO">bokmal		verden		verdenx</c><c props="lang:nb-NO"></c></p>
+<p style="Normal"><c props="lang:nn-NO">nynorsk	verda		verdax</c><c props="lang:nn-NO"></c></p>
+<p style="Normal"><c props="lang:pt-PT">portuguese	mundo		mundox</c><c props="lang:pt-PT"></c></p>
+<p style="Normal"><c props="lang:ru-RU">russian		мир		мирx</c><c props="lang:ru-RU"></c></p>
+<p style="Normal"><c props="lang:sv-SE">swedish	</c><c props="lang:sv-SE"></c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; text-position:normal; font-weight:normal; font-style:normal; lang:sv-SE">världen	världenx</c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; text-position:normal; font-weight:normal; font-style:normal; lang:sv-SE"></c></p>
+</section>
+</abiword>

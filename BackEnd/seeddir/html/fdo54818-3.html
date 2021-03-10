@@ -1,0 +1,67 @@
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Pierre-Yves,<br>
+    <br>
+    Thanks for the suggestions. I have done some more tests.<br>
+    <br>
+    When "Selection" is selected, the export seems to be correct, either
+    exporting the selected range (if there is one), or the whole sheet
+    (if not).<br>
+    <br>
+    When I look more closely, I see that exporting as "All" actually
+    includes both the sheets in the test file, implying that "All" means
+    "All Sheets", rather than "The whole of the current sheet" - is this
+    correct?<br>
+    <br>
+    However, when I export from "Contact List Display" to "All" in the
+    original file with many more sheets, it only exports "Contact List"
+    and "Contact List Display", and not any of the other 6 sheets in the
+    file. Attached is an anonymised file which shows this behaviour.<br>
+    <br>
+    Roger<br>
+    <br>
+    <div class="moz-cite-prefix">On 16/09/2012 13:25,
+      <a class="moz-txt-link-abbreviated" href="mailto:bugzilla-daemon@freedesktop.org">bugzilla-daemon@freedesktop.org</a> wrote:<br>
+    </div>
+    <blockquote class=" cite"
+      id="mid_bug_54818_32788_Lcl044BYct_http_bugs_freedesktop_org_2F"
+      cite="mid:bug-54818-32788-Lcl044BYct@http.bugs.freedesktop.org%2F"
+      type="cite">
+      <pre wrap=""><a class="moz-txt-link-freetext" href="https://bugs.freedesktop.org/show_bug.cgi?id=54818">https://bugs.freedesktop.org/show_bug.cgi?id=54818</a>
+
+--- Comment #3 from pierre-yves samyn <a class="moz-txt-link-rfc2396E" href="mailto:pierre-yves.samyn@laposte.net">&lt;pierre-yves.samyn@laposte.net&gt;</a> 2012-09-16 12:25:00 UTC ---
+Hello
+
+I do not reproduce with Version 3.6.2.1 (Build ID: ba822cc) &amp; windows 7 64bits
+
+Note: the program requests the range to export. One of the options is "Pages",
+does not mean "Sheet" (a sheet can take several pages).
+
+Could you provide step by step how you select the sheet to be exported ?
+
+For example:
+
+1. File&gt; Open the attached spreadsheet
+2. Click on tab "Contact List Display" to select this sheet
+3. Select A1:D19
+4. File&gt; Export as PDF
+5. Tab General, Range: Selection
+6. Export
+
+Regards
+Pierre-Yves
+
+</pre>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <hr style="width:50%;float:left;"><br>
+      Roger Calvert<br>
+      <hr style="width:50%;float:left;"></div>
+  </body>
+</html>
+

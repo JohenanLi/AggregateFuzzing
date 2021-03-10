@@ -1,0 +1,93 @@
+<%@ Page language="c#" AutoEventWireup="true" %>
+<%@ Import Namespace="System.Xml.Serialization"%>
+<%@ Import Namespace="System.Xml"%>
+<%@ Import Namespace="System.Xml.Schema"%>
+<%@ Import Namespace="System.IO"%>
+<%-- Apparently mono doesn't support (de)serialization of enums. This is a good test page for future support.
+
+Error: 
+
+Message: 'Element' is an invalid node type.  Line 4, position 4.
+
+in &lt;0x0013c&gt; System.Xml.XmlReader:ReadElementString ()
+in &lt;0x000ce&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadPrimitiveValue (System.Xml.Serialization.XmlTypeMapElementInfo elem)
+in &lt;0x00074&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadObjectElement (System.Xml.Serialization.XmlTypeMapElementInfo elem)
+in &lt;0x01e04&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadMembers (System.Xml.Serialization.ClassMap map, System.Object ob, Boolean isValueList, Boolean readByOrder)
+in &lt;0x0003c&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadClassInstanceMembers (System.Xml.Serialization.XmlTypeMapping typeMap, System.Object ob)
+in &lt;0x00194&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadClassInstance (System.Xml.Serialization.XmlTypeMapping typeMap, Boolean isNullable, Boolean checkType)
+in &lt;0x0005f&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadObject (System.Xml.Serialization.XmlTypeMapping typeMap, Boolean isNullable, Boolean checkType)
+in &lt;0x000d5&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadRoot (System.Xml.Serialization.XmlTypeMapping rootMap)
+in &lt;0x0006d&gt; System.Xml.Serialization.XmlSerializationReaderInterpreter:ReadRoot ()
+in &lt;0x0005d&gt; System.Xml.Serialization.XmlSerializer:Deserialize (System.Xml.Serialization.XmlSerializationReader reader)
+in &lt;0x00040&gt; System.Xml.Serialization.XmlSerializer:Deserialize (System.Xml.XmlReader xmlReader)
+in &lt;0x00037&gt; System.Xml.Serialization.XmlSerializer:Deserialize (System.IO.TextReader textReader)
+in &lt;0x0006a&gt; ASP.MonoXmlBug_aspx:Page_Load (System.Object sender, System.EventArgs e)
+in (wrapper delegate-invoke) System.MulticastDelegate:invoke_void_object_EventArgs (object,System.EventArgs)
+in &lt;0x00117&gt; System.Web.UI.Control:OnLoad (System.EventArgs e)
+in &lt;0x000e5&gt; System.Web.UI.Control:LoadRecursive ()
+in &lt;0x0011e&gt; System.Web.UI.Page:InternalProcessRequest ()
+in &lt;0x000b8&gt; System.Web.UI.Page:ProcessRequest (System.Web.HttpContext context)
+--%>
+<script runat="server" language="C#">
+	string Xml= @"<?xml version=""1.0"" encoding=""utf-8""?>
+<SystemPriorityLevel  xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+ <priority>
+  <value>NORMAL</value>
+ </priority>
+</SystemPriorityLevel>";
+
+	string Output = null;
+	private void Page_Load(object sender, System.EventArgs e)
+	{
+		XmlSerializer xs = new XmlSerializer(typeof(SystemPriorityLevel));
+		
+		SystemPriorityLevel Value;
+		
+		using (StringReader SR = new StringReader(Xml))
+		{
+			Value = (SystemPriorityLevel)xs.Deserialize(SR);
+		}
+		
+		Output = Value.priority.ToString();
+	}
+	
+	[Serializable]
+	public enum priority
+	{
+		[XmlEnum(Name="HIGH")] HIGH,
+		[XmlEnum(Name="NORMAL")] NORMAL
+	}
+	
+	[XmlRoot(ElementName="SystemPriorityLevel",IsNullable=false),Serializable]
+	public class SystemPriorityLevel
+	{
+		[XmlElement(ElementName="priority",IsNullable=false,Form=XmlSchemaForm.Qualified)]
+		public priority __priority;
+		
+		[XmlIgnore]
+		public bool __prioritySpecified;
+		
+		[XmlIgnore]
+		public priority priority
+		{ 
+			get { return __priority; }
+			set { __priority = value; __prioritySpecified = true; }
+		}
+
+		public SystemPriorityLevel()
+		{
+		}
+	}
+</script>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" > 
+
+<html>
+  <head>
+    <title>Mono Xml Deserialization Bug</title>
+  </head>
+  <body>
+	
+    <%=Output%>
+	
+  </body>
+</html>

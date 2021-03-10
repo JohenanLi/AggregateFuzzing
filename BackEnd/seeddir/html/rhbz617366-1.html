@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Test for PackageKit Plugin</title>
+    <style type="text/css">
+      body {
+        background: #ffeedd;
+      }
+
+      .packagekit-plugin {
+         width: 30em;
+         height: 5em;
+      }
+    </style>
+  </head>
+  <body>
+    <object type="application/x-packagekit-plugin" width="500" height="200" class="packagekit-plugin">
+      <param name="packagenames" value="firefox mozilla-firefox"/>
+    </object>
+    <br/><br/>
+    <object type="application/x-packagekit-plugin" width="500" height="200" class="packagekit-plugin">
+      <param name="displayname" value="Kaffeine"/>
+      <param name="packagenames" value="php-pear"/>
+    </object>
+    <br/><br/>
+    <object type="application/x-packagekit-plugin" width="500" height="200" class="packagekit-plugin">
+      <param name="displayname" value="Lynx"/>
+      <param name="packagenames" value="lynx"/>
+    </object>
+    <br/><br/>
+    <object type="application/x-packagekit-plugin" width="500" height="200" class="packagekit-plugin">
+      <param name="packagenames" value="velocity"/>
+    </object>
+    <br/><br/>
+    <object type="application/x-packagekit-plugin" width="500" height="200" class="packagekit-plugin">
+      <param name="displayname" value="FSpot"/>
+      <param name="packagenames" value="f-spot"/>
+    </object>
+  </body>
+</html>
+

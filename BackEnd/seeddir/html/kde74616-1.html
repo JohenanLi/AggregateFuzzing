@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="sv"><head><title>copy-links-test</title>
+<base href="http://www.autark.se/">
+</head>
+<body class="bkg" id="autark_se">
+<div class="srr">
+<div class="mxc"><!-- FreeFind Begin No Index -->
+<div class="snbx">
+<div id="hdle4"><span id="hdle2">&nbsp;</span></div>
+<div id="hdle3">&nbsp;</div>
+<div class="brk"></div>
+<div class="brk"></div>
+</div>
+<!-- FreeFind End No Index -->
+<div class="sbt">
+<p>In Konqueror&nbsp;3.2 the links above don't work. They are copied from the page footer, using W3C-DOM.</p>
+</div>
+<!-- FreeFind Begin No Index -->
+<div class="bx">
+<div class="ft">
+<hr class="hide">
+<div class="hlo" id="ftle">
+<span id="trl0"><a href="" title="Autark">Hem</a>&nbsp;/&nbsp;<a href="systemutveckling.html" class="nal" title="Upp 1 steg">Systemutveckling</a></span></div>
+<div class="hl">
+<div id="stdl1">
+
+<ul class="inll">
+<li class="inllfi"><a href="help.html" class="nal" accesskey="0">Hjälp</a></li>
+<li><a href="indexmap.html" class="nal" accesskey="6">Index</a></li>
+<li><a href="sitemapper.php?id=systemstruktur" class="nal" accesskey="5">Innehåll</a></li>
+<li><a href="search.html" class="nal" accesskey="4">Sök/Search</a></li>
+</ul>
+</div>
+</div>
+<div class="ht" id="fdmy"></div>
+</div>
+</div>
+<!-- FreeFind End No Index --></div>
+</div>
+<div>
+<script type="text/javascript">
+<!-- 
+function refresh( el )
+{
+el.style.visibility = 'hidden';
+el.style.visibility = 'visible';
+}
+function copyLinks(src_, trg_)
+{
+var trg = document.getElementById( trg_);
+if ( trg == null ) {return;}
+if (trg.firstChild == null ) {return;}
+var src = document.getElementById(src_);
+if ( src == null ) {return;}
+var c = src.cloneNode(true);
+c.removeAttribute("id");
+trg.replaceChild( c, trg.firstChild );
+refresh(trg);
+}
+function rearrange()
+{
+var da = new Array;
+if ( (document.cloneNode && document.replaceChild && da.push) )
+{
+copyLinks('stdl1', 'hdle3');
+copyLinks('trl0', 'hdle2');
+}
+}
+
+rearrange();
+// -->
+</script></div>
+</body></html>

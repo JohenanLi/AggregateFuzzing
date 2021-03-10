@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math PUBLIC "-//W3C//DTD MathML 2.0//EN"
+      "http://www.w3.org/TR/MathML2/dtd/mathml2.dtd">
+<!-- Created by amaya 11.3.1, see http://www.w3.org/Amaya/ -->
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <msup>
+    <mn>1</mn>
+    <msup>
+      <mn>2</mn>
+      <msup>
+        <mn>3</mn>
+        <msup>
+          <mn>4</mn>
+          <msup>
+            <mn>5</mn>
+            <mn>6</mn>
+          </msup>
+        </msup>
+      </msup>
+    </msup>
+  </msup>
+  <msup>
+    <mn>1</mn>
+    <msup>
+      <mn>2</mn>
+      <mn>3</mn>
+    </msup>
+  </msup>
+</math>

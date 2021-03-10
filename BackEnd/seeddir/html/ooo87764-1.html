@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.4  (Linux)">
+	<META NAME="AUTHOR" CONTENT="darrell pfeifer">
+	<META NAME="CREATED" CONTENT="20080330;10431100">
+	<META NAME="CHANGEDBY" CONTENT="darrell pfeifer">
+	<META NAME="CHANGED" CONTENT="20080330;12221600">
+	<META NAME="CHANGEDBY" CONTENT="darrell pfeifer">
+	<META NAME="CHANGEDBY" CONTENT="darrell pfeifer">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H4>Lab 1</H4>
+<H4>Demonstration due date: Thursday April 10, 11:20 AM</H4>
+<H4>Problem</H4>
+<P>Computers are machines. While they might be fast, and get faster
+all the time, they are still only able to do a limited amount of work
+over a given period of time. In this lab we're going to learn the
+speed of various operations of ArrayList.</P>
+<P>With these exercises you should start out with small numbers (in
+the tens of thousands) and then gradually increase to larger numbers
+(in the hundreds of thousands). Larger numbers will tend to cause
+Java to run out of memory, but we will often want to use the largest
+numbers we can achieve.</P>
+<H4>Lab Work</H4>
+<OL>
+	<LI><P>Write an ordinary Java class with a couple of data fields and
+	a constructor (or borrow a Java class from a previous Comp132 lab)</P>
+	<LI><P>Write a Java driver program to measure the time to add a
+	large number of items</P>
+	<OL>
+		<LI><P>Make one instance of your Java class from the previous step</P>
+		<LI><P>Make an ArrayList</P>
+		<LI><P>Use a counted for loop to add the same item to the ArrayList
+		some large number of times (tens of thousands or hundreds of
+		thousands). Remember to use a named constant for the maximum value</P>
+		<P>static final int MAX_ITEMS = 50000;</P>
+		<LI><P>Add a println at the start of the loop and again after the
+		loop has completed. This will allow you to measure how long the
+		program takes.</P>
+		<LI><P>Try running the program with various gradually increasing
+		values. Can you find a large value that is measurable via a
+		stopwatch? (Note: there are timing facilities available in the Java
+		libraries but we won't be using them. We want to do this from a
+		user response time perspective)</P>
+		<LI><P>Set the number of items back to something on the small side.
+		Add another counted loop to remove all the items that were just
+		added. ArrayList has a remove operation that removes by position.
+		Try removing the zero-position element each time. As with the
+		adding exercise, try using increasing the maximum values. Is the
+		amount of time substantially different than adding? Record enough
+		values that you can draw a graph which compares the number of items
+		versus the amount of time to remove them.</P>
+		<LI><P>Change your counted loop to remove items from the end of the list, rather than from the zero position. Hint: use the same counted for loop, but add a variable that will keep track of the position you want to remove. Alternate hint: always remove the size - 1 position (this isn't as efficient). How fast is removing from the end compared to removing from the beginning?</P>
+	</OL>
+	<LI><P>Write a different driver program to measure how often the
+	equals method is called when ArrayList's indexOf operation is used.</P>
+	<OL>
+		<LI><P>This time, add different items to your ArrayList (rather than the same item many times). Hint: You can make your items different by concatenating the loop control variable to and Strings you're using when making your class. Note that since you're using more memory by creating unique items, you won't be able to create and add as many items as you did in the previous exercise.<P>
+		<LI><P>Add an equals method to your class</P>
+		<LI><P>Add a counter variable to your class that will increment each time the equals method is called.</P>
+		<LI><P>Add a static getter method to return the equals counter (so you can call it from main with ClassName.getEqualsCounter()</P>
+		<LI><P>In your main program, after the list has been filled, use Collections.shuffle on the list to randomize it.</P>
+		<LI><P>Use ArrayList's indexOf to search for a newly created "fake" item that is similar to the one you're trying to find on the list</P>
+		<LI><P>Print the position of the found item on the list, along with the number of times that equals was called.</P>
+		<LI><P>Try finding different items on the list. What is the general rule/formula for the expected number of equals calls that will be required to find a random item on the list?</P>
+	</OL>
+</OL>
+</BODY>
+</HTML>
