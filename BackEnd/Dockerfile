@@ -6,6 +6,6 @@ COPY ./requirements.txt .
 COPY ./uwsgi.ini .
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 WORKDIR /FuzzAll/AFL 
-RUN make && make install
+RUN ls && make && make install
 WORKDIR /BackEnd
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
