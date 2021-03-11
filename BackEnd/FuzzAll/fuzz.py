@@ -19,11 +19,11 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile):
         qemu = '-Q'
     else:
         qemu = " "
-    fuzz_cmd = none
+    fuzz_cmd = None
 
     if fuzzer == "afl":
-        afl = os.path.join(config.AFL_PATH, "afl-fuzz")
-        fuzz_cmd = [afl, qemu, "-i", ins, "-o", outs, "--", program_path, params]
+        # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
+        fuzz_cmd = ['afl-fuzz', qemu, "-i", ins, "-o", outs, "--", program_path, params]
     elif fuzzer == "tortoise":
         tortoise = os.path.join(config.AFL_PATH, "bb_metric", "afl-fuzz")
         fuzz_cmd = [tortoise, qemu, "-i", ins, "-o", outs, "--", program_path, params]

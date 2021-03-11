@@ -1,13 +1,16 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
-
+import os
 # Create your models here.
-
+def upload_to(instance,filename):
+    ext = filename.split('.')[-1]
+    print(ext)
+    return '/'.join([os.getcwd(),'sourceTotal',str(filename).strip('.'+ext),str(filename)])
 
 class uploadSourceCode(models.Model):
     id = models.AutoField('id', primary_key=True)
     filePath = models.FileField(
-        'filePath', upload_to='sourceCodeFiles/')  # program'path
+        'filePath', upload_to=upload_to)  # program'path
     name = models.CharField('name', max_length=100)  # fuzzer'name
     ins = models.TextField('seeddir', max_length=500)
     inputFile = models.FileField('inputFile', upload_to='inputFile/')
