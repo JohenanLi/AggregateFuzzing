@@ -4,6 +4,8 @@ ENV MODE=PRODUCTION
 
 COPY ./requirements.txt .
 COPY ./uwsgi.ini .
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt && cd FuzzAll/AFL && make && make install
-
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+WORKDIR /FuzzAll/AFL 
+RUN make && make install
+WORKDIR /BackEnd
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
