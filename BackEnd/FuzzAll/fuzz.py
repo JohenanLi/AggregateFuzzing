@@ -14,7 +14,7 @@ from FuzzAll import check,config
     isfile ==> if file read from file
 """
 
-def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile):
+def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileCommand):
     if isqemu:
         qemu = '-Q'
     else:
@@ -23,7 +23,15 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile):
 
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
-        fuzz_cmd = ['afl-fuzz', qemu, "-i", ins, "-o", outs, "--", program_path, params]
+        if compileCommand != '':
+            
+            new = program_path.split('.')
+            cmCmd = compileCommand + ' -o ' + new[0] +'.out'+' ' + program_path 
+            print(cmCmd)
+            os.system(cmCmd)
+            program_path = new[0] +'.out'
+            print(program_path)
+        fuzz_cmd = ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path, params]
     elif fuzzer == "tortoise":
         tortoise = os.path.join(config.AFL_PATH, "bb_metric", "afl-fuzz")
         fuzz_cmd = [tortoise, qemu, "-i", ins, "-o", outs, "--", program_path, params]
@@ -35,10 +43,16 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile):
         print("error fuzzer: {}".format(fuzzer))
 
     # screen background for fuzz
-    fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
+    # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
     if isfile:                  ## read from file
-        fuzz_cmd.append("@@")
-    subprocess.Popen(fuzz_cmd)
+        fuzz_cmd.append(" @@")
+    else:
+        pass
+    # subprocess.Popen(fuzz_cmd)
+    sysCmd = ''
+    sysCmd = sysCmd.join(fuzz_cmd)
+    print(sysCmd)
+    os.system(sysCmd)
     pass
 
 if __name__ == '__main__':

@@ -2,10 +2,13 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 import os
 # Create your models here.
-def upload_to(instance,filename):
+
+
+def upload_to(instance, filename):
     ext = filename.split('.')[-1]
     print(ext)
-    return '/'.join([os.getcwd(),'sourceTotal',str(filename).strip('.'+ext),str(filename)])
+    return '/'.join([os.getcwd(), 'sourceTotal', str(filename).strip('.'+ext), str(filename)])
+
 
 class uploadSourceCode(models.Model):
     id = models.AutoField('id', primary_key=True)
@@ -25,7 +28,7 @@ class uploadSourceCode(models.Model):
 
 class uploadSourceProgram(models.Model):
     id = models.AutoField('id', primary_key=True)
-    filePath = models.FileField('filePath', upload_to='sourceProgramFiles/')
+    filePath = models.FileField('filePath', upload_to=upload_to)
     name = models.CharField('name', max_length=100, default='')
     parameter = models.CharField('parameter', max_length=100, default='')
 
