@@ -14,9 +14,9 @@ class IndexView(generic.TemplateView):
     template_name = 'index.html'
 
 
-def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrProgramBoolean: bool, codeOrProgram):
+def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
-                      isqemu=True, ins=ins, outs=outs, params=params, isfile=isfile)
+                      isqemu=False, ins=ins, outs=outs, params=params, isfile=isfile,compileCommand=compileCommand)
     if codeOrProgramBoolean:
         codeResult.objects.create(codeCoverage=result['codeCoverage'],
                           bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
@@ -35,9 +35,15 @@ def sourceCode(request):
     elif request.method == 'POST':
         print(request.POST)
         filePath = request.FILES.get("myfile", None)
+        ext = str(filePath).split('.')[-1]
+        filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
         name = request.POST['name']
         seed = request.POST['seed']
         inputFile = request.FILES.get('inputFile', None)
+        ext = str(inputFile).split('.')[-1]
+        print(ext)
+        inputFile = '/'.join([os.getcwd(), 'sourceTotal', str(inputFile).strip('.'+ext), str(inputFile)])
+        print(inputFile)
         parameter = request.POST['parameter']
         compileCommand = request.POST['compileCommand']
         inputCommand = request.POST['inputCommand']
@@ -53,11 +59,11 @@ def sourceCode(request):
             if not inputFile:
                 isfile = True
                 _thread.start_new_thread(threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=True, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp))
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand))
             else:
                 # 调用接口传数据
                 _thread.start_new_thread(threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=True, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp))
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand))
 
             return render(request, 'sourceCode/wait.html', {'object': temp})
 
@@ -90,10 +96,10 @@ def sourceProgram(request):
             if not inputFile:
                 isfile = True
                 _thread.start_new_thread(threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=True, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=False,codeOrProgram=temp))
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=False,codeOrProgram=temp))
             else:
                 # 调用接口传数据
                 _thread.start_new_thread(threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=True, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=False,codeOrProgram=temp))
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=False,codeOrProgram=temp))
 
                 return render(request, 'sourceProgram/wait.html', {object: temp})

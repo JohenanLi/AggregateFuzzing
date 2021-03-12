@@ -9,6 +9,10 @@ def upload_to(instance, filename):
     print(ext)
     return '/'.join([os.getcwd(), 'sourceTotal', str(filename).strip('.'+ext), str(filename)])
 
+def uploadInput(instance,filename):
+    ext = filename.split('.')[-1]
+    print(ext)
+    return '/'.join([os.getcwd(), 'sourceTotal', str(filename).strip('.'+ext), str(filename)])
 
 class uploadSourceCode(models.Model):
     id = models.AutoField('id', primary_key=True)
@@ -16,7 +20,7 @@ class uploadSourceCode(models.Model):
         'filePath', upload_to=upload_to)  # program'path
     name = models.CharField('name', max_length=100)  # fuzzer'name
     ins = models.TextField('seeddir', max_length=500)
-    inputFile = models.FileField('inputFile', upload_to='inputFile/')
+    inputFile = models.FileField('inputFile', upload_to=uploadInput)
     compileCommand = models.CharField(
         'compileCommand', max_length=100, default='')
     parameter = models.CharField('parameter', max_length=100, default='')
