@@ -7,7 +7,6 @@ COPY ./uwsgi.ini .
 COPY ./FuzzAll ./FuzzAll
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 WORKDIR /FuzzAll/AFL
-RUN apt-get install afl
 RUN ls && make && make install
 WORKDIR .
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
