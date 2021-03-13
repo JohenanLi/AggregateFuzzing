@@ -6,13 +6,11 @@ import os
 
 def upload_to(instance, filename):
     ext = filename.split('.')[-1]
-    print(ext)
     return '/'.join([os.getcwd(), 'sourceTotal', str(filename).strip('.'+ext), str(filename)])
 
 def uploadInput(instance,filename):
     ext = filename.split('.')[-1]
-    print(ext)
-    return '/'.join([os.getcwd(), 'sourceTotal', str(filename).strip('.'+ext), str(filename)])
+    return '/'.join([os.getcwd(), 'inputFile', str(filename).strip('.'+ext), str(filename)])
 
 class uploadSourceCode(models.Model):
     id = models.AutoField('id', primary_key=True)

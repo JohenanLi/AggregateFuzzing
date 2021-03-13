@@ -35,15 +35,10 @@ def sourceCode(request):
     elif request.method == 'POST':
         print(request.POST)
         filePath = request.FILES.get("myfile", None)
-        ext = str(filePath).split('.')[-1]
-        filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
+        
         name = request.POST['name']
         seed = request.POST['seed']
         inputFile = request.FILES.get('inputFile', None)
-        ext = str(inputFile).split('.')[-1]
-        print(ext)
-        inputFile = '/'.join([os.getcwd(), 'sourceTotal', str(inputFile).strip('.'+ext), str(inputFile)])
-        print(inputFile)
         parameter = request.POST['parameter']
         compileCommand = request.POST['compileCommand']
         inputCommand = request.POST['inputCommand']
@@ -56,6 +51,13 @@ def sourceCode(request):
             isfile = False
             temp = uploadSourceCode.objects.create(
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, compileCommand=compileCommand, inputCommand=inputCommand)
+            ##路径替换
+            ext = str(filePath).split('.')[-1]
+            filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
+
+            extInput= str(inputFile).split('.')[-1]
+            inputFile = '/'.join([os.getcwd(), 'inputFile', str(inputFile).strip('.'+extInput)])
+            print(str(filePath),str(inputFile))
             if not inputFile:
                 isfile = True
                 _thread.start_new_thread(threadFuzz(
