@@ -48,13 +48,13 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
     else:
         pass
     # screen background for fuzz
-    fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
-    subprocess.Popen(fuzz_cmd)
-    # sysCmd = ''
-    # sysCmd = sysCmd.join(fuzz_cmd)
-    # print(sysCmd)
-    # os.system(sysCmd)
-    # pass
+    # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
+    # subprocess.Popen(fuzz_cmd)
+    sysCmd = ''
+    sysCmd = sysCmd.join(fuzz_cmd)
+    print(sysCmd)
+    os.system(sysCmd)
+    pass
 
 if __name__ == '__main__':
     print(config.MAX_TIMES)
