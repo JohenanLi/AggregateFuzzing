@@ -4,9 +4,11 @@ ENV MODE=PRODUCTION
 
 COPY ./requirements.txt .
 COPY ./uwsgi.ini .
-COPY ./FuzzAll ./FuzzAll
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt && apt-get install screen -y
-WORKDIR /FuzzAll/AFL
+COPY ./tools ./tools
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+WORKDIR /tools/AFL
 RUN ls && make && make install
+WORKDIR /tools/screen-4.8.0
+RUN ./configure && make && make install
 WORKDIR /
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
