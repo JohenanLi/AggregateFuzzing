@@ -85,7 +85,7 @@ def sourceProgram(request):
         inputFile = request.FILES.get('inputFile', None)
         parameter = request.POST['parameter']
         compileCommand = request.POST['compileCommand']
-        inputCommand = request.POST.get('inputCommand')
+        inputCommand = request.POST['inputCommand']
         outs = os.path.join(BASE_DIR, 'outs')
 
         print('test')
@@ -95,13 +95,20 @@ def sourceProgram(request):
             isfile = False
             temp = uploadSourceProgram.objects.create(
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, inputCommand=inputCommand)
+            ##路径替换
+            ext = str(filePath).split('.')[-1]
+            filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
+
+            extInput= str(inputFile).split('.')[-1]
+            inputFile = '/'.join([os.getcwd(), 'inputFile', str(inputFile).strip('.'+extInput)])
+            print(str(filePath),str(inputFile))
             if not inputFile:
                 isfile = True
                 _thread.start_new_thread(threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=False,codeOrProgram=temp))
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand))
             else:
                 # 调用接口传数据
                 _thread.start_new_thread(threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=False,codeOrProgram=temp))
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand))
 
                 return render(request, 'sourceProgram/wait.html', {object: temp})

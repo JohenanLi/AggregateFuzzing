@@ -36,7 +36,7 @@ class uploadSourceProgram(models.Model):
 
     ins = models.TextField('seeddir', max_length=500)
     inputCommand = models.TextField('inputCommand', max_length=500, default='')
-    inputFile = models.FileField('inputFile', upload_to='inputFile/')
+    inputFile = models.FileField('inputFile', upload_to=uploadInput)
 
     def __str__(self):
         return self.name
