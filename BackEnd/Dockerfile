@@ -9,7 +9,6 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 WORKDIR /tools/AFL
 RUN ls && make && make install
 WORKDIR /tools/screen-4.8.0
-RUN ls
-RUN ./configure && make
+RUN ls && ./configure && make
 WORKDIR /
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
