@@ -11,8 +11,8 @@ RUN ls && make && make install
 WORKDIR /tools/screen-4.8.0
 RUN ls && ./configure && make
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
-    echo "deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib" >/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib" >>/etc/apt/sources.list 
+    echo "deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" >/etc/apt/sources.list && \
+    echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" >>/etc/apt/sources.list 
 RUN apt-get install screen
 WORKDIR /
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
