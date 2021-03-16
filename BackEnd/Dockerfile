@@ -8,11 +8,7 @@ COPY ./tools ./tools
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 WORKDIR /tools/AFL
 RUN ls && make && make install
-WORKDIR /tools/screen-4.8.0
-RUN ls && ./configure && make && ./screen
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" >/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" >>/etc/apt/sources.list 
-RUN screen
+WORKDIR /tools/screen
+RUN ls && ./configure && make && echo $path
 WORKDIR /
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
