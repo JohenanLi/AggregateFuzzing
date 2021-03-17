@@ -48,7 +48,8 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
     else:
         pass
     # screen background for fuzz
-    fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
+    # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
+    fuzz_cmd = ["screen", "-S", "fuzz","-s"] + fuzz_cmd
     print(fuzz_cmd)
     # subprocess.Popen(fuzz_cmd)
     # sysCmd = ''
