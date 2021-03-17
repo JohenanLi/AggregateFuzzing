@@ -10,6 +10,5 @@ WORKDIR /tools/AFL
 RUN ls && make && make install
 WORKDIR /tools/screen
 RUN ls && ./configure && make && cp ./screen /bin && ls /bin/screen
-RUN screen
 WORKDIR /
 ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini"]
