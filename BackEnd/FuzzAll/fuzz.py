@@ -31,7 +31,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
             os.system(cmCmd)
             program_path = new[0] +'.out'
             print(program_path)
-        fuzz_cmd = ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path, params]
+        fuzz_cmd = ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path," ", params]
     elif fuzzer == "tortoise":
         tortoise = os.path.join(config.AFL_PATH, "bb_metric", "afl-fuzz")
         fuzz_cmd = [tortoise, qemu, "-i", ins, "-o", outs, "--", program_path, params]
@@ -49,12 +49,13 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
         pass
     # screen background for fuzz
     # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
-    fuzz_cmd = ["screen", "-S", "fuzz","-s"] + fuzz_cmd
+    fuzz_cmd = ["tmux new-session -d "] + fuzz_cmd
     print(fuzz_cmd)
     # subprocess.Popen(fuzz_cmd)
-    # sysCmd = ''
-    # sysCmd = sysCmd.join(fuzz_cmd)
-    subprocess.Popen(fuzz_cmd,shell=False)
+    sysCmd = ''
+    sysCmd = sysCmd.join(fuzz_cmd)
+    print(sysCmd)
+    subprocess.Popen(sysCmd,shell=True)
     # print(sysCmd)
     # os.system(sysCmd)
     # pass
