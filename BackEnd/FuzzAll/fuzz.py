@@ -51,9 +51,9 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
     fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
     print(fuzz_cmd)
     # subprocess.Popen(fuzz_cmd)
-    sysCmd = ''
-    sysCmd = sysCmd.join(fuzz_cmd)
-    subprocess.Popen(sysCmd,shell=False)
+    # sysCmd = ''
+    # sysCmd = sysCmd.join(fuzz_cmd)
+    subprocess.Popen(fuzz_cmd,shell=False)
     # print(sysCmd)
     # os.system(sysCmd)
     # pass
