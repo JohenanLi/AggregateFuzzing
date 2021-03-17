@@ -53,7 +53,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
     # subprocess.Popen(fuzz_cmd)
     sysCmd = ''
     sysCmd = sysCmd.join(fuzz_cmd)
-    subprocess.Popen(sysCmd,shell=True)
+    subprocess.Popen(sysCmd,shell=False)
     # print(sysCmd)
     # os.system(sysCmd)
     # pass
