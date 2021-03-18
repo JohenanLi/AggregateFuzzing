@@ -14,7 +14,7 @@ RUN ls && make && make install
 #libevent
 WORKDIR /tools/libevent
 
-RUN sudo apt-get install libevent-dev
+RUN apt-get install libevent-dev
 
 #tmux
 WORKDIR /tools/tmux
