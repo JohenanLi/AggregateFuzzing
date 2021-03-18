@@ -9,8 +9,8 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 WORKDIR /tools/AFL
 RUN ls && make && make install
 #ncurses
-WORKDIR /tools/ncurses
-RUN ./configure --prefix=$HOME/.local && make && make install
+# WORKDIR /tools/ncurses
+# RUN ./configure --prefix=$HOME/.local && make && make install
 #libevent
 WORKDIR /tools/libevent
 
