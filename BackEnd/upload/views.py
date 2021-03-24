@@ -37,11 +37,11 @@ def sourceCode(request):
         filePath = request.FILES.get("myfile", None)
         
         name = request.POST['name']
-        seed = request.POST['seed']
+        seed = request.POST.get('seed',None)
         inputFile = request.FILES.get('inputFile', None)
-        parameter = request.POST['parameter']
-        compileCommand = request.POST['compileCommand']
-        inputCommand = request.POST['inputCommand']
+        parameter = request.POST.get('parameter',None)
+        compileCommand = request.POST.get('compileCommand',None)
+        inputCommand = request.POST.get('inputCommand',None)
         outs = os.path.join(BASE_DIR, 'outs')
 
         print('test')
@@ -51,6 +51,7 @@ def sourceCode(request):
             isfile = False
             temp = uploadSourceCode.objects.create(
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, compileCommand=compileCommand, inputCommand=inputCommand)
+            temp.save()
             ##路径替换
             ext = str(filePath).split('.')[-1]
             filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])

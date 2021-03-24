@@ -1,23 +1,20 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="page-header">
-                    源代码上传 <small>Create new page.</small>
+            <div class="col-md-12"> 
+                <h1 class="page-header" style="color: rgb(46, 100, 201);">
+                    源代码上传 <small style="color: rgb(122, 172, 247);">uploading by source</small>
                 </h1>
                 <!-- Advanced Tables -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        源代码查看
-                    </div>
+                <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table  table-bordered table-hover " id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>id</th>
+                                        <!--<th>id</th>-->
                                         <th>filePath</th>
                                         <th>name</th>
                                         <th>seed</th>
@@ -32,17 +29,34 @@
                                     <tr class="odd gradeX">
                                         <form enctype="multipart/form-data" action="/upload/sourceCode/" method="post">
                                             {% csrf_token %}
-                                            <td>{{obj.id}}</td>
-                                            <td> <input type="file" name="myfile" /></td>
-                                            <td>
-                                                <input type="radio" name="name" value="afl">afl
-                                                <input type="radio" name="name" value="tortoise">tortoise
-                                                <input type="radio" name="name" value="emem">emem
+                                            <!--<td>{{obj.id}}</td>-->
+                                            <td> <input type="file"  name="myfile"></td>
+                                            <td class="il-con">
+                                               
+                                                <div>
+                                                    <select   name="name" id="name">
+                                                        <option value="afl">afl</option>
+                                                        <option value="tortoise">tortoise</option>
+                                                        <option value="emem">emem</option>
+                                                    </select>
+                                                </div>
                                             </td>
                                             <td>
-                                                {% for seed in seedList %}
-                                                <input type="checkbox" name="seed" value={{seed}} />{{seed}}
-                                                {% endfor %}
+                                                
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle"
+                                                            data-toggle="dropdown"
+                                                            style="background-color:unset; color: rgb(66, 65, 65);">
+                                                            种子选择
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            {% for seed in seedList %}
+                                                            <option><input type="checkbox" name="seed"
+                                                                    value={{seed}} />{{seed}}</option>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                
                                             </td>
                                             <td><input type="file" name="inputFile" /></td>
                                             <td class="center"><input type="text" name="parameter"
@@ -57,15 +71,15 @@
                                 </tbody>
                             </table>
                             <form>
-
                                 <br />
-
                             </form>
                         </div>
-
                     </div>
+                    <div class="panel-footer">fuzzing</div>
                 </div>
                 <!--End Advanced Tables -->
             </div>
         </div>
-        {% endblock %}
+        <div>
+            <div>
+                {% endblock %}

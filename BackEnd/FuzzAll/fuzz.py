@@ -20,13 +20,14 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
     else:
         qemu = " "
     fuzz_cmd = None
-
+    terminalName:str = ""
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
         if compileCommand != '':
             
             new = program_path.split('.')
             cmCmd = compileCommand + ' -o ' + new[0] +'.out'+' ' + program_path 
+            terminalName = new[0]
             print(cmCmd)
             os.system(cmCmd)
             program_path = new[0] +'.out'
@@ -49,7 +50,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
         pass
     # screen background for fuzz
     # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
-    fuzz_cmd = ["tmux new-session -d "] + fuzz_cmd
+    fuzz_cmd = ["tmux new -s ",terminalName," -d "] + fuzz_cmd
     print(fuzz_cmd)
     # subprocess.Popen(fuzz_cmd)
     sysCmd = ''

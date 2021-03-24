@@ -17,12 +17,12 @@ class uploadSourceCode(models.Model):
     filePath = models.FileField(
         'filePath', upload_to=upload_to)  # program'path
     name = models.CharField('name', max_length=100)  # fuzzer'name
-    ins = models.TextField('seeddir', max_length=500)
+    ins = models.TextField('seeddir', max_length=500,default='',null=True)
     inputFile = models.FileField('inputFile', upload_to=uploadInput)
     compileCommand = models.CharField(
         'compileCommand', max_length=100, default='')
-    parameter = models.CharField('parameter', max_length=100, default='')
-    inputCommand = models.TextField('inputCommand', max_length=500, default='')
+    parameter = models.CharField('parameter', max_length=100, default='',blank=True)
+    inputCommand = models.TextField('inputCommand', max_length=500, default='',blank=True)
 
     def __str__(self):
         return self.name
@@ -32,10 +32,10 @@ class uploadSourceProgram(models.Model):
     id = models.AutoField('id', primary_key=True)
     filePath = models.FileField('filePath', upload_to=upload_to)
     name = models.CharField('name', max_length=100, default='')
-    parameter = models.CharField('parameter', max_length=100, default='')
+    parameter = models.CharField('parameter', max_length=100, default='',blank=True)
 
-    ins = models.TextField('seeddir', max_length=1000)
-    inputCommand = models.TextField('inputCommand', max_length=500, default='')
+    ins = models.TextField('seeddir', max_length=1000,default='')
+    inputCommand = models.TextField('inputCommand', max_length=500, default='',blank=True)
     inputFile = models.FileField('inputFile', upload_to=uploadInput)
 
     def __str__(self):
