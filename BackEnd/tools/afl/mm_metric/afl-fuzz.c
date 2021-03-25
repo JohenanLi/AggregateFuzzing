@@ -8303,7 +8303,7 @@ int main(int argc, char** argv) {
 
   write_stats_file(0, 0, 0);
   save_auto();
-
+/*
   if(access("./interesting.txt", F_OK) == 0){
     FILE* fp;
     char* line;
@@ -8330,7 +8330,7 @@ int main(int argc, char** argv) {
   else{
     puts("Fuzzing Without Interesting String...");
   }
-
+*/
   if (stop_soon) goto stop_fuzzing;
 
   /* Woop woop woop */
