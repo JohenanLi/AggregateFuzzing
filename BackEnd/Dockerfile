@@ -14,16 +14,15 @@ RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
   echo 'export PATH=$LLVM_HOME:$PATH' >> ~/.bashrc
 ENV LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin
 ENV PATH=$LLVM_HOME:$PATH
-WORKDIR /tools/afl
-RUN make
+# WORKDIR /tools/afl
+# RUN make
+# WORKDIR /tools/afl/mm_metric
+# RUN make
+WORKDIR /tools/aflGithub
+RUN ls && make && make install
 WORKDIR /tools/aflGithub/llvm_mode
 RUN make
 
-WORKDIR /tools/afl/mm_metric
-RUN make
-#ncurses
-# WORKDIR /tools/ncurses
-# RUN ./configure --prefix=$HOME/.local && make && make install
 #libevent
 RUN apt-get install libevent-dev
 
