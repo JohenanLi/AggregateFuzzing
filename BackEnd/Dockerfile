@@ -16,9 +16,9 @@ ENV LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin
 ENV PATH=$LLVM_HOME:$PATH
 WORKDIR /tools/afl
 RUN make
-WORKDIR /
-RUN /bin/bash -c "source ~/.bashrc" 
-RUN clang --version
+WORKDIR /tools/aflGithub/llvm_mode
+RUN make
+
 WORKDIR /tools/afl/mm_metric
 RUN make
 #ncurses
