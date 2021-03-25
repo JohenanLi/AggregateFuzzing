@@ -5,7 +5,7 @@ ENV MODE=PRODUCTION
 COPY ./requirements.txt .
 COPY ./uwsgi.ini .
 COPY ./tools ./tools
-RUN apt-get install python3.9
+RUN apt-get install python3
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 WORKDIR /tools/
 RUN mkdir build
