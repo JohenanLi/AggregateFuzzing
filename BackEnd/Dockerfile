@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
   mv clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04 /usr/bin/clang+llvm-7.0.0 && \
   echo 'export LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin' >> ~/.bashrc && \
   echo 'export PATH=$LLVM_HOME:$PATH' >> ~/.bashrc
+ENV LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin
+ENV PATH=$LLVM_HOME:$PATH'
 WORKDIR /tools/afl
 RUN make
 WORKDIR /
