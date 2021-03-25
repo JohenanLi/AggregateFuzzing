@@ -6,22 +6,18 @@ COPY ./requirements.txt .
 COPY ./uwsgi.ini .
 COPY ./tools ./tools
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
-RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
-  rm -rf /var/lib/apt/lists/* && \
-  curl -SL http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz | tar -xJC . && \
-  mv clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04 /usr/bin/clang+llvm-7.0.0 && \
-  echo 'export LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin' >> ~/.bashrc && \
-  echo 'export PATH=$LLVM_HOME:$PATH' >> ~/.bashrc
-ENV LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin
-ENV PATH=$LLVM_HOME:$PATH
+WORKDIR /tools/
+RUN mkdir build
+WORKDIR /tools/build
+RUN cmake -G "Unix Makefiles" --enable-optimized --enable-targets=host-only -DCMAKE_BUILD_TYPE=Release  ../llvm-7.0.0.src
 WORKDIR /tools/afl
 RUN make
 WORKDIR /tools/afl/mm_metric
 RUN make
-WORKDIR /tools/aflGithub
-RUN ls && make && make install
-WORKDIR /tools/aflGithub/llvm_mode
-RUN make
+# WORKDIR /tools/aflGithub
+# RUN ls && make && make install
+# WORKDIR /tools/aflGithub/llvm_mode
+# RUN make
 
 #libevent
 RUN apt-get install libevent-dev

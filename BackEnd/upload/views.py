@@ -87,6 +87,9 @@ def sourceProgram(request):
         inputFile = request.FILES.get('inputFile', None)
         parameter = request.POST['parameter']
         compileCommand = request.POST['compileCommand']
+        compileExample = """CC=/home/minipython/桌面/AggregateFuzzing/
+        BackEnd/tools/afl/mm_metric/afl-clang-fast CXX=/home/minipython/桌面/AggregateFuzzing/BackEnd/
+        tools/afl/mm_metric/afl-clang-fast++ ./configure"""
         inputCommand = request.POST['inputCommand']
         outs = os.path.join(BASE_DIR, 'outs')
 
