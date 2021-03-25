@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
   echo 'export LD_LIBRARY_PATH=/clang_7.0.0/lib:LD_LIBRARY_PATH' >> ~/.bashrc
 WORKDIR /tools/afl
 RUN make
-RUN clang --version
+WORKDIR /
+RUN ls && clang --version
 WORKDIR /tools/afl/mm_metric
 RUN make
 #ncurses
