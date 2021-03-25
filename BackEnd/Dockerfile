@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
 WORKDIR /tools/afl
 RUN make
 WORKDIR /
-RUN /bin/sh -c "source ~/.bashrc" 
+RUN /bin/bash -c "source ~/.bashrc" 
 RUN clang --version
 WORKDIR /tools/afl/mm_metric
 RUN make
