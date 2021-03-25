@@ -12,8 +12,10 @@ RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
   mv clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04 clang_7.0.0 && \
   echo 'export PATH=/clang_7.0.0/bin:$PATH' >> ~/.bashrc && \
   echo 'export LD_LIBRARY_PATH=/clang_7.0.0/lib:LD_LIBRARY_PATH' >> ~/.bashrc
-WORKDIR /tools/AFL
-RUN ls && make && make install
+WORKDIR /tools/afl
+RUN make
+WORKDIR /tools/afl/mm_metric
+RUN make
 #ncurses
 # WORKDIR /tools/ncurses
 # RUN ./configure --prefix=$HOME/.local && make && make install
