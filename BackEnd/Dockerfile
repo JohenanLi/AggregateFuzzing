@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y build-essential curl xz-utils && \
   echo 'export LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin' >> ~/.bashrc && \
   echo 'export PATH=$LLVM_HOME:$PATH' >> ~/.bashrc
 ENV LLVM_HOME=/usr/bin/clang+llvm-7.0.0/bin
-ENV PATH=$LLVM_HOME:$PATH'
+ENV PATH=$LLVM_HOME:$PATH
 WORKDIR /tools/afl
 RUN make
 WORKDIR /
