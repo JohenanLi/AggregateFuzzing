@@ -13,9 +13,9 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list &
     apt clean && \
     apt update
 WORKDIR /tools/cmake
-RUN ls && hmod +x cmake-3.20.0-Linux-x86_64.sh &&\
-    ./cmake-3.20.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
-    rm ./cmake-3.20.0-Linux-x86_64.sh
+RUN ls && chmod +x cmake-3.20.0-linux-x86_64.sh &&\
+    ./cmake-3.20.0-linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
+    rm ./cmake-3.20.0-linux-x86_64.sh
 RUN cmake -G "Unix Makefiles" --enable-optimized --enable-targets=host-only -DCMAKE_BUILD_TYPE=Release  ../llvm-7.0.0.src
 WORKDIR /tools/afl
 RUN make
