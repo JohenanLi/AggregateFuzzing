@@ -13,7 +13,7 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list &
     apt clean && \
     apt update
 WORKDIR /tmp
-RUN   wget https://github.com/Kitware/CMake/releases/download/v3.20.0/cmake-3.20.0-linux-x86_64.sh &&\
+RUN  ls && wget https://github.com/Kitware/CMake/releases/download/v3.20.0/cmake-3.20.0-linux-x86_64.sh &&\
     chmod +x cmake-3.20.0-Linux-x86_64.sh &&\
     ./cmake-3.20.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
     rm ./cmake-3.20.0-Linux-x86_64.sh
