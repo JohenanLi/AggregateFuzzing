@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python3.9
 
 ENV MODE=PRODUCTION
 
