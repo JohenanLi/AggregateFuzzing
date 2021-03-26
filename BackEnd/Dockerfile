@@ -17,8 +17,8 @@ RUN ls && chmod +x cmake-3.20.0-linux-x86_64.sh &&\
     ./cmake-3.20.0-linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
     rm ./cmake-3.20.0-linux-x86_64.sh
 WORKDIR /tools/build
-RUN cmake -G "Unix Makefiles" --enable-optimized --enable-targets=host-only -DCMAKE_BUILD_TYPE=Release  ../llvm-7.0.0.src
-#--enable-targets=host-only
+RUN cmake -G "Unix Makefiles"  ../llvm-7.0.0.src
+#--enable-optimized --enable-targets=host-only -DCMAKE_BUILD_TYPE=Release
 WORKDIR /tools/afl
 RUN make
 WORKDIR /tools/afl/mm_metric
