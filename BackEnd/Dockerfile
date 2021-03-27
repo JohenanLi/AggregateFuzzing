@@ -7,19 +7,19 @@ COPY ./uwsgi.ini .
 COPY ./tools ./tools
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # LLVM dependencies:
-RUN apk --no-cache add \
-	autoconf \
-	automake \
-	cmake \
-	freetype-dev \
-	g++ \
-	gcc \
-	libxml2-dev \
-	linux-headers \
-	make \
-	musl-dev \
-	ncurses-dev \
-	python2
+# RUN apk --no-cache add \
+# 	autoconf \
+# 	automake \
+# 	cmake \
+# 	freetype-dev \
+# 	g++ \
+# 	gcc \
+# 	libxml2-dev \
+# 	linux-headers \
+# 	make \
+# 	musl-dev \
+# 	ncurses-dev \
+# 	python2
 
 COPY install_llvm.sh /
 RUN ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
