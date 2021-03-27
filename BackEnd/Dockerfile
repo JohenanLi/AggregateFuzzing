@@ -23,7 +23,7 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 ARG LLVM_VERSION=7.0.0
 COPY install_llvm.sh /
 WORKDIR /
-RUN ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
+RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
 
 ENV CXX=clang++
 ENV CC=clang
