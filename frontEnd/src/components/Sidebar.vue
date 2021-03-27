@@ -60,6 +60,28 @@ export default {
                     index: "dashboard",
                     title: "系统首页"
                 },
+                {
+                    icon:"el-icon-upload",
+                    index:"2",
+                    title:"上传按钮",
+                    subs:[
+                        {
+                                                icon: "el-icon-document",
+                    index: "sourceCode",
+                    title: "上传源代码并编译"
+                        },
+                        {
+                            icon:"el-icon-box",
+                            index:"sourceProgram",
+                            title:"上传源程序代码"
+                        }
+                    ]
+                },
+                {
+                    icon: "el-icon-loading",
+                    index: "history",
+                    title: "历史记录"
+                }
                 // {
                 //     icon: "el-icon-lx-cascades",
                 //     index: "table",
