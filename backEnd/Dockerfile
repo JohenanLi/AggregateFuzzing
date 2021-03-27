@@ -32,7 +32,7 @@ RUN ls && chmod +x cmake-3.20.0-linux-x86_64.sh &&\
     ./cmake-3.20.0-linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
     rm ./cmake-3.20.0-linux-x86_64.sh
 
-ARG LLVM_VERSION=7.0.0
+ARG LLVM_VERSION=7.0.1
 COPY install_llvm.sh /
 WORKDIR /
 RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
