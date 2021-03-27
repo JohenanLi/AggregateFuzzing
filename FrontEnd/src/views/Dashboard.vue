@@ -20,7 +20,7 @@
           </div>
         </el-card>
 
-        <el-card shadow="hover" style="height: 252px">
+        <el-card shadow="hover">
           <template #header>
             <div class="clearfix">
               <span>语言详情</span>
@@ -36,93 +36,46 @@
       </el-col>
 
       <el-col :span="16">
-        <el-row :gutter="20">
-          <el-col :span="16">
-            <el-card shadow="hover" style="height:252px" >
+        <el-row :gutter="25" type="flex" class="row-bg" justify="space-between">
+          <el-col :span="16" style="height: 180px">
+            <el-card shadow="hover">
               <div class="grid-content grid-con-1">
-                <i class="el-icon-user-solid grid-con-icon"></i>
+                <i class="el-icon-document grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <div class="grid-num">1234</div>
-                  <div>用户访问量</div>
+                  <el-button type="text" @click="sourceCode()"
+                    ><div class="grid-num">上传源代码并编译</div></el-button
+                  >
                 </div>
               </div>
             </el-card>
           </el-col>
-        </el-row>
-      </el-col>
 
-      <el-col :span="16">
-        <el-row :gutter="20" class="mgb20">
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content grid-con-1">
-                <i class="el-icon-user-solid grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div class="grid-num">1234</div>
-                  <div>用户访问量</div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
+          <el-col :span="16" style="height: 180px">
+            <el-card shadow="hover">
               <div class="grid-content grid-con-2">
-                <i class="el-icon-message-solid grid-con-icon"></i>
+                <i class="el-icon-box grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <div class="grid-num">321</div>
-                  <div>系统消息</div>
+                  <el-button type="text" @click="sourceProgram()"
+                    ><div class="grid-num">上传源程序代码</div></el-button
+                  >
                 </div>
               </div>
             </el-card>
           </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
+
+          <el-col :span="16" style="height: 180px">
+            <el-card shadow="hover">
               <div class="grid-content grid-con-3">
-                <i class="el-icon-s-goods grid-con-icon"></i>
+                <i class="el-icon-loading grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <div class="grid-num">5000</div>
-                  <div>数量</div>
+                  <el-button type="text" @click="history()"
+                    ><div class="grid-num">历史记录</div></el-button
+                  >
                 </div>
               </div>
             </el-card>
           </el-col>
         </el-row>
-        <el-card shadow="hover" style="height: 403px">
-          <template #header>
-            <div class="clearfix">
-              <span>待办事项</span>
-              <el-button style="float: right; padding: 3px 0" type="text"
-                >添加</el-button
-              >
-            </div>
-          </template>
-
-          <el-table :show-header="false" :data="todoList" style="width: 100%">
-            <el-table-column width="40">
-              <template #default="scope">
-                <el-checkbox v-model="scope.row.status"></el-checkbox>
-              </template>
-            </el-table-column>
-            <el-table-column>
-              <template #default="scope">
-                <div
-                  class="todo-item"
-                  :class="{
-                    'todo-item-del': scope.row.status,
-                  }"
-                >
-                  {{ scope.row.title }}
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column width="60">
-              <template>
-                <i class="el-icon-edit"></i>
-                <i class="el-icon-delete"></i>
-              </template>
-            </el-table-column>
-          </el-table>
-        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -167,6 +120,15 @@ export default {
           date.getMonth() + 1
         }/${date.getDate()}`;
       });
+    },
+    sourceCode() {
+      this.$router.push("/sourceCode");
+    },
+    sourceProgram() {
+      this.$router.push("/sourceProgram");
+    },
+    history() {
+      this.$router.push("/history");
     },
   },
 };
@@ -217,7 +179,7 @@ export default {
 }
 
 .grid-con-2 .grid-num {
-  color: rgb(45, 140, 240);
+  color: rgb(100, 213, 114);
 }
 
 .grid-con-3 .grid-con-icon {
