@@ -17,7 +17,7 @@ services:
     ports:
       - '9001:9001'
     volumes:
-      - './BackEnd:/app'
+      - './backEnd:/app'
     logging:
       driver: json-file
       options:
