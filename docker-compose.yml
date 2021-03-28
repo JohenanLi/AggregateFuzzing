@@ -12,12 +12,12 @@ services:
 
   fuzzing:
     build:
-      context: ./backEnd
-      dockerfile: ./backEnd/Dockerfile
+      context: ./BackEnd
+      dockerfile: ./Dockerfile
     ports:
       - '9001:9001'
     volumes:
-      - './backEnd:/app'
+      - './BackEnd:/app'
     logging:
       driver: json-file
       options:
