@@ -13,7 +13,7 @@ services:
   fuzzing:
     build:
       context: ./backEnd
-      dockerfile: ./Dockerfile
+      dockerfile: ./backEnd/Dockerfile
     ports:
       - '9001:9001'
     volumes:
