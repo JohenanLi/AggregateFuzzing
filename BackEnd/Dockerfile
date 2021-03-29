@@ -28,9 +28,16 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 #     apt clean && \
 #     apt update
 WORKDIR /tools/cmake
-RUN ls && chmod +x cmake-3.20.0-linux-x86_64.sh &&\
-    ./cmake-3.20.0-linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
-    rm ./cmake-3.20.0-linux-x86_64.sh
+ARG CMAKE_VERSION=3.4.5
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh \
+      -q -O /tmp/cmake-install.sh \
+      && chmod u+x /tmp/cmake-install.sh \
+      && mkdir /usr/bin/cmake \
+      && /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake \
+      && rm /tmp/cmake-install.sh
+
+ENV PATH="/usr/bin/cmake/bin:${PATH}"
 
 ARG LLVM_VERSION=7.0.1
 COPY install_llvm.sh /
