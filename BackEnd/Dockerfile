@@ -15,7 +15,7 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && \
     apt clean && \
     apt update
-RUN apk --no-cache add \
+RUN apt-get --no-cache add \
 	autoconf \
 	automake \
 	cmake \
