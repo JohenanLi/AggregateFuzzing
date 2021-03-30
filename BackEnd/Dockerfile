@@ -28,17 +28,17 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 #     apt clean && \
 #     apt update
 WORKDIR /tools/cmake
-# ARG CMAKE_VERSION=3.4.3
+ARG CMAKE_VERSION=3.4.3
 # #https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.sh
-# RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh \
-#       -q -O /tmp/cmake-install.sh \
-#       && chmod u+x /tmp/cmake-install.sh \
-#       && mkdir /usr/bin/cmake \
-#       && /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake \
-#       && rm /tmp/cmake-install.sh
-RUN ls && chmod +x cmake-3.4.3-linux-x86_64.sh &&\
-        ./cmake-3.4.3-linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
-        rm ./cmake-3.4.3-linux-x86_64.sh
+RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh \
+      -q -O /tmp/cmake-install.sh \
+      && chmod u+x /tmp/cmake-install.sh \
+      && mkdir /usr/bin/cmake \
+      && /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake \
+      && rm /tmp/cmake-install.sh
+# RUN ls && chmod +x cmake-3.4.3-linux-x86_64.sh &&\
+#         ./cmake-3.4.3-linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license &&\
+#         rm ./cmake-3.4.3-linux-x86_64.sh
 
 #https://github.com/JohenanLi/AggregateFuzzing/commit/361347b0353b2d5eaafb9052b2beb89311858320a
 ENV PATH="/usr/bin/cmake/bin:${PATH}"
