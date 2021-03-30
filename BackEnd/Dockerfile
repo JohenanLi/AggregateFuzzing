@@ -28,8 +28,8 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 #     apt clean && \
 #     apt update
 WORKDIR /tools/cmake
-ARG CMAKE_VERSION=3.4.5
-
+ARG CMAKE_VERSION=3.16.0
+#https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.sh
 RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh \
       -q -O /tmp/cmake-install.sh \
       && chmod u+x /tmp/cmake-install.sh \
