@@ -26,22 +26,22 @@ services:
       options:
         max-size: 1g
     restart: always
-  frontend:
-    build:
-      context: ./FrontEnd
-      dockerfile: ./Dockerfile
-    ports:
-      - '9002:8080'
-    volumes:
-        - './FrontEnd:/app'
-    logging:
-      driver: json-file
-      options:
-        max-size: 1g
-    environment:
-      NODE_ENV: 'production'
-      PORT: 8080
-      HOST: '0.0.0.0'
-    links:
-      - fuzzing
-    restart: always
+  # frontend:
+  #   build:
+  #     context: ./FrontEnd
+  #     dockerfile: ./Dockerfile
+  #   ports:
+  #     - '9002:8080'
+  #   volumes:
+  #       - './FrontEnd:/app'
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-size: 1g
+  #   environment:
+  #     NODE_ENV: 'production'
+  #     PORT: 8080
+  #     HOST: '0.0.0.0'
+  #   links:
+  #     - fuzzing
+  #   restart: always
