@@ -4,7 +4,10 @@ services:
     image: nginx  #需要nginx镜像，所以最好在本地事先生成一个nginx镜像
     volumes:
         - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  #做配置映射
+        - ./FrontEnd/dist:/usr/share/nginx/html #vue路径
     depends_on:
+        - fuzzing
+    links:
         - fuzzing
     ports:
         - "9000:80"
