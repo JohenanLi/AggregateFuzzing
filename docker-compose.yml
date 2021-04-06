@@ -4,7 +4,10 @@ services:
     image: nginx  #需要nginx镜像，所以最好在本地事先生成一个nginx镜像
     volumes:
         - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  #做配置映射
+        - ./FrontEnd/dist:/usr/share/nginx/html #vue路径
     depends_on:
+        - fuzzing
+    links:
         - fuzzing
     ports:
         - "9000:80"
@@ -23,3 +26,22 @@ services:
       options:
         max-size: 1g
     restart: always
+  # frontend:
+  #   build:
+  #     context: ./FrontEnd
+  #     dockerfile: ./Dockerfile
+  #   ports:
+  #     - '9002:8080'
+  #   volumes:
+  #       - './FrontEnd:/app'
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-size: 1g
+  #   environment:
+  #     NODE_ENV: 'production'
+  #     PORT: 8080
+  #     HOST: '0.0.0.0'
+  #   links:
+  #     - fuzzing
+  #   restart: always
