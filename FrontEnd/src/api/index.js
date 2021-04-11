@@ -1,4 +1,5 @@
 import request from '../utils/request';
+import http from "@/utils/http";
 
 export const fetchData = query => {
     return request({
@@ -7,3 +8,7 @@ export const fetchData = query => {
         params: query
     });
 };
+
+// export const loginByPwd = (params) => http.post('/users/login/', params);
+// export const formdataTest = (params) => http.post("upload/formdataTest/")
+export const formdataTest = (params) => http.post("upload/sourceCode/")

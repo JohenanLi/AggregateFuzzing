@@ -33,6 +33,8 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
             program_path = new[0] +'.out'
             print(program_path)
         fuzz_cmd = ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path," ", params]
+#/root/work/AggregateFuzzing/BackEnd/tools/afl/mm_metric/afl-fuzz -i /root/work/AggregateFuzzing/BackEnd/tools/aflGithub/testcases/images/png -o /root/work/fuzz/outs -- ~/work/sam2p-0.49.4/sam2p @@
+
     elif fuzzer == "tortoise":
         tortoise = os.path.join(config.AFL_PATH, "bb_metric", "afl-fuzz")
         fuzz_cmd = [tortoise, qemu, "-i", ins, "-o", outs, "--", program_path, params]

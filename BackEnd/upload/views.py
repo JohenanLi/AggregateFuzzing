@@ -1,12 +1,14 @@
+from django.http.response import JsonResponse
 from BackEnd.settings import BASE_DIR
 from FuzzAll.fuzz import fuzz_one
 from django.http import HttpResponse
 from django.views import generic
 from django.shortcuts import render, HttpResponse, redirect
-from django.views.generic.base import TemplateView, View
+from django.http import JsonResponse
+# from django.views.generic.base import TemplateView, View
 from .models import *
 import os
-import _thread
+# import _thread
 # Create your views here.
 
 
@@ -35,6 +37,7 @@ def sourceCode(request):
         return render(request, 'sourceCode/sourceCode.html', {'seedList': seedList})
     elif request.method == 'POST':
         print(request.POST)
+        print(request.FILES)
         filePath = request.FILES.get("myfile", None)
         
         name = request.POST['name']
@@ -117,3 +120,28 @@ def sourceProgram(request):
                     fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
 
                 return render(request, 'sourceProgram/wait.html', {object: temp})
+
+def uploadFile(request):
+    if request.method == "POST":  
+        fileDict = request.FILES.items()
+        # 获取上传的文件，如果没有文件，则默认为None    
+        if not fileDict:
+            return JsonResponse({'msg': 'no file upload'})
+        for (k, v) in fileDict:
+            print("dic[%s]=%s" %(k,v))
+            fileData = request.FILES.getlist(k)
+            for file in fileData:
+                fileName = file._get_name()
+                filePath = os.path.join(settings.TEMP_FILE_PATH, fileName)
+                print('filepath = [%s]'%filePath)
+                try:
+                    writeFile(filePath, file)
+                except:
+                    return JsonResponse({'msg': 'file write failed'})
+        return JsonResponse({'msg': 'success'})
+
+def formdataTest(request):
+    if request.method == "POST":
+        print(request.POST)
+        print(request.FILES)
+        return JsonResponse({"msg:""tes"},safe=False)
