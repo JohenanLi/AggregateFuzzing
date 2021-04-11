@@ -5,11 +5,11 @@
       <el-upload
         class="sourceCode"
         drag
-        :action="uploadSourceCode()"
+        action="https://jsonplaceholder.typicode.com/posts/"
         :before-remove="beforeRemove"
-        :on-success="getCodePath"
         multiple
-        :file-list="fileList"
+        :file-list="form.fileList"
+        :before-upload="onBeforeUploadCode"
       >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -42,18 +42,18 @@
         <el-upload
           class="inputFile"
           drag
-          :action="uploadInputFile()"
-          :on-success="getInputFilePath"
+          action="https://jsonplaceholder.typicode.com/posts/"
           :before-remove="beforeRemove"
           multiple
-          :file-list="fileList"
+          :file-list="form.inputFile"
+          :before-upload="onBeforeUploadInputFile"
         >
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         </el-upload>
       </div>
     </el-form-item>
-
+    <!--         :on-success="getCodePath"            :on-success="getInputFilePath" -->
     <el-form-item label="时间选择">
       <el-input-number v-model="form.time" :step="5"></el-input-number> 分钟
     </el-form-item>
@@ -97,9 +97,6 @@
 
 <script>
 import { formdataTest } from "@/api/index";
-import axios from 'axios'
-// eslint-disable-next-line no-unused-vars
-import Qs from 'qs'
 const cityOptions = [
   "602",
   "abw",
@@ -180,46 +177,53 @@ export default {
     };
   },
   methods: {
+    
     onSubmit() {
-      let params = {
-        fileList: this.form.fileList,
-        seed: this.form.seed,
-        name: this.form.name,
-        inputFile: this.form.inputFile,
-        compileCommand: this.form.compileCommand,
-        inputCommand: this.form.inputCommand,
-        parameter: this.form.parameter,
-        time: this.form.time,
-      };
-      console.log(params);
-      axios({
-        url: "http://127.0.0.1:8000/upload/sourceCode/",
-        method: "post",
-        data: Qs.stringify(params)
+      // let params = {
+      //   fileList: this.form.fileList,
+      //   seed: this.form.seed,
+      //   name: this.form.name,
+      //   inputFile: this.form.inputFile,
+      //   compileCommand: this.form.compileCommand,
+      //   inputCommand: this.form.inputCommand,
+      //   parameter: this.form.parameter,
+      //   time: this.form.time,
+      // };
+      this.formData.append('seed', this.form.seed);
+      this.formData.append('name',this.form.name);
+      this.formData.append('compileCommand', this.form.compileCommand);
+      this.formData.append('inputCommand', this.form.inputCommand);
+      this.formData.append('paramete', this.form.parameter);
+      this.formData.append('time',this.form.time);
+      console.log(this.formData);
+      // axios({
+      //   url: "http://127.0.0.1:8000/upload/sourceCode/",
+      //   method: "post",
+      //   data: Qs.stringify(params)
+      // });
+      formdataTest(this.formData).then((res) => {
+        console.log(res);
+        if (res.data.status == 200) {
+          alert("success!");
+        }
       });
-      // formdataTest(params).then((res) => {
-      //   console.log(res);
-      //   if(res.data.status == 200){
-      //     alert("success!");
-      //   }
-      // })
     },
     beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
-    uploadSourceCode() {
-      return this.$server + "uploadSourceCode/";
+    onBeforeUploadCode(file, fileList) {
+      if (this.formData.length == null) {
+        this.formData = new FormData();
+      }
+
+      this.formData.append("myfile", file.file);
     },
-    uploadInputFile() {
-      return this.$server + "uploadInputFile/";
-    },
-    getCodePath(response) {
-      console.log(this.$server + response.path);
-      this.form.fileList = this.$server + response.path;
-    },
-    getInputFilePath(response) {
-      console.log(this.$server + response.path);
-      this.form.inputFile = this.$server + response.path;
+    onBeforeUploadInputFile(file, fileList) {
+      if (this.formData.length == null) {
+        this.formData = new FormData();
+      }
+
+      this.formData.append("inputFile", file.file);
     },
   },
 };

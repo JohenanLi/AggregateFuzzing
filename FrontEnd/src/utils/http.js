@@ -18,7 +18,7 @@ const instance = axios.create({
 });
 
 // instance.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 // 封装请求拦截
 // instance.interceptors.request.use(
