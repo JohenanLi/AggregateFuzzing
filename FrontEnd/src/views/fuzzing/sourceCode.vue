@@ -229,11 +229,11 @@ export default {
     },
     codeRes(response, file, fileList){
       console.log(response);
-      this.form.fileList += response.file_path;
+      this.form.fileList += [response.file_path];
     },
     inputFileRes(response,file,fileList){
       console.log(response);
-      this.form.inputFile += response.inputFile;
+      this.form.inputFile += [response.inputFile];
     }
   },
 };
