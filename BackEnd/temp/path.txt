@@ -1,0 +1,56 @@
+1.cmake
+# mkdir build
+# cd build
+# cmake -DCMAKE_CXX_COMPILER=afl-clang-fast++ ..
+# make
+2. 7zip path :/root/work/aflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_
+3. /root/work/AggregateFuzzing/BackEnd/tools/aflGithub
+/root/work/aflDir/outs
+/root/work/testcases/input_cve/7z
+"""
+/root/work/AggregateFuzzing/BackEnd/tools/aflGithub/afl-fuzz -M master -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/aflDir/outs/7z -- /root/work/aflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/AggregateFuzzing/BackEnd/tools/aflGithub/afl-fuzz -S salve1 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/aflDir/outs/7z -- ./7z_ l -slt @@
+/root/work/AggregateFuzzing/BackEnd/tools/aflGithub/afl-fuzz -S salve2 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/aflDir/outs/7z -- /root/work/aflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/AggregateFuzzing/BackEnd/tools/aflGithub/afl-fuzz -S salve3 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/aflDir/outs/7z -- /root/work/aflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/AggregateFuzzing/BackEnd/tools/aflGithub/afl-fuzz -S salve4 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/aflDir/outs/7z -- /root/work/aflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/AggregateFuzzing/BackEnd/tools/aflGithub/afl-fuzz -S salve5 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/aflDir/outs/7z -- /root/work/aflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+
+"""
+5.  fuzz_cmd = ["tmux new -s ",terminalName," -d "] + ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path," ", params]
+# screen afl-fuzz -i testcases/ -o syncdir/ -M fuzzer1 -- ./parse
+# screen afl-fuzz -i testcases/ -o syncdir/ -S fuzzer2 -- ./parse
+
+
+"""collAfl"
+/root/work/collafl-master/afl-clang-fast++
+
+"""
+/root/work/collafl-master/afl-fuzz -M master -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/collaflDir/outs/7z -- /root/work/collaflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/collafl-master/afl-fuzz -S salve1 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/collaflDir/outs/7z -- /root/work/collaflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_ l -slt @@
+/root/work/collafl-master/afl-fuzz -S salve2 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/collaflDir/outs/7z -- /root/work/collaflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/collafl-master/afl-fuzz -S salve3 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/collaflDir/outs/7z -- /root/work/collaflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/collafl-master/afl-fuzz -S salve4 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/collaflDir/outs/7z -- /root/work/collaflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/collafl-master/afl-fuzz -S salve5 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/collaflDir/outs/7z -- /root/work/collaflDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+
+/root/work/collafl-master/afl-fuzz -M master -m 1000 -i /root/work/testcases/input_cve/pdf -o /root/work/collaflDir/outs/pdf -- /root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng  -mono @@ o
+/root/work/collafl-master/afl-fuzz -S salve1 -m 1000 -i /root/work/testcases/input_cve/pdf -o /root/work/collaflDir/outs/pdf -- /root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng  -mono @@ o
+/root/work/collafl-master/afl-fuzz -S salve2 -m 1000 -i /root/work/testcases/input_cve/pdf -o /root/work/collaflDir/outs/pdf -- /root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng  -mono @@ o
+/root/work/collafl-master/afl-fuzz -S salve3 -m 1000 -i /root/work/testcases/input_cve/pdf -o /root/work/collaflDir/outs/pdf -- /root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng  -mono @@ o
+/root/work/collafl-master/afl-fuzz -S salve4 -m 1000 -i /root/work/testcases/input_cve/pdf -o /root/work/collaflDir/outs/pdf -- /root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng  -mono @@ o
+/root/work/collafl-master/afl-fuzz -S salve5 -m 1000 -i /root/work/testcases/input_cve/pdf -o /root/work/collaflDir/outs/pdf -- /root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng  -mono @@ o
+
+
+
+/root/work/collaflDir/xpdf-4.03/build/xpdf/pdftopng
+
+"""
+
+"""tortoise"
+/root/work/TortoiseFuzz/afl-clang++
+/root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build
+/root/work/TortoiseFuzz/bb_metric/afl-fuzz -M master -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/tortoiseDir/outs/7z -- /root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/TortoiseFuzz/bb_metric/afl-fuzz -S salve1 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/tortoiseDir/outs/7z -- /root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_ l -slt @@
+/root/work/TortoiseFuzz/bb_metric/afl-fuzz -S salve2 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/tortoiseDir/outs/7z -- /root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/TortoiseFuzz/bb_metric/afl-fuzz -S salve3 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/tortoiseDir/outs/7z -- /root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/TortoiseFuzz/bb_metric/afl-fuzz -S salve4 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/tortoiseDir/outs/7z -- /root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@
+/root/work/TortoiseFuzz/bb_metric/afl-fuzz -S salve5 -m 1000 -i /root/work/testcases/input_cve/7z -o /root/work/tortoiseDir/outs/7z -- /root/work/tortoiseDir/p7zip-17.04/CPP/7zip/CMAKE/build/bin/7z_  l -slt @@

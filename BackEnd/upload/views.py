@@ -1,5 +1,5 @@
 from django.http.response import JsonResponse
-from BackEnd.settings import BASE_DIR
+from BackEnd.settings import BASE_DIR,TEMP_FILE_PATH
 from FuzzAll.fuzz import fuzz_one
 from django.http import HttpResponse
 from django.views import generic
@@ -8,6 +8,7 @@ from django.http import JsonResponse
 # from django.views.generic.base import TemplateView, View
 from .models import *
 import os
+
 # import _thread
 # Create your views here.
 
@@ -29,20 +30,14 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrPr
 
 
 def sourceCode(request):
-    if request.method == 'GET':
-        seedList = ''
-        with open('seed.txt', 'r') as f:
-            seedList = f.readlines()
-        f.close()
-        return render(request, 'sourceCode/sourceCode.html', {'seedList': seedList})
-    elif request.method == 'POST':
+    if request.method == 'POST':
         print(request.POST)
         print(request.FILES)
-        filePath = request.FILES.get("myfile", None)
+        filePath = request.POST.get("fileList", None)
         
         name = request.POST['name']
         seed = request.POST.get('seed',None)
-        inputFile = request.FILES.get('inputFile', None)
+        inputFile = request.POST.get('inputFile', None)
         parameter = request.POST.get('parameter',None)
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
@@ -76,24 +71,18 @@ def sourceCode(request):
 
 
 def sourceProgram(request):
-    if request.method == 'GET':
-        seedList = ''
-        with open('seed.txt', 'r') as f:
-            seedList = f.readlines()
-        f.close()
-        return render(request, 'sourceProgram/sourceProgram.html', {'seedList': seedList})
-    elif request.method == 'POST':
+    if request.method == 'POST':
         print(request.POST)
-        filePath = request.FILES.get("myfile", None)
+        filePath = request.POST.get("fileList", None)
         name = request.POST['name']
         seed = request.POST['seed']
-        inputFile = request.FILES.get('inputFile', None)
+        inputFile = request.POST.get('inputFile', None)
         parameter = request.POST['parameter']
         compileCommand = request.POST['compileCommand']
         compileExample = """CC=/home/minipython/桌面/AggregateFuzzing/
         BackEnd/tools/afl/mm_metric/afl-clang-fast CXX=/home/minipython/桌面/AggregateFuzzing/BackEnd/
         tools/afl/mm_metric/afl-clang-fast++ ./configure"""
-        inputCommand = request.POST['inputCommand']
+        inputCommand = request.POST.get('inputCommand',"@@")
         outs = os.path.join(BASE_DIR, 'outs')
 
         print('test')
@@ -121,9 +110,21 @@ def sourceProgram(request):
 
                 return render(request, 'sourceProgram/wait.html', {object: temp})
 
-def uploadFile(request):
+def writeFile(filePath, file):
+    # print(os.system("> "+ filePath))
+    with open(filePath, "wb") as f:
+        if file.multiple_chunks():
+            for content in file.chunks():
+                f.write(content)
+        else:
+            data=file.read() ###.decode('utf-8')
+            f.write(data)
+
+def uploadCode(request):
     if request.method == "POST":  
         fileDict = request.FILES.items()
+        print(fileDict)
+        fileList = []
         # 获取上传的文件，如果没有文件，则默认为None    
         if not fileDict:
             return JsonResponse({'msg': 'no file upload'})
@@ -132,16 +133,33 @@ def uploadFile(request):
             fileData = request.FILES.getlist(k)
             for file in fileData:
                 fileName = file._get_name()
-                filePath = os.path.join(settings.TEMP_FILE_PATH, fileName)
+                filePath = os.path.join(TEMP_FILE_PATH, fileName)
                 print('filepath = [%s]'%filePath)
+                fileList.append(filePath)
+                try:
+                    writeFile(filePath, file)
+                except:
+                    print
+                    return JsonResponse({'msg': 'file write failed'})
+        return JsonResponse({'msg': 'success','file_path':fileList})
+
+def uploadInputFile(request):
+    if request.method == "POST":  
+        fileDict = request.FILES.items()
+        fileList = []
+        # 获取上传的文件，如果没有文件，则默认为None    
+        if not fileDict:
+            return JsonResponse({'msg': 'no file upload'})
+        for (k, v) in fileDict:
+            print("dic[%s]=%s" %(k,v))
+            fileData = request.FILES.getlist(k)
+            for file in fileData:
+                fileName = file._get_name()
+                filePath = os.path.join(TEMP_FILE_PATH, fileName)
+                print('filepath = [%s]'%filePath)
+                fileList.append(filePath)
                 try:
                     writeFile(filePath, file)
                 except:
                     return JsonResponse({'msg': 'file write failed'})
-        return JsonResponse({'msg': 'success'})
-
-def formdataTest(request):
-    if request.method == "POST":
-        print(request.POST)
-        print(request.FILES)
-        return JsonResponse({"msg:""tes"},safe=False)
+        return JsonResponse({'msg': 'success','inputFile':fileList})

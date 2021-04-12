@@ -5,11 +5,12 @@
       <el-upload
         class="sourceCode"
         drag
-        action="https://jsonplaceholder.typicode.com/posts/"
+        action="http://127.0.0.1:8000/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
         :before-upload="onBeforeUploadCode"
+        :on-success="codeRes"
       >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -42,11 +43,12 @@
         <el-upload
           class="inputFile"
           drag
-          action="https://jsonplaceholder.typicode.com/posts/"
+          action="http://127.0.0.1:8000/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
           :before-upload="onBeforeUploadInputFile"
+          :on-success="inputFileRes"
         >
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -174,34 +176,36 @@ export default {
         parameter: "",
         time: 5,
       },
+
     };
   },
   methods: {
-    
     onSubmit() {
-      // let params = {
-      //   fileList: this.form.fileList,
-      //   seed: this.form.seed,
-      //   name: this.form.name,
-      //   inputFile: this.form.inputFile,
-      //   compileCommand: this.form.compileCommand,
-      //   inputCommand: this.form.inputCommand,
-      //   parameter: this.form.parameter,
-      //   time: this.form.time,
-      // };
-      this.formData.append('seed', this.form.seed);
-      this.formData.append('name',this.form.name);
-      this.formData.append('compileCommand', this.form.compileCommand);
-      this.formData.append('inputCommand', this.form.inputCommand);
-      this.formData.append('paramete', this.form.parameter);
-      this.formData.append('time',this.form.time);
-      console.log(this.formData);
+    //  var formData = new FormData()
+      let params = {
+        fileList: this.form.fileList,
+        seed: this.form.seed,
+        name: this.form.name,
+        inputFile: this.form.inputFile,
+        compileCommand: this.form.compileCommand,
+        inputCommand: this.form.inputCommand,
+        parameter: this.form.parameter,
+        time: this.form.time,
+      };
+      // formData.append('seed', this.form.seed),
+      // formData.append('name',this.form.name),
+      // formData.append('compileCommand', this.form.compileCommand),
+      // formData.append('inputCommand', this.form.inputCommand),
+      // formData.append('paramete', this.form.parameter),
+      // formData.append('time',this.form.time),
+      // console.log(formData),
       // axios({
       //   url: "http://127.0.0.1:8000/upload/sourceCode/",
       //   method: "post",
       //   data: Qs.stringify(params)
       // });
-      formdataTest(this.formData).then((res) => {
+      console.log(params);
+      formdataTest(params).then((res) => {
         console.log(res);
         if (res.data.status == 200) {
           alert("success!");
@@ -212,19 +216,25 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
     onBeforeUploadCode(file, fileList) {
-      if (this.formData.length == null) {
-        this.formData = new FormData();
-      }
+        // formData = new FormData();
+      // if (formData.length == 0) {
 
-      this.formData.append("myfile", file.file);
+      // }
+
+      // formData.append("myfile", file.file);
     },
     onBeforeUploadInputFile(file, fileList) {
-      if (this.formData.length == null) {
-        this.formData = new FormData();
-      }
-
-      this.formData.append("inputFile", file.file);
+      // formData = new FormData();
+      // formData.append("inputFile", file.file);
     },
+    codeRes(response, file, fileList){
+      console.log(response);
+      this.form.fileList += response.file_path;
+    },
+    inputFileRes(response,file,fileList){
+      console.log(response);
+      this.form.inputFile += response.inputFile;
+    }
   },
 };
 </script>

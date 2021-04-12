@@ -152,3 +152,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATIC_ROOT = os.path.join(BASE_DIR,'static')## 执行collectstatic命令后会将项目中的静态文件（包括STATICFILES_DIRS、自带admin的静态文件）收集到该目录下面来（所以不应该在该目录下面放置自己的一些静态文件，因为会覆盖掉）
 # # 设置图片等静态文件的路径，# 开发阶段放置项目自己的静态文件，不能包含STATIC_ROOT路径
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "BackEnd/static")]
+TEMP_FILE_PATH = os.path.join(BASE_DIR,"temp")
