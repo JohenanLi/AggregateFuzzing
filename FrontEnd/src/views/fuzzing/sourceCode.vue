@@ -228,12 +228,12 @@ export default {
       // formData.append("inputFile", file.file);
     },
     codeRes(response, file, fileList){
-      console.log(response);
-      this.form.fileList += [response.file_path];
+      console.log(response.file_path[0]);
+      this.form.fileList = response.file_path[0]
     },
     inputFileRes(response,file,fileList){
       console.log(response);
-      this.form.inputFile += [response.inputFile];
+      this.form.inputFile =  response.inputFile[0] 
     }
   },
 };

@@ -5,7 +5,7 @@ import os
 def unpack():
     pass
 
-def compile():
+def compile(program_path,compileCommand):
     pass
 
 if __name__ == '__main__':

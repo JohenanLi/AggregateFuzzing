@@ -1,5 +1,6 @@
+import json
 from django.http.response import JsonResponse
-from BackEnd.settings import BASE_DIR,TEMP_FILE_PATH
+from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH
 from FuzzAll.fuzz import fuzz_one
 from django.http import HttpResponse
 from django.views import generic
@@ -8,7 +9,7 @@ from django.http import JsonResponse
 # from django.views.generic.base import TemplateView, View
 from .models import *
 import os
-
+from .analyze import Analyze
 # import _thread
 # Create your views here.
 
@@ -34,8 +35,9 @@ def sourceCode(request):
         print(request.POST)
         print(request.FILES)
         filePath = request.POST.get("fileList", None)
-        
-        name = request.POST['name']
+        analyze = Analyze(filePath)
+        filePath = analyze.Unzip()
+        name = request.POST.get('name','afl')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
         parameter = request.POST.get('parameter',None)
@@ -52,11 +54,11 @@ def sourceCode(request):
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, compileCommand=compileCommand, inputCommand=inputCommand)
             temp.save()
             ##路径替换
-            ext = str(filePath).split('.')[-1]
-            filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
+            # ext = str(filePath).split('.')[-1]
+            # filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
 
-            extInput= str(inputFile).split('.')[-1]
-            inputFile = '/'.join([os.getcwd(), 'inputFile', str(inputFile).strip('.'+extInput)])
+            # extInput= str(inputFile).split('.')[-1]
+            # inputFile = '/'.join([os.getcwd(), 'inputFile', str(inputFile).strip('.'+extInput)])
             print(str(filePath),str(inputFile))
             if not inputFile:
                 isfile = True
@@ -67,7 +69,7 @@ def sourceCode(request):
                 threadFuzz(
                     fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
 
-            return render(request, 'sourceCode/wait.html', {'object': temp})
+            return JsonResponse({"msg":"test"})
 
 
 def sourceProgram(request):
@@ -133,7 +135,8 @@ def uploadCode(request):
             fileData = request.FILES.getlist(k)
             for file in fileData:
                 fileName = file._get_name()
-                filePath = os.path.join(TEMP_FILE_PATH, fileName)
+                
+                filePath = os.path.join(SOURCE_FILE_PATH, fileName)
                 print('filepath = [%s]'%filePath)
                 fileList.append(filePath)
                 try:
@@ -155,10 +158,13 @@ def uploadInputFile(request):
             fileData = request.FILES.getlist(k)
             for file in fileData:
                 fileName = file._get_name()
-                filePath = os.path.join(TEMP_FILE_PATH, fileName)
-                print('filepath = [%s]'%filePath)
-                fileList.append(filePath)
+                ext = fileName.split('.')[-1]
+                filePath = os.path.join(INPUT_FILE_PATH, ext,fileName)
+
+                print('filepath = [%s]'%ext)
+                fileList.append(ext)
                 try:
+                    os.system("mkdir "+os.path.join(INPUT_FILE_PATH,ext))
                     writeFile(filePath, file)
                 except:
                     return JsonResponse({'msg': 'file write failed'})
