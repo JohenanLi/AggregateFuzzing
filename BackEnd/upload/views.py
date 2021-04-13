@@ -18,9 +18,9 @@ class IndexView(generic.TemplateView):
     template_name = 'index.html'
 
 
-def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand):
+def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
-                      isqemu=False, ins=ins, outs=outs, params=params, isfile=isfile,compileCommand=compileCommand)
+                      isqemu=False, ins=ins, outs=outs, params=params, isfile=isfile,compileCommand=compileCommand,programName=programName)
     # if codeOrProgramBoolean:
     #     codeResult.objects.create(codeCoverage=result['codeCoverage'],
     #                       bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
@@ -40,11 +40,13 @@ def sourceCode(request):
         name = request.POST.get('name','afl')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
+        inputFile = os.path.join(INPUT_FILE_PATH,inputFile)
         parameter = request.POST.get('parameter',None)
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
-        outs = os.path.join(BASE_DIR, 'outs')
-
+        
+        programName = request.POST.get("programName",None)
+        outs = os.path.join(BASE_DIR, 'outs',programName)
         print('test')
         if not filePath:
             return HttpResponse("no files for upload!")
@@ -63,11 +65,11 @@ def sourceCode(request):
             if not inputFile:
                 isfile = True
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
             else:
                 # 调用接口传数据
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
 
             return JsonResponse({"msg":"test"})
 

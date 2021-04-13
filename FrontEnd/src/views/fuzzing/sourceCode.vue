@@ -1,6 +1,10 @@
 
 <template>
-  <el-form ref="form" :model="form" label-width="auto" :label-position="right">
+  <el-form ref="form" :model="form.programName" label-width="auto" :label-position="right">
+    <el-form-item label="软件名称">
+      <el-input v-model="form.programName" placeholder="请输入内容"></el-input>
+    </el-form-item>
+
     <el-form-item label="上传源代码">
       <el-upload
         class="sourceCode"
@@ -99,6 +103,7 @@
 
 <script>
 import { formdataTest } from "@/api/index";
+import { defineComponent, ref } from 'vue';
 const cityOptions = [
   "602",
   "abw",
@@ -167,6 +172,7 @@ export default {
       cities: cityOptions,
       fireList: [],
       form: {
+        programName: ref(""),
         fileList: [],
         seed: [],
         name: "",
@@ -191,6 +197,7 @@ export default {
         inputCommand: this.form.inputCommand,
         parameter: this.form.parameter,
         time: this.form.time,
+        programName:this.form.programName
       };
       // formData.append('seed', this.form.seed),
       // formData.append('name',this.form.name),

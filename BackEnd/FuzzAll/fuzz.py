@@ -14,20 +14,20 @@ from FuzzAll.config import AFL_PATH
     isfile ==> if file read from file
 """
 
-def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileCommand):
+def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileCommand,programName):
     if isqemu:
         qemu = '-Q'
     else:
         qemu = " "
     fuzz_cmd = None
-    terminalName:str = ""
+    terminalName:str = programName
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
         if compileCommand != '':
             
             """llvm"""
             result = compile(program_path,compileCommand,AFL_PATH)
-        fuzz_cmd = ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path," ", params]
+        fuzz_cmd = [AFL_PATH,'/afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path,"/",programName," ", params," @@"]
 #/root/work/AggregateFuzzing/BackEnd/tools/afl/mm_metric/afl-fuzz -i /root/work/AggregateFuzzing/BackEnd/tools/aflGithub/testcases/images/png -o /root/work/fuzz/outs -- ~/work/sam2p-0.49.4/sam2p @@
 
     elif fuzzer == "tortoise":
@@ -41,10 +41,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
         print("error fuzzer: {}".format(fuzzer))
 
     
-    if isfile:                  ## read from file
-        fuzz_cmd.append(" @@")
-    else:
-        pass
+    # if isfile:                  ## read from file
+    #     fuzz_cmd.append(" @@")
+    # else:
+    #     pass
     # screen background for fuzz
     # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
     fuzz_cmd = ["tmux new -s ",terminalName," -d "] + fuzz_cmd
