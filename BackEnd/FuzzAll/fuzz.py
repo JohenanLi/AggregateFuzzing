@@ -3,7 +3,7 @@ import os
 import subprocess
 from FuzzAll import check,config
 from FuzzAll.compileDeal import compile
-
+from FuzzAll.config import AFL_PATH
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -26,7 +26,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
         if compileCommand != '':
             
             """llvm"""
-            result = compile(program_path,compileCommand)
+            result = compile(program_path,compileCommand,AFL_PATH)
         fuzz_cmd = ['afl-fuzz', qemu, "-i ", ins, " -o ", outs, " -- ", program_path," ", params]
 #/root/work/AggregateFuzzing/BackEnd/tools/afl/mm_metric/afl-fuzz -i /root/work/AggregateFuzzing/BackEnd/tools/aflGithub/testcases/images/png -o /root/work/fuzz/outs -- ~/work/sam2p-0.49.4/sam2p @@
 
