@@ -43,7 +43,7 @@ ENV LLVM_CONFIG=/usr/local/bin/llvm_config
 ENV CC=/usr/local/bin/clang
 ENV CXX=/usr/local/bin/clang++
 WORKDIR /tools
-RUN unzip afl-2.52b.zip && ls
+RUN unzip afl-2.52b.zip -d afl-2.52 && ls
 WORKDIR /tools/afl-2.52
 RUN ls && make
 WORKDIR /tools/afl-2.52/llvm_mode
