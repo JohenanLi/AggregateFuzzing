@@ -63,7 +63,7 @@ RUN make
 
 WORKDIR /tools
 RUN unzip collafl-master.zip && ls
-ENV clang-3.8 /usr/local/bin/clang
+ENV clang /usr/local/bin/clang
 WORKDIR /tools/collafl-master 
 RUN  chmod 777 afl-gcc && make
 WORKDIR /tools/collafl-master/llvm_mode 
