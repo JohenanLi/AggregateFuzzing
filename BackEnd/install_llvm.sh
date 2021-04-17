@@ -11,7 +11,8 @@ cd build
 cmake ../llvm \
     -G "Unix Makefiles" -DLLVM_TARGETS_TO_BUILD="X86" \
     -DLLVM_ENABLE_PROJECTS="clang;lld" \
-    -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DCMAKE_BUILD_TYPE=Release \
+	-DLLVM_ENABLE_ASSERTIONS=On \
     || { echo 'Error running CMake for LLVM' ; exit 1; }
 make -j$(nproc) || { echo 'Error building LLVM' ; exit 1; }
 make install || { echo 'Error installing LLVM' ; exit 1; }
