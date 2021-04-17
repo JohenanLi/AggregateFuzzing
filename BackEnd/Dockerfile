@@ -37,19 +37,16 @@ COPY install_llvm.sh /
 WORKDIR /
 RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
 
-ENV CXX=clang++
-ENV CC=clang
-# WORKDIR /tools/build
-# RUN cmake -G "Unix Makefiles" ../llvm-7.0.0.src
-#--enable-optimized --enable-targets=host-only -DCMAKE_BUILD_TYPE=Release
-WORKDIR /tools/afl
-RUN make
-WORKDIR /tools/afl/mm_metric
-RUN make
-# WORKDIR /tools/aflGithub
-# RUN ls && make && make install
-# WORKDIR /tools/aflGithub/llvm_mode
-# RUN make
+# ENV CXX=clang++
+# ENV CC=clang
+ENV LLVM_CONFIG=/usr/local/bin/llvm_config
+ENV CC=/usr/local/bin/clang
+ENV CXX=/usr/local/bin/clang++
+WORKDIR /tools
+RUN unzip afl-2.52b.zip && cd afl-2.52b && make && cd llvm_mode && make
+RUN tar -xvf AFL-2.57b.tar.gz && cd AFL-2.57b && make  && cd llvm_mode && make
+RUN unzip collafl-master.zip && cd collafl-master && chmod 777 afl-gcc && make && cd llvm_mode && make
+RUN unzip TortoiseFuzz-master.zip && cd TortoiseFuzz-master && make
 
 #libevent
 RUN apt-get install libevent-dev
