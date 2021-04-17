@@ -51,7 +51,7 @@ RUN unzip afl-2.52b.zip -d afl-2.52 && ls
 WORKDIR /tools/afl-2.52
 RUN ls && make
 WORKDIR /tools/afl-2.52/llvm_mode
-RUN make
+RUN ls /usr/local/bin && make
 
 WORKDIR /tools
 RUN tar -xvf AFL-2.57b.tar.gz  && ls
