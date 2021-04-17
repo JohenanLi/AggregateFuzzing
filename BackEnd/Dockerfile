@@ -40,6 +40,7 @@ RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_
 # ENV CXX=clang++
 # ENV CC=clang
 ENV LLVM_CONFIG /usr/local/bin/llvm-config
+
 # ENV CC /usr/local/bin/clang
 # ENV CXX /usr/local/bin/clang++
 # RUN echo 'export LLVM_CONFIG=/usr/local/bin/llvm_config' >> /etc/profile  \
@@ -62,7 +63,7 @@ RUN make
 
 WORKDIR /tools
 RUN unzip collafl-master.zip && ls
-ENV PATH /usr/local/bin:$PATH
+ENV clang-3.8 /usr/local/bin/clang
 WORKDIR /tools/collafl-master 
 RUN  chmod 777 afl-gcc && make
 WORKDIR /tools/collafl-master/llvm_mode 
