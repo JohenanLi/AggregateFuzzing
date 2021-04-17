@@ -62,6 +62,7 @@ RUN make
 
 WORKDIR /tools
 RUN unzip collafl-master.zip && ls
+ENV PATH /usr/local/bin:$PATH
 WORKDIR /tools/collafl-master 
 RUN  chmod 777 afl-gcc && make
 WORKDIR /tools/collafl-master/llvm_mode 
