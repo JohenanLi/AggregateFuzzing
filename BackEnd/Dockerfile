@@ -44,9 +44,9 @@ ENV CC=/usr/local/bin/clang
 ENV CXX=/usr/local/bin/clang++
 WORKDIR /tools
 RUN unzip afl-2.52b.zip 
-WORKDIR /tools/afl-2.52b 
+WORKDIR /tools/afl-2.52
 RUN make
-WORKDIR /tools/afl-2.52b/llvm_mode
+WORKDIR /tools/afl-2.52/llvm_mode
 RUN make
 
 WORKDIR /tools
