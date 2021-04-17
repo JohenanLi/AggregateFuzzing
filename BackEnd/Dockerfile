@@ -43,10 +43,30 @@ ENV LLVM_CONFIG=/usr/local/bin/llvm_config
 ENV CC=/usr/local/bin/clang
 ENV CXX=/usr/local/bin/clang++
 WORKDIR /tools
-RUN unzip afl-2.52b.zip && cd afl-2.52b && make && cd llvm_mode && make
-RUN tar -xvf AFL-2.57b.tar.gz && cd AFL-2.57b && make  && cd llvm_mode && make
-RUN unzip collafl-master.zip && cd collafl-master && chmod 777 afl-gcc && make && cd llvm_mode && make
-RUN unzip TortoiseFuzz-master.zip && cd TortoiseFuzz-master && make
+RUN unzip afl-2.52b.zip 
+WORKDIR /tools/afl-2.52b 
+RUN make
+WORKDIR /tools/afl-2.52b/llvm_mode
+RUN make
+
+WORKDIR /tools
+RUN tar -xvf AFL-2.57b.tar.gz 
+WORKDIR /toos/AFL-2.57b 
+RUN make  
+WORKDIR /tools/AFL-2.57b/llvm_mode
+RUN make
+
+WORKDIR /tools
+RUN unzip collafl-master.zip 
+WORKDIR /tools/collafl-master 
+RUN chmod 777 afl-gcc && make
+WORKDIR /tools/collafl-master/llvm_mode 
+RUN make
+
+WORKDIR /tools
+RUN unzip TortoiseFuzz-master.zip 
+WORKDIR /tools/TortoiseFuzz-master
+RUN make
 
 #libevent
 RUN apt-get install libevent-dev
