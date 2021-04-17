@@ -62,10 +62,10 @@ RUN make
 
 WORKDIR /tools
 RUN unzip collafl-master.zip && ls
-WORKDIR /tools/collafl-master/llvm_mode 
-RUN make
 WORKDIR /tools/collafl-master 
 RUN  make
+WORKDIR /tools/collafl-master/llvm_mode 
+RUN make
 
 WORKDIR /tools
 RUN unzip TortoiseFuzz-master.zip 
