@@ -50,7 +50,7 @@ WORKDIR /tools/afl-2.52/llvm_mode
 RUN make
 
 WORKDIR /tools
-RUN tar -xvf AFL-2.57b.tar.gz 
+RUN tar -xvf AFL-2.57b.tar.gz  && ls
 WORKDIR /toos/AFL-2.57b 
 RUN ls && make  
 WORKDIR /tools/AFL-2.57b/llvm_mode
