@@ -62,17 +62,20 @@ WORKDIR /tools/AFL-2.57b/llvm_mode
 RUN make
 
 WORKDIR /tools
+RUN unzip TortoiseFuzz-master.zip 
+WORKDIR /tools/TortoiseFuzz-master
+RUN make
+
+WORKDIR /tools
 RUN unzip collafl-master.zip && ls
-ENV clang /usr/local/bin/clang
+ENV CC /usr/local/bin/clang
+ENV CXX /usr/local/bin/clang++
 WORKDIR /tools/collafl-master 
 RUN  chmod 777 afl-gcc && make
 WORKDIR /tools/collafl-master/llvm_mode 
 RUN make
 
-WORKDIR /tools
-RUN unzip TortoiseFuzz-master.zip 
-WORKDIR /tools/TortoiseFuzz-master
-RUN make
+
 
 #libevent
 RUN apt-get install libevent-dev
