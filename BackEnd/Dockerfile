@@ -42,7 +42,10 @@ RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_
 ENV LLVM_CONFIG=/usr/local/bin/llvm_config
 ENV CC=/usr/local/bin/clang
 ENV CXX=/usr/local/bin/clang++
-RUN echo 'export LLVM_CONFIG=/usr/local/bin/llvm_config' >> /etc/profile && echo 'export CC=/usr/local/bin/clang' >> /etc/profile && echo 'export CXX=/usr/local/bin/clang++' >> /etc/profile && source /etc/profile
+RUN echo 'export LLVM_CONFIG=/usr/local/bin/llvm_config' >> /etc/profile  \
+&& echo 'export CC=/usr/local/bin/clang' >> /etc/profile \
+&& echo 'export CXX=/usr/local/bin/clang++' >> /etc/profile \
+&& /bin/bash -c 'source /etc/profile'
 WORKDIR /tools
 RUN unzip afl-2.52b.zip -d afl-2.52 && ls
 WORKDIR /tools/afl-2.52
