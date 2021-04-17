@@ -39,7 +39,7 @@ RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_
 
 # ENV CXX=clang++
 # ENV CC=clang
-ENV LLVM_CONFIG /usr/local/bin/llvm_config
+ENV LLVM_CONFIG /usr/local/bin/llvm-config
 ENV CC /usr/local/bin/clang
 ENV CXX /usr/local/bin/clang++
 # RUN echo 'export LLVM_CONFIG=/usr/local/bin/llvm_config' >> /etc/profile  \
