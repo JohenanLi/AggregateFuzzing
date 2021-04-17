@@ -61,7 +61,7 @@ WORKDIR /tools/AFL-2.57b/llvm_mode
 RUN make
 
 WORKDIR /tools
-RUN unzip collafl-master.zip && ls
+RUN unzip collafl-master.zip -d collafl-master && ls
 WORKDIR /tools/collafl-master 
 RUN ls && chmod 777 afl-gcc && make
 WORKDIR /tools/collafl-master/llvm_mode 
