@@ -4,7 +4,7 @@ ENV MODE=PRODUCTION
 
 COPY ./requirements.txt .
 COPY ./uwsgi.ini .
-COPY ./tools ./tools
+COPY . .
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # LLVM dependencies:
 
