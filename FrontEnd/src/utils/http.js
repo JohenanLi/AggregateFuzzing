@@ -10,7 +10,8 @@ import QS from 'qs'
  */
 export const timeout = 5000;    // 请求超时时间
 // export const baseURL = 'http://127.0.0.1:8000';   // 引入全局url
-export const baseURL = 'http://127.0.0.1:9000';
+// export const baseURL = 'http://127.0.0.1:9000';
+export const baseURL = 'http://fuzzing.wolongdanxin.top/';
 // let protocol = window.location.protocol; //协议
 // let host = window.location.host; //主机
 // let reg = /^localhost+/;
