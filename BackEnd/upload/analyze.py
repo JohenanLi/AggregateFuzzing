@@ -13,7 +13,7 @@ class Analyze():
             self.filePath = self.file.split(".tar")[0]
             # system("mkdir "+self.filePath)
             myCmd = "cd %s && " %(SOURCE_FILE_PATH)
-            myCmd += "tar -xvf %s" %(self.file)
+            myCmd += "tar -xf %s" %(self.file)
             
             system(myCmd)
             return self.filePath
