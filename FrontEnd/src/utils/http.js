@@ -16,11 +16,12 @@ let host = window.location.host; //主机
 let reg = /^localhost+/;
 if(reg.test(host)) {
    //若本地项目调试使用
-    export const baseURL = 'http://127.0.0.1:8000';
+  const baseURL = 'http://127.0.0.1:8000';
 } else {
     //动态请求地址             协议               主机
-   export const baseURL = protocol + "//" + host  +":9000";
+   const baseURL = protocol + "//" + host  +":9000";
 }
+export const baseURL;
 
 // 创建axios实例
 const instance = axios.create({
