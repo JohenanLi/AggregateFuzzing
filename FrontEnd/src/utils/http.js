@@ -10,7 +10,7 @@ import QS from 'qs'
  */
 export const timeout = 5000;    // 请求超时时间
 // export const baseURL = 'http://127.0.0.1:8000';   // 引入全局url
-
+export const baseURL = 'http://127.0.0.1:9000';
 // 创建axios实例
 const instance = axios.create({
   baseURL,
