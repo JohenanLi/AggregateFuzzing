@@ -1,6 +1,11 @@
 
 <template>
-  <el-form ref="form" :model="form.programName" label-width="auto" :label-position="right">
+  <el-form
+    ref="form"
+    :model="form.programName"
+    label-width="auto"
+    :label-position="right"
+  >
     <el-form-item label="软件名称">
       <el-input v-model="form.programName" placeholder="请输入内容"></el-input>
     </el-form-item>
@@ -26,6 +31,23 @@
         <el-option label="afl" value="afl"></el-option>
         <el-option label="tortoise" value="tortoise"></el-option>
         <el-option label="emem" value="emem"></el-option>
+      </el-select>
+    </el-form-item>
+
+    <el-form-item label="编译命令">
+      <!-- <el-input
+        type="compileCommand"
+        :autosize="{ minRows: 2, maxRows: 4 }"
+        placeholder="请输入内容"
+        v-model="form.compileCommand"
+      >
+      </el-input> -->
+      <el-select
+        v-model="form.compileCommand"
+        placeholder="请选择使用的编译命令"
+      >
+        <el-option label="llvm" value="llvm"></el-option>
+        <el-option label="cmake" value="cmake"></el-option>
       </el-select>
     </el-form-item>
 
@@ -64,16 +86,6 @@
       <el-input-number v-model="form.time" :step="5"></el-input-number> 分钟
     </el-form-item>
 
-    <el-form-item label="编译命令">
-      <el-input
-        type="compileCommand"
-        :autosize="{ minRows: 2, maxRows: 4 }"
-        placeholder="请输入内容"
-        v-model="form.compileCommand"
-      >
-      </el-input>
-    </el-form-item>
-
     <el-form-item label="输入命令">
       <el-input
         type="inputCommand"
@@ -103,7 +115,7 @@
 
 <script>
 import { formdataTest } from "@/api/index";
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from "vue";
 const cityOptions = [
   "602",
   "abw",
@@ -177,17 +189,16 @@ export default {
         seed: [],
         name: "",
         inputFile: [],
-        compileCommand: "",
+        compileCommand: "llvm",
         inputCommand: "",
         parameter: "",
         time: 5,
       },
-
     };
   },
   methods: {
     onSubmit() {
-    //  var formData = new FormData()
+      //  var formData = new FormData()
       let params = {
         fileList: this.form.fileList,
         seed: this.form.seed,
@@ -197,7 +208,7 @@ export default {
         inputCommand: this.form.inputCommand,
         parameter: this.form.parameter,
         time: this.form.time,
-        programName:this.form.programName
+        programName: this.form.programName,
       };
       // formData.append('seed', this.form.seed),
       // formData.append('name',this.form.name),
@@ -223,25 +234,23 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
     onBeforeUploadCode(file, fileList) {
-        // formData = new FormData();
+      // formData = new FormData();
       // if (formData.length == 0) {
-
       // }
-
       // formData.append("myfile", file.file);
     },
     onBeforeUploadInputFile(file, fileList) {
       // formData = new FormData();
       // formData.append("inputFile", file.file);
     },
-    codeRes(response, file, fileList){
+    codeRes(response, file, fileList) {
       console.log(response.file_path[0]);
-      this.form.fileList = response.file_path[0]
+      this.form.fileList = response.file_path[0];
     },
-    inputFileRes(response,file,fileList){
+    inputFileRes(response, file, fileList) {
       console.log(response);
-      this.form.inputFile =  response.inputFile[0] 
-    }
+      this.form.inputFile = response.inputFile[0];
+    },
   },
 };
 </script>

@@ -14,9 +14,6 @@ from .analyze import Analyze
 # Create your views here.
 
 
-class IndexView(generic.TemplateView):
-    template_name = 'index.html'
-
 
 def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,

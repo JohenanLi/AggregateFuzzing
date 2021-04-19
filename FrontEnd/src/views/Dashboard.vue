@@ -50,7 +50,7 @@
             </el-card>
           </el-col>
 
-          <el-col :span="16" style="height: 180px">
+          <!-- <el-col :span="16" style="height: 180px">
             <el-card shadow="hover">
               <div class="grid-content grid-con-2">
                 <i class="el-icon-box grid-con-icon"></i>
@@ -61,9 +61,9 @@
                 </div>
               </div>
             </el-card>
-          </el-col>
+          </el-col> -->
 
-          <el-col :span="16" style="height: 180px">
+          <!-- <el-col :span="16" style="height: 180px">
             <el-card shadow="hover">
               <div class="grid-content grid-con-3">
                 <i class="el-icon-loading grid-con-icon"></i>
@@ -74,7 +74,7 @@
                 </div>
               </div>
             </el-card>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-col>
     </el-row>
