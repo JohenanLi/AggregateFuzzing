@@ -83,7 +83,7 @@
     </el-form-item>
     <!--         :on-success="getCodePath"            :on-success="getInputFilePath" -->
     <el-form-item label="时间选择">
-      <el-input-number v-model="form.time" :step="5"></el-input-number> 分钟
+      <el-input-number v-model="form.time" :step="1" :min='1' :max="24"></el-input-number> 小时
     </el-form-item>
 
     <el-form-item label="输入命令">
@@ -192,7 +192,7 @@ export default {
         compileCommand: "llvm",
         inputCommand: "",
         parameter: "",
-        time: 5,
+        time: 1,
       },
     };
   },

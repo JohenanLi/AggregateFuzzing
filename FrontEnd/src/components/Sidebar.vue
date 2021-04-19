@@ -70,11 +70,11 @@ export default {
                     index: "sourceCode",
                     title: "上传源代码并编译"
                         },
-                        {
-                            icon:"el-icon-box",
-                            index:"sourceProgram",
-                            title:"上传源程序代码"
-                        }
+                        // {
+                        //     icon:"el-icon-box",
+                        //     index:"sourceProgram",
+                        //     title:"上传源程序代码"
+                        // }
                     ]
                 },
                 {

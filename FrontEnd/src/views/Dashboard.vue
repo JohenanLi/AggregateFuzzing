@@ -12,7 +12,7 @@
           </div>
           <div class="user-info-list">
             上次登录时间：
-            <span>2021-03-28</span>
+            <span>{{time}}</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
@@ -63,7 +63,7 @@
             </el-card>
           </el-col> -->
 
-          <!-- <el-col :span="16" style="height: 180px">
+          <el-col :span="16" style="height: 180px">
             <el-card shadow="hover">
               <div class="grid-content grid-con-3">
                 <i class="el-icon-loading grid-con-icon"></i>
@@ -74,7 +74,7 @@
                 </div>
               </div>
             </el-card>
-          </el-col> -->
+          </el-col>
         </el-row>
       </el-col>
     </el-row>
@@ -87,6 +87,7 @@ export default {
   data() {
     return {
       name: localStorage.getItem("ms_username"),
+      time:this.getLocalTime(),
       todoList: [
         {
           title: "今天要修复100个bug",
@@ -130,6 +131,11 @@ export default {
     history() {
       this.$router.push("/history");
     },
+    getLocalTime(){
+      var d = new Date();
+      var aaa = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+      return aaa;
+    }
   },
 };
 </script>
