@@ -12,6 +12,7 @@ class Analyze():
         if "tar.gz" or "tar.xz" in self.file:
             self.filePath = self.file.split(".tar")[0]
             # system("mkdir "+self.filePath)
+            print("Analyze Progess")
             myCmd = "cd %s && " %(SOURCE_FILE_PATH)
             myCmd += "tar -xf %s" %(self.file)
             
