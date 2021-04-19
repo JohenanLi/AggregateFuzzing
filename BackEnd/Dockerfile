@@ -2,6 +2,11 @@ FROM python:3.9
 
 ENV MODE=PRODUCTION
 
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && \
+    apt clean && \
+    apt update
+RUN apt-get install cmake -y
+
 ARG LLVM_VERSION=7.0.0
 COPY install_llvm.sh /
 WORKDIR /
@@ -17,10 +22,7 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # WORKDIR /tools/
 # RUN mkdir build
 # WORKDIR /tools/build
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && \
-    apt clean && \
-    apt update
-RUN apt-get install cmake -y
+
 # WORKDIR /tools/cmake
 # ARG CMAKE_VERSION=3.4.3
 # # #https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.sh
