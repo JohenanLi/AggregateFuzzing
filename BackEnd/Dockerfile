@@ -2,9 +2,14 @@ FROM python:3.9
 
 ENV MODE=PRODUCTION
 
+ARG LLVM_VERSION=7.0.0
+COPY install_llvm.sh /
+WORKDIR /
+RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
+
 COPY ./requirements.txt .
 COPY ./uwsgi.ini .
-COPY . .
+COPY ./tools ./tools
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # LLVM dependencies:
 
@@ -32,10 +37,6 @@ RUN apt-get install cmake -y
 #https://github.com/JohenanLi/AggregateFuzzing/commit/361347b0353b2d5eaafb9052b2beb89311858320a
 # ENV PATH="/usr/bin/cmake/bin:${PATH}"
 
-ARG LLVM_VERSION=7.0.0
-COPY install_llvm.sh /
-WORKDIR /
-RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_llvm.sh
 
 # ENV CXX=clang++
 # ENV CC=clang
