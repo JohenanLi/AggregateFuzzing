@@ -14,16 +14,16 @@ RUN chmod +x install_llvm.sh && ./install_llvm.sh ${LLVM_VERSION} && rm install_
 
 COPY ./requirements.txt .
 COPY ./uwsgi.ini .
-COPY ./tools ./tools
+COPY ./tools ./app/tools
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # LLVM dependencies:
 
 
-# WORKDIR /tools/
+# WORKDIR /app/tools/
 # RUN mkdir build
-# WORKDIR /tools/build
+# WORKDIR /app/tools/build
 
-# WORKDIR /tools/cmake
+# WORKDIR /app/tools/cmake
 # ARG CMAKE_VERSION=3.4.3
 # # #https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.sh
 # RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh \
@@ -50,32 +50,32 @@ ENV LLVM_CONFIG /usr/local/bin/llvm-config
 # && echo 'export CC=/usr/local/bin/clang' >> /etc/profile \
 # && echo 'export CXX=/usr/local/bin/clang++' >> /etc/profile \
 # && /bin/bash -c 'source /etc/profile'
-WORKDIR /tools
+WORKDIR /app/tools
 RUN unzip afl-2.52b.zip -d afl-2.52 && ls
-WORKDIR /tools/afl-2.52
+WORKDIR /app/tools/afl-2.52
 RUN ls && make
-WORKDIR /tools/afl-2.52/llvm_mode
+WORKDIR /app/tools/afl-2.52/llvm_mode
 RUN ls /usr/local/bin && make
 
-WORKDIR /tools
+WORKDIR /app/tools
 RUN tar -xvf AFL-2.57b.tar.gz  && ls
-WORKDIR /tools/AFL-2.57b 
+WORKDIR /app/tools/AFL-2.57b 
 RUN ls && make  
-WORKDIR /tools/AFL-2.57b/llvm_mode
+WORKDIR /app/tools/AFL-2.57b/llvm_mode
 RUN make
 
-WORKDIR /tools
+WORKDIR /app/tools
 RUN unzip TortoiseFuzz-master.zip 
-WORKDIR /tools/TortoiseFuzz-master
+WORKDIR /app/tools/TortoiseFuzz-master
 RUN make
 
-WORKDIR /tools
+WORKDIR /app/tools
 RUN unzip collafl-master.zip && ls
-WORKDIR /tools/collafl-master 
+WORKDIR /app/tools/collafl-master 
 RUN  chmod 777 afl-gcc && make
 ENV CC /usr/local/bin/clang
 ENV CXX /usr/local/bin/clang++
-WORKDIR /tools/collafl-master/llvm_mode 
+WORKDIR /app/tools/collafl-master/llvm_mode 
 RUN make
 
 
@@ -84,7 +84,7 @@ RUN make
 RUN apt-get install libevent-dev
 
 #tmux
-WORKDIR /tools/tmux
+WORKDIR /app/tools/tmux
 RUN ./configure CFLAGS="-I$HOME/.local/include -I$HOME/.local/include/ncurses" LDFLAGS="-L$HOME/.local/lib -L$HOME/.local/include/ncurses -L$HOME/.local/include" CPPFLAGS="-I$HOME/.local/include -I$HOME/.local/include/ncurses" LDFLAGS="-static -L$HOME/.local/include -L$HOME/.local/include/ncurses -L$HOME/.local/lib"  && make 
 RUN cp tmux /bin
 WORKDIR /
