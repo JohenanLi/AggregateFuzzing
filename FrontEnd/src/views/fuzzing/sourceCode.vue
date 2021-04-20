@@ -14,7 +14,7 @@
       <el-upload
         class="sourceCode"
         drag
-        action="api/upload/uploadCode/"
+        action="http://127.0.0.1:8000/api/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
@@ -69,7 +69,7 @@
         <el-upload
           class="inputFile"
           drag
-          action="api/upload/uploadInputFile/"
+          action="http://127.0.0.1:8000/api/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
@@ -187,7 +187,7 @@ export default {
         programName: ref(""),
         fileList: [],
         seed: [],
-        name: "",
+        name: "afl",
         inputFile: [],
         compileCommand: "llvm",
         inputCommand: "",

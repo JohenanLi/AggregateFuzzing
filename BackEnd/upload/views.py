@@ -163,6 +163,7 @@ def uploadInputFile(request):
                 print('filepath = [%s]'%ext)
                 fileList.append(ext)
                 try:
+                    os.system("mkdir %s" %(INPUT_FILE_PATH))
                     os.system("mkdir "+os.path.join(INPUT_FILE_PATH,ext))
                     writeFile(filePath, file)
                 except:

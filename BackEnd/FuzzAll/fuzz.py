@@ -21,6 +21,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile,compileComm
         qemu = " "
     fuzz_cmd = None
     terminalName:str = programName
+    if os.path.exists(os.path.join(program_path,"/",programName)):
+        pass
+    else:
+        programName = "/src/" + programName
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
         if compileCommand != '':

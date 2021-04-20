@@ -20,6 +20,7 @@ class Analyze():
             return self.filePath
         elif "zip" in self.file:
             myCmd = "unzip %s" %(self.file)
+            self.filePath = self.file.split(".zip")[0]
             return self.filePath
         else:
             print("Please wait!!!!")
