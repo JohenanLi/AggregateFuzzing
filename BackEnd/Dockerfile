@@ -50,27 +50,22 @@ ENV LLVM_CONFIG /usr/local/bin/llvm-config
 # && echo 'export CC=/usr/local/bin/clang' >> /etc/profile \
 # && echo 'export CXX=/usr/local/bin/clang++' >> /etc/profile \
 # && /bin/bash -c 'source /etc/profile'
-WORKDIR /app/tools
-RUN unzip afl-2.52b.zip -d afl-2.52 && ls
-WORKDIR /app/tools/afl-2.52
+
+WORKDIR /app/tools/afl-2.52b
 RUN ls && make
-WORKDIR /app/tools/afl-2.52/llvm_mode
+WORKDIR /app/tools/afl-2.52b/llvm_mode
 RUN ls /usr/local/bin && make
 
-WORKDIR /app/tools
-RUN tar -xvf AFL-2.57b.tar.gz  && ls
+
 WORKDIR /app/tools/AFL-2.57b 
 RUN ls && make  
 WORKDIR /app/tools/AFL-2.57b/llvm_mode
 RUN make
 
-WORKDIR /app/tools
-RUN unzip TortoiseFuzz-master.zip 
 WORKDIR /app/tools/TortoiseFuzz-master
 RUN make
 
-WORKDIR /app/tools
-RUN unzip collafl-master.zip && ls
+
 WORKDIR /app/tools/collafl-master 
 RUN  chmod 777 afl-gcc && make
 ENV CC /usr/local/bin/clang
