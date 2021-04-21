@@ -137,6 +137,7 @@ def uploadCode(request):
                 
                 filePath = os.path.join(SOURCE_FILE_PATH, fileName)
                 print('filepath = [%s]'%filePath)
+                os.system("mkdir %s" %(SOURCE_FILE_PATH))
                 fileList.append(filePath)
                 # try:
                 writeFile(filePath, file)
