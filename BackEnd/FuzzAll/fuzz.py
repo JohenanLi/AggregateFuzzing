@@ -22,10 +22,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
         qemu = " "
     fuzz_cmd = None
     terminalName: str = programName
-    if os.path.isfile(os.path.join(program_path, "/", programName)):
-        print("***********************")
-    else:
-        programName = "/src/" + programName
+    # if os.path.isfile(os.path.join(program_path, "/", programName)):
+    #     print("***********************")
+    # else:
+    #     programName = "/src/" + programName
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
         if compileCommand != '':
