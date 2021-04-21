@@ -26,6 +26,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     #     print("***********************")
     # else:
     #     programName = "/src/" + programName
+    ##ls $(find . -type f -executable | grep -E "gzip?[^\.]$") | sed "s:^:`pwd`/: "
+    findCmd = "find . -type f -executable | grep -E \"%s?[^\.]$\" "%(programName)
+    programName = os.system(findCmd)
+    input()
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
         if compileCommand != '':

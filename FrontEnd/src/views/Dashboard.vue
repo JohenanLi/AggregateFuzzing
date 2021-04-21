@@ -88,16 +88,6 @@ export default {
     return {
       name: localStorage.getItem("ms_username"),
       time:this.getLocalTime(),
-      todoList: [
-        {
-          title: "今天要修复100个bug",
-          status: false,
-        },
-        {
-          title: "今天要修复100个bug",
-          status: true,
-        },
-      ],
       data: [
         {
           name: "2018/09/10",

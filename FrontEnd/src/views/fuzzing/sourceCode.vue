@@ -1,16 +1,17 @@
 
 <template>
   <el-form
-    ref="form"
-    :model="form.programName"
+    ref="this.form"
+    :model="form"
     label-width="auto"
     :label-position="right"
+    :rules="rules"
   >
-    <el-form-item label="软件名称">
+    <el-form-item label="软件名称" prop="programName" >
       <el-input v-model="form.programName" placeholder="请输入内容"></el-input>
     </el-form-item>
 
-    <el-form-item label="上传源代码">
+    <el-form-item label="上传源代码" prop="fileList">
       <el-upload
         class="sourceCode"
         drag
@@ -26,7 +27,7 @@
       </el-upload>
     </el-form-item>
 
-    <el-form-item label="fuzz软件">
+    <el-form-item label="fuzz软件" prop="name">
       <el-select v-model="form.name" placeholder="请选择使用的fuzz软件">
         <el-option label="afl" value="afl"></el-option>
         <el-option label="tortoise" value="tortoise"></el-option>
@@ -34,7 +35,7 @@
       </el-select>
     </el-form-item>
 
-    <el-form-item label="编译命令">
+    <el-form-item label="编译命令"  prop="compileCommand">
       <!-- <el-input
         type="compileCommand"
         :autosize="{ minRows: 2, maxRows: 4 }"
@@ -187,18 +188,35 @@ export default {
         programName: ref(""),
         fileList: [],
         seed: [],
-        name: "afl",
+        name: "",
         inputFile: [],
-        compileCommand: "llvm",
+        compileCommand: "",
         inputCommand: "",
         parameter: "",
         time: 1,
       },
+      rules:{
+        programName: [
+            { required: true, message: '请输入软件名称', trigger: 'blur' },
+          ],
+        fileList:[
+            { required: true, message: '请上传文件', trigger: 'blur' },
+          ],
+        name: [
+            { required: true, message: '请选择活动名称', trigger: 'blur' },
+          ],
+        compileCommand: [
+            { required: true, message: '请选择编译命令', trigger: 'blur' },
+          ],
+      }
+
     };
   },
   methods: {
     onSubmit() {
-      //  var formData = new FormData()
+       this.$refs['this.form'].validate((valid) => {
+          if (valid) {
+            //  var formData = new FormData()
       let params = {
         fileList: this.form.fileList,
         seed: this.form.seed,
@@ -229,6 +247,12 @@ export default {
           alert("success!");
         }
       });
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+     
     },
     beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}？`);
