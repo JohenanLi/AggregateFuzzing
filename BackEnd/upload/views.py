@@ -139,11 +139,10 @@ def uploadCode(request):
                 print('filepath = [%s]'%filePath)
                 os.system("mkdir %s" %(SOURCE_FILE_PATH))
                 fileList.append(filePath)
-                # try:
-                writeFile(filePath, file)
-                # except:
-                #     print
-                return JsonResponse({'msg': 'file write failed'})
+                try:
+                    writeFile(filePath, file)
+                except:
+                    return JsonResponse({'msg': 'file write failed'})
         return JsonResponse({'msg': 'success','file_path':fileList})
 
 def uploadInputFile(request):
