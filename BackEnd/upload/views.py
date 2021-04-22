@@ -1,5 +1,6 @@
 import json
 from django.http.response import JsonResponse
+from rest_framework.generics import ListAPIView
 from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH
 from FuzzAll.fuzz import fuzz_one
 from django.http import HttpResponse
@@ -10,6 +11,7 @@ from django.http import JsonResponse
 from .models import *
 import os
 from .analyze import Analyze
+from .ser import UsedSoftSer
 # import _thread
 # Create your views here.
 
@@ -169,3 +171,7 @@ def uploadInputFile(request):
                 except:
                     return JsonResponse({'msg': 'file write failed'})
         return JsonResponse({'msg': 'success','inputFile':fileList})
+
+class AvailList(ListAPIView):
+    serializer_class = UsedSoftSer
+    queryset  = usedSoft.objects.all()

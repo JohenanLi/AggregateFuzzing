@@ -2,6 +2,18 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="8">
+        <el-card shadow="hover">
+          <template #header>
+            <div class="clearfix">
+              <span>CPU资源详情</span>
+            </div>
+          </template>
+          可用CPU资源
+          <el-progress :percentage="avail_cpu" color="#42b983"></el-progress
+          >已用CPU资源
+          <el-progress :percentage="notavail_cpu" color="#f56c6c"></el-progress>
+        </el-card>
+
         <el-card shadow="hover" class="mgb20" style="height: 252px">
           <div class="user-info">
             <img src="../assets/img/img.jpg" class="user-avator" alt />
@@ -12,14 +24,14 @@
           </div>
           <div class="user-info-list">
             上次登录时间：
-            <span>{{time}}</span>
+            <span>{{ time }}</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
             <span>长沙</span>
           </div>
         </el-card>
-
+        <!-- 
         <el-card shadow="hover">
           <template #header>
             <div class="clearfix">
@@ -32,7 +44,7 @@
           <el-progress :percentage="24.1" color="#f1e05a"></el-progress>CSS
           <el-progress :percentage="13.7"></el-progress>HTML
           <el-progress :percentage="5.9" color="#f56c6c"></el-progress>
-        </el-card>
+        </el-card>-->
       </el-col>
 
       <el-col :span="16">
@@ -60,8 +72,8 @@
                   >
                 </div>
               </div>
-            </el-card>
-          </el-col> -->
+            </el-card>-->
+          <!-- </el-col>  -->
 
           <el-col :span="16" style="height: 180px">
             <el-card shadow="hover">
@@ -75,6 +87,24 @@
               </div>
             </el-card>
           </el-col>
+
+          <el-col :span="16" style="height: 180px">
+            <el-table
+              :data="tableData"
+              style="width: 100%"
+              v-for="item in tableData"
+              v-bind:key="item"
+            >
+              <el-table-column :prop="item.id" label="id" width="180">
+              </el-table-column>
+              <el-table-column :prop="item.name" label="软件名称" width="180">
+              </el-table-column>
+              <el-table-column :prop="item.version" label="版本">
+              </el-table-column>
+              <el-table-column :prop="item.timeStamp" label="测试时间">
+              </el-table-column>
+            </el-table>
+          </el-col>
         </el-row>
       </el-col>
     </el-row>
@@ -82,20 +112,37 @@
 </template>
 
 <script>
+import { usedSoft } from "@/api/index"
 export default {
+
   name: "dashboard",
   data() {
     return {
       name: localStorage.getItem("ms_username"),
-      time:this.getLocalTime(),
+      time: this.getLocalTime(),
+      avail_cpu: 60,
+      notavail_cpu: 40,
       data: [
         {
           name: "2018/09/10",
           value: 1065,
         },
       ],
+      tableData: [
+
+      ],
     };
   },
+// mounted:{
+//   getUsedSoft(){
+//     usedSoft().then((res) =>{
+//       this.tableData = res.data;
+//       console.log(res);
+//     })
+//     return 0;
+//   }
+// },
+
   computed: {
     role() {
       return this.name === "admin" ? "超级管理员" : "普通用户";
@@ -121,11 +168,14 @@ export default {
     history() {
       this.$router.push("/history");
     },
-    getLocalTime(){
+    getLocalTime() {
       var d = new Date();
-      var aaa = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+      var aaa = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       return aaa;
-    }
+    },
+
+    
+
   },
 };
 </script>

@@ -15,7 +15,7 @@
       <el-upload
         class="sourceCode"
         drag
-        action="api/upload/uploadCode/"
+        action="http://127.0.0.1:8000/api/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
@@ -51,26 +51,41 @@
         <el-option label="cmake" value="cmake"></el-option>
       </el-select>
     </el-form-item>
+<!-- 
+    <el-form-item lable="选择测试样例">
+    <el-select v-model="value" placeholder="请选择">
+    <el-option
+      :key="种子选取"
+      :label="种子选取"
+      :value="种子选取">
+    </el-option>
+        <el-option
+      :key="上传输入文件"
+      :label="上传输入文件"
+      :value="上传输入文件">
+    </el-option>
+  </el-select>
+    </el-form-item> -->
 
-    <el-form-item label="种子选取" size="small">
+    <el-form-item label="种子选取" prop="seed">
       <div>
-        <el-checkbox-group v-model="form.seed">
-          <el-checkbox-button
+        <el-radio-group v-model="form.seed" size="medium">
+          <el-radio-button
             v-for="city in cities"
             :label="city"
             :key="city"
-            >{{ city }}</el-checkbox-button
+            >{{ city }}</el-radio-button
           >
-        </el-checkbox-group>
+        </el-radio-group>
       </div>
     </el-form-item>
 
-    <el-form-item label="上传输入文件">
+    <el-form-item label="上传输入文件" prop="inputFile">
       <div style="border 0px;">
         <el-upload
           class="inputFile"
           drag
-          action="api/upload/uploadInputFile/"
+          action="http://127.0.0.1:8000/api/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
@@ -210,6 +225,10 @@ export default {
         compileCommand: [
           { required: true, message: "请选择编译命令", trigger: "blur" },
         ],
+        // seed:[
+        //   { required: true, message: "请选择种子", trigger: "blur" },
+        // ],
+        inputFile:[{ required: true, message: "请上传输入文件", trigger: "blur" }],
       },
     };
   },

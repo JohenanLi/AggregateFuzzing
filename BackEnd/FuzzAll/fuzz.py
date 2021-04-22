@@ -30,13 +30,15 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
 
     if fuzzer == "afl":
         # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
-        if compileCommand != '':
+        # if compileCommand != '':
 
-            """llvm"""
-            result = compile(program_path, compileCommand, AFL_PATH)
-        os.popen("mkdir %s" % (outs))
-        findCmd = "find . -type f -executable | grep -E \"%s?[^\.]$\" "%(programName)
+        #     """llvm"""
+        result = compile(program_path, compileCommand, AFL_PATH)
+        subprocess.Popen("mkdir -p %s" % (outs),shell = True)
+        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
+        print(findCmd)
         programName = subprocess.getoutput(findCmd)
+        print(programName)
         fuzz_cmd = [AFL_PATH, '/afl-fuzz', qemu, "-i ", ins, " -o ", outs,
                     " -- ", program_path, "/", programName, " ", params, " @@"]
 # /root/work/AggregateFuzzing/BackEnd/tools/afl/mm_metric/afl-fuzz -i /root/work/AggregateFuzzing/BackEnd/tools/aflGithub/testcases/images/png -o /root/work/fuzz/outs -- ~/work/sam2p-0.49.4/sam2p @@
