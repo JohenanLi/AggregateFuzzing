@@ -1,7 +1,7 @@
 
 <template>
   <el-form
-    ref="form"
+    ref="this.form"
     :model="form"
     label-width="auto"
     :label-position="right"
@@ -15,7 +15,7 @@
       <el-upload
         class="sourceCode"
         drag
-        action="http://127.0.0.1:8000/api/upload/uploadCode/"
+        action="api/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
@@ -51,25 +51,10 @@
         <el-option label="cmake" value="cmake"></el-option>
       </el-select>
     </el-form-item>
-<!-- 
-    <el-form-item lable="选择测试样例">
-    <el-select v-model="value" placeholder="请选择">
-    <el-option
-      :key="种子选取"
-      :label="种子选取"
-      :value="种子选取">
-    </el-option>
-        <el-option
-      :key="上传输入文件"
-      :label="上传输入文件"
-      :value="上传输入文件">
-    </el-option>
-  </el-select>
-    </el-form-item> -->
 
-    <el-form-item label="种子选取" prop="seedRulesRules">
+    <el-form-item label="种子选取" size="small">
       <div>
-        <el-radio-group v-model="form.seed" size="medium">
+        <el-radio-group v-model="form.seed">
           <el-radio-button
             v-for="city in cities"
             :label="city"
@@ -80,12 +65,12 @@
       </div>
     </el-form-item>
 
-    <el-form-item label="上传输入文件" prop="inputFile">
+    <el-form-item label="上传输入文件">
       <div style="border 0px;">
         <el-upload
           class="inputFile"
           drag
-          action="http://127.0.0.1:8000/api/upload/uploadInputFile/"
+          action="api/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
@@ -133,17 +118,11 @@
       <el-button>取消</el-button>
     </el-form-item>
   </el-form>
-    <el-alert
-    title="提交成功，请等待结果提示"
-    type="success"
-    v-if="this.status"
-    show-icon>
-  </el-alert>
 </template>
 
 <script>
 import { formdataTest } from "@/api/index";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 const cityOptions = [
   "602",
   "abw",
@@ -209,13 +188,12 @@ const cityOptions = [
 export default {
   data() {
     return {
-      status: false,
       cities: cityOptions,
       fireList: [],
       form: {
         programName: ref(""),
         fileList: [],
-        seedRules: [],
+        seed: "",
         name: "",
         inputFile: [],
         compileCommand: "",
@@ -232,10 +210,6 @@ export default {
         compileCommand: [
           { required: true, message: "请选择编译命令", trigger: "blur" },
         ],
-        seedRules:[
-          { required: true, message: "请选择种子", trigger: "blur" },
-        ],
-        inputFile:[{ required: true, message: "请上传输入文件", trigger: "blur" }],
       },
     };
   },
@@ -255,14 +229,23 @@ export default {
             time: this.form.time,
             programName: this.form.programName,
           };
+          // formData.append('seed', this.form.seed),
+          // formData.append('name',this.form.name),
+          // formData.append('compileCommand', this.form.compileCommand),
+          // formData.append('inputCommand', this.form.inputCommand),
+          // formData.append('paramete', this.form.parameter),
+          // formData.append('time',this.form.time),
+          // console.log(formData),
+          // axios({
+          //   url: "http://127.0.0.1:8000/upload/sourceCode/",
+          //   method: "post",
+          //   data: Qs.stringify(params)
+          // });
           console.log(params);
-          var self = this;
           formdataTest(params).then((res) => {
-            this.status = true;
             console.log(res);
-            if (res.status == 200) {
-              console.log(res);
-              self.$router.push('/wait');
+            if (res.data.status == 200) {
+              alert("success!");
             }
           });
         } else {
