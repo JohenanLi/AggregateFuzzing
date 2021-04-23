@@ -65,6 +65,16 @@ const routes = [
                 component: () => import(/* webpackChunkName: "sourceProgram" */
                     '../views/fuzzing/sourceProgram.vue')
             },
+            {
+                path: "/tabs",
+                name: "tabs",
+                meta: {
+                    title: 'tab标签'
+                },
+                component: () => import (
+                /* webpackChunkName: "tabs" */
+                "../views/Tabs.vue")
+            }
         ]
     }, {
         path: "/login",

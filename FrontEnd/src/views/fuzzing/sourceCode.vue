@@ -1,7 +1,7 @@
 
 <template>
   <el-form
-    ref="this.form"
+    ref="form"
     :model="form"
     label-width="auto"
     :label-position="right"
@@ -67,7 +67,7 @@
   </el-select>
     </el-form-item> -->
 
-    <el-form-item label="种子选取" prop="seed">
+    <el-form-item label="种子选取" prop="seedRulesRules">
       <div>
         <el-radio-group v-model="form.seed" size="medium">
           <el-radio-button
@@ -143,7 +143,7 @@
 
 <script>
 import { formdataTest } from "@/api/index";
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 const cityOptions = [
   "602",
   "abw",
@@ -215,7 +215,7 @@ export default {
       form: {
         programName: ref(""),
         fileList: [],
-        seed: [],
+        seedRules: [],
         name: "",
         inputFile: [],
         compileCommand: "",
@@ -232,9 +232,9 @@ export default {
         compileCommand: [
           { required: true, message: "请选择编译命令", trigger: "blur" },
         ],
-        // seed:[
-        //   { required: true, message: "请选择种子", trigger: "blur" },
-        // ],
+        seedRules:[
+          { required: true, message: "请选择种子", trigger: "blur" },
+        ],
         inputFile:[{ required: true, message: "请上传输入文件", trigger: "blur" }],
       },
     };
@@ -255,7 +255,7 @@ export default {
             time: this.form.time,
             programName: this.form.programName,
           };
-          // formData.append('seed', this.form.seed),
+          // formData.append('seedRules', this.form.seedRules),
           // formData.append('name',this.form.name),
           // formData.append('compileCommand', this.form.compileCommand),
           // formData.append('inputCommand', this.form.inputCommand),
