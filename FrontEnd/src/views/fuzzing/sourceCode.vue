@@ -255,18 +255,6 @@ export default {
             time: this.form.time,
             programName: this.form.programName,
           };
-          // formData.append('seedRules', this.form.seedRules),
-          // formData.append('name',this.form.name),
-          // formData.append('compileCommand', this.form.compileCommand),
-          // formData.append('inputCommand', this.form.inputCommand),
-          // formData.append('paramete', this.form.parameter),
-          // formData.append('time',this.form.time),
-          // console.log(formData),
-          // axios({
-          //   url: "http://127.0.0.1:8000/upload/sourceCode/",
-          //   method: "post",
-          //   data: Qs.stringify(params)
-          // });
           console.log(params);
           var self = this;
           formdataTest(params).then((res) => {

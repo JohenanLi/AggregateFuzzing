@@ -31,8 +31,6 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrPr
 
 def sourceCode(request):
     if request.method == 'POST':
-        print(request.POST)
-        print(request.FILES)
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()
@@ -43,7 +41,6 @@ def sourceCode(request):
         parameter = request.POST.get('parameter',None)
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
-        
         programName = request.POST.get("programName",None)
         outs = os.path.join(BASE_DIR, 'outs',programName)
         print('test')
@@ -54,13 +51,6 @@ def sourceCode(request):
             temp = uploadSourceCode.objects.create(
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, compileCommand=compileCommand, inputCommand=inputCommand)
             temp.save()
-            ##路径替换
-            # ext = str(filePath).split('.')[-1]
-            # filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
-
-            # extInput= str(inputFile).split('.')[-1]
-            # inputFile = '/'.join([os.getcwd(), 'inputFile', str(inputFile).strip('.'+extInput)])
-            print(str(filePath),str(inputFile))
             if not inputFile:
                 isfile = True
                 threadFuzz(

@@ -3,7 +3,7 @@ import os
 import subprocess
 from FuzzAll import check, config
 from FuzzAll.compileDeal import compile
-from FuzzAll.config import AFL_PATH
+from . import config
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -22,36 +22,39 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
         qemu = " "
     fuzz_cmd = None
     terminalName: str = programName
-    # if os.path.isfile(os.path.join(program_path, "/", programName)):
-    #     print("***********************")
-    # else:
-    #     programName = "/src/" + programName
-    ##ls $(find . -type f -executable | grep -E "gzip?[^\.]$") | sed "s:^:`pwd`/: "
 
     if fuzzer == "afl":
-        # afl = os.path.join(config.AFL_PATH, "afl-fuzz")
-        # if compileCommand != '':
-
-        #     """llvm"""
-        result = compile(program_path, compileCommand, AFL_PATH)
+        afl = os.path.join(config.AFL_PATH, "afl-fuzz")
+        result = compile(program_path, compileCommand, config.AFL_PATH)
         subprocess.Popen("mkdir -p %s" % (outs),shell = True)
         findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
         print(findCmd)
         programName = subprocess.getoutput(findCmd)
         print(programName)
-        fuzz_cmd = [AFL_PATH, '/afl-fuzz', qemu, "-i ", ins, " -o ", outs,
+        fuzz_cmd = [afl, qemu, "-i ", ins, " -o ", outs,
                     " -- ", program_path, "/", programName, " ", params, " @@"]
-# /root/work/AggregateFuzzing/BackEnd/tools/afl/mm_metric/afl-fuzz -i /root/work/AggregateFuzzing/BackEnd/tools/aflGithub/testcases/images/png -o /root/work/fuzz/outs -- ~/work/sam2p-0.49.4/sam2p @@
 
     elif fuzzer == "tortoise":
-        tortoise = os.path.join(config.AFL_PATH, "bb_metric", "afl-fuzz")
-        fuzz_cmd = [tortoise, qemu, "-i", ins,
-                    "-o", outs, "--", program_path, params]
+        tortoise = os.path.join(config.TORTOISE_PATH, "bb_metric", "afl-fuzz")
+        result = compile(program_path, compileCommand, config.TORTOISE_PATH)
+        subprocess.Popen("mkdir -p %s" % (outs),shell = True)
+        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
+        print(findCmd)
+        programName = subprocess.getoutput(findCmd)
+        print(programName)
+        fuzz_cmd = [tortoise, qemu, "-i ", ins, " -o ", outs,
+                    " -- ", program_path, "/", programName, " ", params, " @@"]
 
     elif fuzzer == "emem":
-        emem = os.path.join(config.AFL_PATH, "mem_metric", "afl-fuzz")
-        fuzz_cmd = [emem, qemu, "-i", ins, "-o",
-                    outs, "--", program_path, params]
+        emem = os.path.join(config.EMEM_AFL_PATH, "mem_metric", "afl-fuzz")
+        result = compile(program_path, compileCommand, EMEM_AFL_PATH)
+        subprocess.Popen("mkdir -p %s" % (outs),shell = True)
+        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
+        print(findCmd)
+        programName = subprocess.getoutput(findCmd)
+        print(programName)
+        fuzz_cmd = [emem, qemu, "-i ", ins, " -o ", outs,
+                    " -- ", program_path, "/", programName, " ", params, " @@"]
     else:
         print("error fuzzer: {}".format(fuzzer))
 
