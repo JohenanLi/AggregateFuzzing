@@ -92,16 +92,14 @@
             <el-table
               :data="tableData"
               style="width: 100%"
-              v-for="item in tableData"
-              v-bind:key="item"
             >
-              <el-table-column :prop="item.id" label="id" width="180">
+              <el-table-column prop="id" label="id" width="180">
               </el-table-column>
-              <el-table-column :prop="item.name" label="软件名称" width="180">
+              <el-table-column prop="name" label="软件名称" width="180">
               </el-table-column>
-              <el-table-column :prop="item.version" label="版本">
+              <el-table-column prop="version" label="版本">
               </el-table-column>
-              <el-table-column :prop="item.timeStamp" label="测试时间">
+              <el-table-column prop="timeStamp" label="测试时间">
               </el-table-column>
             </el-table>
           </el-col>
@@ -129,19 +127,51 @@ export default {
         },
       ],
       tableData: [
-
-      ],
+    {
+        id: '1',
+        name: "sam2p",
+        version: "0.49.4",
+        timeStamp: null
+    },
+    {
+        id: '2',
+        name: "nasm",
+        version: "2.10.07",
+        timeStamp: null
+    },
+    {
+        id: '3',
+        name: "gzip",
+        version: "1.10",
+        timeStamp: null
+    },
+    {
+        id: '4',
+        name: "make",
+        version: "4.3",
+        timeStamp: null
+    },
+    {
+        id: '5',
+        name: "tack",
+        version: "1.08",
+        timeStamp: null
+    },
+    {
+        id: '6',
+        name: "patch",
+        version: "2.7",
+        timeStamp: null
+    },
+    {
+        id: '7',
+        name: "nano",
+        version: "5.6",
+        timeStamp: null
+    }
+]
     };
   },
-// mounted:{
-//   getUsedSoft(){
-//     usedSoft().then((res) =>{
-//       this.tableData = res.data;
-//       console.log(res);
-//     })
-//     return 0;
-//   }
-// },
 
   computed: {
     role() {
@@ -173,7 +203,12 @@ export default {
       var aaa = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       return aaa;
     },
-
+      getUsedSoft(){
+    usedSoft().then((res) =>{
+      console.log(res.data);
+      return res.data;
+    })
+  }
     
 
   },
