@@ -133,6 +133,12 @@
       <el-button>取消</el-button>
     </el-form-item>
   </el-form>
+    <el-alert
+    title="提交成功，请等待结果提示"
+    type="success"
+    v-if="this.status"
+    show-icon>
+  </el-alert>
 </template>
 
 <script>
@@ -203,6 +209,7 @@ const cityOptions = [
 export default {
   data() {
     return {
+      status: false,
       cities: cityOptions,
       fireList: [],
       form: {
@@ -261,10 +268,13 @@ export default {
           //   data: Qs.stringify(params)
           // });
           console.log(params);
+          var self = this;
           formdataTest(params).then((res) => {
+            this.status = true;
             console.log(res);
-            if (res.data.status == 200) {
-              alert("success!");
+            if (res.status == 200) {
+              console.log(res);
+              self.$router.push('/wait');
             }
           });
         } else {

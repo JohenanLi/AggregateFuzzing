@@ -4,14 +4,14 @@ import Home from "../views/Home.vue";
 const routes = [
     {
         path: '/',
-        redirect: '/dashboard'
+        redirect: '/dashboard/'
     }, {
         path: "/",
         name: "Home",
         component: Home,
         children: [
             {
-                path: "/dashboard",
+                path: "/dashboard/",
                 name: "dashboard",
                 meta: {
                     title: '系统首页'

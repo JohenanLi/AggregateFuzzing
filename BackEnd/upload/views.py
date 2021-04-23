@@ -70,7 +70,7 @@ def sourceCode(request):
                 threadFuzz(
                     fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
 
-            return JsonResponse({"msg":"test"})
+            return JsonResponse({"msg":"成功提交，请耐心等待结果"})
 
 
 def sourceProgram(request):

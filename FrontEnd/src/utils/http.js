@@ -8,7 +8,7 @@ import QS from 'qs'
  * 定义请求常量
  * TIME_OUT, BASE_URL
  */
-export const timeout = 5000;    // 请求超时时间
+export const timeout = 50000000;    // 请求超时时间
 export const baseURL = 'http://127.0.0.1:8000';   // 引入全局url
 // export const baseURL = 'http://127.0.0.1:9000';
 // export const baseURL = 'http://fuzz.wolongdanxin.top/';
