@@ -9,9 +9,9 @@ import QS from 'qs'
  * TIME_OUT, BASE_URL
  */
 export const timeout = 50000000;    // 请求超时时间
-export const baseURL = 'http://127.0.0.1:8000';   // 引入全局url
+// export const baseURL = 'http://127.0.0.1:8000';   // 引入全局url
 // export const baseURL = 'http://127.0.0.1:9000';
-// export const baseURL = 'http://fuzz.wolongdanxin.top/';
+export const baseURL = 'http://fuzz.wolongdanxin.top/';
 // let protocol = window.location.protocol; //协议
 // let host = window.location.host; //主机
 // let reg = /^localhost+/;

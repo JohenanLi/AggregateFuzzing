@@ -31,7 +31,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
         print(findCmd)
         programName = subprocess.getoutput(findCmd)
         print(programName)
-        fuzz_cmd = [afl, qemu, "-i ", ins, " -o ", outs,
+        fuzz_cmd = [afl, qemu, " -M master -m 1000 ","-i ", ins, " -o ", outs,
                     " -- ", program_path, "/", programName, " ", params, " @@"]
 
     elif fuzzer == "tortoise":
@@ -62,9 +62,9 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     #     fuzz_cmd.append(" @@")
     # else:
     #     pass
-    # screen background for fuzz
-    # fuzz_cmd = ["screen", "-dmS", "fuzz"] + fuzz_cmd
-    fuzz_cmd = ["tmux new -s ", terminalName, " -d "] + fuzz_cmd
+
+
+    # fuzz_cmd = ["tmux new -s ", terminalName, " -d "] + fuzz_cmd
     print(fuzz_cmd)
     # subprocess.Popen(fuzz_cmd)
     sysCmd = ''

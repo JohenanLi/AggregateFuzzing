@@ -54,14 +54,14 @@
 
     <el-form-item label="种子选取" size="small">
       <div>
-        <el-radio-group v-model="form.seed">
-          <el-radio-button
+        <el-checkbox-group v-model="form.seed">
+          <el-checkbox-button
             v-for="city in cities"
             :label="city"
             :key="city"
-            >{{ city }}</el-radio-button
+            >{{ city }}</el-checkbox-button
           >
-        </el-radio-group>
+        </el-checkbox-group>
       </div>
     </el-form-item>
 
@@ -193,7 +193,7 @@ export default {
       form: {
         programName: ref(""),
         fileList: [],
-        seed: "",
+        seed: [],
         name: "",
         inputFile: [],
         compileCommand: "",
