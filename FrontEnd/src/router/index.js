@@ -12,10 +12,19 @@ const routes = [
         component: Home,
         children: [
             {
+                path: '/Homepage',
+                name: 'HomePage',
+                meta: {
+                    title: '系统首页'
+                },
+                component: () => import(/* webpackChunkName: "history" */
+                    '../views/Homepage.vue')
+            },
+            {
                 path: "/dashboard",
                 name: "dashboard",
                 meta: {
-                    title: '系统首页'
+                    title: '个人主页'
                 },
                 component: () => import(
                     /* webpackChunkName: "dashboard" */
