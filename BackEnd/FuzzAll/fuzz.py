@@ -26,19 +26,21 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     if fuzzer == "afl":
         afl = os.path.join(config.AFL_PATH, "afl-fuzz")
         result = compile(program_path, compileCommand, config.AFL_PATH)
-        subprocess.Popen("mkdir -p %s" % (outs),shell = True)
-        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
+        subprocess.Popen("mkdir -p %s" % (outs), shell=True)
+        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
+            program_path, programName)
         print(findCmd)
         programName = subprocess.getoutput(findCmd)
         print(programName)
-        fuzz_cmd = [afl, qemu, " -M master -m 1000 ","-i ", ins, " -o ", outs,
+        fuzz_cmd = [afl, qemu, " -M master -m 1000 ", "-i ", ins, " -o ", outs,
                     " -- ", program_path, "/", programName, " ", params, " @@"]
 
     elif fuzzer == "tortoise":
         tortoise = os.path.join(config.TORTOISE_PATH, "bb_metric", "afl-fuzz")
         result = compile(program_path, compileCommand, config.TORTOISE_PATH)
-        subprocess.Popen("mkdir -p %s" % (outs),shell = True)
-        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
+        subprocess.Popen("mkdir -p %s" % (outs), shell=True)
+        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
+            program_path, programName)
         print(findCmd)
         programName = subprocess.getoutput(findCmd)
         print(programName)
@@ -48,8 +50,9 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     elif fuzzer == "emem":
         emem = os.path.join(config.EMEM_AFL_PATH, "mem_metric", "afl-fuzz")
         result = compile(program_path, compileCommand, EMEM_AFL_PATH)
-        subprocess.Popen("mkdir -p %s" % (outs),shell = True)
-        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" "%(program_path,programName)
+        subprocess.Popen("mkdir -p %s" % (outs), shell=True)
+        findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
+            program_path, programName)
         print(findCmd)
         programName = subprocess.getoutput(findCmd)
         print(programName)
@@ -62,7 +65,6 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     #     fuzz_cmd.append(" @@")
     # else:
     #     pass
-
 
     fuzz_cmd = ["tmux new -s ", terminalName, " -d "] + fuzz_cmd
     print(fuzz_cmd)
