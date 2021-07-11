@@ -47,9 +47,9 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
         fuzz_cmd = [tortoise, qemu, "-i ", ins, " -o ", outs,
                     " -- ", program_path, "/", programName, " ", params, " @@"]
 
-    elif fuzzer == "emem":
+    elif fuzzer == "mem":
         emem = os.path.join(config.EMEM_AFL_PATH, "mem_metric", "afl-fuzz")
-        result = compile(program_path, compileCommand, EMEM_AFL_PATH)
+        result = compile(program_path, compileCommand, MEM_AFL_PATH)
         subprocess.Popen("mkdir -p %s" % (outs), shell=True)
         findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
             program_path, programName)

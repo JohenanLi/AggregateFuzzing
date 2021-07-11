@@ -1,5 +1,5 @@
 
-import sys
+import os
 import subprocess
 
 
@@ -12,6 +12,8 @@ def compile(program_path, compileCommand, fuzzer_path):
     if "llvm" == compileCommand:
         myCmd = "cd %s &&CC=%s/afl-clang-fast CXX=%s/afl-clang-fast++ ./configure && make && make check" % (
             program_path, fuzzer_path, fuzzer_path)
+        andand = "&&"
+        myCmd = ["cd",program_path,andand,"CC=",os.path.join(fuzzer_path,"afl-clang-fast"),"CXX=",os.path.join(fuzzer_path,"afl-clang-fast++ "),]
         print(myCmd)
         subprocess.run(myCmd, shell=True)
     elif "cmake" == compileCommand:

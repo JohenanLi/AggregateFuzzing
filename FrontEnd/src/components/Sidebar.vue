@@ -58,32 +58,38 @@ export default {
     return {
       items: [
         {
-          icon: "el-icon-lx-home",
+                icon:"el-icon-s-home",
+                index:"Homepage",
+                title:"系统首页"
+        },
+        {
+          icon: "el-icon-user-solid",
           index: "dashboard",
-          title: "系统首页",
+          title: "个人主页",
         },
         {
           icon: "el-icon-upload",
           index: "2",
-          title: "上传按钮",
+          title: "文件上传",
           subs: [
             {
               icon: "el-icon-document",
               index: "sourceCode",
-              title: "上传源代码并编译",
+              title: "源代码文件上传",
             },
-            // {
-            //     icon:"el-icon-box",
-            //     index:"sourceProgram",
-            //     title:"上传源程序代码"
-            // }
+            {
+                icon:"el-icon-box",
+                index:"sourceProgram",
+                title:"可执行文件上传"
+            },
+            
           ],
         },
-        {
-          icon: "el-icon-loading",
-          index: "history",
-          title: "历史记录",
-        },
+        // {
+        //   icon: "el-icon-loading",
+        //   index: "history",
+        //   title: "历史记录",
+        // },
         // {
         //     icon: "el-icon-lx-cascades",
         //     index: "table",
