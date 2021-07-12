@@ -15,7 +15,7 @@
       <el-upload
         class="sourceCode"
         drag
-        action="api/upload/uploadCode/"
+        action="http://127.0.0.1:9000/api/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
@@ -31,7 +31,7 @@
       <el-select v-model="form.name" placeholder="请选择使用的fuzz软件">
         <el-option label="afl" value="afl"></el-option>
         <el-option label="tortoise" value="tortoise"></el-option>
-        <el-option label="emem" value="emem"></el-option>
+        <el-option label="mem" value="mem"></el-option>
       </el-select>
     </el-form-item>
 
@@ -54,14 +54,14 @@
 
     <el-form-item label="种子选取" size="small">
       <div>
-        <el-checkbox-group v-model="form.seed">
-          <el-checkbox-button
+        <el-radio-group v-model="form.seed">
+          <el-radio-button
             v-for="city in cities"
             :label="city"
             :key="city"
-            >{{ city }}</el-checkbox-button
+            >{{ city }}</el-radio-button
           >
-        </el-checkbox-group>
+        </el-radio-group>
       </div>
     </el-form-item>
 
@@ -70,7 +70,7 @@
         <el-upload
           class="inputFile"
           drag
-          action="api/upload/uploadInputFile/"
+          action="http://127.0.0.1:9000/api/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
@@ -123,68 +123,7 @@
 <script>
 import { formdataTest } from "@/api/index";
 import { defineComponent, ref } from "vue";
-const cityOptions = [
-  "602",
-  "abw",
-  "bmi",
-  "cdr",
-  "cgm",
-  "cmx",
-  "dif",
-  "docx",
-  "dxf",
-  "eot",
-  "eps",
-  "fh",
-  "fodg",
-  "fodp",
-  "fods",
-  "fodt",
-  "html",
-  "hwp",
-  "key6",
-  "lwp",
-  "met",
-  "mml",
-  "mtp",
-  "ole",
-  "pcd",
-  "pct",
-  "pcx",
-  "pmd",
-  "ppm",
-  "ppt",
-  "pptx",
-  "psd",
-  "pub",
-  "qpw",
-  "qxp",
-  "ras",
-  "rtf",
-  "scrtf",
-  "sda",
-  "sdc",
-  "sdd",
-  "sdw",
-  "slk",
-  "svm",
-  "tga",
-  "tif",
-  "vdx",
-  "vsd",
-  "vsdx",
-  "wks",
-  "wmf",
-  "ww2",
-  "ww6",
-  "ww8",
-  "xbm",
-  "xls",
-  "xlsx",
-  "xpm",
-  "zip",
-  "zmf",
-];
+const cityOptions = ["602", "abw", "aes", "asm", "asn1", "bmi", "bmp", "bson", "bzip2", "certificate", "crl", "csv", "dercrl", "dif", "docx", "dxf", "ec", "elliptic", "eps", "flag", "flatbuffers", "flate", "fmt", "fodt", "freetype", "gif", "goast", "gob", "gofmt", "gopacket", "gorillamux", "gzip", "html", "http2", "httpreq", "httpresp", "jpeg", "json", "jsonrpc", "lzw", "mail", "mime", "mml", "mtp", "multipart", "nss", "ole", "parser", "path", "pct", "pcx", "pem", "pkcs", "pkix", "png", "ppm", "ppt", "protobuf", "qxp", "ras", "regexp", "rtf", "scrtf", "slk", "smtp", "snappy", "sqlparser", "stdhtml", "strings", "suffixrray", "svm", "tar", "tga", "tif", "tiff", "time", "tls", "tlsclient", "trace", "truetype", "url", "webdav", "webp", "websocketclient", "websocketserver", "wks", "wmf", "ww2", "ww6", "ww8", "xbm", "xls", "xlsx", "xml", "xpm", "zip", "zlib", "zmf"];
 export default {
   data() {
     return {
