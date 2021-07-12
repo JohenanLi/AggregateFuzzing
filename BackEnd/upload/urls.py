@@ -5,5 +5,6 @@ urlpatterns = [
     path('sourceProgram/',sourceProgram),
     path("uploadCode/",uploadCode),
     path("uploadInputFile/",uploadInputFile),
-    path("availList/",AvailList.as_view())
+    path("availList/",AvailList.as_view()),
+    
 ]

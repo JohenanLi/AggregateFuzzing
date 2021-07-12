@@ -33,7 +33,7 @@ def sourceCode(request):
     if request.method == 'POST':
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
-        filePath = analyze.Unzip()
+        filePath = analyze.Unzip()#解压缩
         name = request.POST.get('name','afl')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
@@ -42,8 +42,11 @@ def sourceCode(request):
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
         programName = request.POST.get("programName",None)
-        outs = os.path.join(BASE_DIR, 'outs',programName)
-        print('test')
+        outs = os.path.join("/root/fuzzResult/",programName)
+        print('获取信息成功')
+
+        if seed == None and inputFile == None:
+            return HttpResponse("没有选择种子文件")
         if not filePath:
             return HttpResponse("no files for upload!")
         else:
@@ -165,3 +168,11 @@ def uploadInputFile(request):
 class AvailList(ListAPIView):
     serializer_class = UsedSoftSer
     queryset  = usedSoft.objects.all()
+
+def getExts(request):
+    if request.method == "GET":
+        exts = []
+        with open("seed.txt","r") as f:
+            for line in f.readlines():
+                exts.append(line.rstrip())
+            return JsonResponse(exts,safe=False)
