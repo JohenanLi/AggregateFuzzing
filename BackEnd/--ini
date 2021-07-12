@@ -1,0 +1,94 @@
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jul 12 17:02:27 2021] ***
+compiled with version: 4.2.1 Compatible Clang 7.0.0 (tags/RELEASE_700/final) on 11 July 2021 04:38:53
+os: Linux-4.15.0-140-generic #144-Ubuntu SMP Fri Mar 19 14:12:35 UTC 2021
+nodename: iZbp1523gzqhydo0qaaw1tZ
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /root/AggregateFuzzing/BackEnd
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/AggregateFuzzing/BackEnd
+your processes number limit is 61895
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :9000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.9 (default, Jan 26 2021, 15:33:00)  [GCC 8.4.0]
+Python main interpreter initialized at 0xa4e310
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 412508 bytes (402 KB) for 2 cores
+*** Operational MODE: threaded ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 24619)
+spawned uWSGI worker 1 (pid: 24647, cores: 2)
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xa4e310 pid: 24647 (default app)
+<generator object MultiValueDict.items at 0x7f0d2789d728>
+dic[file]=tim.sh
+filepath = [/root/AggregateFuzzing/BackEnd/sourceTotal/tim.sh]
+mkdir: cannot create directory ‘/root/AggregateFuzzing/BackEnd/sourceTotal’: File exists
+[pid: 24647|app: 0|req: 1/1] 117.136.24.186 () {48 vars in 958 bytes} [Mon Jul 12 09:03:10 2021] POST /api/upload/uploadCode/ => generated 86 bytes in 168 msecs (HTTP/1.1 200) 8 headers in 270 bytes (1 switches on core 0)
+dic[file]=wps-office-prometheus.desktop
+filepath = [desktop]
+mkdir: cannot create directory ‘/root/AggregateFuzzing/BackEnd/inputFile’: File exists
+[pid: 24647|app: 0|req: 2/2] 117.136.24.186 () {48 vars in 968 bytes} [Mon Jul 12 09:03:30 2021] POST /api/upload/uploadInputFile/ => generated 44 bytes in 8 msecs (HTTP/1.1 200) 8 headers in 270 bytes (1 switches on core 1)
+Analyze Progess
+tar: This does not look like a tar archive
+tar: Exiting with failure status due to previous errors
+test
+error fuzzer: emem
+Internal Server Error: /api/upload/sourceCode/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./upload/views.py", line 61, in sourceCode
+    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
+  File "./upload/views.py", line 22, in threadFuzz
+    isqemu=False, ins=ins, outs=outs, params=params, isfile=isfile,compileCommand=compileCommand,programName=programName)
+  File "./FuzzAll/fuzz.py", line 69, in fuzz_one
+    fuzz_cmd = ["tmux new -s ", terminalName, " -d "] + fuzz_cmd
+TypeError: can only concatenate list (not "NoneType") to list
+[pid: 24647|app: 0|req: 3/3] 117.136.24.186 () {48 vars in 918 bytes} [Mon Jul 12 09:03:33 2021] POST /api/upload/sourceCode/ => generated 71283 bytes in 49 msecs (HTTP/1.1 500) 8 headers in 293 bytes (1 switches on core 0)
+Internal Server Error: /api/upload/sourceCode/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 311, in check_response
+    "instead." % name
+ValueError: The view upload.views.sourceCode didn't return an HttpResponse object. It returned None instead.
+[pid: 24647|app: 0|req: 4/4] 117.136.24.186 () {42 vars in 829 bytes} [Mon Jul 12 09:03:43 2021] GET /api/upload/sourceCode/ => generated 56297 bytes in 22 msecs (HTTP/1.1 500) 6 headers in 194 bytes (1 switches on core 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jul 12 17:12:53 2021] ***
+compiled with version: 4.2.1 Compatible Clang 7.0.0 (tags/RELEASE_700/final) on 11 July 2021 04:38:53
+os: Linux-4.15.0-140-generic #144-Ubuntu SMP Fri Mar 19 14:12:35 UTC 2021
+nodename: iZbp1523gzqhydo0qaaw1tZ
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /root/AggregateFuzzing/BackEnd
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/AggregateFuzzing/BackEnd
+your processes number limit is 61895
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (:9000).
+bind(): Address already in use [core/socket.c line 769]
