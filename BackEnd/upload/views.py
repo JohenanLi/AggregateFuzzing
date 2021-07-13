@@ -31,20 +31,24 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrPr
 
 def sourceCode(request):
     if request.method == 'POST':
+        
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
         name = request.POST.get('name','afl')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
-        inputFile = os.path.join(INPUT_FILE_PATH,inputFile)
+        if inputFile == None:
+            pass
+        else:
+            inputFile = os.path.join(INPUT_FILE_PATH,inputFile)
         parameter = request.POST.get('parameter',None)
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
         programName = request.POST.get("programName",None)
         outs = os.path.join("/root/fuzzResult/",programName)
         print('获取信息成功')
-
+        print(request.POST)
         if seed == None and inputFile == None:
             return HttpResponse("没有选择种子文件")
         if not filePath:

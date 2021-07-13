@@ -10,7 +10,7 @@ class uploadSourceCode(models.Model):
         'filePath', max_length=500)  # program'path
     name = models.CharField('name', max_length=100)  # fuzzer'name
     ins = models.TextField('seeddir', max_length=500, default='', null=True)
-    inputFile = models.CharField('inputFile', max_length=500)
+    inputFile = models.CharField('inputFile', max_length=500,null=True)
     compileCommand = models.CharField(
         'compileCommand', max_length=100, default='')
     parameter = models.CharField(
