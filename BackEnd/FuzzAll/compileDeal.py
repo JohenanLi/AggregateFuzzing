@@ -20,7 +20,7 @@ def compile(program_path, compileCommand, fuzzer_path,code):
         
         print(program_path)
         print(myCmd)
-        input()
+        # input()
         subprocess.call(myCmd)
         cd(root_dir)
     elif "cmake" == compileCommand:
