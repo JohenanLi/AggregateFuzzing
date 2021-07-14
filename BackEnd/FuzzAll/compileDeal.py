@@ -16,13 +16,16 @@ def compile(program_path, compileCommand, fuzzer_path,code):
         root_dir = pwd()
         cd(program_path)
         
-        myCmd = ["./configure","CC=",os.path.join(fuzzer_path,clang),"CXX=",os.path.join(fuzzer_path,clang+"++"),"&& make -j10"]
+        myCmd = ["./configure","CC="+os.path.join(fuzzer_path,clang),"CXX="+os.path.join(fuzzer_path,clang+"++")]
         
-        print(program_path)
-        print(myCmd)
+        # print(program_path)
+        # print(myCmd)
         # input()
-        subprocess.call(myCmd)
+        #pipe = ,stdout=subprocess.PIPE,stderr=subprocess.PIPE
+        p1 = subprocess.call(myCmd)
+        p2 = subprocess.call(["make","-j10"])
         cd(root_dir)
+        print("编译过程已完成")
     elif "cmake" == compileCommand:
         myCmd = "cd %s && mkdir -p build && cd build && cmake -DCMAKE_CXX_COMPILER=%s/afl-clang-fast++ .. && make -j10" % (
             program_path, fuzzer_path)

@@ -15,7 +15,7 @@
       <el-upload
         class="sourceCode"
         drag
-        action="http://127.0.0.1:9000/api/upload/uploadCode/"
+        action="/api/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
@@ -70,7 +70,7 @@
         <el-upload
           class="inputFile"
           drag
-          action="http://127.0.0.1:9000/api/upload/uploadInputFile/"
+          action="/api/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
