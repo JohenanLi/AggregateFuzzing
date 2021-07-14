@@ -36,20 +36,20 @@
     </el-form-item>
 
     <el-form-item label="编译命令" prop="compileCommand">
-      <!-- <el-input
+      <el-input
         type="compileCommand"
         :autosize="{ minRows: 2, maxRows: 4 }"
         placeholder="请输入内容"
         v-model="form.compileCommand"
       >
-      </el-input> -->
-      <el-select
+      </el-input>
+      <!-- <el-select
         v-model="form.compileCommand"
         placeholder="请选择使用的编译命令"
       >
         <el-option label="llvm" value="llvm"></el-option>
         <el-option label="cmake" value="cmake"></el-option>
-      </el-select>
+      </el-select> -->
     </el-form-item>
 
     <el-form-item label="种子选取" size="small">
@@ -132,7 +132,7 @@ export default {
       form: {
         programName: ref(""),
         fileList: [],
-        seed: [],
+        seed: "",
         name: "",
         inputFile: [],
         compileCommand: "",
@@ -147,7 +147,7 @@ export default {
         fileList: [{ required: true, message: "请上传文件", trigger: "blur" }],
         name: [{ required: true, message: "请选择活动名称", trigger: "blur" }],
         compileCommand: [
-          { required: true, message: "请选择编译命令", trigger: "blur" },
+          { required: false, message: "请输入编译命令", trigger: "blur" },
         ],
       },
     };
