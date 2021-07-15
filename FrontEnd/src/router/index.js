@@ -4,7 +4,7 @@ import Home from "../views/Home.vue";
 const routes = [
     {
         path: '/',
-        redirect: '/dashboard'
+        redirect: '/Homepage'
     }, 
     {
         path: "/",
@@ -29,7 +29,18 @@ const routes = [
                 component: () => import(
                     /* webpackChunkName: "dashboard" */
                     "../views/Dashboard.vue")
-            }, {
+            }, 
+            {
+                path: "/Search",
+                name: "Search",
+                meta: {
+                    title: '搜索页面'
+                },
+                component: () => import(
+                    /* webpackChunkName: "dashboard" */
+                    "../views/Search.vue")
+            },
+            {
                 path: '/404',
                 name: '404',
                 meta: {
@@ -69,7 +80,7 @@ const routes = [
                 path: '/sourceProgram',
                 name: 'sourceProgram',
                 meta: {
-                    title: '源程序上传页面'
+                    title: '可执行文件上传页面'
                 },
                 component: () => import(/* webpackChunkName: "sourceProgram" */
                     '../views/fuzzing/sourceProgram.vue')

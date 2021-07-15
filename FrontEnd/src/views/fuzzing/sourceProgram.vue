@@ -157,6 +157,7 @@ const cityOptions = [
   "zmf",
 ];
 export default {
+  inject: ['reload'],
   data() {
     return {
       cities: cityOptions,
@@ -171,6 +172,11 @@ export default {
         time: 5,
       },
     };
+  },
+  watch:{
+    '$route'(to,from){
+      this.reload()
+    }
   },
   methods: {
     onSubmit() {

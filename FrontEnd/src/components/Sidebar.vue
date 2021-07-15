@@ -62,6 +62,11 @@ export default {
                 index:"Homepage",
                 title:"系统首页"
         },
+         {
+          icon: "el-icon-search",
+          index: "Search",
+          title: "搜索页面",
+        },
         {
           icon: "el-icon-user-solid",
           index: "dashboard",

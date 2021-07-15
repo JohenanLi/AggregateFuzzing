@@ -1,8 +1,17 @@
 <template>
-  <div id="logo" align="center">
+  <div class="loginbottom" id="login" align="right">
+    <el-link :underline="false" class="login" >注 册</el-link>
+
+    <el-link :underline="false" class="sign" >登 录</el-link>
+  </div>
+  <div class="logobottom" id="logo" align="center">
     <p class="title"><i class="el-icon-search"></i>FuzzTotal</p>
   </div>
   <div></div>
+
+  <div class="explainbottom">
+    <p class="explain">欢迎使用FuzzTotal,您可以选择上传源代码或者可执行文件进行漏洞挖掘，也可以搜索本系统所拥有资源。</p>
+    </div>
 
   <div>
     <el-row>
@@ -17,8 +26,8 @@
           <div style="padding: 14px">
             
             <div class="bottom">
-              <time class="time">{{ currentDate }}</time>
-              <el-button type="primary" plain class="button"><i class="el-icon-upload el-icon--right"></i>源代码文件上传</el-button>
+              <!-- <time class="time">{{ currentDate }}</time> -->
+              <el-button v-on:click="gotoSourceCode" type="primary" plain class="button"><i class="el-icon-upload el-icon--right"></i>源代码文件上传</el-button>
             </div>
           </div>
         </el-card>
@@ -29,7 +38,7 @@
             width="300"/>
           <div style="padding: 14px">
             <div class="bottom">
-              <el-button type="primary" plain class="button"><i class="el-icon-upload el-icon--right"></i>可执行文件上传</el-button>
+              <el-button type="primary" v-on:click="gotoSourceProgram" plain class="button"><i class="el-icon-upload el-icon--right"></i>可执行文件上传</el-button>
             </div>
           </div>
         </el-card>
@@ -41,7 +50,7 @@
             width="300"/>
           <div style="padding: 14px">
             <div class="bottom">
-              <el-button type="primary" plain class="button" icon="el-icon-search">请输入搜索内容</el-button>
+              <el-button type="primary" v-on:click="gotoSearch" plain class="button" icon="el-icon-search">请输入搜索内容</el-button>
             </div>
           </div>
         </el-card>
@@ -53,11 +62,27 @@
 //import { defineComponent } from '@vue/composition-api'
 
 export default {
+  inject: ['reload'],
   name: "logo",
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    gotoSourceCode(){
+      this.$router.push('/sourceCode');
+    },
+    gotoSourceProgram(){
+      this.$router.push('/sourceProgram');
+    },
+    gotoSearch(){
+      this.$router.push('/Search');
+    }
+  },
+  watch:{
+    '$route'(to,from){
+      this.reload()
+    }
+  },
   computed: {},
 };
 </script>
@@ -69,14 +94,30 @@ div {
 .title {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-  font-size: xxx-large;
+  font-size:400%;
+  font-weight: bold;
   color: rgb(78, 156, 233);
+}
+.explain {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size:x-large;
+
+  color: rgb(128, 129, 129);
 }
 .time {
   font-size: 13px;
   color: #999;
 }
-
+.explainbottom {
+  width: 1000px;
+  height: 20px;
+  margin: 20px 20px 20px 300px;
+  
+}
+.logobottom {
+  height:70px;
+}
 .bottom {
   margin-top: 13px;
   line-height: 12px;
@@ -90,7 +131,22 @@ div {
   min-height: auto;
   margin-right: 50%;
 }
-
+.sign {
+  color:rgb(78, 156, 233);
+  font-size:large;
+  padding: 0px 7px;
+}
+.login {
+  color: rgb(248, 251, 255);
+  font-size:large;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 0px 7px;
+  background: rgb(123, 177, 231);
+}
+.loginbottom {
+  margin: 0 0 0 0;
+}
 .image {
   width: 70%;
   display: block;

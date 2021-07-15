@@ -206,6 +206,7 @@
 <script>
 import { usedSoft } from "@/api/index";
 export default {
+  inject: ['reload'],
   name: "dashboard",
   data() {
     return {
@@ -581,7 +582,11 @@ export default {
       return this.name === "admin" ? "超级管理员" : "普通用户";
     },
   },
-
+  watch:{
+    '$route'(to,from){
+      this.reload()
+    }
+  },
   methods: {
     tableRowClassName({ rowIndex }) {
       if (rowIndex === 1) {
