@@ -31,11 +31,11 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrPr
 
 def sourceCode(request):
     if request.method == 'POST':
-        
+        print(request.POST)
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
-        name = request.POST.get('name','afl')
+        name = request.POST.get('name','mem')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
         if inputFile == None:
@@ -48,7 +48,6 @@ def sourceCode(request):
         programName = request.POST.get("programName",None)
         outs = os.path.join("/root/fuzzResult/",programName)
         print('获取信息成功')
-        print(request.POST)
         if seed == None and inputFile == None:
             return HttpResponse("没有选择种子文件")
         if not filePath:
@@ -61,7 +60,7 @@ def sourceCode(request):
             if not inputFile:
                 isfile = True
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
             else:
                 # 调用接口传数据
                 threadFuzz(

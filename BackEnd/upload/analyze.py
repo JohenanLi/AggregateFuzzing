@@ -12,6 +12,7 @@ class Analyze():
         self.file = file
         self.filePath = file.split(".")[0]
         self.programName = self.filePath.split("/")[-1]
+        print(self.filePath,self.programName)
         return None
     def Unzip(self):
         root_dir = pwd()
@@ -25,7 +26,6 @@ class Analyze():
             except Exception:
                 pass
             myCmd = ['tar','-xvf',self.file,"-C","./%s"%(self.programName),"--strip-components=1"]
-            # myCmd = "cd %s && tar -xvf %s"%(SOURCE_FILE_PATH,self.file)
             print(myCmd)
             try:
                 p1 = call(myCmd)
