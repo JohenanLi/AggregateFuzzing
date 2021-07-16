@@ -1,21 +1,22 @@
 
 <template>
+<div class="bottom">
   <el-form
     ref="this.form"
     :model="form"
-    label-width="auto"
+    :label-width="auto"
     :label-position="right"
     :rules="rules"
   >
     <el-form-item label="软件名称" prop="programName">
-      <el-input v-model="form.programName" placeholder="请输入内容"></el-input>
+      <el-input  class="input" v-model="form.programName" placeholder="请输入软件名称" clearable></el-input>
     </el-form-item>
 
     <el-form-item label="上传源代码" prop="fileList">
       <el-upload
         class="sourceCode"
         drag
-        action="http://127.0.0.1:9000/api/upload/uploadCode/"
+        action="/api/upload/uploadCode/"
         :before-remove="beforeRemove"
         multiple
         :file-list="form.fileList"
@@ -23,7 +24,7 @@
         :on-success="codeRes"
       >
         <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__text">将源代码文件拖到此处，或<em>点击上传</em></div>
       </el-upload>
     </el-form-item>
 
@@ -36,20 +37,20 @@
     </el-form-item>
 
     <el-form-item label="编译命令" prop="compileCommand">
-      <!-- <el-input
+      <el-input
         type="compileCommand"
         :autosize="{ minRows: 2, maxRows: 4 }"
         placeholder="请输入内容"
         v-model="form.compileCommand"
       >
-      </el-input> -->
-      <el-select
+      </el-input>
+      <!-- <el-select
         v-model="form.compileCommand"
         placeholder="请选择使用的编译命令"
       >
         <el-option label="llvm" value="llvm"></el-option>
         <el-option label="cmake" value="cmake"></el-option>
-      </el-select>
+      </el-select> -->
     </el-form-item>
 
     <el-form-item label="种子选取" size="small">
@@ -70,7 +71,7 @@
         <el-upload
           class="inputFile"
           drag
-          action="http://127.0.0.1:9000/api/upload/uploadInputFile/"
+          action="/api/upload/uploadInputFile/"
           :before-remove="beforeRemove"
           multiple
           :file-list="form.inputFile"
@@ -118,6 +119,7 @@
       <el-button>取消</el-button>
     </el-form-item>
   </el-form>
+</div>
 </template>
 
 <script>
@@ -125,6 +127,7 @@ import { formdataTest } from "@/api/index";
 import { defineComponent, ref } from "vue";
 const cityOptions = ["602", "abw", "aes", "asm", "asn1", "bmi", "bmp", "bson", "bzip2", "certificate", "crl", "csv", "dercrl", "dif", "docx", "dxf", "ec", "elliptic", "eps", "flag", "flatbuffers", "flate", "fmt", "fodt", "freetype", "gif", "goast", "gob", "gofmt", "gopacket", "gorillamux", "gzip", "html", "http2", "httpreq", "httpresp", "jpeg", "json", "jsonrpc", "lzw", "mail", "mime", "mml", "mtp", "multipart", "nss", "ole", "parser", "path", "pct", "pcx", "pem", "pkcs", "pkix", "png", "ppm", "ppt", "protobuf", "qxp", "ras", "regexp", "rtf", "scrtf", "slk", "smtp", "snappy", "sqlparser", "stdhtml", "strings", "suffixrray", "svm", "tar", "tga", "tif", "tiff", "time", "tls", "tlsclient", "trace", "truetype", "url", "webdav", "webp", "websocketclient", "websocketserver", "wks", "wmf", "ww2", "ww6", "ww8", "xbm", "xls", "xlsx", "xml", "xpm", "zip", "zlib", "zmf"];
 export default {
+  inject: ['reload'],
   data() {
     return {
       cities: cityOptions,
@@ -132,7 +135,7 @@ export default {
       form: {
         programName: ref(""),
         fileList: [],
-        seed: [],
+        seed: "",
         name: "",
         inputFile: [],
         compileCommand: "",
@@ -147,10 +150,15 @@ export default {
         fileList: [{ required: true, message: "请上传文件", trigger: "blur" }],
         name: [{ required: true, message: "请选择活动名称", trigger: "blur" }],
         compileCommand: [
-          { required: true, message: "请选择编译命令", trigger: "blur" },
+          { required: false, message: "请输入编译命令", trigger: "blur" },
         ],
       },
     };
+  },
+  watch:{
+    '$route'(to,from){
+      this.reload()
+    }
   },
   methods: {
     onSubmit() {
@@ -219,4 +227,10 @@ export default {
 </script>
 
 <style>
+.bottom {
+  margin: 5px 50px 5px 50px;
+}
+.input {
+  width: 375px;
+}
 </style>

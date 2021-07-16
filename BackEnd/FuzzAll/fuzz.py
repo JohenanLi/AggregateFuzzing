@@ -1,3 +1,4 @@
+from Util.decompress import cd, mymkdir, pathJoin, pwd
 import sys
 import os
 import subprocess
@@ -5,6 +6,7 @@ from FuzzAll import check, config
 from FuzzAll.compileDeal import compile
 from . import config
 from .config import MEM_AFL_PATH,ANDAND
+import re
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -53,13 +55,25 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     elif fuzzer == "mem":
         mem = os.path.join(MEM_AFL_PATH, "mem_metric", "afl-fuzz")
         result = compile(program_path, compileCommand, MEM_AFL_PATH,2)
-        os.makedirs(outs)
+        mymkdir(outs)
         # findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
         #     program_path, programName)
-        findCmd = ["cd",program_path,ANDAND,"find",".","-type","f","-executable","|","grep","-E","\"%s?[^\.]$\""%(programName)] 
-        print(findCmd)
-        programName = subprocess.getoutput(findCmd)
+        root_dir = pwd()
+        cd(pathJoin(program_path,"build"))
+        print(pwd())
+        
+        findCmd = ["find",".","-type","f","-executable"]
+        #,"|","grep","-E","\"%s?[^\.]$\""%(programName)] 
+        #  = subprocess.run(findCmd)
+        regex = "\"%s?[^\.]$\""%(programName)
+        with subprocess.Popen(findCmd,stdout=subprocess.PIPE,universal_newlines=True) as process:
+            for line in process.stdout:
+                if(re.search(regex,line)):
+                    programName = line
+                    break
+        # programName
         print(programName)
+        # input()
         fuzz_cmd = [mem, qemu, "-i ", ins, " -o ", outs,
                     " -- ", program_path, "/", programName, " ", params, " @@"]
     else:
@@ -70,16 +84,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, params, isfile, compileCom
     # else:
     #     pass
     
-    fuzz_cmd = ["tmux new -s ", terminalName, " -d "] + fuzz_cmd
+    fuzz_cmd = ["tmux new-session", terminalName, " -d "] + fuzz_cmd
+    cd(root_dir)
     print(fuzz_cmd)
-    # subprocess.Popen(fuzz_cmd)
-    # sysCmd = ''
-    # sysCmd = sysCmd.join(fuzz_cmd)
-    # print(sysCmd)
-    subprocess.Popen(fuzz_cmd)
-    # print(sysCmd)
-    # os.system(sysCmd)
-    # pass
+    subprocess.run(fuzz_cmd,shell=True)
 
 
 if __name__ == '__main__':

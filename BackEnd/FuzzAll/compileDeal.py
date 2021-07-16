@@ -1,7 +1,5 @@
-
-from Util.decompress import cd,pwd
+from Util.decompress import cd,pwd,mymkdir,pathJoin
 import subprocess
-import os.path
 
 def unpack():
     pass
@@ -9,25 +7,32 @@ def unpack():
 
 def compile(program_path, compileCommand, fuzzer_path,code):
     clang = "afl-clang-fast"
+    makeStart = ["make","-j10"]
     if code == 2:
         clang = "afl-clang"
-    print(program_path, compileCommand, fuzzer_path)
-    if "llvm" == compileCommand:
-        root_dir = pwd()
-        cd(program_path)
+    root_dir = pwd()
+    cd(program_path + compileCommand)
+    if subprocess.getoutput('find . -name "CMakeLists.txt"') == None:
+        myCmd = ["./configure","CC="+pathJoin(fuzzer_path,clang),"CXX="+pathJoin(fuzzer_path,clang+"++")]
         
-        myCmd = ["./configure","CC=",os.path.join(fuzzer_path,clang),"CXX=",os.path.join(fuzzer_path,clang+"++"),"&& make -j10"]
-        
-        print(program_path)
-        print(myCmd)
-        input()
-        subprocess.call(myCmd)
+        # print(program_path)
+        # print(myCmd)
+        # input()
+        #pipe = ,stdout=subprocess.PIPE,stderr=subprocess.PIPE
+        p1 = subprocess.call(myCmd)
+        p2 = subprocess.call(makeStart)
         cd(root_dir)
-    elif "cmake" == compileCommand:
-        myCmd = "cd %s && mkdir -p build && cd build && cmake -DCMAKE_CXX_COMPILER=%s/afl-clang-fast++ .. && make -j10" % (
-            program_path, fuzzer_path)
+        print("编译过程已完成")
+    else:
+        # myCmd = "cd %s && mkdir -p build && cd build && cmake -DCMAKE_CXX_COMPILER=%s/afl-clang-fast++ .. && make -j10" % (
+        #     program_path, fuzzer_path)
+        mymkdir("build")
+        cd("build")
+        myCmd =["cmake","-DCMAKE_CXX_COMPILER=%s"%(pathJoin(fuzzer_path,clang+"++")),".."]
+        subprocess.call(myCmd)
+        subprocess.call(makeStart)
         print(myCmd)
-        subprocess.run(myCmd)
+        cd(root_dir)
 
 
 if __name__ == '__main__':
