@@ -104,12 +104,22 @@
       </el-input>
     </el-form-item>
 
-    <el-form-item label="参数">
+    <el-form-item label="前参数">
       <el-input
-        type="parameter"
+        type="prePara"
         :autosize="{ minRows: 2, maxRows: 4 }"
         placeholder="请输入内容"
-        v-model="form.parameter"
+        v-model="form.prePara"
+      >
+      </el-input>
+    </el-form-item>
+
+    <el-form-item label="后参数">
+      <el-input
+        type="postPara"
+        :autosize="{ minRows: 2, maxRows: 4 }"
+        placeholder="请输入内容"
+        v-model="form.postPara"
       >
       </el-input>
     </el-form-item>
@@ -125,7 +135,7 @@
 <script>
 import { formdataTest } from "@/api/index";
 import { defineComponent, ref } from "vue";
-const cityOptions = ["602", "abw", "aes", "asm", "asn1", "bmi", "bmp", "bson", "bzip2", "certificate", "crl", "csv", "dercrl", "dif", "docx", "dxf", "ec", "elliptic", "eps", "flag", "flatbuffers", "flate", "fmt", "fodt", "freetype", "gif", "goast", "gob", "gofmt", "gopacket", "gorillamux", "gzip", "html", "http2", "httpreq", "httpresp", "jpeg", "json", "jsonrpc", "lzw", "mail", "mime", "mml", "mtp", "multipart", "nss", "ole", "parser", "path", "pct", "pcx", "pem", "pkcs", "pkix", "png", "ppm", "ppt", "protobuf", "qxp", "ras", "regexp", "rtf", "scrtf", "slk", "smtp", "snappy", "sqlparser", "stdhtml", "strings", "suffixrray", "svm", "tar", "tga", "tif", "tiff", "time", "tls", "tlsclient", "trace", "truetype", "url", "webdav", "webp", "websocketclient", "websocketserver", "wks", "wmf", "ww2", "ww6", "ww8", "xbm", "xls", "xlsx", "xml", "xpm", "zip", "zlib", "zmf"];
+const cityOptions = ["7z","602", "abw", "aes", "asm", "asn1", "bmi", "bmp", "bson", "bzip2", "certificate", "crl", "csv", "dercrl", "dif", "docx", "dxf", "ec", "elliptic", "eps", "flag", "flatbuffers", "flate", "fmt", "fodt", "freetype", "gif", "goast", "gob", "gofmt", "gopacket", "gorillamux", "gzip", "html", "http2", "httpreq", "httpresp", "jpeg", "json", "jsonrpc", "lzw", "mail", "mime", "mml", "mtp", "multipart", "nss", "ole", "parser", "path", "pct", "pcx","pdf", "pem", "pkcs", "pkix", "png", "ppm", "ppt", "protobuf", "qxp", "ras", "regexp", "rtf", "scrtf", "slk", "smtp", "snappy", "sqlparser", "stdhtml", "strings", "suffixrray", "svm", "tar", "tga", "tif", "tiff", "time", "tls", "tlsclient", "trace", "truetype", "url", "webdav", "webp", "websocketclient", "websocketserver", "wks", "wmf", "ww2", "ww6", "ww8", "xbm", "xls", "xlsx", "xml", "xpm", "zip", "zlib", "zmf"];
 export default {
   inject: ['reload'],
   data() {
@@ -140,7 +150,8 @@ export default {
         inputFile: [],
         compileCommand: "",
         inputCommand: "",
-        parameter: "",
+        prePara: "",
+        postPara: "",
         time: 1,
       },
       rules: {
@@ -172,7 +183,8 @@ export default {
             inputFile: this.form.inputFile,
             compileCommand: this.form.compileCommand,
             inputCommand: this.form.inputCommand,
-            parameter: this.form.parameter,
+            prePara: this.form.prePara,
+            postPara: this.form.postPara,
             time: this.form.time,
             programName: this.form.programName,
           };
