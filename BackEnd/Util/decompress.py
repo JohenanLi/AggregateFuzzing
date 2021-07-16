@@ -1,12 +1,16 @@
-from os import chdir,makedirs,mkdir,getcwd
+from os import chdir,makedirs,getcwd,path
 def cd(dir:str):
     chdir(dir)
 
-def makedirs(dir:str):
-    makedirs(dir)
-
-def mkdir(dir:str):
-    mkdir(dir)
-
 def pwd():
     return getcwd()
+
+def mymkdir(dir:str):
+    if path.exists(dir):
+        pass
+    else:
+        makedirs(dir)
+
+def pathJoin(a,*p):
+    res = path.join(a,*p)
+    return res
