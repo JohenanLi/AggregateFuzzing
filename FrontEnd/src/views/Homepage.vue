@@ -1,19 +1,23 @@
 <template>
+ 
   <div class="loginbottom" id="login" align="right">
     <el-link :underline="false" class="login" >注 册</el-link>
 
     <el-link :underline="false" class="sign" >登 录</el-link>
   </div>
-  <div class="logobottom" id="logo" align="center">
+
+  <div class="centerBottom" align="center">
+  <div class="logobottom" id="logo">
     <p class="title"><i class="el-icon-search"></i>FuzzTotal</p>
   </div>
   <div></div>
 
-  <div class="explainbottom">
+  
+  <div class="explainbottom" align="left">
     <p class="explain">欢迎使用FuzzTotal,您可以选择上传源代码或者可执行文件进行漏洞挖掘，也可以搜索本系统所拥有资源。</p>
     </div>
 
-  <div>
+  <div align="center">
     <el-row>
       <el-col :span="6">
         <el-card :body-style="{ padding: '0px' }">
@@ -57,6 +61,7 @@
       </el-col>
     </el-row>
   </div>
+  </div>
 </template>
 <script>
 //import { defineComponent } from '@vue/composition-api'
@@ -91,6 +96,9 @@ div {
   margin-top: 60px;
   margin-left: 50px;
 }
+.centerbottom{
+  margin: 0%；
+}
 .title {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -112,7 +120,7 @@ div {
 .explainbottom {
   width: 1000px;
   height: 20px;
-  margin: 20px 20px 20px 300px;
+  margin: 20px 20px 20px 30px;
   
 }
 .logobottom {
