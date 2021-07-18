@@ -108,85 +108,85 @@
   </div>
   <el-table :data="tableData" style="width: 100%">
     <el-table-column type="expand">
-      <template #default="props">
+      <template #default="">
         <el-form label-position="left" inline class="demo-table-expand">
           <el-form-item label="programName">
-            <span>{{ props.row.programName }}</span>
+            <span>{{ resultList.programName }}</span>
           </el-form-item>
           <el-form-item label="tool">
-            <span>{{ props.row.tool }}</span>
+            <span>{{ resultList.tool }}</span>
           </el-form-item>
           <el-form-item label="pathCoverage">
-            <span>{{ props.row.path_cvg }}</span>
+            <span>{{ resultList.path_cvg }}</span>
           </el-form-item>
           <el-form-item label="totalCrashes">
-            <span>{{ props.row.total_crashes }}</span>
+            <span>{{ resultList.total_crashes }}</span>
           </el-form-item>
           <el-form-item label="startTime">
-            <span>{{ props.row.start_time }}</span>
+            <span>{{ resultList.start_time }}</span>
           </el-form-item>
           <el-form-item label="lastUpdate">
-            <span>{{ props.row.last_update }}</span>
+            <span>{{ resultList.last_update }}</span>
           </el-form-item>
           <el-form-item label="queueCycles">
-            <span>{{ props.row.cycles_done }}</span>
+            <span>{{ resultList.cycles_done }}</span>
           </el-form-item>
           <el-form-item label="execveCalls">
-            <span>{{ props.row.execs_done }}</span>
+            <span>{{ resultList.execs_done }}</span>
           </el-form-item>
           <el-form-item label="execs_per_sec">
-            <span>{{ props.row.execs_per_sec }}</span>
+            <span>{{ resultList.execs_per_sec }}</span>
           </el-form-item>
           <el-form-item label="totalPaths">
-            <span>{{ props.row.paths_total }}</span>
+            <span>{{ resultList.paths_total }}</span>
           </el-form-item>
           <el-form-item label="favoredPaths">
-            <span>{{ props.row.paths_favored }}</span>
+            <span>{{ resultList.paths_favored }}</span>
           </el-form-item>
           <el-form-item label="pathsFound">
-            <span>{{ props.row.paths_found }}</span>
+            <span>{{ resultList.paths_found }}</span>
           </el-form-item>
           <el-form-item label="importedPaths">
-            <span>{{ props.row.paths_imported }}</span>
+            <span>{{ resultList.paths_imported }}</span>
           </el-form-item>
           <el-form-item label="max_depth">
-            <span>{{ props.row.max_depth }}</span>
+            <span>{{ resultList.max_depth }}</span>
           </el-form-item>
           <el-form-item label="currentPaths">
-            <span>{{ props.row.cur_path }}</span>
+            <span>{{ resultList.cur_path }}</span>
           </el-form-item>
           <el-form-item label="pending_favs">
-            <span>{{ props.row.pending_favs }}</span>
+            <span>{{ resultList.pending_favs }}</span>
           </el-form-item>
           <el-form-item label="pending_total">
-            <span>{{ props.row.pending_total }}</span>
+            <span>{{ resultList.pending_total }}</span>
           </el-form-item>
           <el-form-item label="variablePaths">
-            <span>{{ props.row.variable_paths }}</span>
+            <span>{{ resultList.variable_paths }}</span>
           </el-form-item>
           <el-form-item label="stability">
-            <span>{{ props.row.stability }}</span>
+            <span>{{ resultList.stability }}</span>
           </el-form-item>
           <el-form-item label="bitmapCvg">
-            <span>{{ props.row.bitmap_cvg }}</span>
+            <span>{{ resultList.bitmap_cvg }}</span>
           </el-form-item>
           <el-form-item label="uniqueCrashes">
-            <span>{{ props.row.unique_crashes }}</span>
+            <span>{{ resultList.unique_crashes }}</span>
           </el-form-item>
           <el-form-item label="uniqueHangs">
-            <span>{{ props.row.unique_hangs }}</span>
+            <span>{{ resultList.unique_hangs }}</span>
           </el-form-item>
           <el-form-item label="lastPath">
-            <span>{{ props.row.last_path }}</span>
+            <span>{{ resultList.last_path }}</span>
           </el-form-item>
           <el-form-item label="lastCrash">
-            <span>{{ props.row.last_crash }}</span>
+            <span>{{ resultList.last_crash }}</span>
           </el-form-item>
           <el-form-item label="lastHangs">
-            <span>{{ props.row.last_hang }}</span>
+            <span>{{ resultList.last_hang }}</span>
           </el-form-item>
           <el-form-item label="mode">
-            <span>{{ props.row.target_mode }}</span>
+            <span>{{ resultList.target_mode }}</span>
           </el-form-item>
         </el-form>
       </template>
@@ -204,322 +204,15 @@
 
 
 <script>
-import { usedSoft } from "@/api/index";
+import { usedSoft,resultGet } from "@/api/index";
+import axios from 'axios';
+
 export default {
   inject: ['reload'],
   name: "dashboard",
   data() {
     return {
-      tableData: [
-        {
-          programName: "Xpdf",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "AFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "CollAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "Tortoise",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "7z",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "7z",
-          tool: "Tortoise",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-        {
-          programName: "Xpdf",
-          tool: "MemAFL",
-          path_cvg: "89%",
-          total_crashes: "10",
-          start_time: "1619065067",
-          last_update: "1619067364",
-          cycles_done: "0",
-          execs_done: "284158",
-          execs_per_sec: "187.56",
-          paths_total: "2702",
-          paths_favored: "621",
-          paths_found: "736",
-          paths_imported: "1949",
-          max_depth: "2",
-          cur_path: "77",
-          pending_favs: "621",
-          pending_total: "2701",
-          variable_paths: "33",
-          stability: "99.87%",
-          bitmap_cvg: "19.25%",
-          unique_crashes: "6",
-          unique_hangs: "0",
-          last_path: "1619067128",
-          last_crash: "1619066593",
-          last_hang: "0",
-          target_mode: "default",
-        },
-      ],
+      tableData: [],
       name: localStorage.getItem("ms_username"),
       time: this.getLocalTime(),
       avail_cpu: 60,
@@ -530,50 +223,8 @@ export default {
           value: 1065,
         },
       ],
-      //       tableData: [
-      //     {
-      //         id: '1',
-      //         name: "sam2p",
-      //         version: "0.49.4",
-      //         timeStamp: null
-      //     },
-      //     {
-      //         id: '2',
-      //         name: "nasm",
-      //         version: "2.10.07",
-      //         timeStamp: null
-      //     },
-      //     {
-      //         id: '3',
-      //         name: "gzip",
-      //         version: "1.10",
-      //         timeStamp: null
-      //     },
-      //     {
-      //         id: '4',
-      //         name: "make",
-      //         version: "4.3",
-      //         timeStamp: null
-      //     },
-      //     {
-      //         id: '5',
-      //         name: "tack",
-      //         version: "1.08",
-      //         timeStamp: null
-      //     },
-      //     {
-      //         id: '6',
-      //         name: "patch",
-      //         version: "2.7",
-      //         timeStamp: null
-      //     },
-      //     {
-      //         id: '7',
-      //         name: "nano",
-      //         version: "5.6",
-      //         timeStamp: null
-      //     }
-      // ]
+      resultList: [],
+      id:1
     };
   },
 
@@ -625,6 +276,14 @@ export default {
         return res.data;
       });
     },
+    getResult(){
+      let params = {
+        id : this.id,
+      }
+      resultGet(params).then((res) => {
+        this.resultList = res.data;
+      })
+    }
   },
 };
 </script>

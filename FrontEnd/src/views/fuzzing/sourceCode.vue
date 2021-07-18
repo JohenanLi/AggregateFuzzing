@@ -21,6 +21,11 @@
               ></el-input>
             </el-form-item>
 
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+                请输入需要进行模糊测试的<br/>
+                二进制文件的相对路径！
+              </template>
             <el-form-item label="编译命令" prop="compileCommand">
               <el-input
                 class="input"
@@ -31,7 +36,12 @@
               >
               </el-input>
             </el-form-item>
+            </el-tooltip>
 
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请输入运行时所需参数！
+              </template>
             <el-form-item label="输入命令">
               <el-input
                 class="input"
@@ -42,7 +52,14 @@
               >
               </el-input>
             </el-form-item>
+            </el-tooltip>
 
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请输入运行时检测样例前的参数，<br/>
+              例：convert a.png b.jpg，<br/>
+              a.png为检测样例，则输入convert！
+              </template>
             <el-form-item label="前参数">
               <el-input
                 class="input"
@@ -53,7 +70,14 @@
               >
               </el-input>
             </el-form-item>
-
+            </el-tooltip>
+            
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请输入运行时测试样例后的参数，<br/>
+              例：convert a.png b.jpg，<br/>
+              a.png为检测样例，则输入b.jpg！
+              </template>
             <el-form-item label="后参数">
               <el-input
                 class="input"
@@ -64,8 +88,13 @@
               >
               </el-input>
             </el-form-item>
+            </el-tooltip>
 
-            <el-form-item label="fuzz软件" prop="name">
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请选择进行模糊测试的引擎！
+              </template>
+            <el-form-item label="fuzz引擎" prop="name">
               <el-select v-model="valuetype">
                 <el-option
                   v-for="item in options"
@@ -76,22 +105,50 @@
                 </el-option>
               </el-select>
             </el-form-item>
+            </el-tooltip>
 
-            <el-form-item label="时间选择">
+
+
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请输入模糊测试时间！
+              </template>
+        
+              <el-form-item label="时间选择">
               <el-input-number
-                v-model="form.time"
+                v-model="form.hour"
                 :step="1"
-                :min="1"
+                :min="0"
                 :max="24"
               ></el-input-number>
               小时
+            
+
+              <el-input-number
+                v-model="form.minute"
+                :step="5"
+                :min="0"
+                :max="60"
+              ></el-input-number>
+              分钟
             </el-form-item>
+
+
+              </el-tooltip>
+
+             
+            
+
           </div>
         </el-tab-pane>
 
         <el-tab-pane label="源码上传"
           >源码上传
           <div class="parmInput">
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请上传需要进行模糊测试的源代码压缩包！
+              </template>
             <el-form-item label="上传源代码" prop="fileList">
               <el-upload
                 class="sourceCode"
@@ -105,16 +162,22 @@
               >
                 <i class="el-icon-upload"></i>
                 <div class="el-upload__text">
-                  将源代码文件拖到此处，或<em>点击上传</em>
+                  将源代码压缩文件拖到此处，或<em>点击上传</em>
                 </div>
               </el-upload>
             </el-form-item>
+            </el-tooltip>
+
           </div>
         </el-tab-pane>
 
         <el-tab-pane label="种子文件"
           >种子文件
           <div class="parmInput">
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请上传种子文件！
+              </template>
             <el-form-item label="上传种子文件">
               <div> 
                 <el-upload
@@ -134,11 +197,17 @@
                 </el-upload>
               </div>
             </el-form-item>
+            </el-tooltip>
 
             <!-- 种子选取 -->
-            <el-form-item label="种子选取">
+            <el-tooltip placement="bottom" effect="light">
+              <template #content >
+              请选取种子文件！
+              </template>
+            <el-form-item prop="seed" label="种子选取">
             <div class="block" >
               <el-cascader
+                v-model="form.seed"
                 placeholder="试试搜索：doct"
                 :options="cityOptions"
                 :show-all-levels="false"
@@ -147,6 +216,8 @@
               ></el-cascader>
             </div>
           </el-form-item>
+          </el-tooltip>
+
           </div>
         </el-tab-pane>
         <!-- <el-tab-pane label="定时任务"
@@ -286,17 +357,21 @@ export default {
         inputCommand: "",
         prePara: "",
         postPara: "",
-        time: 1,
+        hour: 1,
+        minute: 0,
       },
       rules: {
         programName: [
           { required: true, message: "请输入软件名称", trigger: "blur" },
         ],
         fileList: [{ required: true, message: "请上传文件", trigger: "blur" }],
-        name: [{ required: true, message: "请选择活动名称", trigger: "blur" }],
+        name: [{ required: true, message: "请选择fuzz软件名称", trigger: "blur" }],
         compileCommand: [
           { required: false, message: "请输入编译命令", trigger: "blur" },
         ],
+        seed:[{
+          required: true, message: "请选择种子文件", trigger: "blur"
+        }]
       },
       cityOptions:[{
            value: 'simple',
@@ -496,7 +571,8 @@ export default {
             inputCommand: this.form.inputCommand,
             prePara: this.form.prePara,
             postPara: this.form.postPara,
-            time: this.form.time,
+            hour: this.form.hour,
+            minute: this.form.minute,
             programName: this.form.programName,
           };
           console.log(params);
