@@ -20,8 +20,7 @@ def delDuplicate(dir):
             curExt = key
         else:
             continue
-
-    if maxVal > 10:
+    if maxVal > 5:
         system("rm *%s"%(curExt))
         print("删除%s"%(curExt))
 

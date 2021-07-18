@@ -8,6 +8,7 @@ from . import config
 from .config import MEM_AFL_PATH,ANDAND
 import re
 from crontab import CronTab
+from datetime import datetime
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -85,9 +86,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     subprocess.run(temp,shell = True)
     cd(root_dir)
     cron = CronTab(user="root")
-    job = cron.new(delDuplicate(outs),"可能删除可能产生的多余文件")
+    job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(outs),"可能删除产生的多余文件")
     job.minute.on(10)
     cron.write()
+    
     return 
 
 
