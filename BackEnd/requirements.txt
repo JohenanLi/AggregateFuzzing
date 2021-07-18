@@ -2,3 +2,4 @@ django
 uwsgi
 django-cors-headers
 djangorestframework
+python-crontab

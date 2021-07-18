@@ -22,7 +22,7 @@ def compile(program_path, compileCommand, fuzzer_path,code):
         p1 = subprocess.call(myCmd)
         p2 = subprocess.call(makeStart)
         cd(root_dir)
-        print("编译过程已完成")
+        
     else:
         # myCmd = "cd %s && mkdir -p build && cd build && cmake -DCMAKE_CXX_COMPILER=%s/afl-clang-fast++ .. && make -j10" % (
         #     program_path, fuzzer_path)
@@ -33,6 +33,7 @@ def compile(program_path, compileCommand, fuzzer_path,code):
         subprocess.call(makeStart)
         print(myCmd)
         cd(root_dir)
+        print("编译过程已完成")
 
 
 if __name__ == '__main__':

@@ -155,3 +155,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "BackEnd/static")]
 SOURCE_FILE_PATH = os.path.join(BASE_DIR,"sourceTotal")
 INPUT_FILE_PATH = os.path.join(BASE_DIR,"inputFile")
+SEED_PATH = os.path.join(BASE_DIR,"seeddir")
