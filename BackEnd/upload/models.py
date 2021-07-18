@@ -19,7 +19,7 @@ class uploadSourceCode(models.Model):
         'postPara', max_length=100, default='', blank=True)
     inputCommand = models.TextField(
         'inputCommand', max_length=500, default='', blank=True)
-
+    # convert @@@ -resize 200% safsadf.png类似于这样的
     def __str__(self):
         return self.name
 

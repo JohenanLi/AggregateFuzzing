@@ -1,4 +1,4 @@
-from Util.decompress import cd, mymkdir, pathJoin, pwd
+from Util.decompress import cd, mymkdir, pathJoin, pwd,delDuplicate
 import sys
 import os
 import subprocess
@@ -7,6 +7,7 @@ from FuzzAll.compileDeal import compile
 from . import config
 from .config import MEM_AFL_PATH,ANDAND
 import re
+from crontab import CronTab
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -28,7 +29,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     terminalName: str = programName
     print("fuzzing过程")
     if fuzzer == "afl":
-        afl = os.path.join(config.AFL_PATH, "afl-fuzz")
+        afl = pathJoin(config.AFL_PATH, "afl-fuzz")
         result = compile(program_path, compileCommand, config.AFL_PATH,1)
         subprocess.Popen("mkdir -p %s" % (outs), shell=True)
         # findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
@@ -41,7 +42,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
                     "--", program_path, "/", programName, "", prePara, "@@"]
 
     elif fuzzer == "tortoise":
-        tortoise = os.path.join(config.TORTOISE_PATH, "bb_metric", "afl-fuzz")
+        tortoise = pathJoin(config.TORTOISE_PATH, "bb_metric", "afl-fuzz")
         result = compile(program_path, compileCommand, config.TORTOISE_PATH,2)
         subprocess.Popen("mkdir -p %s" % (outs), shell=True)
         findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
@@ -53,7 +54,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
                     " -- ", program_path, "/", programName, " ", prePara, " @@"]
 
     elif fuzzer == "mem":
-        mem = os.path.join(MEM_AFL_PATH, "mm_metric", "afl-fuzz")
+        mem = pathJoin(MEM_AFL_PATH, "mm_metric", "afl-fuzz")
         result = compile(program_path, compileCommand, MEM_AFL_PATH,2)
         mymkdir(outs)
         
@@ -83,6 +84,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     cd(outs)
     subprocess.run(temp,shell = True)
     cd(root_dir)
+    cron = CronTab(user="root")
+    job = cron.new(delDuplicate(outs),"可能删除可能产生的多余文件")
+    job.minute.on(10)
+    cron.write()
     return 
 
 
