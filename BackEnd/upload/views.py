@@ -75,7 +75,7 @@ def sourceCode(request):
                 # 调用接口传数据
                 resultTime = threadFuzz(
                     fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute)
-
+            print(resultTime)
             return JsonResponse({"msg":resultTime})
 
 
