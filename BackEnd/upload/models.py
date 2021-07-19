@@ -13,11 +13,13 @@ class uploadSourceCode(models.Model):
     inputFile = models.CharField('inputFile', max_length=500,null=True)
     compileCommand = models.CharField(
         'compileCommand', max_length=100, default='')
-    parameter = models.CharField(
-        'parameter', max_length=100, default='', blank=True)
+    prePara = models.CharField(
+        'prePara', max_length=100, default='', blank=True)
+    postPara = models.CharField(
+        'postPara', max_length=100, default='', blank=True)
     inputCommand = models.TextField(
         'inputCommand', max_length=500, default='', blank=True)
-
+    # convert @@@ -resize 200% safsadf.png类似于这样的
     def __str__(self):
         return self.name
 

@@ -1,7 +1,7 @@
-import json
+from Util.decompress import pathJoin
 from django.http.response import JsonResponse
 from rest_framework.generics import ListAPIView
-from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH
+from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH,SEED_PATH
 from FuzzAll.fuzz import fuzz_one
 from django.http import HttpResponse
 from django.views import generic
@@ -17,9 +17,9 @@ from .ser import UsedSoftSer
 
 
 
-def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName):
+def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
-                      isqemu=False, ins=ins, outs=outs, params=params, isfile=isfile,compileCommand=compileCommand,programName=programName)
+                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName)
     # if codeOrProgramBoolean:
     #     codeResult.objects.create(codeCoverage=result['codeCoverage'],
     #                       bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
@@ -31,7 +31,6 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, params, isfile, codeOrPr
 
 def sourceCode(request):
     if request.method == 'POST':
-        print(request.POST)
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
@@ -42,11 +41,12 @@ def sourceCode(request):
             pass
         else:
             inputFile = os.path.join(INPUT_FILE_PATH,inputFile)
-        parameter = request.POST.get('parameter',None)
+        prePara = request.POST.get('prePara',None)
+        postPara = request.POST.get('postPara',None)
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
         programName = request.POST.get("programName",None)
-        outs = os.path.join("/root/fuzzResult/",programName)
+        outs = os.path.join("/root/fuzzResult/",name,programName)
         print('获取信息成功')
         if seed == None and inputFile == None:
             return HttpResponse("没有选择种子文件")
@@ -55,16 +55,16 @@ def sourceCode(request):
         else:
             isfile = False
             temp = uploadSourceCode.objects.create(
-                filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, compileCommand=compileCommand, inputCommand=inputCommand)
+                filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, postPara=postPara,compileCommand=compileCommand, inputCommand=inputCommand)
             temp.save()
             if not inputFile:
                 isfile = True
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=seed, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
             else:
                 # 调用接口传数据
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
 
             return JsonResponse({"msg":"成功提交，请耐心等待结果"})
 
@@ -76,7 +76,7 @@ def sourceProgram(request):
         name = request.POST['name']
         seed = request.POST['seed']
         inputFile = request.POST.get('inputFile', None)
-        parameter = request.POST['parameter']
+        prePara = request.POST.get('prePara',None)
         compileCommand = request.POST['compileCommand']
         compileExample = """CC=/home/minipython/桌面/AggregateFuzzing/
         BackEnd/tools/afl/mm_metric/afl-clang-fast CXX=/home/minipython/桌面/AggregateFuzzing/BackEnd/
@@ -90,7 +90,7 @@ def sourceProgram(request):
         else:
             isfile = False
             temp = uploadSourceProgram.objects.create(
-                filePath=filePath, name=name, ins=seed, inputFile=inputFile, parameter=parameter, inputCommand=inputCommand)
+                filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, inputCommand=inputCommand)
             ##路径替换
             ext = str(filePath).split('.')[-1]
             filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
@@ -101,11 +101,11 @@ def sourceProgram(request):
             if not inputFile:
                 isfile = True
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
             else:
                 # 调用接口传数据
                 threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, params=parameter, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand)
 
                 return render(request, 'sourceProgram/wait.html', {object: temp})
 

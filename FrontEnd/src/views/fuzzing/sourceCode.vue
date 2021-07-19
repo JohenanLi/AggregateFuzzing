@@ -42,6 +42,7 @@
               <template #content >
               请输入运行时所需参数！
               </template>
+
             <el-form-item label="输入命令">
               <el-input
                 class="input"
@@ -60,6 +61,7 @@
               例：convert a.png b.jpg，<br/>
               a.png为检测样例，则输入convert！
               </template>
+
             <el-form-item label="前参数">
               <el-input
                 class="input"
@@ -238,6 +240,7 @@
 <script>
 import { formdataTest } from "@/api/index";
 import { defineComponent, ref } from "vue";
+import { ElMessage } from 'element-plus';
 const cityOptions = [
   "7z",
   "602",
@@ -580,13 +583,22 @@ export default {
             console.log(res);
             if (res.data.status == 200) {
               alert("success!");
+              ElMessage.success({
+              message: '提交成功！',
+              type: 'success'
+          });
+            gotowait();
             }
           });
         } else {
           console.log("error submit!!");
+          ElMessage.error('提交失败！');
           return false;
         }
       });
+    },
+    gotowait(){
+      his.$router.push('/wait');
     },
     beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}？`);
