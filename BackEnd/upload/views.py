@@ -17,16 +17,16 @@ from .ser import UsedSoftSer
 
 
 
-def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName):
+def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
-                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName)
+                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute)
     # if codeOrProgramBoolean:
     #     codeResult.objects.create(codeCoverage=result['codeCoverage'],
     #                       bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
     # else:
     #     programResult.objects.create(
     #         codeCoverage=result['codeCoverage'], bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
-    pass
+    return result
 
 
 def sourceCode(request):
@@ -46,6 +46,8 @@ def sourceCode(request):
         compileCommand = request.POST.get('compileCommand',None)
         inputCommand = request.POST.get('inputCommand',None)
         programName = request.POST.get("programName",None)
+        hour = request.POST.get("hour",0)
+        minute = request.POST.get("minute",25)
         outs = os.path.join("/root/fuzzResult/",name,programName)
         print('获取信息成功')
         if seed == None and inputFile == None:
@@ -59,14 +61,14 @@ def sourceCode(request):
             temp.save()
             if not inputFile:
                 isfile = True
-                threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
+                resultTime =threadFuzz(
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute)
             else:
                 # 调用接口传数据
-                threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName)
+                resultTime = threadFuzz(
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute)
 
-            return JsonResponse({"msg":"成功提交，请耐心等待结果"})
+            return JsonResponse({"msg":"成功提交，请耐心等待结果,于%s后查看结果"%(resultTime)})
 
 
 def sourceProgram(request):
