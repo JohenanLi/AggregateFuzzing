@@ -1,3 +1,4 @@
+from django.http import response
 from Util.decompress import pathJoin
 from django.http.response import JsonResponse
 from rest_framework.generics import ListAPIView
@@ -31,6 +32,7 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile
 
 def sourceCode(request):
     if request.method == 'POST':
+        print(request.POST)
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
@@ -51,9 +53,15 @@ def sourceCode(request):
         outs = os.path.join("/root/fuzzResult/",name,programName)
         print('获取信息成功')
         if seed == None and inputFile == None:
-            return HttpResponse("没有选择种子文件")
+            response = HttpResponse()
+            response.content = "没有上传种子文件"
+            response.status_code = 412
+            return response
         if not filePath:
-            return HttpResponse("no files for upload!")
+            response = HttpResponse()
+            response.content = "no files for upload!"
+            response.status_code = 412
+            return response
         else:
             isfile = False
             temp = uploadSourceCode.objects.create(
@@ -68,7 +76,7 @@ def sourceCode(request):
                 resultTime = threadFuzz(
                     fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute)
 
-            return JsonResponse({"msg":"成功提交，请耐心等待结果,于%s后查看结果"%(resultTime)})
+            return JsonResponse({"msg":resultTime})
 
 
 def sourceProgram(request):

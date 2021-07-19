@@ -9,8 +9,7 @@ def pwd():
 
 def mymkdir(dir:str):
     if path.exists(dir):
-        rmtree(dir)
-        pass
+        system("rm -rf %s"%(dir))
     
     makedirs(dir)
 

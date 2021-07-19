@@ -1,4 +1,4 @@
-from Util.decompress import cd, mymkdir, pathJoin, pwd,delDuplicate
+from Util.decompress import cd, mymkdir, pathJoin, pwd
 import sys
 import os
 import subprocess
@@ -92,7 +92,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     cron.write()
     #cronjob时间生成
     stopJob = cron.new("tmux kill-session -t %s"%(programName),"停止fuzz")
-    str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,minute,hour,0.0)
+    str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,float(minute),float(hour),0.0)
     stopJob.setall(str_time_now.minute,str_time_now.hour,str_time_now.month,str_time_now.day,str_time_now.weekday())
     # iter=croniter("0 8 * * *",str_time_now)
 

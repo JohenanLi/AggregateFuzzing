@@ -97,12 +97,13 @@
               请选择进行模糊测试的引擎！
               </template>
             <el-form-item label="fuzz引擎" prop="name">
-              <el-select v-model="valuetype">
+              <el-select v-model="form.name">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
+                  v-model="form.name"
                 >
                 </el-option>
               </el-select>
@@ -354,7 +355,7 @@ export default {
         programName: ref(""),
         fileList: [],
         seed: "",
-        name: "",
+        name: "mem",
         inputFile: [],
         compileCommand: "",
         inputCommand: "",
@@ -564,10 +565,9 @@ export default {
     onSubmit() {
       this.$refs["this.form"].validate((valid) => {
         if (valid) {
-          //  var formData = new FormData()
           let params = {
             fileList: this.form.fileList,
-            seed: this.form.seed,
+            seed: this.form.seed[this.form.seed.length - 1],
             name: this.form.name,
             inputFile: this.form.inputFile,
             compileCommand: this.form.compileCommand,
