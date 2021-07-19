@@ -587,7 +587,7 @@ export default {
               message: '提交成功！',
               type: 'success'
           });
-            gotowait();
+            this.gotowait();
             }
           });
         } else {
@@ -598,7 +598,7 @@ export default {
       });
     },
     gotowait(){
-      his.$router.push('/wait');
+      this.$router.push('/wait');
     },
     beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}？`);
