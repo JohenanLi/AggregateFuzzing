@@ -541,15 +541,15 @@ export default {
         }],
       options: [
         {
-          value: "afl",
+          value: "AFL",
           label: "AFL",
         },
         {
-          value: "tortoise",
+          value: "TORTOISE",
           label: "Tortoise",
         },
         {
-          value: "mem",
+          value: "MEM",
           label: "MemAFL",
         },
       ],
