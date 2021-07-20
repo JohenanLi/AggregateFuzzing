@@ -20,7 +20,7 @@
   <div align="center">
     <el-row>
       <el-col :span="6">
-        <el-card :body-style="{ padding: '0px' }">
+        <el-card shadow="hover" :body-style="{ padding: '0px' }">
           <img
             src="../assets/img/上传源文件.jpg"
             class="image"
@@ -37,7 +37,7 @@
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card :body-style="{ padding: '0px' }">
+        <el-card shadow="hover" :body-style="{ padding: '0px' }">
           <img src="../assets/img/上传可执行文件.jpg" class="image" height="200"
             width="300"/>
           <div style="padding: 14px">
@@ -49,7 +49,7 @@
       </el-col>
 
       <el-col :span="6">
-        <el-card :body-style="{ padding: '0px' }">
+        <el-card shadow="hover" :body-style="{ padding: '0px' }">
           <img src="../assets/img/find.jpg" class="image" height="200"
             width="300"/>
           <div style="padding: 14px">
