@@ -97,12 +97,13 @@
               请选择进行模糊测试的引擎！
               </template>
             <el-form-item label="fuzz引擎" prop="name">
-              <el-select v-model="valuetype">
+              <el-select v-model="form.name">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
+              
                 >
                 </el-option>
               </el-select>
@@ -354,7 +355,7 @@ export default {
         programName: ref(""),
         fileList: [],
         seed: "",
-        name: "",
+        name: "mem",
         inputFile: [],
         compileCommand: "",
         inputCommand: "",
@@ -368,7 +369,7 @@ export default {
           { required: true, message: "请输入软件名称", trigger: "blur" },
         ],
         fileList: [{ required: true, message: "请上传文件", trigger: "blur" }],
-        name: [{ required: true, message: "请选择fuzz软件名称", trigger: "blur" }],
+        // name: [{ required: true, message: "请选择fuzz软件名称", trigger: "blur" }],
         compileCommand: [
           { required: false, message: "请输入编译命令", trigger: "blur" },
         ],
@@ -561,6 +562,7 @@ export default {
     },
   },
   methods: {
+    
     onSubmit() {
       this.$refs["this.form"].validate((valid) => {
         if (valid) {
@@ -587,6 +589,10 @@ export default {
               message: '提交成功！',
               type: 'success'
           });
+            const fileName = this.form.fileList;
+            const timeLimit = res.data.msg;
+            localStorage.setItem('fileName',fileName)
+            localStorage.setItem(fileName,timeLimit);
             this.gotowait();
             }
           });
@@ -598,7 +604,14 @@ export default {
       });
     },
     gotowait(){
-      this.$router.push('/wait');
+      this.$router.push({
+        path: '/wait',
+        name:'wait',
+        params: {
+          fileId:this.fileName,
+          fileTime:this.timeLimit
+        }
+    })
     },
     beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}？`);

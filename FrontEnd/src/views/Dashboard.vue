@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div >
     <el-row :gutter="20">
-      <el-col :span="8">
+      <el-col :span="24">
         <el-card shadow="hover" class="mgb20" style="height: 252px">
           <div class="user-info">
             <img src="../assets/img/img.jpg" class="user-avator" alt />
@@ -10,14 +10,14 @@
               <div>{{ role }}</div>
             </div>
           </div>
-          <div class="user-info-list">
+          <!-- <div class="user-info-list">
             上次登录时间：
             <span>{{ time }}</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
             <span>长沙</span>
-          </div>
+          </div> -->
         </el-card>
         <!-- <el-card shadow="hover"> -->
         <!-- <template #header>
@@ -378,6 +378,7 @@ export default {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+
 }
 
 .user-info-cont {
