@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <el-row :gutter="20">
+  <div>
+    <el-row :gutter="18">
       <el-col :span="24">
         <el-card shadow="hover" class="mgb20" style="height: 252px">
           <div class="user-info">
@@ -10,102 +10,33 @@
               <div>{{ role }}</div>
             </div>
           </div>
-          <!-- <div class="user-info-list">
+          <div class="time_place">
+            <el-space wrap :size="large">
+            <span class="details">
+              登录日期<br>
+            {{time}}
+            </span>
+            <el-divider direction="vertical"></el-divider>
+            <span class="details">登录地点<br>
+            China</span>
+            <el-divider direction="vertical"></el-divider>
+            <span class="details">检测次数<br>
+            5</span>
+            </el-space>
+            <!-- <div class="user-info-list">
             上次登录时间：
             <span>{{ time }}</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
-            <span>长沙</span>
-          </div> -->
+            <span>长沙</span> -->
+            <!-- </div> -->
+          </div>
         </el-card>
-        <!-- <el-card shadow="hover"> -->
-        <!-- <template #header>
-            <div class="clearfix">
-              <span>CPU资源详情</span>
-            </div>
-          </template>
-          可用CPU资源
-          <el-progress :percentage="avail_cpu" color="#42b983"></el-progress
-          >已用CPU资源
-          <el-progress :percentage="notavail_cpu" color="#f56c6c"></el-progress> -->
-        <!-- </el-card> -->
-        <!-- 
-        <el-card shadow="hover">
-          <template #header>
-            <div class="clearfix">
-              <span>语言详情</span>
-            </div>
-          </template>
-          Vue
-          <el-progress :percentage="71.3" color="#42b983"></el-progress
-          >JavaScript
-          <el-progress :percentage="24.1" color="#f1e05a"></el-progress>CSS
-          <el-progress :percentage="13.7"></el-progress>HTML
-          <el-progress :percentage="5.9" color="#f56c6c"></el-progress>
-        </el-card>-->
       </el-col>
-
-      <!-- <el-col :span="16">
-        <el-row :gutter="25" type="flex" class="row-bg" justify="space-between">
-          <el-col :span="16" style="height: 180px">
-            <el-card shadow="hover">
-              <div class="grid-content grid-con-1">
-                <i class="el-icon-document grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <el-button type="text" @click="sourceCode()"
-                    ><div class="grid-num">上传源代码并编译</div></el-button
-                  >
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-
-          <el-col :span="16" style="height: 180px">
-            <el-card shadow="hover">
-              <div class="grid-content grid-con-2">
-                <i class="el-icon-box grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <el-button type="text" @click="sourceProgram()"
-                    ><div class="grid-num">上传可执行文件</div></el-button
-                  >
-                </div>
-              </div>
-            </el-card>
-          </el-col>  
-
-          <el-col :span="16" style="height: 180px">
-            <el-card shadow="hover">
-              <div class="grid-content grid-con-3">
-                <i class="el-icon-loading grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <el-button type="text" @click="history()"
-                    ><div class="grid-num">历史记录</div></el-button
-                  >
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-
-          <el-col :span="16" style="height: 180px">
-            <el-table
-              :data="tableData"
-              style="width: 100%"
-            >
-              <el-table-column prop="id" label="id" width="180">
-              </el-table-column>
-              <el-table-column prop="name" label="软件名称" width="180">
-              </el-table-column>
-              <el-table-column prop="version" label="版本">
-              </el-table-column>
-              <el-table-column prop="timeStamp" label="测试时间">
-              </el-table-column>
-            </el-table>
-          </el-col>
-        </el-row>
-      </el-col> -->
     </el-row>
   </div>
+
   <el-table :data="tableData" style="width: 100%">
     <el-table-column type="expand">
       <template #default="">
@@ -204,11 +135,11 @@
 
 
 <script>
-import { usedSoft,resultGet } from "@/api/index";
-import axios from 'axios';
+import { usedSoft, resultGet } from "@/api/index";
+import axios from "axios";
 
 export default {
-  inject: ['reload'],
+  inject: ["reload"],
   name: "dashboard",
   data() {
     return {
@@ -224,7 +155,7 @@ export default {
         },
       ],
       resultList: [],
-      id:1
+      id: 1,
     };
   },
 
@@ -233,10 +164,10 @@ export default {
       return this.name === "admin" ? "超级管理员" : "普通用户";
     },
   },
-  watch:{
-    '$route'(to,from){
-      this.reload()
-    }
+  watch: {
+    $route(to, from) {
+      this.reload();
+    },
   },
   methods: {
     tableRowClassName({ rowIndex }) {
@@ -276,19 +207,23 @@ export default {
         return res.data;
       });
     },
-    getResult(){
+    getResult() {
       let params = {
-        id : this.id,
-      }
+        id: this.id,
+      };
       resultGet(params).then((res) => {
         this.resultList = res.data;
-      })
-    }
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
+.details {
+  text-align: center;
+  float: left;
+}
 .el-table .warning-row {
   background: oldlace;
 }
@@ -312,7 +247,7 @@ export default {
 }
 
 .el-row {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .grid-content {
@@ -365,20 +300,22 @@ export default {
 .grid-con-3 .grid-num {
   color: rgb(242, 94, 67);
 }
-
+.time_place {
+  margin: 1% 0% 0% 36%;
+}
 .user-info {
   display: flex;
   align-items: center;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #ccc;
-  margin-bottom: 20px;
+  margin: 0% 0% 0% 40%;
+  /* padding-bottom: 20px; */
+  /* border-bottom: 2px solid #ccc; */
+  /* margin-bottom: 20px; */
 }
 
 .user-avator {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-
 }
 
 .user-info-cont {
@@ -404,8 +341,8 @@ export default {
 }
 
 .mgb20 {
-  margin-bottom: 10px;
-  padding:0px;
+  margin-bottom: 0px;
+  padding: 0px;
 }
 
 .todo-item {
