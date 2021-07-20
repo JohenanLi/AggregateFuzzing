@@ -591,7 +591,7 @@ export default {
             const timeLimit = res.data.msg;
             localStorage.setItem('fileName',fileName);
             localStorage.setItem(fileName,timeLimit);
-            this.gotowait();
+            // this.gotowait();
             }
           });
         } else {
