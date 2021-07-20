@@ -1,4 +1,4 @@
-from Util.decompress import cd, mymkdir, pathJoin, pwd,delDuplicate
+from Util.decompress import cd, mymkdir, pathJoin, pwd
 import sys
 import os
 import subprocess
@@ -8,7 +8,9 @@ from . import config
 from .config import MEM_AFL_PATH,ANDAND
 import re
 from crontab import CronTab
-from datetime import datetime
+# from croniter import croniter
+from datetime import datetime,timedelta
+from re import match
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -20,7 +22,7 @@ from datetime import datetime
 """
 
 
-def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName):
+def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute):
    
     if isqemu:
         qemu = '-Q'
@@ -33,8 +35,6 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
         afl = pathJoin(config.AFL_PATH, "afl-fuzz")
         result = compile(program_path, compileCommand, config.AFL_PATH,1)
         subprocess.Popen("mkdir -p %s" % (outs), shell=True)
-        # findCmd = "cd %s && find . -type f -executable | grep -E \"%s?[^\.]$\" " % (
-        #     program_path, programName)
         findCmd = ["cd",program_path,ANDAND,"find",".","-type","f","-executable","|","grep","-E","\"%s?[^\.]$\""] %(programName)
         print(findCmd)
         programName = subprocess.getoutput(findCmd)
@@ -75,7 +75,10 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     #     fuzz_cmd.append(" @@")
     # else:
     #     pass
-    
+    cpuResult = subprocess.getoutput(pathJoin(MEM_AFL_PATH,"afl-gotcpu"))
+    regexExp = "AVAILABLE"
+    availCPU = cpuResult.count(regexExp)#可以用cpu数量获取
+
     fuzz_cmd = ["tmux","new-session","-s",terminalName,"-d"] + fuzz_cmd
     temp = ""
     for onePara in fuzz_cmd:
@@ -88,9 +91,18 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     cron = CronTab(user="root")
     job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(outs),"可能删除产生的多余文件")
     job.minute.on(10)
+
+    #cronjob时间生成
+    stopJob = cron.new("tmux kill-session -t %s"%(programName),"停止fuzz")
+    str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,float(minute),float(hour),0.0)
+    print(str_time_now.minute,str_time_now.hour,str_time_now.day,str_time_now.month,(str_time_now.weekday() + 1)%7)
+    stopJob.setall(str_time_now.minute,str_time_now.hour,str_time_now.day,str_time_now.month,(str_time_now.weekday()+1)%7)
     cron.write()
-    
-    return 
+    # iter=croniter("0 8 * * *",str_time_now)
+
+    # print(iter.get_next(datetime))
+
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 if __name__ == '__main__':

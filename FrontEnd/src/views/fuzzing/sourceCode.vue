@@ -566,10 +566,9 @@ export default {
     onSubmit() {
       this.$refs["this.form"].validate((valid) => {
         if (valid) {
-          //  var formData = new FormData()
           let params = {
             fileList: this.form.fileList,
-            seed: this.form.seed,
+            seed: this.form.seed[this.form.seed.length - 1],
             name: this.form.name,
             inputFile: this.form.inputFile,
             compileCommand: this.form.compileCommand,
