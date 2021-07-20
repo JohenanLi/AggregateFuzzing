@@ -45,7 +45,7 @@ def sourceCode(request):
             inputFile = os.path.join(INPUT_FILE_PATH,inputFile)
         prePara = request.POST.get('prePara',None)
         postPara = request.POST.get('postPara',None)
-        compileCommand = request.POST.get('compileCommand',None)
+        compileCommand = request.POST.get('compileCommand',"")
         inputCommand = request.POST.get('inputCommand',None)
         programName = request.POST.get("programName",None)
         hour = request.POST.get("hour",0)
@@ -88,9 +88,9 @@ def sourceProgram(request):
         inputFile = request.POST.get('inputFile', None)
         prePara = request.POST.get('prePara',None)
         compileCommand = request.POST['compileCommand']
-        compileExample = """CC=/home/minipython/桌面/AggregateFuzzing/
-        BackEnd/tools/afl/mm_metric/afl-clang-fast CXX=/home/minipython/桌面/AggregateFuzzing/BackEnd/
-        tools/afl/mm_metric/afl-clang-fast++ ./configure"""
+        # compileExample = """CC=/home/minipython/桌面/AggregateFuzzing/
+        # BackEnd/tools/afl/mm_metric/afl-clang-fast CXX=/home/minipython/桌面/AggregateFuzzing/BackEnd/
+        # tools/afl/mm_metric/afl-clang-fast++ ./configure"""
         inputCommand = request.POST.get('inputCommand',"@@")
         outs = os.path.join(BASE_DIR, 'outs')
 
@@ -189,3 +189,24 @@ def getExts(request):
             for line in f.readlines():
                 exts.append(line.rstrip())
             return JsonResponse(exts,safe=False)
+
+def result(request):
+    if request.method == "POST":
+        programName = request.POST.get("programName",None)
+        if not programName:
+            response = HttpResponse()
+            response.content = "没有参数提供"
+            response.status_code = 412
+            return response
+        
+def waitResult(request):
+    if request.method == "POST":
+        programName = request.POST.get("programName",None)
+        fuzzer = request.POST.get("fuzzer",None)
+        if not (programName and fuzzer):
+            response = HttpResponse()
+            response.content = "没有参数提供"
+            response.status_code = 412
+            return response
+        else:
+            pass
