@@ -117,7 +117,7 @@ class Path_Build():
 
         cd(root_dir)
         job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(self.outs),"可能删除产生的多余文件")
-        job.minute.on(10)
+        job.setall("*/10","*","*","*","*")
         cron.write()
 
 def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute):

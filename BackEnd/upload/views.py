@@ -202,7 +202,6 @@ def result(request):
 def waitResult(request):
     if request.method == "POST":
         programName = request.POST.get("programName",None)
-        fuzzer = request.POST.get("fuzzer",None)
         if not (programName and fuzzer):
             response = HttpResponse()
             response.content = "没有参数提供"
