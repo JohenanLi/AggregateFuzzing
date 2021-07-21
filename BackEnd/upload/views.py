@@ -201,8 +201,8 @@ def result(request):
         
 def waitResult(request):
     if request.method == "POST":
-        programName = request.POST.get("programName",None)
-        if not (programName and fuzzer):
+        code_id = request.POST.get("id",None)
+        if not code_id:
             response = HttpResponse()
             response.content = "没有参数提供"
             response.status_code = 412

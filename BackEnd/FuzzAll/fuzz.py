@@ -1,13 +1,10 @@
 from Util.decompress import cd, gotcpu, mymkdir, pathJoin, pwd
-import sys
-import os
 import subprocess
-from FuzzAll import check, config
+from FuzzAll import  config
 from FuzzAll.compileDeal import compile
-from .config import AFL_PATH, COLL_PATH, MEM_AFL_PATH,ANDAND, TORTOISE_PATH
+from .config import AFL_PATH, COLL_PATH, MEM_AFL_PATH, TORTOISE_PATH
 import re
 from crontab import CronTab
-# from croniter import croniter
 from datetime import datetime,timedelta
 from re import match
 import libtmux
@@ -91,11 +88,7 @@ class Path_Build():
                 identity = master
             else:
                 identity = slave + str(i) + " -m 1000"
-            #fuzz_cmd = ["tmux","new-session","-s",str(i)+self.programName.split('/')[-1],"-d",afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
-            #"-t",self.programName.split('/')[-1]+str(i),
-            #fuzz_cmd = [afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
             fuzz_cmd = [afl, qemu, identity,"-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
-            # fuzz_cmd = ["tmux new-session -s", self.programName.split('/')[-1]+str(i), "-d"] + fuzz_cmd
             if isfile:
                 fuzz_cmd.append("@@")
             else:
@@ -108,8 +101,6 @@ class Path_Build():
             w = session.new_window(attach = False,window_name = str(i)+self.programName.split('/')[-1])
             pane = w.split_window(attach=False)
             pane.send_keys(runCMD)
-            # print(runCMD)
-            # _thread.start_new_thread(threadUse,(runCMD))
             
         stopJob = cron.new("tmux kill-session -t %s"%(self.programName.split('/')[-1]),"停止fuzz")
         str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,float(self.minute),float(self.hour),0.0)
@@ -119,22 +110,16 @@ class Path_Build():
         job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(self.outs),"可能删除产生的多余文件")
         job.setall("*/10","*","*","*","*")
         cron.write()
+        return str_time_now
 
 def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute):
     print("fuzzing过程")
     myFuzz = Path_Build(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute)
     myFuzz.compile()
-    # myFuzz.create(gotcpu() - 2)
-    myFuzz.create(gotcpu() - 2)
-    # iter=croniter("0 8 * * *",str_time_now)
+    return myFuzz.create(gotcpu() - 2).strftime("%Y-%m-%d %H:%M:%S") #保证服务器正常使用的两个cpu，以及时间返回处理后的时间
 
-    # print(iter.get_next(datetime))
 
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 if __name__ == '__main__':
     print(config.MAX_TIMES)
 
-# def threadUse(runCMD):
-#     print(runCMD)
-#     os.system(runCMD)
