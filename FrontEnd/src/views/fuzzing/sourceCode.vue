@@ -565,6 +565,14 @@ export default {
     onSubmit() {
       this.$refs["this.form"].validate((valid) => {
         if (valid) {
+          //加载
+        const loading = this.$loading({
+          lock: true,
+          text: '参数正在提交，请稍候',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+
           let params = {
             fileList: this.form.fileList,
             seed: this.form.seed[this.form.seed.length - 1],
@@ -583,10 +591,8 @@ export default {
             console.log(res);
             if (res.data.status == 200) {
               alert("success!");
-              ElMessage.success({
-              message: '提交成功！',
-              type: 'success'
-          });
+              this.loading.close();
+          
             const fileName = this.form.fileList;
             const timeLimit = res.data.msg;
             localStorage.setItem('fileName',fileName);
@@ -595,6 +601,7 @@ export default {
             }
           });
         } else {
+          this.loading.close();
           console.log("error submit!!");
           ElMessage.error('提交失败！');
           return false;
