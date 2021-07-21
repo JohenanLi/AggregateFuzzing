@@ -10,7 +10,7 @@ from crontab import CronTab
 # from croniter import croniter
 from datetime import datetime,timedelta
 from re import match
-import _thread
+import screenutils
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -83,13 +83,16 @@ class Path_Build():
         root_dir = pwd()
         mymkdir(self.outs)
         cd(self.outs)
+        
         for i in range(core):
             if i == 0:
                 identity = master
             else:
                 identity = slave + str(i) 
-            fuzz_cmd = ["tmux","new-session","-s",str(i)+self.programName.split('/')[-1],"-d",afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
+            #fuzz_cmd = ["tmux","new-session","-s",str(i)+self.programName.split('/')[-1],"-d",afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
             #"-t",self.programName.split('/')[-1]+str(i),
+            fuzz_cmd = [afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
+
             if isfile:
                 fuzz_cmd.append("@@")
             else:
@@ -99,13 +102,18 @@ class Path_Build():
             else:
                 pass
             runCMD = " ".join(fuzz_cmd)
-            
+            s = screenutils.Screen(str(i)+self.programName.split('/')[-1],True)
+            print(s)
+            input()
+            s.send_commands(fuzz_cmd)
+            s.enable_logs()
+            print(next(s.logs))
             # _thread.start_new_thread(threadUse,(runCMD))
-            os.system(runCMD)
-            print(runCMD)
+            
             stopJob = cron.new("tmux kill-session -t %s"%(str(i)+self.programName.split('/')[-1]),"停止fuzz")
             str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,float(self.minute),float(self.hour),0.0)
             stopJob.setall(str_time_now.minute,str_time_now.hour,str_time_now.day,str_time_now.month,(str_time_now.weekday()+1)%7)
+        
         cd(root_dir)
         job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(self.outs),"可能删除产生的多余文件")
         job.minute.on(10)
@@ -115,8 +123,8 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
     print("fuzzing过程")
     myFuzz = Path_Build(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute)
     myFuzz.compile()
-    myFuzz.create(gotcpu() - 2)
-
+    # myFuzz.create(gotcpu() - 2)
+    myFuzz.create(2)
     # iter=croniter("0 8 * * *",str_time_now)
 
     # print(iter.get_next(datetime))
