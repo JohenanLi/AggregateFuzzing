@@ -31,17 +31,6 @@ DIRS = {
     "TORTOISE_PATH": "/root/fuzzResult/tortoiseDir"
 }
 
-def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute):
-    print("fuzzing过程")
-    myFuzz = Path_Build(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute)
-    myFuzz.compile()
-    myFuzz.create(gotcpu() - 2)
-
-    # iter=croniter("0 8 * * *",str_time_now)
-
-    # print(iter.get_next(datetime))
-
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 class Path_Build():
     
@@ -83,7 +72,7 @@ class Path_Build():
         else:
             pass
         identity = ""
-        master = "-M master -m 1000"
+        master = "-M master"
         slave = "-S slave"
         if self.fuzzer == "TORTOISE":
             afl = self.fuzzer_path + "/bb_metric/afl-fuzz"
@@ -98,8 +87,9 @@ class Path_Build():
             if i == 0:
                 identity = master
             else:
-                identity = slave + str(i) + " -m 1000 "
-            fuzz_cmd = ["tmux","new-session","-s",self.programName.split('/')[-1]+str(i),"-t",self.programName.split('/')[-1]+str(i),"-d",afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
+                identity = slave + str(i) 
+            fuzz_cmd = ["tmux","new-session","-s",str(i)+self.programName.split('/')[-1],"-d",afl, qemu, identity, "-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
+            #"-t",self.programName.split('/')[-1]+str(i),
             if isfile:
                 fuzz_cmd.append("@@")
             else:
@@ -111,17 +101,28 @@ class Path_Build():
             runCMD = " ".join(fuzz_cmd)
             
             # _thread.start_new_thread(threadUse,(runCMD))
-            # subprocess.run(runCMD,shell=True)
-            _thread.start_new_thread(os.system,(runCMD,))
-            print(runCMD)
             os.system(runCMD)
-            stopJob = cron.new("tmux kill-session -t %s"%(self.programName.split('/')[-1]+str(i)),"停止fuzz")
+            print(runCMD)
+            stopJob = cron.new("tmux kill-session -t %s"%(str(i)+self.programName.split('/')[-1]),"停止fuzz")
             str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,float(self.minute),float(self.hour),0.0)
             stopJob.setall(str_time_now.minute,str_time_now.hour,str_time_now.day,str_time_now.month,(str_time_now.weekday()+1)%7)
         cd(root_dir)
         job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(self.outs),"可能删除产生的多余文件")
         job.minute.on(10)
         cron.write()
+
+def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute):
+    print("fuzzing过程")
+    myFuzz = Path_Build(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute)
+    myFuzz.compile()
+    myFuzz.create(gotcpu() - 2)
+
+    # iter=croniter("0 8 * * *",str_time_now)
+
+    # print(iter.get_next(datetime))
+
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 if __name__ == '__main__':
     print(config.MAX_TIMES)
 

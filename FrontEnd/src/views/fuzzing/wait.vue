@@ -25,17 +25,28 @@ export default {
   name:"wait",
   data(){
     return{
-      master: {},
+      master: "jfsdaklfjlasdjfljsadfkljl",
       circle_width:200,
       nowProgress:20,
       progress_color:'#5cb87a',
-      timeOk: this.$route.params.fileTime
+      // timeOk: this.$route.params.fileTime
+      timeOk:"",
+      fileName:"",
+      timeLimit:"",
     }
   },
   created(){
     this.timer = setInterval(this.updateProgress, localStorage.getItem(FileList));
+    console.log(this.fileName,this.timeLimit);
     // this.DataView()
   },
+  mounted(){
+    this.fileName=localStorage.getItem("fileName");
+    this.timeLimit = localStorage.getItem(this.fileName);
+    this.timeOk = this.timeLimit;
+    console.log(this.fileName,this.timeLimit);
+  },
+
   methods:{
     updateProgress(){
         this.$nextTick(() => {
