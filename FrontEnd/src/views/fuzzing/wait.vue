@@ -4,37 +4,33 @@
     <div class="clip" :style="clipStyle"></div>
     <span class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</span>
   </div>
-  <!-- <div>
-    {{ master }}
-  </div> -->
+  <div>
+    {{ processContent }}
+  </div>
   <!-- </div> -->
 </template>
 
 <script>
-import { processGet } from '../../api';
+import { processGet } from "../../api";
 export default {
-  inject: ['reload'],
-  name:"wait",
-  data(){
-    return{
+  inject: ["reload"],
+  name: "wait",
+  data() {
+    return {
       //进度条
       clipStyle: {
         transform: "rotate(" + 3.6 * 0 + "deg)",
       },
       //基本参数
-      master: "jfsdaklfjlasdjfljsadfkljl",
+      processContent: {},
 
-      // timeOk: this.$route.params.fileTime
-      timeOk:"",
-      fileName:"",
-      timeLimit:"",
-    }
+      timeOk: "",
+    };
   },
-  created(){
-    console.log(this.fileName,this.timeLimit);
-    // this.DataView()
+  created() {
+    this.DataView()
   },
-  mounted(){
+  mounted() {
     //进度条
     let rotate = 0;
     setInterval(() => {
@@ -49,41 +45,41 @@ export default {
       this.$data.clipStyle.transform = transform;
     }, 20);
     //从后端获取数据
-    this.fileName=localStorage.getItem("fileName");
-    this.timeLimit = localStorage.getItem(this.fileName);
-    this.timeOk = this.timeLimit;
-    console.log(this.fileName,this.timeLimit);
+    this.timeOk = this.$router.params.timeLimit;
+    this.timer();
   },
 
-  methods:{
-    DataView(){
-    let params = {
-        // fileName : this.$route.params.fileId
-    };
+  methods: {
+    DataView() {
+      let params = {
+        fuzzer: this.$router.params.fuzzer,
+        programName: this.$router.params.programName,
+      };
       processGet(params).then((res) => {
-            console.log(res);
-            if (res.data.status == 200) {
-              alert("success!");
-            this.master = res.data.master
-            }
-          });
+        console.log(res);
+        if (res.status == 200) {
+          this.processContent = res.data.processContent;
+        }
+      });
     },
-    timer () {
+    timer() {
       return setTimeout(() => {
-        this.DataView()
-      }, 1000)
+        this.DataView();
+      }, 1000);
     },
-    
   },
-    watch:{
-    '$route'(to,from){
-      this.reload()
+  watch: {
+    $route(to, from) {
+      this.reload();
     },
-     fourData() {
-      this.timer()
-    }
-    }
-}
+    processContent() {
+      this.timer();
+    },
+  },
+  unmounted() {
+    clearTimeout(this.timer);
+  },
+};
 </script>
 
 <style scoped>
@@ -105,7 +101,7 @@ export default {
   border-radius: 50%;
 }
 .tip {
-  margin:1%;
+  margin: 1%;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size: 200%;

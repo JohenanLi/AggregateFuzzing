@@ -566,7 +566,7 @@ export default {
       this.$refs["this.form"].validate((valid) => {
         if (valid) {
           //加载
-        const loading = this.$loading({
+        const myloading = this.$loading({
           lock: true,
           text: '参数正在提交，请稍候',
           spinner: 'el-icon-loading',
@@ -586,35 +586,30 @@ export default {
             minute: this.form.minute,
             programName: this.form.programName,
           };
-          console.log(params);
           formdataTest(params).then((res) => {
             console.log(res);
-            if (res.data.status == 200) {
+            if (res.status == 200) {
               alert("success!");
-              this.loading.close();
+              myloading.close();
           
-            const fileName = this.form.fileList;
-            const timeLimit = res.data.msg;
-            localStorage.setItem('fileName',fileName);
-            localStorage.setItem(fileName,timeLimit);
-            // this.gotowait();
+            this.gotowait(res.data.msg);
             }
           });
         } else {
-          this.loading.close();
+          myloading.close();
           console.log("error submit!!");
           ElMessage.error('提交失败！');
           return false;
         }
       });
     },
-    gotowait(){
+    gotowait(timeLimit){
       this.$router.push({
-        path: '/wait',
         name:'wait',
         params: {
-          fileId:this.fileName,
-          fileTime:this.timeLimit
+                  fuzzer:this.form.name,
+                  programName:this.form.programName,
+                  timeLimit:timeLimit
         }
     })
     },
@@ -632,11 +627,9 @@ export default {
       // formData.append("inputFile", file.file);
     },
     codeRes(response, file, fileList) {
-      console.log(response);
       this.form.fileList = response.file_path[0];
     },
     inputFileRes(response, file, fileList) {
-      console.log(response);
       this.form.inputFile = response.inputFile[0];
     },
   },
