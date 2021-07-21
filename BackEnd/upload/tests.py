@@ -1,4 +1,3 @@
-from django.test import TestCase
 
 # Create your tests here.
 tmuxCmd = []
@@ -10,4 +9,4 @@ tmuxCmd.append("tmux new-session -s 4pdftopng -d /root/AggregateFuzzing/BackEnd/
 tmuxCmd.append("tmux new-session -s 5pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -S slave5 -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
 from subprocess import run
 from os import system
-system(tmuxCmd[1])
+import libtmux
