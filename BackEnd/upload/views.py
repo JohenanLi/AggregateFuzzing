@@ -209,7 +209,9 @@ def process(request):
             return response
         else:
             outs = pathJoin("/root/fuzzResult",fuzzer,programName)
-            whatsup = pathJoin(MEM_AFL_PATH,"afl-whatsup")
-            response = HttpResponse()
-            response.content = getoutput(whatsup+" "+outs)
-            return response
+            whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
+            whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+            result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
+            result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
+            result ={"result_individual":result_individual,"result_summary":result_summary}
+            return JsonResponse(data=result,safe=False)

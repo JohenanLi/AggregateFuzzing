@@ -4,7 +4,8 @@
       <div class="clip" :style="clipStyle"></div>
     </div>
     <div class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
-    <p class="processContent" v-html="processContent"></p>
+    <p class="result_individual" v-html="result.result_individual"></p>
+    <p class="result_summary" v-html="result.result_summary"></p>
   </div>
 </template>
 
@@ -20,10 +21,10 @@ export default {
         transform: "rotate(" + 3.6 * 0 + "deg)",
       },
       //基本参数
-      processContent: "",
 
       timeOk: "",
-      timer:""
+      timer:"",
+      result:"",
     };
   },
   created() {
@@ -59,10 +60,7 @@ export default {
       processGet(params).then((res) => {
 
         if (res.status == 200) {
-          
-          let reg=new RegExp("\n","g"); 
-          let str= res.data.replace(reg,"<br>");
-          this.processContent = str;
+          this.result = res.data;
         }
       });
     },
@@ -71,7 +69,7 @@ export default {
     $route(to, from) {
       this.reload();
     },
-    processContent() {
+    result() {
       this.DataView();
     },
   },
