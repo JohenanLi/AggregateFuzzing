@@ -564,14 +564,15 @@ export default {
     
     onSubmit() {
       this.$refs["this.form"].validate((valid) => {
-        if (valid) {
-          //加载
+         //加载
         const myloading = this.$loading({
           lock: true,
           text: '参数正在提交，请稍候',
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
+        if (valid) {
+         
 
           let params = {
             fileList: this.form.fileList,

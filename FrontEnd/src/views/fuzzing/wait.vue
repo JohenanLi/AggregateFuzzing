@@ -1,13 +1,12 @@
 <template>
-  <!-- <div> -->
-  <div class="box">
-    <div class="clip" :style="clipStyle"></div>
-    <span class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</span>
+  <div class="main">
+    <div class="box">
+      <div class="clip" :style="clipStyle"></div>
+    </div>
+    <div class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
+    <div class="processContent" v-html="processContent">
+    </div>
   </div>
-  <div>
-    {{ processContent }}
-  </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -48,9 +47,10 @@ export default {
     //从后端获取数据
     this.timeOk = this.$route.params.timeLimit;
     // this.DataView();
-    this.timer = setInterval(this.DataView(), 1000);
+    this.timer = setInterval(()=>{ 
+      this.DataView();
+    }, 1000);
   },
-
   methods: {
     DataView() {
       let params = {
@@ -58,7 +58,7 @@ export default {
         programName: this.$route.params.programName,
       };
       processGet(params).then((res) => {
-        console.log(res.data);
+
         if (res.status == 200) {
           this.processContent = res.data;
         }
@@ -98,12 +98,13 @@ export default {
   border-radius: 50%;
 }
 .tip {
-  margin: 1%;
+  /* margin: 1%; */
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size: 200%;
   font-weight: bold;
   color: #5cb87a;
+  align-content: center;
 }
 </style>
 
