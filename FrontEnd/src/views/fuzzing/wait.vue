@@ -22,13 +22,14 @@ export default {
         transform: "rotate(" + 3.6 * 0 + "deg)",
       },
       //基本参数
-      processContent: {},
+      processContent: "",
 
       timeOk: "",
+      timer:""
     };
   },
   created() {
-    this.DataView()
+   
   },
   mounted() {
     //进度条
@@ -45,27 +46,23 @@ export default {
       this.$data.clipStyle.transform = transform;
     }, 20);
     //从后端获取数据
-    this.timeOk = this.$router.params.timeLimit;
-    this.timer();
+    this.timeOk = this.$route.params.timeLimit;
+    // this.DataView();
+    this.timer = setInterval(this.DataView(), 1000);
   },
 
   methods: {
     DataView() {
       let params = {
-        fuzzer: this.$router.params.fuzzer,
-        programName: this.$router.params.programName,
+        fuzzer: this.$route.params.fuzzer,
+        programName: this.$route.params.programName,
       };
       processGet(params).then((res) => {
-        console.log(res);
+        console.log(res.data);
         if (res.status == 200) {
-          this.processContent = res.data.processContent;
+          this.processContent = res.data;
         }
       });
-    },
-    timer() {
-      return setTimeout(() => {
-        this.DataView();
-      }, 1000);
     },
   },
   watch: {
@@ -73,7 +70,7 @@ export default {
       this.reload();
     },
     processContent() {
-      this.timer();
+      this.DataView();
     },
   },
   unmounted() {

@@ -8,14 +8,12 @@ from django.http import HttpResponse
 from django.views import generic
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
-# from django.views.generic.base import TemplateView, View
 from .models import *
 import os
 from .analyze import Analyze
 from .ser import UsedSoftSer
-# import _thread
-# Create your views here.
-
+from subprocess import getoutput
+from FuzzAll.config import MEM_AFL_PATH
 
 
 def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute):
@@ -199,13 +197,18 @@ def result(request):
             response.status_code = 412
             return response
         
-def waitResult(request):
+def process(request):
     if request.method == "POST":
-        code_id = request.POST.get("id",None)
-        if not code_id:
+        fuzzer = request.POST.get("fuzzer",None)
+        programName = request.POST.get("programName",None)
+        if not (programName and fuzzer):
             response = HttpResponse()
             response.content = "没有参数提供"
             response.status_code = 412
             return response
         else:
-            pass
+            outs = pathJoin("/root/fuzzResult",fuzzer,programName)
+            whatsup = pathJoin(MEM_AFL_PATH,"afl-whatsup")
+            response = HttpResponse()
+            response.content = getoutput(whatsup+" "+outs)
+            return response

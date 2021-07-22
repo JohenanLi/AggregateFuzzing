@@ -18,10 +18,12 @@ from django.urls import path
 from django.conf.urls import include,url
 from .settings import STATIC_ROOT
 from django.views.static import serve
-from upload.views import getExts
+from upload.views import getExts,process,result
 import upload.views
 urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/upload/',include('upload.urls')),
-    path("api/getExts/",getExts)
+    path("api/getExts/",getExts),
+    path("api/process/",process),
+    path("api/result/",result)
 ]
