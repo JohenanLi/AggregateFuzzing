@@ -37,7 +37,35 @@
     </el-row>
   </div>
 
-  <el-table :data="tableData" style="width: 100%">
+  <div class="table">
+      <el-table :data="tableData" border style="width: 100% height: 100%">
+        <el-table-column prop="date" label="日期" width="250">
+           <span>{{ resultList.date }}</span>
+        </el-table-column>
+        <el-table-column prop="name" label="测试软件" width="250">
+           <span>{{ resultList.programName }}</span>
+        </el-table-column>
+        <el-table-column prop="tool" label="Fuzz工具" width="250">
+           <span>{{ resultList.tool }}</span>
+        </el-table-column>
+        <el-table-column prop="crash" label="漏洞总数" width="250">
+           <span>{{ resultList.total_crashes }}</span>
+        </el-table-column>
+        <el-table-column prop="coverage" label="平均路径覆盖率" width="250">
+          <span>{{ resultList.path_cvg }}</span>
+        </el-table-column>
+        <el-table-column fixed="right" label="操作">
+          <template #default="scope">
+            <el-button @click="handleClick(scope.row)" type="text" size="large"
+              >下载详细结果</el-button
+            >
+            <el-button @click.prevent="deleteRow(scope.$index, tableData)" type="text" size="large">删除记录</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+  <!-- <el-table :data="tableData" style="width: 100%">
     <el-table-column type="expand">
       <template #default="">
         <el-form label-position="left" inline class="demo-table-expand">
@@ -119,17 +147,17 @@
           <el-form-item label="mode">
             <span>{{ resultList.target_mode }}</span>
           </el-form-item>
-        </el-form>
-      </template>
-    </el-table-column>
+        </el-form> -->
+      <!-- </template>
+    </el-table-column> -->
 
-    <el-table-column label="测试软件" prop="programName"> </el-table-column>
+    <!-- <el-table-column label="测试软件" prop="programName"> </el-table-column>
     <el-table-column label="Fuzz工具" prop="tool"> </el-table-column>
     <el-table-column label="Crash总数" prop="total_crashes"> </el-table-column>
 
     <el-table-column prop="path_cvg" label="路径覆盖率"> </el-table-column>
     <el-table-column prop="bitmap_cvg" label="bitmap_cvg"> </el-table-column>
-  </el-table>
+  </el-table> -->
 </template>
 
 
@@ -170,6 +198,9 @@ export default {
     },
   },
   methods: {
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
     tableRowClassName({ rowIndex }) {
       if (rowIndex === 1) {
         return "warning-row";

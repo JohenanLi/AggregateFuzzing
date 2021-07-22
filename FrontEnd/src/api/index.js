@@ -15,3 +15,4 @@ export const formdataTest = (params) => http.post("api/upload/sourceCode/",param
 export const usedSoft = () => http.get("api/upload/availList/")
 export const resultGet = (params) => http.post("api/result/",params)
 export const processGet = (params) => http.post("api/process/",params)
+export const searchGet = (params) => http.post("api/search/",params)
