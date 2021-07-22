@@ -4,8 +4,7 @@
       <div class="clip" :style="clipStyle"></div>
     </div>
     <div class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
-    <div class="processContent" v-html="processContent">
-    </div>
+    <p class="processContent" v-html="processContent"></p>
   </div>
 </template>
 
@@ -60,7 +59,10 @@ export default {
       processGet(params).then((res) => {
 
         if (res.status == 200) {
-          this.processContent = res.data;
+          
+          let reg=new RegExp("\n","g"); 
+          let str= res.data.replace(reg,"<br>");
+          this.processContent = str;
         }
       });
     },
