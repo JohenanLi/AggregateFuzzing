@@ -42,17 +42,20 @@ class uploadSourceProgram(models.Model):
 
 class codeResult(models.Model):
     id = models.AutoField('id', primary_key=True)
+    programName = models.CharField("programName",max_length=100,default="")
     codeCoverage = models.CharField('codeCoverage', max_length=10)
-    bugs = models.TextField('bugs', max_length=1000)
-    sample = models.CharField('sample', max_length=100)
+    crashes = models.CharField('crashes', max_length=10,default="0")
+    fuzzer = models.CharField('fuzzer', max_length=20,default="")
+    time = models.CharField("time",max_length=12,default="")
     code = models.OneToOneField(to=uploadSourceCode, on_delete=CASCADE)
 
 
 class programResult(models.Model):
     id = models.AutoField('id', primary_key=True)
     codeCoverage = models.CharField('codeCoverage', max_length=10)
-    bugs = models.TextField('bugs', max_length=1000)
-    sample = models.CharField('sample', max_length=100)
+    crashes = models.CharField('crashes', max_length=10,default="0")
+    fuzzer = models.CharField('fuzzer', max_length=20,default="")
+    time = models.CharField("time",max_length=12,default="")
     program = models.OneToOneField(to=uploadSourceProgram, on_delete=CASCADE)
 
 
