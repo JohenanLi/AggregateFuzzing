@@ -228,12 +228,14 @@
         </el-tab-pane> -->
       </el-tabs>
     </el-form>
-  </div>
-  <div class="submit">
+
+     <div class="submit">
     <el-form-item size="large">
       <el-button type="primary" @click="onSubmit">提交</el-button>
       <el-button>取消</el-button>
     </el-form-item>
+  </div>
+
   </div>
 </template>
 
@@ -564,7 +566,6 @@ export default {
     
     onSubmit() {
       this.$refs["this.form"].validate((valid) => {
-        if (valid) {
           //加载
         const myloading = this.$loading({
           lock: true,
@@ -572,6 +573,7 @@ export default {
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
+        if (valid) {
 
           let params = {
             fileList: this.form.fileList,
@@ -667,7 +669,7 @@ export default {
   font-size: 20px;
 }
 .submit {
-  margin: 2% 0px 0px 60%;
+  margin: 0% 0px 0px 60%;
 }
 .tab {
   margin: 0px 0px 80px 0px;

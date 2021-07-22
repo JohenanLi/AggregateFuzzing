@@ -7,41 +7,42 @@
   </div>
 
   <div class="centerBottom" align="center">
+
   <div class="logobottom" id="logo">
     <p class="title"><i class="el-icon-search"></i>FuzzTotal</p>
   </div>
-  <div></div>
 
   
   <div class="explainbottom" align="left">
     <p class="explain">欢迎使用FuzzTotal,您可以选择上传源代码或者可执行文件进行漏洞挖掘，也可以搜索本系统所拥有资源。</p>
     </div>
 
-  <div align="center">
+  <div class="Function_button" align="center">
     <el-row>
       <el-col :span="6">
         <el-card shadow="hover" :body-style="{ padding: '0px' }">
           <img
             src="../assets/img/上传源文件.jpg"
             class="image"
-            height="200"
-            width="300"
+              height="200"
+            width="200"
           />
-          <div style="padding: 14px">
+          <div style="padding: 1%">
             
             <div class="bottom">
               <!-- <time class="time">{{ currentDate }}</time> -->
               <el-button v-on:click="gotoSourceCode" type="primary" plain class="button"><i class="el-icon-upload el-icon--right"></i>源代码文件上传</el-button>
             </div>
           </div>
+
         </el-card>
       </el-col>
       <el-col :span="6">
         <el-card shadow="hover" :body-style="{ padding: '0px' }">
           <img src="../assets/img/上传可执行文件.jpg" class="image" height="200"
-            width="300"/>
-          <div style="padding: 14px">
-            <div class="bottom">
+            width="200"/>
+          <div style="padding: 1%">
+            <div class="bottom" >
               <el-button type="primary" v-on:click="gotoSourceProgram" plain class="button"><i class="el-icon-upload el-icon--right"></i>可执行文件上传</el-button>
             </div>
           </div>
@@ -51,8 +52,9 @@
       <el-col :span="6">
         <el-card shadow="hover" :body-style="{ padding: '0px' }">
           <img src="../assets/img/find.jpg" class="image" height="200"
-            width="300"/>
-          <div style="padding: 14px">
+            width="200"/>
+
+          <div style="padding: 1% ">
             <div class="bottom">
               <el-button type="primary" v-on:click="gotoSearch" plain class="button" icon="el-icon-search">请输入搜索内容</el-button>
             </div>
@@ -61,6 +63,7 @@
       </el-col>
     </el-row>
   </div>
+
   </div>
 </template>
 <script>
@@ -93,13 +96,19 @@ export default {
 </script>
 <style scoped>
 div {
-  margin-top: 60px;
-  margin-left: 50px;
+  margin-top: 5%;
+  margin-left: 4%;
+}
+.Function_button {
+  margin-top: 5%;
+  margin-left: 4%;
 }
 .centerbottom{
   margin: 0%；
 }
 .title {
+  margin-top: 5%;
+  margin-left: 4%;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size:400%;
@@ -107,6 +116,8 @@ div {
   color: rgb(78, 156, 233);
 }
 .explain {
+  margin-top: 5%;
+  margin-left: 4%;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size:x-large;
@@ -127,8 +138,10 @@ div {
   height:70px;
 }
 .bottom {
-  margin-top: 13px;
-  line-height: 12px;
+  /* margin-top: 13px; */
+  margin-bottom: 2%;
+  margin-left: 20%;
+  line-height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
