@@ -53,13 +53,14 @@ export default {
     // this.DataView();
     this.timer = setInterval(()=>{ 
       this.DataView();
-    }, 2000);
+      console.log(this.$route.params.sum_ms);
+    }, 5000);
+    
     this.timer1 = setTimeout(this.close,this.$route.params.sum_ms);
   },
   methods: {
     close() {
       this.complete=false;
-      this.unmounted();
     },
     DataView() {
       let params = {
