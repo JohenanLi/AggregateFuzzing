@@ -6,8 +6,27 @@
     </div>
     <div v-if="complete" class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
     <div v-else class="tip">已完成，请在个人主页查看结果</div>
+    <div class="card">
+      <el-row>
+
+        <el-col :span="10">
+          <el-card shadow="hover" :body-style="{ padding: '0px' }">
     <p class="result_individual" v-html="result.result_individual"></p>
+            卡片一
+          </el-card>
+        </el-col>
+
+        <el-col :span="10">
+          <el-card shadow="hover" :body-style="{ padding: '0px' }">
     <p class="result_summary" v-html="result.result_summary"></p>
+            卡片二
+          </el-card>
+        </el-col>
+     
+      </el-row>
+      
+    </div>
+
   </div>
 </template>
 
@@ -58,7 +77,7 @@ export default {
   },
   methods: {
     close() {
-      this.complete=false;
+      this.complete = true;
       this.unmounted();
     },
     DataView() {
@@ -97,7 +116,11 @@ export default {
   height: 200px;
   /* overflow: hidden; */
 }
-
+.card {
+  margin-left: 5%;
+  margin-top: 2%;
+  align-items: center;
+}
 .clip {
   height: 100%;
   box-sizing: border-box;
