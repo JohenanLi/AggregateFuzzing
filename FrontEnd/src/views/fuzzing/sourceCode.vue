@@ -156,7 +156,7 @@
               <el-upload
                 class="sourceCode"
                 drag
-                action="/api/upload/uploadCode/"
+                action="http://fuzz.wolongdanxin.top/api/upload/uploadCode/"
                 :before-remove="beforeRemove"
                 multiple
                 :file-list="form.fileList"
@@ -593,9 +593,14 @@ export default {
             if (res.status == 200) {
               alert("success!");
               myloading.close();
-          
-            this.gotowait(res.data.msg);
+            this.gotowait(res.data.msg,res.data.sum_ms);
             }
+            else {
+            myloading.close();
+            console.log("error submit!!");
+            ElMessage.error('提交失败！');
+            return false;
+        }
           });
         } else {
           myloading.close();
@@ -605,13 +610,14 @@ export default {
         }
       });
     },
-    gotowait(timeLimit){
+    gotowait(timeLimit,sum_ms){
       this.$router.push({
         name:'wait',
         params: {
                   fuzzer:this.form.name,
                   programName:this.form.programName,
-                  timeLimit:timeLimit
+                  timeLimit:timeLimit,
+                  sum_ms: sum_ms
         }
     })
     },

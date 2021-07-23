@@ -12,16 +12,20 @@
           </div>
           <div class="time_place">
             <el-space wrap :size="large">
-            <span class="details">
-              登录日期<br>
-            {{time}}
-            </span>
-            <el-divider direction="vertical"></el-divider>
-            <span class="details">登录地点<br>
-            China</span>
-            <el-divider direction="vertical"></el-divider>
-            <span class="details">检测次数<br>
-            5</span>
+              <span class="details">
+                登录日期<br />
+                {{ time }}
+              </span>
+              <el-divider direction="vertical"></el-divider>
+              <span class="details"
+                >登录地点<br />
+                China</span
+              >
+              <el-divider direction="vertical"></el-divider>
+              <span class="details"
+                >检测次数<br />
+                5</span
+              >
             </el-space>
             <!-- <div class="user-info-list">
             上次登录时间：
@@ -38,32 +42,40 @@
   </div>
 
   <div class="table">
-      <el-table :data="tableData" border style="width: 100% height: 100%">
-        <el-table-column prop="date" label="日期" width="250">
-           <span>{{ resultList.date }}</span>
-        </el-table-column>
-        <el-table-column prop="name" label="测试软件" width="250">
-           <span>{{ resultList.programName }}</span>
-        </el-table-column>
-        <el-table-column prop="tool" label="Fuzz工具" width="250">
-           <span>{{ resultList.tool }}</span>
-        </el-table-column>
-        <el-table-column prop="crash" label="漏洞总数" width="250">
-           <span>{{ resultList.total_crashes }}</span>
-        </el-table-column>
-        <el-table-column prop="coverage" label="平均路径覆盖率" width="250">
-          <span>{{ resultList.path_cvg }}</span>
-        </el-table-column>
-        <el-table-column fixed="right" label="操作">
-          <template #default="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="large"
-              >下载详细结果</el-button
-            >
-            <el-button @click.prevent="deleteRow(scope.$index, tableData)" type="text" size="large">删除记录</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+    <el-table :data="tableData" border style="width: 100% height: 100%">
+      <el-table-column prop="date" label="日期" width="250">
+        <span>{{ resultList.date }}</span>
+      </el-table-column>
+      <el-table-column prop="name" label="测试软件" width="250">
+        <span>{{ resultList.programName }}</span>
+      </el-table-column>
+      <el-table-column prop="tool" label="Fuzz工具" width="250">
+        <span>{{ resultList.tool }}</span>
+      </el-table-column>
+      <el-table-column prop="crash" label="漏洞总数" width="250">
+        <span>{{ resultList.total_crashes }}</span>
+      </el-table-column>
+      <el-table-column prop="coverage" label="平均路径覆盖率" width="250">
+        <span>{{ resultList.path_cvg }}</span>
+      </el-table-column>
+      <el-table-column fixed="right" label="操作">
+        <template #default="scope">
+          <el-button @click.prevent="gotoprocess" type="text" size="large"
+            >查看进度</el-button
+          >
+          <el-button @click="handleClick(scope.row)" type="text" size="large"
+            >下载详细结果</el-button
+          >
+          <el-button
+            @click.prevent="deleteRow(scope.$index, tableData)"
+            type="text"
+            size="large"
+            >删除记录</el-button
+          >
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 
   <!-- <el-table :data="tableData" style="width: 100%">
     <el-table-column type="expand">
@@ -148,10 +160,10 @@
             <span>{{ resultList.target_mode }}</span>
           </el-form-item>
         </el-form> -->
-      <!-- </template>
+  <!-- </template>
     </el-table-column> -->
 
-    <!-- <el-table-column label="测试软件" prop="programName"> </el-table-column>
+  <!-- <el-table-column label="测试软件" prop="programName"> </el-table-column>
     <el-table-column label="Fuzz工具" prop="tool"> </el-table-column>
     <el-table-column label="Crash总数" prop="total_crashes"> </el-table-column>
 
@@ -198,6 +210,7 @@ export default {
     },
   },
   methods: {
+    gotoprocess() {},
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },

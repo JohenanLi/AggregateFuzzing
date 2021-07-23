@@ -1,9 +1,11 @@
 <template>
   <div class="main">
     <div class="box">
-      <div class="clip" :style="clipStyle"></div>
+      <div v-if="complete" class="clip" :style="clipStyle"></div>
+      <el-progress v-else type="circle" :percentage="100" :stroke-width="10" width="200" status="success"></el-progress>
     </div>
-    <div class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
+    <div v-if="complete" class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
+    <div v-else class="tip">已完成，请在个人主页查看结果</div>
     <p class="result_individual" v-html="result.result_individual"></p>
     <p class="result_summary" v-html="result.result_summary"></p>
   </div>
@@ -15,13 +17,14 @@ export default {
   inject: ["reload"],
   name: "wait",
   data() {
+  
     return {
       //进度条
       clipStyle: {
         transform: "rotate(" + 3.6 * 0 + "deg)",
       },
       //基本参数
-
+      complete: true,
       timeOk: "",
       timer:"",
       result:"",
@@ -37,21 +40,27 @@ export default {
       if (rotate >= 100) {
         rotate = 0;
       }
-
       rotate++;
 
       let transform = "rotate(" + 3.6 * rotate + "deg)";
 
       this.$data.clipStyle.transform = transform;
     }, 20);
+
     //从后端获取数据
     this.timeOk = this.$route.params.timeLimit;
+
     // this.DataView();
     this.timer = setInterval(()=>{ 
       this.DataView();
-    }, 1000);
+    }, 2000);
+    this.timer1 = setTimeout(this.close,this.$route.params.sum_ms);
   },
   methods: {
+    close() {
+      this.complete=false;
+      this.unmounted();
+    },
     DataView() {
       let params = {
         fuzzer: this.$route.params.fuzzer,
@@ -75,6 +84,7 @@ export default {
   },
   unmounted() {
     clearTimeout(this.timer);
+    clearTimeout(this.timer1);
   },
 };
 </script>
