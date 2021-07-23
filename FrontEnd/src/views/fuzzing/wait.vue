@@ -2,31 +2,36 @@
   <div class="main">
     <div class="box">
       <div v-if="complete" class="clip" :style="clipStyle"></div>
-      <el-progress v-else type="circle" :percentage="100" :stroke-width="10" width="200" status="success"></el-progress>
+      <el-progress
+        v-else
+        type="circle"
+        :percentage="100"
+        :stroke-width="10"
+        width="200"
+        status="success"
+      ></el-progress>
     </div>
-    <div v-if="complete" class="tip">提交成功，请在{{ timeOk }}时查看最终结果。</div>
+    <div v-if="complete" class="tip">
+      提交成功，请在{{ timeOk }}时查看最终结果。
+    </div>
     <div v-else class="tip">已完成，请在个人主页查看结果</div>
-    <div class="card">
-      <el-row>
 
-        <el-col :span="10">
-          <el-card shadow="hover" :body-style="{ padding: '0px' }">
-    <p class="result_individual" v-html="result.result_individual"></p>
+    <div class="card">
+      <el-space wrap :size="100">
+          <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '0px' }">
+            <p class="result_individual" v-html="result.result_individual"></p>
             卡片一
           </el-card>
-        </el-col>
+       
 
-        <el-col :span="10">
-          <el-card shadow="hover" :body-style="{ padding: '0px' }">
-    <p class="result_summary" v-html="result.result_summary"></p>
+          <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '0px' }">
+            <p class="result_summary" v-html="result.result_summary"></p>
             卡片二
           </el-card>
-        </el-col>
-     
-      </el-row>
       
-    </div>
+      </el-space>
 
+    </div>
   </div>
 </template>
 
@@ -79,12 +84,7 @@ export default {
   },
   methods: {
     close() {
-<<<<<<< HEAD
-      this.complete = true;
-      this.unmounted();
-=======
       this.complete=false;
->>>>>>> 0104cadafd09974cc1af1b876fdd85e4a2208d35
     },
     DataView() {
       let params = {
