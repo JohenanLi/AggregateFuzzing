@@ -243,108 +243,6 @@
 import { formdataTest } from "@/api/index";
 import { defineComponent, ref } from "vue";
 import { ElMessage } from 'element-plus';
-// const cityOptions = [
-//   "7z",
-//   "602",
-//   "abw",
-//   "aes",
-//   "asm",
-//   "asn1",
-//   "bmi",
-//   "bmp",
-//   "bson",
-//   "bzip2",
-//   "certificate",
-//   "crl",
-//   "csv",
-//   "dercrl",
-//   "dif",
-//   "docx",
-//   "dxf",
-//   "ec",
-//   "elliptic",
-//   "eps",
-//   "flag",
-//   "flatbuffers",
-//   "flate",
-//   "fmt",
-//   "fodt",
-//   "freetype",
-//   "gif",
-//   "goast",
-//   "gob",
-//   "gofmt",
-//   "gopacket",
-//   "gorillamux",
-//   "gzip",
-//   "html",
-//   "http2",
-//   "httpreq",
-//   "httpresp",
-//   "jpeg",
-//   "json",
-//   "jsonrpc",
-//   "lzw",
-//   "mail",
-//   "mime",
-//   "mml",
-//   "mtp",
-//   "multipart",
-//   "nss",
-//   "ole",
-//   "parser",
-//   "path",
-//   "pct",
-//   "pcx",
-//   "pdf",
-//   "pem",
-//   "pkcs",
-//   "pkix",
-//   "png",
-//   "ppm",
-//   "ppt",
-//   "protobuf",
-//   "qxp",
-//   "ras",
-//   "regexp",
-//   "rtf",
-//   "scrtf",
-//   "slk",
-//   "smtp",
-//   "snappy",
-//   "sqlparser",
-//   "stdhtml",
-//   "strings",
-//   "suffixrray",
-//   "svm",
-//   "tar",
-//   "tga",
-//   "tif",
-//   "tiff",
-//   "time",
-//   "tls",
-//   "tlsclient",
-//   "trace",
-//   "truetype",
-//   "url",
-//   "webdav",
-//   "webp",
-//   "websocketclient",
-//   "websocketserver",
-//   "wks",
-//   "wmf",
-//   "ww2",
-//   "ww6",
-//   "ww8",
-//   "xbm",
-//   "xls",
-//   "xlsx",
-//   "xml",
-//   "xpm",
-//   "zip",
-//   "zlib",
-//   "zmf",
-// ];
 export default {
   inject: ["reload"],
   data() {
@@ -362,8 +260,8 @@ export default {
         inputCommand: "",
         prePara: "",
         postPara: "",
-        hour: 1,
-        minute: 0,
+        hour: 0,
+        minute: 5,
       },
       rules: {
         programName: [
@@ -598,14 +496,13 @@ export default {
             else {
             myloading.close();
             console.log("error submit!!");
-            ElMessage.error('提交失败！');
-            return false;
+            alert('提交失败！');
         }
           });
         } else {
           myloading.close();
           console.log("error submit!!");
-          ElMessage.error('提交失败！');
+          alert('提交失败！');
           return false;
         }
       });

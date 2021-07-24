@@ -27,14 +27,6 @@
                 5</span
               >
             </el-space>
-            <!-- <div class="user-info-list">
-            上次登录时间：
-            <span>{{ time }}</span>
-          </div>
-          <div class="user-info-list">
-            上次登录地点：
-            <span>长沙</span> -->
-            <!-- </div> -->
           </div>
         </el-card>
       </el-col>
@@ -42,32 +34,35 @@
   </div>
 
   <div class="table">
-    <el-table :data="tableData" border style="width: 100% height: 100%">
-      <el-table-column prop="date" label="日期" width="250">
-        <span>{{ resultList.date }}</span>
+    <el-table :data="resultList" border style="width: 100% height: 100%">
+      <el-table-column prop="time" label="日期" width="250">
+        <!-- <span>{{ resultList.time }}</span> -->
       </el-table-column>
-      <el-table-column prop="name" label="测试软件" width="250">
-        <span>{{ resultList.programName }}</span>
+      <el-table-column prop="programName" label="测试软件" width="250">
+        <!-- <span>{{ result.programName }}</span> -->
       </el-table-column>
-      <el-table-column prop="tool" label="Fuzz工具" width="250">
-        <span>{{ resultList.tool }}</span>
+      <el-table-column prop="fuzzer" label="Fuzz工具" width="250">
+        <!-- <span>{{ result.fuzzer }}</span> -->
       </el-table-column>
-      <el-table-column prop="crash" label="漏洞总数" width="250">
-        <span>{{ resultList.total_crashes }}</span>
+      <el-table-column prop="crashes" label="漏洞总数" width="250">
+        <!-- <span>{{ result.crashes }}</span> -->
       </el-table-column>
-      <el-table-column prop="coverage" label="平均路径覆盖率" width="250">
-        <span>{{ resultList.path_cvg }}</span>
+      <el-table-column prop="codeCoverage" label="平均路径覆盖率" width="250">
+        <!-- <span>{{ result.codeCoverage }}</span> -->
       </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template #default="scope">
-          <el-button @click.prevent="gotoprocess" type="text" size="large"
+          <el-button
+            @click.prevent="gotoprocess(scope.row)"
+            type="text"
+            size="large"
             >查看进度</el-button
           >
           <el-button @click="handleClick(scope.row)" type="text" size="large"
             >下载详细结果</el-button
           >
           <el-button
-            @click.prevent="deleteRow(scope.$index, tableData)"
+            @click.prevent="deleteRow(scope.$index, resultList)"
             type="text"
             size="large"
             >删除记录</el-button
@@ -177,13 +172,14 @@
 <script>
 import { usedSoft, resultGet } from "@/api/index";
 import axios from "axios";
+import QS from 'qs';
 
 export default {
   inject: ["reload"],
   name: "dashboard",
   data() {
     return {
-      tableData: [],
+      // tableData: [],
       name: localStorage.getItem("ms_username"),
       time: this.getLocalTime(),
       avail_cpu: 60,
@@ -195,7 +191,7 @@ export default {
         },
       ],
       resultList: [],
-      id: 1,
+      id: "",
     };
   },
 
@@ -209,8 +205,56 @@ export default {
       this.reload();
     },
   },
+  mounted() {
+    this.getResult();
+    this.timer = setInterval(() => {
+      this.getResult();
+      console.log(this.$route.params.sum_ms);
+    }, 30000);
+  },
   methods: {
-    gotoprocess() {},
+    handleClick(row) {
+      const data = {
+        "programName": row.programName
+      }
+      axios({
+        url:"api/download/",
+        method: "POST",
+        responseType: "arraybuffer",
+        data: QS.stringify(data),
+      })
+        .then((res) => {
+          const content = res.data;
+          const blob = new Blob([content], { type: "application/zip" });
+          const fileName = row.programName + "_" + row.fuzzer + ".zip";
+          if ("download" in document.createElement("a")) {
+            // 非IE下载
+            const elink = document.createElement("a");
+            elink.download = fileName;
+            elink.style.display = "none";
+            elink.href = window.URL.createObjectURL(blob);
+            document.body.appendChild(elink);
+            elink.click();
+            window.URL.revokeObjectURL(elink.href); // 释放URL 对象
+            document.body.removeChild(elink);
+          } else {
+            // IE10+下载
+            navigator.msSaveBlob(blob, fileName);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    gotoprocess(row) {
+      console.log(row.id);
+      this.$router.push({
+        name: "wait",
+        params: {
+          Rowid: row.id,
+        },
+      });
+    },
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },
@@ -252,11 +296,9 @@ export default {
       });
     },
     getResult() {
-      let params = {
-        id: this.id,
-      };
-      resultGet(params).then((res) => {
+      resultGet().then((res) => {
         this.resultList = res.data;
+        console.log(this.resultList);
       });
     },
   },

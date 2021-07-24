@@ -13,26 +13,27 @@
     >
   </div>
   <div class="table">
-    <el-table :data="tableData" border style="width: 100% height: 100%">
-      <el-table-column prop="date" label="日期" width="250"> </el-table-column>
-      <el-table-column prop="name" label="测试软件" width="250">
+    <el-table :data="searchList" border style="width: 100% height: 100%" >
+      <el-table-column prop="time" label="日期" width="250">
       </el-table-column>
-      <el-table-column prop="tool" label="Fuzz工具" width="250">
+      <el-table-column prop="programName" label="测试软件" width="250">
       </el-table-column>
-      <el-table-column prop="crash" label="漏洞总数" width="250">
+      <el-table-column prop="fuzzer" label="Fuzz工具" width="250">
       </el-table-column>
-      <el-table-column prop="coverage" label="平均路径覆盖率" width="250">
+      <el-table-column prop="crashes" label="漏洞总数" width="250">
+      </el-table-column>
+      <el-table-column prop="codeCoverage" label="平均路径覆盖率" width="250">
       </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template #default="scope">
-          <el-button @click.prevent="gotoprocess" type="text" size="large"
+          <el-button @click.prevent="gotoprocess(scope.row)" type="text" size="large"
             >查看进度</el-button
           >
           <el-button @click="handleClick(scope.row)" type="text" size="large"
             >下载详细结果</el-button
           >
           <el-button
-            @click.prevent="deleteRow(scope.$index, tableData)"
+            @click.prevent="deleteRow(scope.$index, resultList)"
             type="text"
             size="large"
             >删除记录</el-button
@@ -50,7 +51,22 @@ import { searchGet } from "../api";
 export default {
   inject: ["reload"],
   name: "search",
+   data() {
+    return {
+      searchList: [],
+      searchContent: "",
+    };
+  },
   methods: {
+     gotoprocess(row) {
+      console.log(row.id);
+       this.$router.push({
+        name:'wait',
+        params: {
+          id: row.id
+        }
+    })
+    },
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },
@@ -62,7 +78,7 @@ export default {
         };
         searchGet(params).then((res) => {
           if (res.status == 200) {
-            this.tableData = res.data.list;
+            this.searchList = res.data;
           } else {
             console.log("error search!!");
             alert("搜索失败！");
@@ -75,19 +91,13 @@ export default {
       }
     },
   },
-
-  data() {
-    return {
-      tableData: [],
-      searchContent: "",
-    };
-  },
   watch: {
     $route(to, from) {
       this.reload();
     },
   },
 };
+
 </script>
 
 <style scoped>

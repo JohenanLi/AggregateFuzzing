@@ -1,12 +1,16 @@
-
+MEM_AFL_PATH = "/root/AggregateFuzzing/BackEnd/tools/memAfl"
+import os
+from subprocess import getoutput
+whatsup_individual = os.path.join(MEM_AFL_PATH,"afl-whatsup_individual")
+whatsup_summary = os.path.join(MEM_AFL_PATH,"afl-whatsup_summary")
+outs = os.path.join("/root/fuzzResult","mem","pdftopng")
+mem_result_individual = getoutput(whatsup_individual+" "+outs)
+mem_result_summary = getoutput(whatsup_summary+" "+outs)
+with open("individula.txt","w")as f:
+    f.writelines(mem_result_individual)
+    f.close()
+with open("summary.txt","w")as f:
+    f.writelines(mem_result_summary)
+    f.close()
 # Create your tests here.
-tmuxCmd = []
-tmuxCmd.append("tmux new-session -s 0pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -M master -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
-tmuxCmd.append("tmux new-session -s 1pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -S slave1 -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
-tmuxCmd.append("tmux new-session -s 2pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -S slave2 -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
-tmuxCmd.append("tmux new-session -s 3pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -S slave3 -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
-tmuxCmd.append("tmux new-session -s 4pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -S slave4 -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
-tmuxCmd.append("tmux new-session -s 5pdftopng -d /root/AggregateFuzzing/BackEnd/tools/memAfl/afl-fuzz  -S slave5 -i /root/AggregateFuzzing/BackEnd/seeddir/pdf -o /root/fuzzResult/mem/pdftopng -- /root/AggregateFuzzing/BackEnd/sourceTotal/xpdf/build/xpdf/pdftopng -mono @@ o")
-from subprocess import run
-from os import system
-import libtmux
+

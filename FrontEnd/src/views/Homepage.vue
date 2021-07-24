@@ -1,10 +1,10 @@
 <template>
  
-  <div class="loginbottom" id="login" align="right">
+  <!-- <div class="loginbottom" id="login" align="right">
     <el-link :underline="false" class="login" >注 册</el-link>
 
     <el-link :underline="false" class="sign" >登 录</el-link>
-  </div>
+  </div> -->
 
   <div class="centerBottom" align="center">
 
@@ -97,7 +97,7 @@ export default {
 <style scoped>
 div {
   margin-top: 5%;
-  margin-left: 4%;
+  margin-left: 3.5%;
 }
 .Function_button {
   margin-top: 5%;
@@ -108,7 +108,7 @@ div {
 }
 .title {
   margin-top: 5%;
-  margin-left: 4%;
+  margin-left: 0%;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size:400%;
@@ -131,7 +131,7 @@ div {
 .explainbottom {
   width: 1000px;
   height: 20px;
-  margin: 20px 20px 20px 30px;
+  margin: 20px 20px 20px 0px;
   
 }
 .logobottom {
@@ -140,7 +140,7 @@ div {
 .bottom {
   /* margin-top: 13px; */
   margin-bottom: 2%;
-  margin-left: 20%;
+  margin-left: 25%;
   line-height: 100%;
   display: flex;
   justify-content: space-between;

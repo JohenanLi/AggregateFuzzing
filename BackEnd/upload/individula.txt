@@ -1,0 +1,33 @@
+
+Individual fuzzers
+==================
+
+>>> master (0 days, 0 hrs) <<<
+
+  cycle 1, lifetime speed 63 execs/sec, path 0/317 (0%)
+  pending 16/317, coverage 13.63%, crash count 1 (!)
+
+>>> slave1 (0 days, 0 hrs) <<<
+
+  cycle 1, lifetime speed 78 execs/sec, path 0/681 (0%)
+  pending 15/680, coverage 13.90%, no crashes yet
+
+>>> slave2 (0 days, 0 hrs) <<<
+
+  cycle 1, lifetime speed 76 execs/sec, path 0/649 (0%)
+  pending 15/648, coverage 13.85%, no crashes yet
+
+>>> slave3 (0 days, 0 hrs) <<<
+
+  cycle 1, lifetime speed 77 execs/sec, path 0/683 (0%)
+  pending 15/682, coverage 13.90%, no crashes yet
+
+>>> slave4 (0 days, 0 hrs) <<<
+
+  cycle 1, lifetime speed 77 execs/sec, path 0/678 (0%)
+  pending 15/677, coverage 13.90%, no crashes yet
+
+>>> slave5 (0 days, 0 hrs) <<<
+
+  cycle 1, lifetime speed 77 execs/sec, path 0/690 (0%)
+  pending 15/689, coverage 13.92%, crash count 1 (!)

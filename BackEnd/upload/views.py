@@ -1,11 +1,11 @@
 import subprocess
 from django.http import response
-from Util.decompress import pathJoin
-from django.http.response import JsonResponse
+from Util.decompress import cd, pathJoin
+from django.http.response import HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
 from rest_framework.generics import ListAPIView
 from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH,SEED_PATH
-from FuzzAll.fuzz import fuzz_one
-from django.http import HttpResponse
+from FuzzAll.fuzz import ALL_PATHS, DIRS, fuzz_one
+from django.http import HttpResponse,Http404, FileResponse
 from django.views import generic
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
@@ -13,13 +13,14 @@ from .models import *
 import os
 from .analyze import Analyze
 from .ser import UsedSoftSer
-from subprocess import getoutput
+from subprocess import getoutput, run
 from FuzzAll.config import MEM_AFL_PATH
-
-
-def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute):
+from .models import codeResult
+from .ser import ResultSer
+from rest_framework import viewsets
+def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute,id):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
-                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute)
+                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute, id = id)
     # if codeOrProgramBoolean:
     #     codeResult.objects.create(codeCoverage=result['codeCoverage'],
     #                       bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
@@ -69,13 +70,13 @@ def sourceCode(request):
             if not inputFile:
                 isfile = True
                 resultTime =threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute)
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute,id = temp.id)
             else:
                 # 调用接口传数据
                 resultTime = threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute)
-            print(resultTime)
-            return JsonResponse({"msg":resultTime})
+                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute,id = temp.id)
+            
+            return JsonResponse({"msg":resultTime,"sum_ms":(int(hour)*60*60+int(minute)*60) *1000})
 
 
 def sourceProgram(request):
@@ -100,6 +101,7 @@ def sourceProgram(request):
             isfile = False
             temp = uploadSourceProgram.objects.create(
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, inputCommand=inputCommand)
+
             ##路径替换
             ext = str(filePath).split('.')[-1]
             filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])
@@ -144,7 +146,7 @@ def uploadCode(request):
                 
                 filePath = os.path.join(SOURCE_FILE_PATH, fileName)
                 print('filepath = [%s]'%filePath)
-                os.system("mkdir %s" %(SOURCE_FILE_PATH))
+                # os.system("mkdir %s" %(SOURCE_FILE_PATH))
                 fileList.append(filePath)
                 try:
                     writeFile(filePath, file)
@@ -189,29 +191,64 @@ def getExts(request):
                 exts.append(line.rstrip())
             return JsonResponse(exts,safe=False)
 
-def result(request):
-    if request.method == "POST":
-        programName = request.POST.get("programName",None)
-        if not programName:
-            response = HttpResponse()
-            response.content = "没有参数提供"
-            response.status_code = 412
-            return response
+class ResultViewSet(viewsets.ModelViewSet):
+    # def result(request):
+    #     if request.method == "POST":
+    #         programName = request.POST.get("id",None)
+    #         if not programName:
+    #             response = HttpResponse()
+    #             response.content = "没有参数提供"
+    #             response.status_code = 412
+    #             return response
+    #     elif request.method == "GET":
+    serializer_class = ResultSer
+    queryset = codeResult.objects.all()
+                
+
         
 def process(request):
     if request.method == "POST":
-        fuzzer = request.POST.get("fuzzer",None)
+        fuzzers  = ["MEM","AFLPP","TORTOISE"]
         programName = request.POST.get("programName",None)
-        if not (programName and fuzzer):
+        if not (programName and fuzzer and id):
             response = HttpResponse()
             response.content = "没有参数提供"
             response.status_code = 412
             return response
-        else:
-            outs = pathJoin("/root/fuzzResult",fuzzer,programName)
+        elif id != None:
+            codeResultInstance = codeResult.objects.get(id = id)
             whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
             whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
-            result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
-            result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
-            result ={"result_individual":result_individual,"result_summary":result_summary}
+
+            outs = pathJoin("/root/fuzzResult",fuzzer,programName)
+            mem_result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
+            mem_result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
+        else:
+            outs = pathJoin("/root/fuzzResult",fuzzers[0],programName)
+            whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
+            whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+            mem_result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
+            mem_result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
+            result ={"mem":"","mem":mem_result_summary}
             return JsonResponse(data=result,safe=False)
+
+def download(request):
+    if request.method == "POST":
+        print(request.POST)
+        codeResult_id = request.POST.get("id",None)[0]
+        if id == None:
+            return HttpResponseNotAllowed
+
+        codeResultInstance = codeResult.objects.get(id = codeResult_id)
+        cd("/root/test")
+        zipCMD = "7za a -tzip -r %s.zip %s"%(codeResultInstance.programName,pathJoin(DIRS[codeResultInstance.fuzzer],
+        codeResultInstance.programName))
+        print(zipCMD)
+        run(zipCMD,shell= True)
+        file_path = codeResultInstance.programName+".zip"
+        response = FileResponse(open(file_path, 'rb'))
+        response['content_type'] = "application/octet-stream"
+        response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
+        return response
+    elif request.method == "GET":
+        print("GET")

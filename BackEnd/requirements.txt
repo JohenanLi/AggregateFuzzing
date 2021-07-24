@@ -2,5 +2,5 @@ django
 uwsgi
 django-cors-headers
 djangorestframework
-python-crontab
-croniter
+libtmux
+django-apscheduler

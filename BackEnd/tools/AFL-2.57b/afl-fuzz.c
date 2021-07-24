@@ -1,20 +1,4 @@
 /*
-  Copyright 2013 Google LLC All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at:
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-*/
-
-/*
    american fuzzy lop - fuzzer code
    --------------------------------
 
@@ -22,19 +6,24 @@
 
    Forkserver design by Jann Horn <jannhorn@googlemail.com>
 
+   Copyright 2013, 2014, 2015, 2016, 2017 Google Inc. All rights reserved.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at:
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
    This is the real deal: the program takes an instrumented binary and
    attempts a variety of basic fuzzing tricks, paying close attention to
    how they affect the execution path.
 
-*/
+ */
 
 #define AFL_MAIN
-#include "android-ashmem.h"
 #define MESSAGES_TO_STDOUT
 
-#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
-#endif
 #define _FILE_OFFSET_BITS 64
 
 #include "config.h"
@@ -182,7 +171,6 @@ EXP_ST u64 total_crashes,             /* Total number of crashes          */
            unique_tmouts,             /* Timeouts with unique signatures  */
            unique_hangs,              /* Hangs with unique signatures     */
            total_execs,               /* Total execve() calls             */
-           slowest_exec_ms,           /* Slowest testcase non hang in ms  */
            start_time,                /* Unix start time (ms)             */
            last_path_time,            /* Time for most recent path (ms)   */
            last_crash_time,           /* Time for most recent crash (ms)  */
@@ -889,7 +877,7 @@ EXP_ST void read_bitmap(u8* fname) {
 
 static inline u8 has_new_bits(u8* virgin_map) {
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
 
   u64* current = (u64*)trace_bits;
   u64* virgin  = (u64*)virgin_map;
@@ -903,7 +891,7 @@ static inline u8 has_new_bits(u8* virgin_map) {
 
   u32  i = (MAP_SIZE >> 2);
 
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
   u8   ret = 0;
 
@@ -923,7 +911,7 @@ static inline u8 has_new_bits(u8* virgin_map) {
         /* Looks like we have not found any new bytes yet; see if any non-zero
            bytes in current[] are pristine in virgin[]. */
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
 
         if ((cur[0] && vir[0] == 0xff) || (cur[1] && vir[1] == 0xff) ||
             (cur[2] && vir[2] == 0xff) || (cur[3] && vir[3] == 0xff) ||
@@ -937,7 +925,7 @@ static inline u8 has_new_bits(u8* virgin_map) {
             (cur[2] && vir[2] == 0xff) || (cur[3] && vir[3] == 0xff)) ret = 2;
         else ret = 1;
 
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
       }
 
@@ -1059,7 +1047,7 @@ static const u8 simplify_lookup[256] = {
 
 };
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
 
 static void simplify_trace(u64* mem) {
 
@@ -1116,7 +1104,7 @@ static void simplify_trace(u32* mem) {
 
 }
 
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
 
 /* Destructively classify execution counts in a trace. This is used as a
@@ -1153,7 +1141,7 @@ EXP_ST void init_count_class16(void) {
 }
 
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
 
 static inline void classify_counts(u64* mem) {
 
@@ -1205,7 +1193,7 @@ static inline void classify_counts(u32* mem) {
 
 }
 
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
 
 /* Get rid of shared memory (atexit handler). */
@@ -1379,7 +1367,7 @@ EXP_ST void setup_shm(void) {
 
   trace_bits = shmat(shm_id, NULL, 0);
   
-  if (trace_bits == (void *)-1) PFATAL("shmat() failed");
+  if (!trace_bits) PFATAL("shmat() failed");
 
 }
 
@@ -2274,7 +2262,6 @@ static u8 run_target(char** argv, u32 timeout) {
 
   static struct itimerval it;
   static u32 prev_timed_out = 0;
-  static u64 exec_ms = 0;
 
   int status = 0;
   u32 tb4;
@@ -2423,10 +2410,6 @@ static u8 run_target(char** argv, u32 timeout) {
 
   if (!WIFSTOPPED(status)) child_pid = 0;
 
-  getitimer(ITIMER_REAL, &it);
-  exec_ms = (u64) timeout - (it.it_value.tv_sec * 1000 +
-                             it.it_value.tv_usec / 1000);
-
   it.it_value.tv_sec = 0;
   it.it_value.tv_usec = 0;
 
@@ -2442,11 +2425,11 @@ static u8 run_target(char** argv, u32 timeout) {
 
   tb4 = *(u32*)trace_bits;
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
   classify_counts((u64*)trace_bits);
 #else
   classify_counts((u32*)trace_bits);
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
   prev_timed_out = child_timed_out;
 
@@ -2472,12 +2455,6 @@ static u8 run_target(char** argv, u32 timeout) {
 
   if ((dumb_mode == 1 || no_forkserver) && tb4 == EXEC_FAIL_SIG)
     return FAULT_ERROR;
-
-  /* It makes sense to account for the slowest units only if the testcase was run
-  under the user defined timeout. */
-  if (!(timeout > exec_tmout) && (slowest_exec_ms < exec_ms)) {
-    slowest_exec_ms = exec_ms;
-  }
 
   return FAULT_NONE;
 
@@ -2556,7 +2533,7 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
   static u8 first_trace[MAP_SIZE];
 
-  u8  fault = 0, new_bits = 0, var_detected = 0, hnb = 0,
+  u8  fault = 0, new_bits = 0, var_detected = 0,
       first_run = (q->exec_cksum == 0);
 
   u64 start_us, stop_us;
@@ -2584,13 +2561,7 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
   if (dumb_mode != 1 && !no_forkserver && !forksrv_pid)
     init_forkserver(argv);
 
-  if (q->exec_cksum) {
-
-    memcpy(first_trace, trace_bits, MAP_SIZE);
-    hnb = has_new_bits(virgin_bits);
-    if (hnb > new_bits) new_bits = hnb;
-
-  }
+  if (q->exec_cksum) memcpy(first_trace, trace_bits, MAP_SIZE);
 
   start_us = get_cur_time_us();
 
@@ -2618,7 +2589,7 @@ static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,
 
     if (q->exec_cksum != cksum) {
 
-      hnb = has_new_bits(virgin_bits);
+      u8 hnb = has_new_bits(virgin_bits);
       if (hnb > new_bits) new_bits = hnb;
 
       if (q->exec_cksum) {
@@ -3212,11 +3183,11 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
       if (!dumb_mode) {
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
         simplify_trace((u64*)trace_bits);
 #else
         simplify_trace((u32*)trace_bits);
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
         if (!has_new_bits(virgin_tmout)) return keeping;
 
@@ -3276,11 +3247,11 @@ keep_as_crash:
 
       if (!dumb_mode) {
 
-#ifdef WORD_SIZE_64
+#ifdef __x86_64__
         simplify_trace((u64*)trace_bits);
 #else
         simplify_trace((u32*)trace_bits);
-#endif /* ^WORD_SIZE_64 */
+#endif /* ^__x86_64__ */
 
         if (!has_new_bits(virgin_crash)) return keeping;
 
@@ -3387,10 +3358,10 @@ static void find_timeout(void) {
   i = read(fd, tmp, sizeof(tmp) - 1); (void)i; /* Ignore errors */
   close(fd);
 
-  off = strstr(tmp, "exec_timeout      : ");
+  off = strstr(tmp, "exec_timeout   : ");
   if (!off) return;
 
-  ret = atoi(off + 20);
+  ret = atoi(off + 17);
   if (ret <= 4) return;
 
   exec_tmout = ret;
@@ -3398,13 +3369,11 @@ static void find_timeout(void) {
 
 }
 
-
 /* Update stats file for unattended monitoring. */
 
 static void write_stats_file(double bitmap_cvg, double stability, double eps) {
 
   static double last_bcvg, last_stab, last_eps;
-  static struct rusage usage;
 
   u8* fn = alloc_printf("%s/fuzzer_stats", out_dir);
   s32 fd;
@@ -3433,7 +3402,15 @@ static void write_stats_file(double bitmap_cvg, double stability, double eps) {
     last_eps  = eps;
   }
 
-  fprintf(f, "start_time        : %llu\n"
+  
+    struct tm *p;  
+    start_time=start_time/1000;
+    p=gmtime(&start_time);  
+    char s[100];  
+    strftime(s, sizeof(s), "%Y-%m-%d %H:%M:%S", p); 
+    // printf("%d: %s\n", (int)start_time, s);  
+
+  fprintf(f, "start_time        : %d: %s\n"
              "last_update       : %llu\n"
              "fuzzer_pid        : %u\n"
              "cycles_done       : %llu\n"
@@ -3456,13 +3433,12 @@ static void write_stats_file(double bitmap_cvg, double stability, double eps) {
              "last_crash        : %llu\n"
              "last_hang         : %llu\n"
              "execs_since_crash : %llu\n"
-             "exec_timeout      : %u\n" /* Must match find_timeout() */
+             "exec_timeout      : %u\n"
              "afl_banner        : %s\n"
              "afl_version       : " VERSION "\n"
              "target_mode       : %s%s%s%s%s%s%s\n"
-             "command_line      : %s\n"
-             "slowest_exec_ms   : %llu\n",
-             start_time / 1000, get_cur_time() / 1000, getpid(),
+             "command_line      : %s\n",
+            (int)start_time ,s, get_cur_time() / 1000, getpid(),
              queue_cycle ? (queue_cycle - 1) : 0, total_execs, eps,
              queued_paths, queued_favored, queued_discovered, queued_imported,
              max_depth, current_entry, pending_favored, pending_not_fuzzed,
@@ -3475,23 +3451,8 @@ static void write_stats_file(double bitmap_cvg, double stability, double eps) {
              persistent_mode ? "persistent " : "", deferred_mode ? "deferred " : "",
              (qemu_mode || dumb_mode || no_forkserver || crash_mode ||
               persistent_mode || deferred_mode) ? "" : "default",
-             orig_cmdline, slowest_exec_ms);
+             orig_cmdline);
              /* ignore errors */
-
-  /* Get rss value from the children
-     We must have killed the forkserver process and called waitpid
-     before calling getrusage */
-  if (getrusage(RUSAGE_CHILDREN, &usage)) {
-      WARNF("getrusage failed");
-  } else if (usage.ru_maxrss == 0) {
-    fprintf(f, "peak_rss_mb       : not available while afl is running\n");
-  } else {
-#ifdef __APPLE__
-    fprintf(f, "peak_rss_mb       : %zu\n", usage.ru_maxrss >> 20);
-#else
-    fprintf(f, "peak_rss_mb       : %zu\n", usage.ru_maxrss >> 10);
-#endif /* ^__APPLE__ */
-  }
 
   fclose(f);
 
@@ -5072,12 +5033,6 @@ static u8 fuzz_one(char** argv) {
     u8 res = FAULT_TMOUT;
 
     if (queue_cur->cal_failed < CAL_CHANCES) {
-
-      /* Reset exec_cksum to tell calibrate_case to re-execute the testcase
-         avoiding the usage of an invalid trace_bits.
-         For more info: https://github.com/AFLplusplus/AFLplusplus/pull/425 */
-
-      queue_cur->exec_cksum = 0;
 
       res = calibrate_case(argv, queue_cur, in_buf, queue_cycle - 1, 0);
 
@@ -7084,7 +7039,6 @@ static void check_term_size(void) {
 
   if (ioctl(1, TIOCGWINSZ, &ws)) return;
 
-  if (ws.ws_row == 0 && ws.ws_col == 0) return;
   if (ws.ws_row < 25 || ws.ws_col < 80) term_too_small = 1;
 
 }
@@ -7608,7 +7562,7 @@ EXP_ST void detect_file_args(char** argv) {
 
 /* Set up signal handlers. More complicated that needs to be, because libc on
    Solaris doesn't resume interrupted reads(), sets SA_RESETHAND when you call
-   siginterrupt(), and does other unnecessary things. */
+   siginterrupt(), and does other stupid things. */
 
 EXP_ST void setup_signal_handlers(void) {
 
@@ -8113,17 +8067,6 @@ int main(int argc, char** argv) {
   }
 
   if (queue_cur) show_stats();
-
-  /* If we stopped programmatically, we kill the forkserver and the current runner. 
-     If we stopped manually, this is done by the signal handler. */
-  if (stop_soon == 2) {
-      if (child_pid > 0) kill(child_pid, SIGKILL);
-      if (forksrv_pid > 0) kill(forksrv_pid, SIGKILL);
-  }
-  /* Now that we've killed the forkserver, we wait for it to be able to get rusage stats. */
-  if (waitpid(forksrv_pid, NULL, 0) <= 0) {
-    WARNF("error waitpid\n");
-  }
 
   write_bitmap();
   write_stats_file(0, 0, 0);

@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'upload',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    "django_apscheduler",
 ]
 
+APSCHEDULER_DATETIME_FORMAT =  "N j, Y, f:s a"  # Default apscheduler
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
