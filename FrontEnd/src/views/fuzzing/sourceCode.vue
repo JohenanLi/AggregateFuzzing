@@ -254,7 +254,7 @@ export default {
         programName: ref(""),
         fileList: [],
         seed: "",
-        name: "mem",
+        name: "MEMAFL",
         inputFile: [],
         compileCommand: "",
         inputCommand: "",
@@ -445,14 +445,14 @@ export default {
         },
         {
           value: "TORTOISE",
-          label: "Tortoise",
+          label: "TORTOISE",
         },
         {
-          value: "MEM",
-          label: "MemAFL",
+          value: "MEMAFL",
+          label: "MEMAFL",
         },
       ],
-      valuetype: "MemAFL",
+      valuetype: "MEMAFL",
     };
   },
   watch: {

@@ -31,22 +31,22 @@
       <el-table-column prop="core" label="CPU" width="110">
         <span>{{ result.mem.core }}</span>
       </el-table-column>
-      <el-table-column prop="cycle" label="种子变异轮次" width="110">
+      <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
         <span>{{ result.mem.cycle }}</span>
       </el-table-column>
-      <el-table-column prop="speed" label="执行速度" width="110">
+      <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
         <span>{{ result.mem.speed }}</span>
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
         <span>{{ result.mem.path }}</span>
       </el-table-column>
-      <el-table-column prop="pendig" label="等待路径" width="110">
+      <el-table-column prop="pending" label="等待路径" width="110">
         <span>{{ result.mem.pending }}</span>
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
         <span>{{ result.mem.coverage }}</span>
       </el-table-column>
-      <el-table-column prop="crashes" label="漏洞数量" width="110"> 
+      <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
         <span>{{ result.mem.crashes }}</span>
       </el-table-column>
     </el-table>
@@ -59,25 +59,25 @@
       border
       style="width: 100%"
     >
-      <el-table-column prop="CPU_all" label="CPU总数" width="110">
+      <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
         <span>{{ result.mem.CPU_all }}</span>
       </el-table-column>
       <el-table-column prop="run_time" label="总运行时间" width="110">
         <span>{{ result.mem.run_time }}</span>
       </el-table-column>
-      <el-table-column prop="run_time" label="总执行次数" width="110">
-        <span>{{ result.mem.run_time }}</span>
+      <el-table-column prop="total_execs" label="总执行次数(百万次)" width="110">
+        <span>{{ result.mem.total_execs }}</span>
       </el-table-column>
-      <el-table-column prop="speed_sum" label="累计速度" width="110">
+      <el-table-column prop="speed_sum" label="累计速度(次每秒)" width="110">
         <span>{{ result.mem.speed_sum }}</span>
       </el-table-column>
-      <el-table-column prop="pendig_sum" label="总等待路径" width="110">
+      <el-table-column prop="pending_sum" label="总等待路径(条)" width="110">
         <span>{{ result.mem.pending_sum }}</span>
       </el-table-column>
-      <el-table-column prop="pendig_sum" label="平均等待路径" width="110">
+      <el-table-column prop="pending" label="平均等待路径(条)" width="110">
         <span>{{ result.mem.pending }}</span>
       </el-table-column>
-      <el-table-column prop="crashes_sum" label="总漏洞数量" width="110"> 
+      <el-table-column prop="crashes_sum" label="独立漏洞数量(个)" width="110"> 
         <span>{{ result.mem.crashes_sum }}</span>
       </el-table-column>
     </el-table>
@@ -94,22 +94,22 @@
       <el-table-column prop="core" label="CPU" width="110">
         <span>{{ result.tortoise.core }}</span>
       </el-table-column>
-      <el-table-column prop="cycle" label="种子变异轮次" width="110">
+      <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
         <span>{{ result.tortoise.cycle }}</span>
       </el-table-column>
-      <el-table-column prop="speed" label="执行速度" width="110">
+      <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
         <span>{{ result.tortoise.speed }}</span>
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
         <span>{{ result.tortoise.path }}</span>
       </el-table-column>
-      <el-table-column prop="pendig" label="等待路径" width="110">
+      <el-table-column prop="pending" label="等待路径" width="110">
         <span>{{ result.tortoise.pending }}</span>
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
         <span>{{ result.tortoise.coverage }}</span>
       </el-table-column>
-      <el-table-column prop="crashes" label="漏洞数量" width="110"> 
+      <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
         <span>{{ result.tortoise.crashes }}</span>
       </el-table-column>
     </el-table>
@@ -123,25 +123,25 @@
       border
       style="width: 100%"
     >
-      <el-table-column prop="CPU_all" label="CPU总数" width="110">
+      <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
         <span>{{ result.tortoise.CPU_all }}</span>
       </el-table-column>
       <el-table-column prop="run_time" label="总运行时间" width="110">
         <span>{{ result.tortoise.run_time }}</span>
       </el-table-column>
-      <el-table-column prop="run_time" label="总执行次数" width="110">
-        <span>{{ result.tortoise.run_time }}</span>
+      <el-table-column prop="total_execs" label="总执行次数(百万次)" width="110">
+        <span>{{ result.tortoise.total_execs }}</span>
       </el-table-column>
-      <el-table-column prop="speed_sum" label="累计速度" width="110">
+      <el-table-column prop="speed_sum" label="累计速度(次每秒)" width="110">
         <span>{{ result.tortoise.speed_sum }}</span>
       </el-table-column>
-      <el-table-column prop="pendig_sum" label="总等待路径" width="110">
+      <el-table-column prop="pending_sum" label="总等待路径(条)" width="110">
         <span>{{ result.tortoise.pending_sum }}</span>
       </el-table-column>
-      <el-table-column prop="pendig_sum" label="平均等待路径" width="110">
+      <el-table-column prop="pending" label="平均等待路径(条)" width="110">
         <span>{{ result.tortoise.pending }}</span>
       </el-table-column>
-      <el-table-column prop="crashes_sum" label="总漏洞数量" width="110"> 
+      <el-table-column prop="crashes_sum" label="独立漏洞数量(个)" width="110"> 
         <span>{{ result.tortoise.crashes_sum }}</span>
       </el-table-column>
     </el-table>
@@ -158,22 +158,22 @@
       <el-table-column prop="core" label="CPU" width="110">
         <span>{{ result.AFLpp.core }}</span>
       </el-table-column>
-      <el-table-column prop="cycle" label="种子变异轮次" width="110">
+      <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
         <span>{{ result.AFLpp.cycle }}</span>
       </el-table-column>
-      <el-table-column prop="speed" label="执行速度" width="110">
+      <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
         <span>{{ result.AFLpp.speed }}</span>
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
         <span>{{ result.AFLpp.path }}</span>
       </el-table-column>
-      <el-table-column prop="pendig" label="等待路径" width="110">
+      <el-table-column prop="pending" label="等待路径" width="110">
         <span>{{ result.AFLpp.pending }}</span>
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
         <span>{{ result.AFLpp.coverage }}</span>
       </el-table-column>
-      <el-table-column prop="crashes" label="漏洞数量" width="110"> 
+      <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
         <span>{{ result.AFLpp.crashes }}</span>
       </el-table-column>
     </el-table>
@@ -186,25 +186,25 @@
       border
       style="width: 100%"
     >
-      <el-table-column prop="CPU_all" label="CPU总数" width="110">
+      <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
         <span>{{ result.AFLpp.CPU_all }}</span>
       </el-table-column>
       <el-table-column prop="run_time" label="总运行时间" width="110">
         <span>{{ result.AFLpp.run_time }}</span>
       </el-table-column>
-      <el-table-column prop="run_time" label="总执行次数" width="110">
-        <span>{{ result.AFLpp.run_time }}</span>
+      <el-table-column prop="total_execs" label="总执行次数(百万次）" width="110">
+        <span>{{ result.AFLpp.total_execs }}</span>
       </el-table-column>
-      <el-table-column prop="speed_sum" label="累计速度" width="110">
+      <el-table-column prop="speed_sum" label="累计速度(次每秒)" width="110">
         <span>{{ result.AFLpp.speed_sum }}</span>
       </el-table-column>
-      <el-table-column prop="pendig_sum" label="总等待路径" width="110">
+      <el-table-column prop="pending_sum" label="总等待路径(条)" width="110">
         <span>{{ result.AFLpp.pending_sum }}</span>
       </el-table-column>
-      <el-table-column prop="pendig_sum" label="平均等待路径" width="110">
+      <el-table-column prop="pending_sum" label="平均等待路径(条)" width="110">
         <span>{{ result.AFLpp.pending }}</span>
       </el-table-column>
-      <el-table-column prop="crashes_sum" label="总漏洞数量" width="110"> 
+      <el-table-column prop="crashes_sum" label="独立漏洞数量(个)" width="110"> 
         <span>{{ result.AFLpp.crashes_sum }}</span>
       </el-table-column>
     </el-table>
@@ -250,11 +250,12 @@ export default {
       timer: "",
       result: "",
       tableData: [],
+      sum_ms: ""
     };
   },
   created() {},
   mounted() {
-    this.DataView();
+    
     //进度条
     let rotate = 0;
     setInterval(() => {
@@ -271,35 +272,41 @@ export default {
     //从后端获取数据
     this.timeOk = this.$route.params.timeLimit;
 
-    // this.DataView();
-    this.timer = setInterval(() => {
-      this.DataView();
-      console.log(this.$route.params.sum_ms);
-    }, 5000);
+    this.DataView();
+    this.startCount();
 
-    this.timer1 = setTimeout(this.close, this.$route.params.sum_ms);
+    this.timer1 = setTimeout(this.close, this.sum_ms);
   },
   methods: {
     close() {
       this.complete = false;
-      clearTimeout(this.timer);
+      clearTimeout(this.timer1);
+       clearInterval(this.timer);
     },
+    startCount () {
+      this.closeCount();
+    this.timer = setInterval(() => {
+      this.DataView();
+      console.log(this.timer);
+    }, 5000);
+},
+closeCount () {
+  if (this.timer) {
+     clearInterval(this.timer)
+   }
+},
     DataView() {
-      let params;
-      if(this.$route.params.id){
-       params ={
-          id: this.$route.params.id
-        };
-      }
-      else{
-        params = {
-        fuzzer: this.$route.params.fuzzer,
+      let params={
         programName: this.$route.params.programName,
       };
-      }
       processGet(params).then((res) => {
         if (res.status == 200) {
-          this.result = res.data;
+          this.result = res.data.resultList;
+          this.sum_ms = res.data.sum_ms;
+        }
+        else if(res.status == 500){
+          this.complete = false;
+          this.close();
         }
       });
     },
@@ -308,14 +315,18 @@ export default {
     $route(to, from) {
       this.reload();
     },
-    result() {
-      this.DataView();
-    },
+    // result() {
+    //   this.DataView();
+    // },
   },
   unmounted() {
-    clearTimeout(this.timer);
+    clearInterval(this.timer);
     clearTimeout(this.timer1);
   },
+  beforeUnmount(){
+    clearInterval(this.timer);
+    clearTimeout(this.timer1);
+  }
 };
 </script>
 

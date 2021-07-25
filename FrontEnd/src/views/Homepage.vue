@@ -31,7 +31,7 @@
             
             <div class="bottom">
               <!-- <time class="time">{{ currentDate }}</time> -->
-              <el-button v-on:click="gotoSourceCode" type="primary" plain class="button"><i class="el-icon-upload el-icon--right"></i>源代码文件上传</el-button>
+              <el-button   v-on:click="gotoSourceCode" type="primary" plain class="button"><i class="el-icon-upload el-icon--right"></i>源代码文件上传</el-button>
             </div>
           </div>
 
@@ -56,7 +56,7 @@
 
           <div style="padding: 1% ">
             <div class="bottom">
-              <el-button type="primary" v-on:click="gotoSearch" plain class="button" icon="el-icon-search">请输入搜索内容</el-button>
+              <el-button   type="primary" v-on:click="gotoSearch" plain class="button" icon="el-icon-search">请输入搜索内容</el-button>
             </div>
           </div>
         </el-card>

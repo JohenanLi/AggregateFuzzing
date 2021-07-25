@@ -214,8 +214,9 @@ export default {
   },
   methods: {
     handleClick(row) {
+      alert("文件正在打包，请稍后");
       const data = {
-        "programName": row.programName
+        "id":row.id
       }
       axios({
         url:"api/download/",
@@ -251,7 +252,7 @@ export default {
       this.$router.push({
         name: "wait",
         params: {
-          Rowid: row.id,
+          "programName":row.programName
         },
       });
     },
