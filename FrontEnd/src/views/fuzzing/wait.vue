@@ -19,35 +19,35 @@
     <div v-if="complete" class="card">
     <el-space wrap :size="8.5">
     <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
-    <p class="title">MemAFL</p>
+    <p class="title" >MemAFL</p>
 
     <!-- 单核信息 -->
     <el-table
       v-if="complete"
-      :data="tableData"
+      :data="result"
       border
       style="width: 100%"
     >
-      <el-table-column prop="core" label="CPU" width="110">
-        <span>{{ result.mem.core }}</span>
+      <el-table-column prop="core" label="CPU" width="110" >
+        <!-- <span>{{ result.core }}</span> -->
       </el-table-column>
       <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
-        <span>{{ result.mem.cycle }}</span>
+        <!-- <span>{{ result.cycle }}</span> -->
       </el-table-column>
       <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
-        <span>{{ result.mem.speed }}</span>
+        <!-- <span>{{ result.speed }}</span> -->
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
-        <span>{{ result.mem.path }}</span>
+        <!-- <span>{{ result.path }}</span> -->
       </el-table-column>
       <el-table-column prop="pending" label="等待路径" width="110">
-        <span>{{ result.mem.pending }}</span>
+        <!-- <span>{{ result.pending }}</span> -->
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
-        <span>{{ result.mem.coverage }}</span>
+        <!-- <span>{{ result.coverage }}</span> -->
       </el-table-column>
       <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
-        <span>{{ result.mem.crashes }}</span>
+        <!-- <span>{{ result.crashes }}</span> -->
       </el-table-column>
     </el-table>
     </el-card>
@@ -55,7 +55,7 @@
   <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
     <el-table
       v-if="complete"
-      :data="tableData"
+      :data="result1"
       border
       style="width: 100%"
     >
@@ -247,15 +247,18 @@ export default {
       //基本参数
       complete: true,
       timeOk: "",
-      timer: "",
-      result: "",
+      result: [],
+      result1: [],
+      result2: [],
       tableData: [],
       sum_ms: ""
     };
   },
-  created() {},
-  mounted() {
+  created(){
     
+  },
+
+  mounted() {
     //进度条
     let rotate = 0;
     setInterval(() => {
@@ -270,12 +273,18 @@ export default {
     }, 20);
 
     //从后端获取数据
-    this.timeOk = this.$route.params.timeLimit;
-
+  
     this.DataView();
-    this.startCount();
+    this.timer = setInterval(() => {
+      this.DataView();
+      // console.log(this.$route.params.sum_ms);
+      console.log("result::",this.result);
+    }, 2000);
 
-    this.timer1 = setTimeout(this.close, this.sum_ms);
+    // console.log(this.sum_ms,this.result);
+    // this.timer1 = setTimeout(this.close, this.sum_ms);
+    // this.startCount();
+    
   },
   methods: {
     close() {
@@ -284,30 +293,35 @@ export default {
        clearInterval(this.timer);
     },
     startCount () {
-      this.closeCount();
-    this.timer = setInterval(() => {
+      // this.closeCount();
+      this.timer = setInterval(() => {
       this.DataView();
-      console.log(this.timer);
     }, 5000);
-},
-closeCount () {
-  if (this.timer) {
+    
+    },
+    closeCount () {
+    if (this.timer) {
      clearInterval(this.timer)
    }
-},
+    },
     DataView() {
       let params={
         programName: this.$route.params.programName,
       };
       processGet(params).then((res) => {
-        if (res.status == 200) {
-          this.result = res.data.resultList;
-          this.sum_ms = res.data.sum_ms;
-        }
-        else if(res.status == 500){
-          this.complete = false;
-          this.close();
-        }
+        console.log("res.data",res.data);
+        this.result = res.data;
+        this.sum_ms = res.data.sum_ms;
+        // if (res.status == 200) {
+        //   this.result = res.data;
+        //  this.sum_ms = res.data.sum_ms;
+
+        // }
+        // else if(res.status == 500){
+        //   this.complete = false;
+        //   this.close();
+        // }
+
       });
     },
   },

@@ -1,6 +1,7 @@
+from datetime import datetime
 import subprocess
 from django.http import response
-from Util.decompress import cd, pathJoin
+from Util.decompress import cd, pathJoin,sum_table_data,invi_table_data
 from django.http.response import HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
 from rest_framework.generics import ListAPIView
 from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH,SEED_PATH
@@ -18,6 +19,9 @@ from FuzzAll.config import MEM_AFL_PATH
 from .models import codeResult
 from .ser import ResultSer
 from rest_framework import viewsets
+from rest_framework.views import APIView
+from django.db.models import Q
+import re
 def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute,id):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
                       isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute, id = id)
@@ -36,7 +40,7 @@ def sourceCode(request):
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
-        name = request.POST.get('name','mem')
+        # name = request.POST.get('name','MEMAFL')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
         if inputFile == None:
@@ -50,33 +54,42 @@ def sourceCode(request):
         programName = request.POST.get("programName",None)
         hour = request.POST.get("hour",0)
         minute = request.POST.get("minute",25)
-        outs = os.path.join("/root/fuzzResult/",name,programName)
-        print('获取信息成功')
-        if seed == None and inputFile == None:
-            response = HttpResponse()
-            response.content = "没有上传种子文件"
-            response.status_code = 412
-            return response
-        if not filePath:
-            response = HttpResponse()
-            response.content = "no files for upload!"
-            response.status_code = 412
-            return response
-        else:
-            isfile = False
-            temp = uploadSourceCode.objects.create(
-                filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, postPara=postPara,compileCommand=compileCommand, inputCommand=inputCommand)
-            temp.save()
-            if not inputFile:
-                isfile = True
-                resultTime =threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute,id = temp.id)
+        resultTime = ""
+        for name in ["TORTOISE","MEMAFL","AFL"]:
+            outs = os.path.join("/root/fuzzResult/",name,programName)
+            try:
+                os.mkdir(pathJoin("/root/fuzz_target",name))
+            except:
+                pass
+            copyCMD = "cp -r %s %s"%(filePath,pathJoin("/root/fuzz_target",name))
+            print(copyCMD)
+            run(copyCMD,shell = True)
+            print('获取信息成功')
+            if seed == None and inputFile == None:
+                response = HttpResponse()
+                response.content = "没有上传种子文件"
+                response.status_code = 412
+                return response
+            if not filePath:
+                response = HttpResponse()
+                response.content = "没有上传源代码文件!"
+                response.status_code = 412
+                return response
             else:
-                # 调用接口传数据
-                resultTime = threadFuzz(
-                    fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute,id = temp.id)
-            
-            return JsonResponse({"msg":resultTime,"sum_ms":(int(hour)*60*60+int(minute)*60) *1000})
+                isfile = False
+                temp = uploadSourceCode.objects.create(
+                    filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, postPara=postPara,compileCommand=compileCommand, inputCommand=inputCommand)
+                temp.save()
+                if not inputFile:
+                    isfile = True
+                    resultTime =threadFuzz(
+                        fuzzer=name, program_path=str(filePath), isqemu=False, ins=pathJoin(SEED_PATH,seed), outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute,id = temp.id)
+                else:
+                    # 调用接口传数据
+                    resultTime = threadFuzz(
+                        fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute,id = temp.id)
+                
+        return JsonResponse({"msg":resultTime,"sum_ms":(int(hour)*60*60+int(minute)*60) *1000})
 
 
 def sourceProgram(request):
@@ -88,9 +101,6 @@ def sourceProgram(request):
         inputFile = request.POST.get('inputFile', None)
         prePara = request.POST.get('prePara',None)
         compileCommand = request.POST['compileCommand']
-        # compileExample = """CC=/home/minipython/桌面/AggregateFuzzing/
-        # BackEnd/tools/afl/mm_metric/afl-clang-fast CXX=/home/minipython/桌面/AggregateFuzzing/BackEnd/
-        # tools/afl/mm_metric/afl-clang-fast++ ./configure"""
         inputCommand = request.POST.get('inputCommand',"@@")
         outs = os.path.join(BASE_DIR, 'outs')
 
@@ -208,42 +218,62 @@ class ResultViewSet(viewsets.ModelViewSet):
         
 def process(request):
     if request.method == "POST":
+        print(request.POST)
         fuzzers  = ["MEM","AFLPP","TORTOISE"]
         programName = request.POST.get("programName",None)
-        if not (programName and fuzzer and id):
+        print(programName)
+        if not programName :
             response = HttpResponse()
             response.content = "没有参数提供"
             response.status_code = 412
             return response
-        elif id != None:
-            codeResultInstance = codeResult.objects.get(id = id)
-            whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
-            whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
-
-            outs = pathJoin("/root/fuzzResult",fuzzer,programName)
-            mem_result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
-            mem_result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
         else:
-            outs = pathJoin("/root/fuzzResult",fuzzers[0],programName)
-            whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
-            whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
-            mem_result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
-            mem_result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
-            result ={"mem":"","mem":mem_result_summary}
-            return JsonResponse(data=result,safe=False)
+            
+            code_list = codeResult.objects.filter(programName = programName)
+            # print(code_list)
+            # input()
+            for code in code_list:
+                print(code)
+                # codeResultInstance = codeResult.objects.get(id = id)
+                whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
+                whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+                outs = pathJoin("/root/fuzzResult",code.fuzzer,code.programName)
+                mem_result_individual =  invi_table_data(getoutput(whatsup_individual+" "+outs))
+                if mem_result_individual == -1:
+                    response = HttpResponse()
+                    response.status_code = 500
+                    return response
+                mem_result_summary = sum_table_data(getoutput(whatsup_summary+" "+outs))
+                #+ mem_result_summary
+                mem = mem_result_individual 
+                sum_ms = (datetime.strptime(code.time,"%Y-%m-%d %H:%M:%S") - datetime.now()).seconds *1000
+                # print(mem)
+                # data = {"mem":mem,"sum_ms":sum_ms}
+                import json
+                # data = json.dumps(data)
+                return HttpResponse(json.dumps(mem), content_type='application/json')
+                # return JsonResponse(data = json.dumps(mem),safe=False)
+        # else:
+        #     outs = pathJoin("/root/fuzzResult",fuzzers[0],programName)
+        #     whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
+        #     whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+        #     mem_result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
+        #     mem_result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
+        #     result ={"mem":"","mem":mem_result_summary}
+        #     return JsonResponse(data=result,safe=False)
 
 def download(request):
     if request.method == "POST":
         print(request.POST)
-        codeResult_id = request.POST.get("id",None)[0]
+        codeResult_id = request.POST.get("id",None)
+        print(codeResult_id)
         if id == None:
             return HttpResponseNotAllowed
 
         codeResultInstance = codeResult.objects.get(id = codeResult_id)
         cd("/root/test")
-        zipCMD = "7za a -tzip -r %s.zip %s"%(codeResultInstance.programName,pathJoin(DIRS[codeResultInstance.fuzzer],
-        codeResultInstance.programName))
-        print(zipCMD)
+        zipCMD = "7za a -tzip -r %s.zip %s"%(codeResultInstance.programName+codeResultInstance.fuzzer,
+        pathJoin(DIRS[codeResultInstance.fuzzer],codeResultInstance.programName))
         run(zipCMD,shell= True)
         file_path = codeResultInstance.programName+".zip"
         response = FileResponse(open(file_path, 'rb'))
@@ -252,3 +282,23 @@ def download(request):
         return response
     elif request.method == "GET":
         print("GET")
+
+class fullSearchView(APIView):
+    """
+    搜索View，只需要关键词
+    """
+    def post(self,request):
+        try:
+            content = request.POST.get('content')
+            error_msg = ''
+            if not content:
+                error_msg = "请输入关键词"
+                return JsonResponse({'error_msg': error_msg})
+            
+            queryset = codeResult.objects.filter(Q(fuzzer__icontains=content)|Q(programName__icontains=content)|Q(time__icontains=content))
+            serializer = ResultSer(instance=queryset, many=True)
+            print(serializer.data)
+            return JsonResponse(serializer.data, safe=False)
+        except:
+            # print("dsjfklasdjflksadjfklsadjkfjadsf")
+            return 

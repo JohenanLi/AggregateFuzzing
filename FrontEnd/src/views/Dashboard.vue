@@ -209,7 +209,7 @@ export default {
     this.getResult();
     this.timer = setInterval(() => {
       this.getResult();
-      console.log(this.$route.params.sum_ms);
+      // console.log(this.$route.params.sum_ms);
     }, 30000);
   },
   methods: {
@@ -298,8 +298,9 @@ export default {
     },
     getResult() {
       resultGet().then((res) => {
+        // console.log(res.data);
         this.resultList = res.data;
-        console.log(this.resultList);
+        console.log("this.resultList",this.resultList);
       });
     },
   },
