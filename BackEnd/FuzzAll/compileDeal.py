@@ -11,16 +11,16 @@ def compile(program_path, compileCommand, fuzzer_path,code):
     if code == 2:
         clang = "afl-clang"
     root_dir = pwd()
-    cd(program_path + compileCommand)
+    cd("".join([program_path,compileCommand]))
     if subprocess.getoutput('find . -name "CMakeLists.txt"') == None:
-        myCmd = ["./configure","CC="+pathJoin(fuzzer_path,clang),"CXX="+pathJoin(fuzzer_path,clang+"++")]
+        myCmd = ["./configure","".join(["CC=",pathJoin(fuzzer_path,clang)]),"".join(["CXX=",pathJoin(fuzzer_path,"".join([clang,"++"]))])]
         
         # print(program_path)
-        # print(myCmd)
+        print(myCmd)
         # input()
         #pipe = ,stdout=subprocess.PIPE,stderr=subprocess.PIPE
-        p1 = subprocess.call(myCmd)
-        p2 = subprocess.call(makeStart)
+        p1 = subprocess.run(myCmd,close_fds=True)
+        p2 = subprocess.run(makeStart,close_fds=True)
         cd(root_dir)
         
     else:
@@ -28,10 +28,9 @@ def compile(program_path, compileCommand, fuzzer_path,code):
         #     program_path, fuzzer_path)
         mymkdir("build")
         cd("build")
-        myCmd =["cmake","-DCMAKE_CXX_COMPILER=%s"%(pathJoin(fuzzer_path,clang+"++")),".."]
-        subprocess.call(myCmd)
-        subprocess.call(makeStart)
-        print(myCmd)
+        myCmd =["cmake","-DCMAKE_CXX_COMPILER=%s"%(pathJoin(fuzzer_path,"".join([clang,"++"]))),".."]
+        subprocess.run(myCmd,close_fds=True)
+        subprocess.run(makeStart,close_fds=True)
         cd(root_dir)
         print("编译过程已完成")
 

@@ -12,6 +12,7 @@ def pwd():
 def mymkdir(dir:str):
     if path.exists(dir):
         system("rm -rf %s"%(dir))
+        print("Tst")
     
     makedirs(dir)
 
@@ -65,7 +66,7 @@ def sum_table_data(txt):
     total_reg.append(r"(?<=speed : ).*?(?= execs)")
     total_reg.append(r"(?<=faves, ).*?(?= total)")
     total_reg.append(r"(?<=faves, ).*?(?= total \(on)")
-    total_reg.append(r"(?<=Crashes found : ).*?(?= locally unique")
+    total_reg.append(r"(?<=Crashes found : ).*?(?= locally unique)")
     mem = []
     result = []
     for i in range(len(total_reg)):

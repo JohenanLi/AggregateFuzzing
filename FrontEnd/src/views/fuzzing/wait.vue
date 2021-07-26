@@ -26,7 +26,8 @@
       v-if="complete"
       :data="result_MEMAFL"
       border
-      style="width: 700"
+      style="width: 650"
+      width="650"
       height="200"
     >
       <el-table-column prop="core" label="CPU" width="110" >
@@ -53,7 +54,8 @@
       :data="result_MEMAFL_sum"
       border
       height="200"
-      style="width: 700"
+      width="650"
+      style="width: 650"
     >
       <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
       </el-table-column>
@@ -258,6 +260,7 @@ export default {
       };
       processGet(params).then((res) => {       
         this.sum_ms = res.data.sum_ms;
+        this.timeOk = res.data.timeOk;
         this.result_MEMAFL = res.data.MEMAFL;
         this.result_MEMAFL_sum = res.data.MEMAFL_sum;
         this.result_TORTOISE = res.data.TORTOISE;
@@ -269,10 +272,10 @@ export default {
         //  this.sum_ms = res.data.sum_ms;
 
         // }
-        // else if(res.status == 500){
-        //   this.complete = false;
-        //   this.close();
-        // }
+        if(res.status == 500){
+          this.complete = false;
+          this.close();
+        }
 
       });
     },

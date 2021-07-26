@@ -1,14 +1,11 @@
 from datetime import datetime
-import subprocess
-from django.http import response
 from Util.decompress import cd, pathJoin,sum_table_data,invi_table_data
-from django.http.response import HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
+from django.http.response import  HttpResponseNotAllowed, JsonResponse
 from rest_framework.generics import ListAPIView
 from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH,SEED_PATH
 from FuzzAll.fuzz import ALL_PATHS, DIRS, fuzz_one
-from django.http import HttpResponse,Http404, FileResponse
-from django.views import generic
-from django.shortcuts import render, HttpResponse, redirect
+from django.http import HttpResponse, FileResponse
+from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from .models import *
 import os
@@ -21,16 +18,11 @@ from .ser import ResultSer
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from django.db.models import Q
-import re
+import json
 def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute,id):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
                       isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute, id = id)
-    # if codeOrProgramBoolean:
-    #     codeResult.objects.create(codeCoverage=result['codeCoverage'],
-    #                       bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
-    # else:
-    #     programResult.objects.create(
-    #         codeCoverage=result['codeCoverage'], bugs=result['bugs'], sample=result['sample'], code=codeOrProgram)
+
     return result
 
 
@@ -40,7 +32,6 @@ def sourceCode(request):
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
-        # name = request.POST.get('name','MEMAFL')
         seed = request.POST.get('seed',None)
         inputFile = request.POST.get('inputFile', None)
         if inputFile == None:
@@ -55,7 +46,7 @@ def sourceCode(request):
         hour = request.POST.get("hour",0)
         minute = request.POST.get("minute",25)
         resultTime = ""
-        for name in ["TORTOISE","MEMAFL","AFL"]:
+        for name in ["MEMAFL","AFL","TORTOISE"]: #,
             outs = os.path.join("/root/fuzzResult/",name,programName)
             try:
                 os.mkdir(pathJoin("/root/fuzz_target",name))
@@ -149,13 +140,13 @@ def uploadCode(request):
         if not fileDict:
             return JsonResponse({'msg': 'no file upload'})
         for (k, v) in fileDict:
-            print("dic[%s]=%s" %(k,v))
+            # print("dic[%s]=%s" %(k,v))
             fileData = request.FILES.getlist(k)
             for file in fileData:
                 fileName = file._get_name()
                 
                 filePath = os.path.join(SOURCE_FILE_PATH, fileName)
-                print('filepath = [%s]'%filePath)
+                # print('filepath = [%s]'%filePath)
                 # os.system("mkdir %s" %(SOURCE_FILE_PATH))
                 fileList.append(filePath)
                 try:
@@ -218,10 +209,8 @@ class ResultViewSet(viewsets.ModelViewSet):
         
 def process(request):
     if request.method == "POST":
-        print(request.POST)
         fuzzers  = ["MEM","AFLPP","TORTOISE"]
         programName = request.POST.get("programName",None)
-        print(programName)
         if not programName :
             response = HttpResponse()
             response.content = "没有参数提供"
@@ -230,37 +219,28 @@ def process(request):
         else:
             
             code_list = codeResult.objects.filter(programName = programName)
-            # print(code_list)
-            # input()
+            print(code_list)
+            data_send = {}
+            sum_ms = ""
             for code in code_list:
-                print(code)
                 # codeResultInstance = codeResult.objects.get(id = id)
                 whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
                 whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
                 outs = pathJoin("/root/fuzzResult",code.fuzzer,code.programName)
-                mem_result_individual =  invi_table_data(getoutput(whatsup_individual+" "+outs))
-                if mem_result_individual == -1:
+                result_individual =  invi_table_data(getoutput(whatsup_individual+" "+outs))
+                if result_individual == -1:
                     response = HttpResponse()
                     response.status_code = 500
                     return response
-                mem_result_summary = sum_table_data(getoutput(whatsup_summary+" "+outs))
-                #+ mem_result_summary
-                mem = mem_result_individual 
+                result_summary = sum_table_data(getoutput(whatsup_summary+" "+outs))
                 sum_ms = (datetime.strptime(code.time,"%Y-%m-%d %H:%M:%S") - datetime.now()).seconds *1000
-                # print(mem)
-                # data = {"mem":mem,"sum_ms":sum_ms}
-                import json
-                # data = json.dumps(data)
-                return HttpResponse(json.dumps(mem), content_type='application/json')
+                data_send[code.fuzzer] = result_individual
+                data_send[code.fuzzer+"_sum"] = result_summary
+            data_send["sum_ms"] = sum_ms
+            print(data_send)
+            return HttpResponse(json.dumps(data_send), content_type='application/json')
                 # return JsonResponse(data = json.dumps(mem),safe=False)
-        # else:
-        #     outs = pathJoin("/root/fuzzResult",fuzzers[0],programName)
-        #     whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
-        #     whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
-        #     mem_result_individual = getoutput(whatsup_individual+" "+outs).replace("\n","<br>")
-        #     mem_result_summary = getoutput(whatsup_summary+" "+outs).replace("\n","<br>")
-        #     result ={"mem":"","mem":mem_result_summary}
-        #     return JsonResponse(data=result,safe=False)
+
 
 def download(request):
     if request.method == "POST":

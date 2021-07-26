@@ -1,5 +1,5 @@
 import logging
-from Util.decompress import cd, gotcpu, mymkdir, pathJoin, pwd, sum_table_data
+from Util.decompress import cd, pathJoin, pwd, sum_table_data,mymkdir
 from subprocess import run,getoutput,PIPE,Popen
 from FuzzAll import  config
 from FuzzAll.compileDeal import compile
@@ -12,6 +12,7 @@ import libtmux
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore
 from upload.models import codeResult, uploadSourceCode
+from os import path,system,makedirs
 """
     fuzzer ==> fuzzer's name
     compiled pragram's path
@@ -57,6 +58,7 @@ class Path_Build():
         self.id = id ##uploadSource.id
         self.short_name = self.programName.split('/')[-1]
     def compile(self):
+        print("compile过程")
         code = -1
         if self.fuzzer == "MEMAFL" or self.fuzzer == "TORTOISE":
             code = 2
@@ -67,13 +69,13 @@ class Path_Build():
 
     def stop_job(self):
     # 这里写你要执行的任务
-        stop_cmd = "tmux kill-session -t %s"%(self.fuzzer+"_"+self.short_name)
+        stop_cmd = "tmux kill-session -t %s"%("".join([self.fuzzer,"_",self.short_name]))
         run(stop_cmd,shell=True)
 
     def stop_sche(self,str_time_now):
-        scheduler.add_job(self.stop_job, 'date',run_date=str_time_now,id="date_"+self.fuzzer+"_"+self.short_name,replace_existing=True)
+        scheduler.add_job(self.stop_job, 'date',run_date=str_time_now,id="".join(["date_",self.fuzzer,"_",self.short_name]),replace_existing=True)
     def sync_sche(self,stoptime):
-        scheduler.add_job(self.sync_database,"interval",seconds=10,id="interval_"+self.fuzzer+"_"+self.short_name,replace_existing=True,start_date=datetime.now(),end_date=stoptime)
+        scheduler.add_job(self.sync_database,"interval",seconds=15,id="".join(["interval_",self.fuzzer,"_",self.short_name]),replace_existing=True,start_date=datetime.now(),end_date=stoptime)
     def sync_database(self,):
         print("同步数据库")
         resList = codeResult.objects.filter(code_id = self.id)
@@ -84,12 +86,11 @@ class Path_Build():
             resInstance.save()
             
         elif len(resList) == 1:
-            resInstance = codeResult.objects.get(code_id = self.id)
+            resInstance = resList[0]
             outs = pathJoin("/root/fuzzResult",resInstance.fuzzer,resInstance.programName)
             whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
 
-            result_summary = sum_table_data(getoutput(whatsup_summary+" "+outs))[0]
-            print(result_summary)
+            result_summary = sum_table_data(getoutput("".join([whatsup_summary," ",outs])))[0]
             resInstance.crashes = str(result_summary['crashes_sum'])
             resInstance.save()
 
@@ -112,22 +113,22 @@ class Path_Build():
         master = "-M master -m 1000"
         slave = "-S slave"
         if self.fuzzer == "TORTOISE":
-            afl = self.fuzzer_path + "/bb_metric/afl-fuzz"
+            afl = "".join([self.fuzzer_path,"/bb_metric/afl-fuzz"])
         else:
-            afl = self.fuzzer_path + "/afl-fuzz"
+            afl = "".join([self.fuzzer_path,"/afl-fuzz"])
 
         cron = CronTab(user="root")
         root_dir = pwd()
         mymkdir(self.outs)
         cd(self.outs)
         server = libtmux.Server()
-        run(" ".join(["tmux new-session -s", self.fuzzer+"_"+self.short_name, "-d"]),shell=True)
-        session = server.find_where({ "session_name": self.fuzzer+"_"+self.short_name })
+        run(" ".join(["tmux new-session -s", "".join([self.fuzzer,"_",self.short_name]), "-d"]),shell=True)
+        session = server.find_where({ "session_name": "".join([self.fuzzer,"_",self.short_name ])})
         for i in range(core):
             if i == 0:
                 identity = master
             else:
-                identity = slave + str(i) + " -m 1000"
+                identity = "".join([ slave,str(i) ," -m 1000"])
             fuzz_cmd = [afl, qemu, identity,"-i", self.ins, "-o", self.outs,"--", self.programName, self.prePara]
             if isfile:
                 fuzz_cmd.append("@@")
@@ -138,7 +139,7 @@ class Path_Build():
             else:
                 pass
             runCMD = " ".join(fuzz_cmd)
-            w = session.new_window(attach = False,window_name = str(i)+self.short_name)
+            w = session.new_window(attach = False,window_name = "".join([str(i),self.short_name]))
             pane = w.split_window(attach=False)
             pane.send_keys(runCMD)
             
@@ -146,13 +147,14 @@ class Path_Build():
         str_time_now=datetime.now() + timedelta(0.0,0.0,0.0,0.0,float(self.minute),float(self.hour),0.0)
         self.stop_sche(str_time_now)
         self.sync_sche(str_time_now)
-        scheduler.print_jobs(DjangoJobStore())
-        scheduler.start()
+        # scheduler.print_jobs(DjangoJobStore())
+        
 
         cd(root_dir)
         job = cron.new("python3 /root/AggregateFuzzing/BackEnd/Util/joblist.py -d %s"%(self.outs),"可能删除产生的多余文件")
-        job.setall("*/10","*","*","*","*")
+        job.setall("*/2","*","*","*","*")
         cron.write()
+        scheduler.start()
         return str_time_now
 
 def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute,id):

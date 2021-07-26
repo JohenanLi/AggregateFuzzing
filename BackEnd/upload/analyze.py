@@ -1,7 +1,7 @@
 from os import makedirs, mkdir
 from FuzzAll.config import ANDAND
 from BackEnd.settings import SOURCE_FILE_PATH
-from subprocess import Popen, call
+from subprocess import run, call,run
 import traceback,sys,subprocess
 from Util.decompress import pwd,cd
 class Analyze():
@@ -38,7 +38,7 @@ class Analyze():
         elif self.file.endswith("zip"):
             myCmd = "unzip %s" %(self.file)
             try:
-                Popen(myCmd)
+                run(myCmd,shell=True)
                 cd(root_dir)
             except:
                 print("文件解压失败")
@@ -46,8 +46,9 @@ class Analyze():
             return self.filePath
         elif self.file.endswith("7z"):
             myCmd = "7za x %s -r -o./" %(self.file)
+            print(myCmd)
             try:
-                Popen(myCmd)
+                run(myCmd,shell=True)
                 cd(root_dir)
             except:
                 print("文件解压失败")
