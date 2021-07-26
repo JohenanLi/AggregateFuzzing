@@ -24,61 +24,50 @@
     <!-- 单核信息 -->
     <el-table
       v-if="complete"
-      :data="result"
+      :data="result_MEMAFL"
       border
-      style="width: 100%"
+      style="width: 700"
+      height="200"
     >
       <el-table-column prop="core" label="CPU" width="110" >
-        <!-- <span>{{ result.core }}</span> -->
       </el-table-column>
       <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
-        <!-- <span>{{ result.cycle }}</span> -->
       </el-table-column>
       <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
-        <!-- <span>{{ result.speed }}</span> -->
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
-        <!-- <span>{{ result.path }}</span> -->
       </el-table-column>
       <el-table-column prop="pending" label="等待路径" width="110">
-        <!-- <span>{{ result.pending }}</span> -->
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
-        <!-- <span>{{ result.coverage }}</span> -->
       </el-table-column>
       <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
-        <!-- <span>{{ result.crashes }}</span> -->
       </el-table-column>
     </el-table>
     </el-card>
   <!-- 汇总信息 -->
   <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
+    <p class="title" >MemAFL汇总</p>
     <el-table
       v-if="complete"
-      :data="result1"
+      :data="result_MEMAFL_sum"
       border
-      style="width: 100%"
+      height="200"
+      style="width: 700"
     >
       <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
-        <span>{{ result.mem.CPU_all }}</span>
       </el-table-column>
       <el-table-column prop="run_time" label="总运行时间" width="110">
-        <span>{{ result.mem.run_time }}</span>
       </el-table-column>
       <el-table-column prop="total_execs" label="总执行次数(百万次)" width="110">
-        <span>{{ result.mem.total_execs }}</span>
       </el-table-column>
       <el-table-column prop="speed_sum" label="累计速度(次每秒)" width="110">
-        <span>{{ result.mem.speed_sum }}</span>
       </el-table-column>
       <el-table-column prop="pending_sum" label="总等待路径(条)" width="110">
-        <span>{{ result.mem.pending_sum }}</span>
       </el-table-column>
       <el-table-column prop="pending" label="平均等待路径(条)" width="110">
-        <span>{{ result.mem.pending }}</span>
       </el-table-column>
       <el-table-column prop="crashes_sum" label="独立漏洞数量(个)" width="110"> 
-        <span>{{ result.mem.crashes_sum }}</span>
       </el-table-column>
     </el-table>
     </el-card>
@@ -87,62 +76,51 @@
     <p class="title">Tortoise</p>
     <el-table
       v-if="complete"
-      :data="tableData"
+      :data="result_TORTOISE"
       border
-      style="width: 100%"
+      height="200"
+      style="width: 700"
     >
       <el-table-column prop="core" label="CPU" width="110">
-        <span>{{ result.tortoise.core }}</span>
       </el-table-column>
       <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
-        <span>{{ result.tortoise.cycle }}</span>
       </el-table-column>
       <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
-        <span>{{ result.tortoise.speed }}</span>
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
-        <span>{{ result.tortoise.path }}</span>
       </el-table-column>
       <el-table-column prop="pending" label="等待路径" width="110">
-        <span>{{ result.tortoise.pending }}</span>
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
-        <span>{{ result.tortoise.coverage }}</span>
       </el-table-column>
       <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
-        <span>{{ result.tortoise.crashes }}</span>
       </el-table-column>
     </el-table>
     </el-card>
 
      <!-- 汇总信息 -->
     <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
+      <p class="title" >Tortoise汇总</p>
     <el-table
       v-if="complete"
-      :data="tableData"
+      :data="result_TORTOISE_sum"
       border
-      style="width: 100%"
+      height="200"
+      style="width: 700"
     >
       <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
-        <span>{{ result.tortoise.CPU_all }}</span>
       </el-table-column>
       <el-table-column prop="run_time" label="总运行时间" width="110">
-        <span>{{ result.tortoise.run_time }}</span>
       </el-table-column>
       <el-table-column prop="total_execs" label="总执行次数(百万次)" width="110">
-        <span>{{ result.tortoise.total_execs }}</span>
       </el-table-column>
       <el-table-column prop="speed_sum" label="累计速度(次每秒)" width="110">
-        <span>{{ result.tortoise.speed_sum }}</span>
       </el-table-column>
       <el-table-column prop="pending_sum" label="总等待路径(条)" width="110">
-        <span>{{ result.tortoise.pending_sum }}</span>
       </el-table-column>
       <el-table-column prop="pending" label="平均等待路径(条)" width="110">
-        <span>{{ result.tortoise.pending }}</span>
       </el-table-column>
       <el-table-column prop="crashes_sum" label="独立漏洞数量(个)" width="110"> 
-        <span>{{ result.tortoise.crashes_sum }}</span>
       </el-table-column>
     </el-table>
     </el-card>
@@ -151,91 +129,62 @@
     <p class="title">AFLplusplus</p>
     <el-table
       v-if="complete"
-      :data="tableData"
+      :data="result_AFL"
       border
-      style="width: 100%"
+      height="200"
+      width="700"
+      style="width: 700"
     >
       <el-table-column prop="core" label="CPU" width="110">
-        <span>{{ result.AFLpp.core }}</span>
       </el-table-column>
       <el-table-column prop="cycle" label="种子变异轮次(次)" width="110">
-        <span>{{ result.AFLpp.cycle }}</span>
       </el-table-column>
       <el-table-column prop="speed" label="执行速度(次每秒)" width="110">
-        <span>{{ result.AFLpp.speed }}</span>
       </el-table-column>
       <el-table-column prop="path" label="当前路径" width="110">
-        <span>{{ result.AFLpp.path }}</span>
       </el-table-column>
       <el-table-column prop="pending" label="等待路径" width="110">
-        <span>{{ result.AFLpp.pending }}</span>
       </el-table-column>
       <el-table-column prop="coverage" label="覆盖率" width="110"> 
-        <span>{{ result.AFLpp.coverage }}</span>
       </el-table-column>
       <el-table-column prop="crashes" label="漏洞数量(个)" width="110"> 
-        <span>{{ result.AFLpp.crashes }}</span>
       </el-table-column>
     </el-table>
     </el-card>
      <!-- 汇总信息 -->
     <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
+      <p class="title" >AFLpp汇总</p>
     <el-table
       v-if="complete"
-      :data="tableData"
+      :data="result_AFL_sum"
       border
-      style="width: 100%"
+      height="200"
+      style="width: 700"
     >
       <el-table-column prop="CPU_all" label="CPU总数(个)" width="110">
-        <span>{{ result.AFLpp.CPU_all }}</span>
       </el-table-column>
       <el-table-column prop="run_time" label="总运行时间" width="110">
-        <span>{{ result.AFLpp.run_time }}</span>
       </el-table-column>
       <el-table-column prop="total_execs" label="总执行次数(百万次）" width="110">
-        <span>{{ result.AFLpp.total_execs }}</span>
       </el-table-column>
       <el-table-column prop="speed_sum" label="累计速度(次每秒)" width="110">
-        <span>{{ result.AFLpp.speed_sum }}</span>
       </el-table-column>
       <el-table-column prop="pending_sum" label="总等待路径(条)" width="110">
-        <span>{{ result.AFLpp.pending_sum }}</span>
       </el-table-column>
       <el-table-column prop="pending_sum" label="平均等待路径(条)" width="110">
-        <span>{{ result.AFLpp.pending }}</span>
       </el-table-column>
       <el-table-column prop="crashes_sum" label="独立漏洞数量(个)" width="110"> 
-        <span>{{ result.AFLpp.crashes_sum }}</span>
       </el-table-column>
     </el-table>
     </el-card>
     </el-space>
     </div>
-    <!-- 
-    <div class="card">
-      <el-space wrap :size="10">
-          <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
-            <h class="h">线程详细信息</h>
-            <p class="result_individual" v-html="result.result_individual"></p>
-          </el-card>
-       
-
-          <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
-            <h class="h">线程汇总信息</h>
-            <p class="result_summary" v-html="result.result_summary"></p>
-          </el-card>
-      
-      </el-space>
-
-    </div> -->
   </div>
 </template>
 
 <script>
 import { processGet } from "../../api";
-// import Header from '../../components/Header.vue';
 export default {
-  // components: { Header },
   inject: ["reload"],
   name: "wait",
   data() {
@@ -247,15 +196,17 @@ export default {
       //基本参数
       complete: true,
       timeOk: "",
-      result: [],
-      result1: [],
-      result2: [],
+      result_MEMAFL: [],
+      result_MEMAFL_sum: [],
+      result_TORTOISE: [],
+      result_TORTOISE_sum: [],
+      result_AFL: [],
+      result_AFL_sum: [],
       tableData: [],
       sum_ms: ""
     };
   },
   created(){
-    
   },
 
   mounted() {
@@ -277,11 +228,8 @@ export default {
     this.DataView();
     this.timer = setInterval(() => {
       this.DataView();
-      // console.log(this.$route.params.sum_ms);
-      console.log("result::",this.result);
-    }, 2000);
+    }, 5000);
 
-    // console.log(this.sum_ms,this.result);
     // this.timer1 = setTimeout(this.close, this.sum_ms);
     // this.startCount();
     
@@ -308,10 +256,14 @@ export default {
       let params={
         programName: this.$route.params.programName,
       };
-      processGet(params).then((res) => {
-        console.log("res.data",res.data);
-        this.result = res.data;
+      processGet(params).then((res) => {       
         this.sum_ms = res.data.sum_ms;
+        this.result_MEMAFL = res.data.MEMAFL;
+        this.result_MEMAFL_sum = res.data.MEMAFL_sum;
+        this.result_TORTOISE = res.data.TORTOISE;
+        this.result_TORTOISE_sum = res.data.TORTOISE_sum;
+        this.result_AFL = res.data.AFL;
+        this.result_AFL_sum = res.data.AFL_sum;
         // if (res.status == 200) {
         //   this.result = res.data;
         //  this.sum_ms = res.data.sum_ms;
