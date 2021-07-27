@@ -3,7 +3,7 @@ from Util.decompress import cd, pathJoin, pwd, sum_table_data,mymkdir
 from subprocess import run,getoutput,PIPE,Popen
 from FuzzAll import  config
 from FuzzAll.compileDeal import compile
-from .config import AFL_PATH, COLL_PATH, MEM_AFL_PATH, TORTOISE_PATH
+from .config import AFLPLUSPLUS_PATH, AFL_PATH, COLL_PATH, MEM_AFL_PATH, TORTOISE_PATH
 import re
 from crontab import CronTab
 from datetime import datetime,timedelta
@@ -25,12 +25,15 @@ from os import path,system,makedirs
 ALL_PATHS = {'MEMAFL': pathJoin(MEM_AFL_PATH),
              "AFL": pathJoin(AFL_PATH),
              "COLL": pathJoin(COLL_PATH),
-             "TORTOISE": pathJoin(TORTOISE_PATH)}
+             "TORTOISE": pathJoin(TORTOISE_PATH),
+             "AFLPLUSPLUS":pathJoin(AFLPLUSPLUS_PATH)
+             }
 DIRS = {
     'MEMAFL': "/root/fuzzResult/MEMAFL",
     "AFL": "/root/fuzzResult/AFL",
     "COLL": "/root/fuzzResult/collafl",
-    "TORTOISE": "/root/fuzzResult/TORTOISE"
+    "TORTOISE": "/root/fuzzResult/TORTOISE",
+    "AFLPLUSPLUS":"/root/fuzzResult/AFLPLUSPLUS"
 }
 # 1.实例化调度器
 scheduler = BackgroundScheduler()
@@ -62,7 +65,7 @@ class Path_Build():
         code = -1
         if self.fuzzer == "MEMAFL" or self.fuzzer == "TORTOISE":
             code = 2
-        elif self.fuzzer == "AFL" or self.fuzzer == "COLL":
+        elif self.fuzzer == "AFLPLUSPLUS" :
             code = 1
         result = compile(self.program_path, self.compileCommand, self.fuzzer_path,code)
         run("rm -rf %s"%(self.outs),shell=True)

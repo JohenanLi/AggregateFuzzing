@@ -46,7 +46,7 @@ def sourceCode(request):
         hour = request.POST.get("hour",0)
         minute = request.POST.get("minute",25)
         resultTime = ""
-        for name in ["MEMAFL","AFL","TORTOISE"]: #,
+        for name in ["AFLPLUSPLUS","MEMAFL","TORTOISE"]: #AFL"MEMAFL","AFLPLUSPLUS","TORTOISE"
             outs = os.path.join("/root/fuzzResult/",name,programName)
             try:
                 os.mkdir(pathJoin("/root/fuzz_target",name))
@@ -102,7 +102,7 @@ def sourceProgram(request):
             isfile = False
             temp = uploadSourceProgram.objects.create(
                 filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, inputCommand=inputCommand)
-
+            
             ##路径替换
             ext = str(filePath).split('.')[-1]
             filePath = '/'.join([os.getcwd(), 'sourceTotal', str(filePath).strip('.'+ext), str(filePath)])

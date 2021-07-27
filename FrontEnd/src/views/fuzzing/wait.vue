@@ -265,8 +265,8 @@ export default {
         this.result_MEMAFL_sum = res.data.MEMAFL_sum;
         this.result_TORTOISE = res.data.TORTOISE;
         this.result_TORTOISE_sum = res.data.TORTOISE_sum;
-        this.result_AFL = res.data.AFL;
-        this.result_AFL_sum = res.data.AFL_sum;
+        this.result_AFL = res.data.AFLPLUSPLUS;
+        this.result_AFL_sum = res.data.AFLPLUSPLUS_sum;
         // if (res.status == 200) {
         //   this.result = res.data;
         //  this.sum_ms = res.data.sum_ms;
