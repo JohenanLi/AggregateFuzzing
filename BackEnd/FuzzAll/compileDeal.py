@@ -6,8 +6,8 @@ def unpack():
 
 
 def compile(program_path, compileCommand, fuzzer_path,code):
-    clang = "afl-gcc-fast"
-    tempClang = "afl-g++-fast"
+    clang = "afl-gcc"
+    tempClang = "afl-g++"
     makeStart = ["make","-j10"]
     if code == 2:
         clang = "afl-clang"

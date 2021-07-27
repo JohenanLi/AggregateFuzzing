@@ -260,8 +260,8 @@ export default {
         inputCommand: "",
         prePara: "",
         postPara: "",
-        hour: 2,
-        minute: 5,
+        hour: 0,
+        minute: 7,
       },
       rules: {
         programName: [

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from Util.decompress import cd, pathJoin,sum_table_data,invi_table_data
 from django.http.response import  HttpResponseNotAllowed, JsonResponse
 from rest_framework.generics import ListAPIView
@@ -19,9 +19,12 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from django.db.models import Q
 import json
+
+
 def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute,id):
     result = fuzz_one(fuzzer=fuzzer, program_path=program_path,
-                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,programName=programName,hour = hour,minute = minute, id = id)
+                      isqemu=False, ins=ins, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,compileCommand=compileCommand,
+                      programName=programName,hour = hour,minute = minute, id = id)
 
     return result
 
@@ -46,7 +49,7 @@ def sourceCode(request):
         hour = request.POST.get("hour",0)
         minute = request.POST.get("minute",25)
         resultTime = ""
-        for name in ["AFLPLUSPLUS","MEMAFL","TORTOISE"]: #AFL"MEMAFL","AFLPLUSPLUS","TORTOISE"
+        for name in ["MEMAFL","TORTOISE","DRILLER",]: #AFL"MEMAFL","AFLPLUSPLUS","TORTOISE"
             outs = os.path.join("/root/fuzzResult/",name,programName)
             try:
                 os.mkdir(pathJoin("/root/fuzz_target",name))
@@ -69,7 +72,9 @@ def sourceCode(request):
             else:
                 isfile = False
                 temp = uploadSourceCode.objects.create(
-                    filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, postPara=postPara,compileCommand=compileCommand, inputCommand=inputCommand)
+                    filePath=filePath, name=name, ins=seed, inputFile=inputFile, prePara=prePara, 
+                    postPara=postPara,compileCommand=compileCommand, 
+                    inputCommand=inputCommand,minute = minute ,hour = hour)
                 temp.save()
                 if not inputFile:
                     isfile = True
@@ -79,7 +84,8 @@ def sourceCode(request):
                     # 调用接口传数据
                     resultTime = threadFuzz(
                         fuzzer=name, program_path=str(filePath), isqemu=False, ins=inputFile, outs=outs, prePara=prePara, postPara=postPara,isfile=isfile,codeOrProgramBoolean=True,codeOrProgram=temp,compileCommand=compileCommand,programName=programName,hour = hour, minute = minute,id = temp.id)
-                
+
+    
         return JsonResponse({"msg":resultTime,"sum_ms":(int(hour)*60*60+int(minute)*60) *1000})
 
 
@@ -193,15 +199,6 @@ def getExts(request):
             return JsonResponse(exts,safe=False)
 
 class ResultViewSet(viewsets.ModelViewSet):
-    # def result(request):
-    #     if request.method == "POST":
-    #         programName = request.POST.get("id",None)
-    #         if not programName:
-    #             response = HttpResponse()
-    #             response.content = "没有参数提供"
-    #             response.status_code = 412
-    #             return response
-    #     elif request.method == "GET":
     serializer_class = ResultSer
     queryset = codeResult.objects.all()
                 
@@ -209,7 +206,7 @@ class ResultViewSet(viewsets.ModelViewSet):
         
 def process(request):
     if request.method == "POST":
-        fuzzers  = ["MEM","AFLPP","TORTOISE"]
+        fuzzers  = ["MEM","DRILLER","TORTOISE"]
         programName = request.POST.get("programName",None)
         if not programName :
             response = HttpResponse()
@@ -219,6 +216,7 @@ def process(request):
         else:
             
             code_list = codeResult.objects.filter(programName = programName)
+            sourceCodeInstance = code_list[0].code
             print(code_list)
             data_send = {}
             sum_ms = ""
@@ -233,13 +231,15 @@ def process(request):
                     response.status_code = 500
                     return response
                 result_summary = sum_table_data(getoutput(whatsup_summary+" "+outs))
-                sum_ms = (datetime.strptime(code.time,"%Y-%m-%d %H:%M:%S") - datetime.now()).seconds *1000
                 data_send[code.fuzzer] = result_individual
                 data_send[code.fuzzer+"_sum"] = result_summary
+            tempTime = datetime.strptime(code_list[0].time,"%Y-%m-%d %H:%M:%S") + timedelta(
+                    minutes=float(sourceCodeInstance.minute),hours=float(sourceCodeInstance.hour))
+            sum_ms = ( tempTime- datetime.now()).seconds *1000
             data_send["sum_ms"] = sum_ms
+            data_send["timeOk"] = tempTime.strftime("%Y-%m-%d %H:%M:%S")
             print(data_send)
             return HttpResponse(json.dumps(data_send), content_type='application/json')
-                # return JsonResponse(data = json.dumps(mem),safe=False)
 
 
 def download(request):
@@ -255,7 +255,7 @@ def download(request):
         zipCMD = "7za a -tzip -r %s.zip %s"%(codeResultInstance.programName+codeResultInstance.fuzzer,
         pathJoin(DIRS[codeResultInstance.fuzzer],codeResultInstance.programName))
         run(zipCMD,shell= True)
-        file_path = codeResultInstance.programName+".zip"
+        file_path = codeResultInstance.programName+codeResultInstance.fuzzer+".zip"
         response = FileResponse(open(file_path, 'rb'))
         response['content_type'] = "application/octet-stream"
         response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
@@ -282,3 +282,41 @@ class fullSearchView(APIView):
         except:
             # print("dsjfklasdjflksadjfklsadjkfjadsf")
             return 
+
+from subprocess import getstatusoutput
+import os
+crash_type = {
+    "-6":"释放后重用",
+    "-11":"栈溢出",
+    "1":""
+}
+def crash_analyze(request):
+    codeResult_id = request.POST.get("id",None)
+    codeResultInstance = codeResult.objects.filter(id = codeResult_id).first()
+    dir = os.path.join("/root/fuzzResult",codeResultInstance.fuzzer,codeResultInstance.programName)
+    dir_res = os.walk(dir)
+    root_res = []
+    fuzzer_stats= []
+    crash_stats = []
+    lines = []
+    status_res = []
+    message = ""
+    for root,dir,files in dir_res:
+        if "crashes" in dir:
+            root_res.append(root)
+    for root in root_res:
+        crash = os.listdir(os.path.join(root,"crashes"))
+        crash_stats.append(crash)
+    
+    with open(os.path.join(root_res[0],"fuzzer_stats"),"r") as f:
+        lines = f.readlines()
+        f.close()
+    cmd  = (lines[-1].split("-- "))[1].rstrip()
+    for i in range(len(root_res)):
+        for crash in crash_stats[i]:
+            temp_replace = os.path.join(root_res[i],"crashes",crash)
+            status_res.append( (getstatusoutput(cmd.replace("@@",temp_replace)))[0] )
+    status_set = set(status_res)
+    for status in status_set:
+        message += crash_type[str(status)]+"<br>"
+    return JsonResponse(message,safe=False)

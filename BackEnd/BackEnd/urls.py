@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import include,url
 from .settings import STATIC_ROOT
 from django.views.static import serve
-from upload.views import getExts,process,ResultViewSet,download,fullSearchView
+from upload.views import getExts,process,ResultViewSet,download,fullSearchView,crash_analyze
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -31,5 +31,6 @@ urlpatterns = [
     path("api/process/",process),
     path("api/download/",download),
     path("api/",include(router.urls)),
-    path('api/search/',fullSearchView.as_view())
+    path('api/search/',fullSearchView.as_view()),
+    path("api/analyze/",crash_analyze)
 ]

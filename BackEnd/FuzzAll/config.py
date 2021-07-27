@@ -5,6 +5,7 @@ TORTOISE_PATH = os.path.join(BASE_DIR,"tools/TortoiseFuzz")
 MEM_AFL_PATH = os.path.join(BASE_DIR,"tools/memAfl")
 COLL_PATH = os.path.join(BASE_DIR,"tools/collafl-master")
 AFLPLUSPLUS_PATH = os.path.join(BASE_DIR,"tools/AFLPLUSPLUS")
+DRILLER_PATH = os.path.join(BASE_DIR,"tools/driller")
 
 MAX_TIMES = 30          # 24h
 

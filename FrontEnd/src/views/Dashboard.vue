@@ -58,14 +58,14 @@
             size="large"
             >查看进度</el-button
           >
-          <el-button @click="handleClick(scope.row)" type="text" size="large"
-            >下载详细结果</el-button
-          >
           <el-button
-            @click.prevent="deleteRow(scope.$index, resultList)"
+            @click.prevent="Analyze(scope.row)"
             type="text"
             size="large"
-            >删除记录</el-button
+            >漏洞分析</el-button
+          >
+          <el-button @click="handleClick(scope.row)" type="text" size="large"
+            >下载详细结果</el-button
           >
         </template>
       </el-table-column>
@@ -173,6 +173,7 @@
 import { usedSoft, resultGet } from "@/api/index";
 import axios from "axios";
 import QS from 'qs';
+import { AnalyzeGet } from "../api";
 
 export default {
   inject: ["reload"],
@@ -192,6 +193,7 @@ export default {
       ],
       resultList: [],
       id: "",
+      analyzeData: "",
     };
   },
 
@@ -256,8 +258,12 @@ export default {
         },
       });
     },
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
+   Analyze(row) {
+     AnalyzeGet().then((res) => {
+        console.log(res.data);
+        this.analyzeData = res.data;
+        alert(this.analyzeData);
+      });
     },
     tableRowClassName({ rowIndex }) {
       if (rowIndex === 1) {

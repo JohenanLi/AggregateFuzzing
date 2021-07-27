@@ -128,7 +128,7 @@
     </el-card>
 
     <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
-    <p class="title">AFLplusplus</p>
+    <p class="title">DRILLER</p>
     <el-table
       v-if="complete"
       :data="result_AFL"
@@ -265,12 +265,11 @@ export default {
         this.result_MEMAFL_sum = res.data.MEMAFL_sum;
         this.result_TORTOISE = res.data.TORTOISE;
         this.result_TORTOISE_sum = res.data.TORTOISE_sum;
-        this.result_AFL = res.data.AFLPLUSPLUS;
-        this.result_AFL_sum = res.data.AFLPLUSPLUS_sum;
+        this.result_AFL = res.data.DRILLER;
+        this.result_AFL_sum = res.data.DRILLER_sum;
         // if (res.status == 200) {
         //   this.result = res.data;
         //  this.sum_ms = res.data.sum_ms;
-
         // }
         if(res.status == 500){
           this.complete = false;
