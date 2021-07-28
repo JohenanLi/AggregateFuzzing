@@ -128,7 +128,7 @@
     </el-card>
 
     <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
-    <p class="title">DRILLER</p>
+    <p class="title">Driller</p>
     <el-table
       v-if="complete"
       :data="result_AFL"
@@ -155,7 +155,7 @@
     </el-card>
      <!-- 汇总信息 -->
     <el-card shadow="hover" style="width: 100% height: 100%" :body-style="{ padding: '1%' }">
-      <p class="title" >AFLpp汇总</p>
+      <p class="title" >Driller汇总</p>
     <el-table
       v-if="complete"
       :data="result_AFL_sum"

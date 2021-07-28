@@ -217,7 +217,7 @@ def process(request):
             
             code_list = codeResult.objects.filter(programName = programName)
             sourceCodeInstance = code_list[0].code
-            print(code_list)
+            # print(code_list)
             data_send = {}
             sum_ms = ""
             for code in code_list:
@@ -238,7 +238,7 @@ def process(request):
             sum_ms = ( tempTime- datetime.now()).seconds *1000
             data_send["sum_ms"] = sum_ms
             data_send["timeOk"] = tempTime.strftime("%Y-%m-%d %H:%M:%S")
-            print(data_send)
+            # print(data_send)
             return HttpResponse(json.dumps(data_send), content_type='application/json')
 
 
@@ -318,5 +318,5 @@ def crash_analyze(request):
             status_res.append( (getstatusoutput(cmd.replace("@@",temp_replace)))[0] )
     status_set = set(status_res)
     for status in status_set:
-        message += crash_type[str(status)]+"<br>"
+        message += crash_type[str(status)]+" "
     return JsonResponse(message,safe=False)

@@ -261,7 +261,7 @@ export default {
         prePara: "",
         postPara: "",
         hour: 0,
-        minute: 7,
+        minute: 5,
       },
       rules: {
         programName: [

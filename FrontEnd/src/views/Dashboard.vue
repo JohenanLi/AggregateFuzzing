@@ -24,7 +24,7 @@
               <el-divider direction="vertical"></el-divider>
               <span class="details"
                 >检测次数<br />
-                5</span
+                3</span
               >
             </el-space>
           </div>
@@ -259,7 +259,10 @@ export default {
       });
     },
    Analyze(row) {
-     AnalyzeGet().then((res) => {
+     let params = {
+       "id":row.id
+     };
+     AnalyzeGet(params).then((res) => {
         console.log(res.data);
         this.analyzeData = res.data;
         alert(this.analyzeData);

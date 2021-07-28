@@ -1,5 +1,5 @@
 import logging
-from Util.decompress import cd, pathJoin, pwd, sum_table_data,mymkdir
+from Util.decompress import cd, invi_table_data, pathJoin, pwd, sum_table_data,mymkdir
 from subprocess import run,getoutput,PIPE,Popen
 from FuzzAll import  config
 from FuzzAll.compileDeal import compile
@@ -39,7 +39,7 @@ DIRS = {
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore
 # 1.实例化调度器
-scheduler = BackgroundScheduler()
+scheduler = BackgroundScheduler(daemon=True)
 
 # 2.调度器使用DjangoJobStore()
 scheduler.add_jobstore(DjangoJobStore(), "default")
@@ -94,9 +94,13 @@ class Path_Build():
             resInstance = resList[0]
             outs = pathJoin("/root/fuzzResult",resInstance.fuzzer,resInstance.programName)
             whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+            whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
 
             result_summary = sum_table_data(getoutput("".join([whatsup_summary," ",outs])))[0]
             resInstance.crashes = str(result_summary['crashes_sum'])
+            result_individual = invi_table_data(getoutput(whatsup_individual+" "+outs))
+            resInstance.codeCoverage = str(max(result_individual[0]['coverage'],
+            result_individual[1]['coverage']))
             resInstance.save()
 
 
@@ -176,7 +180,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
         myFuzz = Path_Build(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile, compileCommand, programName,hour,minute,id)
         myFuzz.compile()
         tempTime = myFuzz.create(2).strftime("%Y-%m-%d %H:%M:%S")
-        scheduler.start()
+        # scheduler.start()
         
     except Exception as e:
         print(e)
@@ -186,7 +190,7 @@ def fuzz_one(fuzzer, program_path, isqemu, ins, outs, prePara, postPara , isfile
 
     
     return tempTime #保证服务器正常使用的两个cpu，以及时间返回处理后的时间
-
+scheduler.start()
 
 
 
