@@ -55,7 +55,7 @@
             </el-form-item>
             </el-tooltip>
 
-            <el-tooltip placement="bottom" effect="light">
+            <!-- <el-tooltip placement="bottom" effect="light">
               <template #content >
               请输入运行时检测样例前的参数，<br/>
               例：convert a.png b.jpg，<br/>
@@ -108,7 +108,7 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            </el-tooltip>
+            </el-tooltip> -->
 
 
 

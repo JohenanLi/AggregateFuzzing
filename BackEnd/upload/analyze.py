@@ -25,7 +25,8 @@ class Analyze():
                 makedirs("./%s"%(self.programName))
             except Exception:
                 pass
-            myCmd = ['tar','-xvf',self.file,"-C","./%s"%(self.programName),"--strip-components=1"]
+            #myCmd = ['tar','-xvf',self.file,"-C","./%s"%(self.programName)]
+            myCmd = ['tar','-xvf',self.file]
             print(myCmd)
             try:
                 p1 = call(myCmd)
@@ -36,7 +37,8 @@ class Analyze():
                 return "文件解压失败"
             return self.filePath
         elif self.file.endswith("zip"):
-            myCmd = "unzip %s" %(self.file)
+            cd(SOURCE_FILE_PATH)
+            myCmd = "unzip %s " %(self.file)
             try:
                 run(myCmd,shell=True)
                 cd(root_dir)

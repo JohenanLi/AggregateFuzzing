@@ -2,7 +2,7 @@ import logging
 from Util.decompress import cd, invi_table_data, pathJoin, pwd, sum_table_data,mymkdir
 from subprocess import run,getoutput,PIPE,Popen
 from FuzzAll import  config
-from FuzzAll.compileDeal import compile
+from FuzzAll.compileDeal import mycompile
 from .config import AFLPLUSPLUS_PATH, AFL_PATH, COLL_PATH, DRILLER_PATH, MEM_AFL_PATH, TORTOISE_PATH
 import re
 from crontab import CronTab
@@ -69,11 +69,14 @@ class Path_Build():
             code = 2
         elif self.fuzzer == "DRILLER" :
             code = 1
-        result = compile(self.program_path, self.compileCommand, self.fuzzer_path,code)
+        elif self.fuzzer == "AFLPLUSPLUS":
+            code = 3
+        print(self.program_path)
+        result = mycompile(self.program_path, self.compileCommand, self.fuzzer_path,code)
         run("rm -rf %s"%(self.outs),shell=True)
 
     def stop_job(self):
-    # 这里写你要执行的任务
+
         stop_cmd = "tmux kill-session -t %s"%("".join([self.fuzzer,"_",self.short_name]))
         run(stop_cmd,shell=True)
 
@@ -82,36 +85,38 @@ class Path_Build():
     def sync_sche(self,stoptime):
         scheduler.add_job(self.sync_database,"interval",seconds=5,id="".join(["interval_",self.fuzzer,"_",self.short_name]),replace_existing=True,start_date=datetime.now(),end_date=stoptime)
     def sync_database(self,):
-        print("同步数据库")
-        resList = codeResult.objects.filter(code_id = self.id)
-        if len(resList) == 0:
-            uploadInstance = uploadSourceCode.objects.get(id = self.id)
-            resInstance = codeResult.objects.create(programName = self.short_name,
-            codeCoverage = "/",crashes = "0",fuzzer = self.fuzzer,time=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),code = uploadInstance)
-            resInstance.save()
-            
-        elif len(resList) == 1:
-            resInstance = resList[0]
-            outs = pathJoin("/root/fuzzResult",resInstance.fuzzer,resInstance.programName)
-            whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
-            whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
-
-            result_summary = sum_table_data(getoutput("".join([whatsup_summary," ",outs])))[0]
-            resInstance.crashes = str(result_summary['crashes_sum'])
-            result_individual = invi_table_data(getoutput(whatsup_individual+" "+outs))
-            resInstance.codeCoverage = str(max(result_individual[0]['coverage'],
-            result_individual[1]['coverage']))
-            resInstance.save()
+            print("同步数据库")
+            resList = codeResult.objects.filter(code_id = self.id)
+            if len(resList) == 0:
+                uploadInstance = uploadSourceCode.objects.get(id = self.id)
+                resInstance = codeResult.objects.create(programName = self.short_name,
+                codeCoverage = "/",crashes = "0",fuzzer = self.fuzzer,time=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),code = uploadInstance)
+                resInstance.save()
+                
+            elif len(resList) == 1:
+                resInstance = resList[0]
+                outs = pathJoin("/root/fuzzResult",resInstance.fuzzer,resInstance.programName)
+                whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+                whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
+                result_summary = sum_table_data(getoutput("".join([whatsup_summary," ",outs])))[0]
+                
+                resInstance.crashes = str(result_summary['crashes_sum'])
+                result_individual = invi_table_data(getoutput(whatsup_individual+" "+outs))
+                resInstance.codeCoverage = str(max(result_individual[0]['coverage'],
+                result_individual[1]['coverage']))
+                resInstance.save()
 
 
     def create(self, core: int, isfile=1):
-        findCmd = ["find",self.program_path,"-type","f","-executable"]
+        findCmd = ["find",self.program_path,"-type","f","-executable","|","sort -r"]
+        findCmd = " ".join(findCmd)
         regex = "%s?[^\.]$"%(self.programName)
-        with Popen(findCmd,stdout=PIPE,universal_newlines=True) as process:
+        with Popen(findCmd,stdout=PIPE,universal_newlines=True,shell=True) as process:
             for line in process.stdout:
                 if(re.search(regex,line)):
                     
                     self.programName = line.rstrip()
+                    print(self.programName)
                     break
         qemu = ""
         if self.isqemu:
@@ -121,10 +126,7 @@ class Path_Build():
         identity = ""
         master = "-M master -m 1000"
         slave = "-S slave"
-        if self.fuzzer == "TORTOISE":
-            afl = "".join([self.fuzzer_path,"/bb_metric/afl-fuzz"])
-        else:
-            afl = "".join([self.fuzzer_path,"/afl-fuzz"])
+        afl = "".join([self.fuzzer_path,"/afl-fuzz"])
 
         cron = CronTab(user="root")
         root_dir = pwd()
@@ -152,10 +154,6 @@ class Path_Build():
             window_name = "".join([str(i),self.short_name]))
             pane = w.split_window(attach=False)
             pane.send_keys(runCMD)
-            # libtmux.Window
-            # pane = libtmux.Pane(window = w)
-            # pane.set_height(50)
-            # pane.set_width(160)
             
             
         # stopJob = cron.new("tmux kill-session -t %s"%(self.short_name),"停止fuzz")

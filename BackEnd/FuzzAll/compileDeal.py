@@ -1,31 +1,45 @@
 from Util.decompress import cd,pwd,mymkdir,pathJoin
 import subprocess
-
+import os
 def unpack():
     pass
 
 
-def compile(program_path, compileCommand, fuzzer_path,code):
-    clang = "afl-gcc"
-    tempClang = "afl-g++"
+def mycompile(program_path, compileCommand, fuzzer_path,code):
+    clang = "afl-clang-fast"
+    tempClang = "afl-clang-fast++"
+    RANLIB = pathJoin("/usr/bin","llvm-ranlib-12")
+    AR = pathJoin("/usr/bin","llvm-ar-12")
     makeStart = ["make","-j10"]
     if code == 2:
+        # clang = "afl-clang"
+        # tempClang = "afl-clang++"
+        pass
+    elif code == 1:
         clang = "afl-clang"
         tempClang = "afl-clang++"
+    elif code == 3:
+        clang = "afl-clang-lto"
+        tempClang = "afl-clang-lto++"
+	
     root_dir = pwd()
     cd("".join([program_path,compileCommand]))
+    print(type(subprocess.getoutput('find . -name CMakeLists.txt')))
     
-    if subprocess.getoutput('find . -name "CMakeLists.txt"') == None:
+    if subprocess.getoutput('find . -name CMakeLists.txt') == "":
 
 
-        myCmd = ["./configure","".join(["CC=",pathJoin(fuzzer_path,clang)]),"".join(["CXX=",pathJoin(fuzzer_path,tempClang)])]
+
+        myCmd = ["".join(["CC=",os.path.join(fuzzer_path,clang)]),
+        "".join(["CXX=",os.path.join(fuzzer_path,tempClang)]),"./configure --disable-shared"]
+        if code==3:
+            myCmd.append("RANLIB="+RANLIB)
+            myCmd.append("AR="+AR)
         
-        # print(program_path)
+        myCmd = " ".join(myCmd)
         print(myCmd)
-        # input()
-        #pipe = ,stdout=subprocess.PIPE,stderr=subprocess.PIPE
-        p1 = subprocess.run(myCmd,close_fds=True)
-        p2 = subprocess.run(makeStart,close_fds=True)
+        p1 = subprocess.run(myCmd,shell=True)
+        p2 = subprocess.run(makeStart,shell=True)
         cd(root_dir)
         
     else:
@@ -42,6 +56,7 @@ def compile(program_path, compileCommand, fuzzer_path,code):
         subprocess.run(makeStart,close_fds=True)
         cd(root_dir)
         print("编译过程已完成")
+
 
 
 if __name__ == '__main__':

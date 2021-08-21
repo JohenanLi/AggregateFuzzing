@@ -41,21 +41,33 @@ def sourceCode(request):
             pass
         else:
             inputFile = os.path.join(INPUT_FILE_PATH,inputFile)
+        programName = request.POST.get("programName",None)
         prePara = request.POST.get('prePara',None)
         postPara = request.POST.get('postPara',None)
+        if programName == "pdftopng":
+            prePara = "-mono"
+            postPara = "o"
+        elif programName == "pdftotext":
+            prePara = "-lineprinter"
+            postPara = "o"
+        elif programName == "pdftohtml":
+            prePara = "-r 300"
+            postPara = "/dev/null"
         compileCommand = request.POST.get('compileCommand',"")
         inputCommand = request.POST.get('inputCommand',None)
-        programName = request.POST.get("programName",None)
+        
         hour = request.POST.get("hour",0)
         minute = request.POST.get("minute",25)
         resultTime = ""
-        for name in ["MEMAFL","TORTOISE","DRILLER",]: #AFL"MEMAFL","AFLPLUSPLUS","TORTOISE"
+        for name in ["MEMAFL","TORTOISE","DRILLER"]: #AFL"MEMAFL","AFLPLUSPLUS","TORTOISE","TORTOISE","DRILLER",
             outs = os.path.join("/root/fuzzResult/",name,programName)
             try:
                 os.mkdir(pathJoin("/root/fuzz_target",name))
             except:
                 pass
             copyCMD = "cp -r %s %s"%(filePath,pathJoin("/root/fuzz_target",name))
+            filePathList = filePath.split("/")
+            filePath = pathJoin("/root/fuzz_target",name,filePathList[-1])
             print(copyCMD)
             run(copyCMD,shell = True)
             print('获取信息成功')
@@ -150,7 +162,8 @@ def uploadCode(request):
             fileData = request.FILES.getlist(k)
             for file in fileData:
                 fileName = file._get_name()
-                
+                # fileName = fileName.strip("0123456789-")
+                # print(fileName)
                 filePath = os.path.join(SOURCE_FILE_PATH, fileName)
                 # print('filepath = [%s]'%filePath)
                 # os.system("mkdir %s" %(SOURCE_FILE_PATH))
@@ -159,6 +172,7 @@ def uploadCode(request):
                     writeFile(filePath, file)
                 except:
                     return JsonResponse({'msg': 'file write failed'})
+        
         return JsonResponse({'msg': 'success','file_path':fileList})
 
 def uploadInputFile(request):
@@ -318,5 +332,8 @@ def crash_analyze(request):
             status_res.append( (getstatusoutput(cmd.replace("@@",temp_replace)))[0] )
     status_set = set(status_res)
     for status in status_set:
-        message += crash_type[str(status)]+" "
+        try:
+            message += crash_type[str(status)]+" "
+        except:
+            print(status)
     return JsonResponse(message,safe=False)
