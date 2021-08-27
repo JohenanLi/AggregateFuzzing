@@ -24,7 +24,7 @@
               <el-divider direction="vertical"></el-divider>
               <span class="details"
                 >检测次数<br />
-                3</span
+                9</span
               >
             </el-space>
           </div>
@@ -329,7 +329,6 @@ export default {
   background: #f0f9eb;
 }
 
-@import url("//unpkg.com/element-plus/lib/theme-chalk/index.css");
 .demo-table-expand {
   font-size: 0;
 }

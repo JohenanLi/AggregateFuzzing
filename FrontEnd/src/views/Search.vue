@@ -47,6 +47,7 @@
 <script>
 // import { defineComponent, ref } from "vue";
 import { searchGet } from "../api";
+import 'element-plus/lib/theme-chalk/index.css';
 
 export default {
   inject: ["reload"],

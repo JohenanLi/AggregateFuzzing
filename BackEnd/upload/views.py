@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
-from Util.decompress import cd, pathJoin,sum_table_data,invi_table_data
+import subprocess
+from Util.decompress import cd, pathJoin, pwd,sum_table_data,invi_table_data
 from django.http.response import  HttpResponseNotAllowed, JsonResponse
 from rest_framework.generics import ListAPIView
 from BackEnd.settings import BASE_DIR,SOURCE_FILE_PATH,INPUT_FILE_PATH,SEED_PATH
@@ -18,6 +19,7 @@ from .ser import ResultSer
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from django.db.models import Q
+from Util.translate import fuzzer_trans
 import json
 
 
@@ -51,8 +53,8 @@ def sourceCode(request):
             prePara = "-lineprinter"
             postPara = "o"
         elif programName == "pdftohtml":
-            prePara = "-r 300"
-            postPara = "/dev/null"
+            prePara = "-r"
+            postPara = "o"
         compileCommand = request.POST.get('compileCommand',"")
         inputCommand = request.POST.get('inputCommand',None)
         
@@ -218,7 +220,7 @@ class ResultViewSet(viewsets.ModelViewSet):
                 
 
         
-def process(request):
+def process(request):#将引擎的实时运行状况反馈到等待页面
     if request.method == "POST":
         fuzzers  = ["MEM","DRILLER","TORTOISE"]
         programName = request.POST.get("programName",None)
@@ -256,7 +258,7 @@ def process(request):
             return HttpResponse(json.dumps(data_send), content_type='application/json')
 
 
-def download(request):
+def download(request):#下载详细结果,用于调试程序记录栈回溯并打包测试结果文件
     if request.method == "POST":
         print(request.POST)
         codeResult_id = request.POST.get("id",None)
@@ -265,6 +267,14 @@ def download(request):
             return HttpResponseNotAllowed
 
         codeResultInstance = codeResult.objects.get(id = codeResult_id)
+        with open("/root/AggregateFuzzing/BackEnd/Util/dir.txt","w") as f:
+            f.write(os.path.join("/root/fuzzResult",codeResultInstance.fuzzer,
+            codeResultInstance.programName))
+            f.close()
+
+        subprocess.run("gdb -q -x /root/AggregateFuzzing/BackEnd/Util/new_gdb_info.py",shell=True)
+        fuzzer_trans(os.path.join("/root/fuzzResult",codeResultInstance.fuzzer,
+            codeResultInstance.programName))
         cd("/root/test")
         zipCMD = "7za a -tzip -r %s.zip %s"%(codeResultInstance.programName+codeResultInstance.fuzzer,
         pathJoin(DIRS[codeResultInstance.fuzzer],codeResultInstance.programName))
@@ -291,10 +301,8 @@ class fullSearchView(APIView):
             
             queryset = codeResult.objects.filter(Q(fuzzer__icontains=content)|Q(programName__icontains=content)|Q(time__icontains=content))
             serializer = ResultSer(instance=queryset, many=True)
-            print(serializer.data)
             return JsonResponse(serializer.data, safe=False)
         except:
-            # print("dsjfklasdjflksadjfklsadjkfjadsf")
             return 
 
 from subprocess import getstatusoutput

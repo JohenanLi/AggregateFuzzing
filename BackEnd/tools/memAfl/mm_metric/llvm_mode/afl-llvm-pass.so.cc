@@ -250,23 +250,27 @@ bool AFLCoverage::runOnModule(Module &M) {
 
   /* Get globals for the SHM region and the previous location. Note that
      __afl_prev_loc is thread-local. */
-
+//路径覆盖指针
   GlobalVariable *AFLMapPtr =
       new GlobalVariable(M, PointerType::get(Int8Ty, 0), false,
                          GlobalValue::ExternalLinkage, 0, "__afl_area_ptr");
 
+//敏感函数指针
   GlobalVariable *AFLMemFuncPtr = 
       new GlobalVariable(M, PointerType::get(Int32Ty, 0), false, 
                         GlobalVariable::ExternalLinkage, 0, "__afl_memfunc_ptr");
 
+//内存读写指针
   GlobalVariable *AFLMemReadWritePtr = 
       new GlobalVariable(M, PointerType::get(Int32Ty, 0), false,
                         GlobalValue::ExternalLinkage, 0, "__afl_memreadwrite_ptr");
 
+//子函数调用指针
   GlobalVariable *AFLCallPtr = 
       new GlobalVariable(M, PointerType::get(Int32Ty, 0), false,
                         GlobalValue::ExternalLinkage, 0, "__afl_call_ptr");
 
+//前一位位示块位置指针
   GlobalVariable *AFLPrevLoc = new GlobalVariable(
       M, Int32Ty, false, GlobalValue::ExternalLinkage, 0, "__afl_prev_loc",
       0, GlobalVariable::GeneralDynamicTLSModel, 0, false);

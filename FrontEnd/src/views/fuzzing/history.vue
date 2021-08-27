@@ -157,7 +157,6 @@
     background: #f0f9eb;
   }
 
-@import url("//unpkg.com/element-plus/lib/theme-chalk/index.css");
 .demo-table-expand {
     font-size: 0;
   }

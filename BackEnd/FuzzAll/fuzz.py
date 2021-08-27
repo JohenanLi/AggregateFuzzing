@@ -96,7 +96,7 @@ class Path_Build():
             elif len(resList) == 1:
                 resInstance = resList[0]
                 outs = pathJoin("/root/fuzzResult",resInstance.fuzzer,resInstance.programName)
-                whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")
+                whatsup_summary = pathJoin(MEM_AFL_PATH,"afl-whatsup_summary")#覆盖率和去重
                 whatsup_individual = pathJoin(MEM_AFL_PATH,"afl-whatsup_individual")
                 result_summary = sum_table_data(getoutput("".join([whatsup_summary," ",outs])))[0]
                 
