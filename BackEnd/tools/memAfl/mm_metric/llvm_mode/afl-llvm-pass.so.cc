@@ -122,7 +122,7 @@ bool is_block_string(std::string bstr)
   return false;
 }
 
-void saveInterestingString(Module &M)
+void saveInterestingString(Module &M)//保存敏感函数字符串常量到文件中
 {
   std::vector<std::string> global_str;
   std::vector<std::string> interesting_str;

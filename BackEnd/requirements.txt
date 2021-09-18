@@ -4,3 +4,4 @@ django-cors-headers
 djangorestframework
 libtmux
 django-apscheduler
+jinja2

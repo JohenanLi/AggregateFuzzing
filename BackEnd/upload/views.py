@@ -21,6 +21,7 @@ from rest_framework.views import APIView
 from django.db.models import Q
 from Util.translate import fuzzer_trans
 import json
+from jinja2 import Environment, FileSystemLoader
 
 
 def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile, codeOrProgramBoolean: bool, codeOrProgram,compileCommand,programName,hour,minute,id):
@@ -31,9 +32,8 @@ def threadFuzz(fuzzer, program_path, isqemu, ins, outs, prePara, postPara,isfile
     return result
 
 
-def sourceCode(request):
+def sourceCode(request):#参数获取模块
     if request.method == 'POST':
-        print(request.POST)
         filePath = request.POST.get("fileList", None)
         analyze = Analyze(filePath)
         filePath = analyze.Unzip()#解压缩
@@ -52,8 +52,8 @@ def sourceCode(request):
         elif programName == "pdftotext":
             prePara = "-lineprinter"
             postPara = "o"
-        elif programName == "pdftohtml":
-            prePara = "-r"
+        elif programName == "pdftoppm":
+            prePara = "-mono"
             postPara = "o"
         compileCommand = request.POST.get('compileCommand',"")
         inputCommand = request.POST.get('inputCommand',None)
@@ -61,7 +61,7 @@ def sourceCode(request):
         hour = request.POST.get("hour",0)
         minute = request.POST.get("minute",25)
         resultTime = ""
-        for name in ["MEMAFL","TORTOISE","DRILLER"]: #AFL"MEMAFL","AFLPLUSPLUS","TORTOISE","TORTOISE","DRILLER",
+        for name in ["MEMAFL","TORTOISE","DRILLER"]: 
             outs = os.path.join("/root/fuzzResult/",name,programName)
             try:
                 os.mkdir(pathJoin("/root/fuzz_target",name))
@@ -70,7 +70,6 @@ def sourceCode(request):
             copyCMD = "cp -r %s %s"%(filePath,pathJoin("/root/fuzz_target",name))
             filePathList = filePath.split("/")
             filePath = pathJoin("/root/fuzz_target",name,filePathList[-1])
-            print(copyCMD)
             run(copyCMD,shell = True)
             print('获取信息成功')
             if seed == None and inputFile == None:
@@ -105,7 +104,6 @@ def sourceCode(request):
 
 def sourceProgram(request):
     if request.method == 'POST':
-        print(request.POST)
         filePath = request.POST.get("fileList", None)
         name = request.POST['name']
         seed = request.POST['seed']
@@ -307,41 +305,70 @@ class fullSearchView(APIView):
 
 from subprocess import getstatusoutput
 import os
-crash_type = {
-    "-6":"释放后重用",
-    "-11":"栈溢出",
-    "1":""
-}
-def crash_analyze(request):
+def crash_analyze(request):#漏洞分析模块
     codeResult_id = request.POST.get("id",None)
     codeResultInstance = codeResult.objects.filter(id = codeResult_id).first()
-    dir = os.path.join("/root/fuzzResult",codeResultInstance.fuzzer,codeResultInstance.programName)
-    dir_res = os.walk(dir)
-    root_res = []
-    fuzzer_stats= []
-    crash_stats = []
-    lines = []
-    status_res = []
-    message = ""
-    for root,dir,files in dir_res:
-        if "crashes" in dir:
-            root_res.append(root)
-    for root in root_res:
-        crash = os.listdir(os.path.join(root,"crashes"))
-        crash_stats.append(crash)
-    
-    with open(os.path.join(root_res[0],"fuzzer_stats"),"r") as f:
-        lines = f.readlines()
+    codeResult_list = [codeResultInstance]
+    gdb_info_lines = []
+    traceUtils = []
+    bug_num = 0
+    for one_codeResult in codeResult_list:
+        dir = os.path.join("/root/fuzzResult",one_codeResult.fuzzer,one_codeResult.programName)
+        
+        engine_dict = {}
+        fuzzer_str = ""
+        stack_str = ""
+        for root,dirs,files in os.walk(dir):
+            if "fuzzer_stats" in files:
+                f = open(root+"/fuzzer_stats","r")
+                fuzzer_lines = f.readlines()
+                fuzzer_lines = "".join(fuzzer_lines)
+                fuzzer_lines = fuzzer_lines.replace("\n","<br>")
+                # gdb_info_lines.append(fuzzer_lines + "<br>")
+                fuzzer_str += fuzzer_lines + "<br>"
+                f.close()
+            if "gdb_info" in root and dirs == []:
+                for file in files:
+                    f = open(os.path.join(root,file),"r")
+                    temp = os.path.join(root,file) +"<br>"
+                    lines = f.readlines()
+                    temp_tuple = [trace.split(' ')[2] for trace in lines[:-1]]
+                    
+                    if temp_tuple not in traceUtils:
+                        bug_num += 1
+                        traceUtils.append(temp_tuple)
+                        
+                        temp += "".join(lines)
+                        
+
+                        temp = temp.replace("\n","<br>")
+                        stack_str += temp + "<br>"
+                    f.close()
+        engine_dict["fuzzer_stats"] = fuzzer_str
+        engine_dict["stack_str"] = stack_str
+        gdb_info_lines.append(engine_dict)
+    path = "/root/AggregateFuzzing/BackEnd/Util"
+    print(gdb_info_lines)
+    # 创建一个加载器, jinja2 会从这个目录中加载模板
+    loader = FileSystemLoader(path)
+
+    # 用加载器创建一个环境, 有了它才能读取模板文件
+    env = Environment(loader=loader)
+
+    # 调用 get_template() 方法加载模板并返回
+    template = env.get_template('demo.html')
+
+    # 用 render() 方法渲染模板
+    # 可以传递参数
+
+    render_res = template.render(fuzzer=one_codeResult.fuzzer,gdb_info = gdb_info_lines,bug=bug_num)
+    file_path = os.path.join("/root/fuzzResult",codeResultInstance.fuzzer,
+    codeResultInstance.programName,"总结.html")
+    with open(file_path,"w") as f:
+        f.write(render_res)
         f.close()
-    cmd  = (lines[-1].split("-- "))[1].rstrip()
-    for i in range(len(root_res)):
-        for crash in crash_stats[i]:
-            temp_replace = os.path.join(root_res[i],"crashes",crash)
-            status_res.append( (getstatusoutput(cmd.replace("@@",temp_replace)))[0] )
-    status_set = set(status_res)
-    for status in status_set:
-        try:
-            message += crash_type[str(status)]+" "
-        except:
-            print(status)
-    return JsonResponse(message,safe=False)
+
+    response = FileResponse(open(file_path, 'rb'))
+    response['content_type'] = "application/octet-stream"
+    response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
+    return response

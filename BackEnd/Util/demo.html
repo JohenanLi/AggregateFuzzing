@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css"> -->
+    <meta charset="UTF-8">
+    <title>漏洞信息详情</title>
+</head>
+<body>
+    <!-- 变量替换 -->
+<h1>漏洞信息详情--{{fuzzer}}</h1>
+<p class="bug_num">bug总数：{{bug}}</p>
+</body>
+
+    <!-- 循环 -->
+    <div class="gdb_info">
+    {% for one in gdb_info %}
+    <span class="fuzzer_stats"><div class="bug_num">模糊测试过程数据</div>{{ one.fuzzer_stats }}</span>
+    <br>
+    <span class="stack_str"><div class="bug_num">漏洞栈回溯信息</div>{{ one.stack_str }}</span>
+    {% endfor %}
+</div>
+</body>
+</html>
+<style>
+    .bug_num{
+        font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    font-size:x-large;
+    font-weight: bold;
+    color: rgb(78, 156, 233);
+    }
+</style>
