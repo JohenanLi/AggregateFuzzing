@@ -86,6 +86,15 @@ const routes = [
                     '../views/fuzzing/sourceProgram.vue')
             },
             {
+                path: '/usetext',
+                name: 'usetext',
+                meta: {
+                    title: '使用教程'
+                },
+                component: () => import(/* webpackChunkName: "sourceProgram" */
+                    '../views/fuzzing/usetext.vue')
+            },
+            {
                 path: "/tabs",
                 name: "tabs",
                 meta: {

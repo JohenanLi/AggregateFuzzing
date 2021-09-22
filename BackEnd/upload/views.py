@@ -46,15 +46,15 @@ def sourceCode(request):#参数获取模块
         programName = request.POST.get("programName",None)
         prePara = request.POST.get('prePara',None)
         postPara = request.POST.get('postPara',None)
-        if programName == "pdftopng":
-            prePara = "-mono"
-            postPara = "o"
-        elif programName == "pdftotext":
-            prePara = "-lineprinter"
-            postPara = "o"
-        elif programName == "pdftoppm":
-            prePara = "-mono"
-            postPara = "o"
+        # if programName == "pdftopng":
+        #     prePara = "-mono"
+        #     postPara = "o"
+        # elif programName == "pdftotext":
+        #     prePara = "-lineprinter"
+        #     postPara = "o"
+        # elif programName == "pdftoppm":
+        #     prePara = "-mono"
+        #     postPara = "o"
         compileCommand = request.POST.get('compileCommand',"")
         inputCommand = request.POST.get('inputCommand',None)
         

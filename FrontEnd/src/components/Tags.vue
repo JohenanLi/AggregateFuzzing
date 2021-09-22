@@ -21,8 +21,9 @@
                 </el-button>
                 <template #dropdown>
                     <el-dropdown-menu size="small">
-                        <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-                        <el-dropdown-item command="all">关闭所有</el-dropdown-item>
+                        <el-dropdown-item command="usetext">查看使用教程</el-dropdown-item>
+                        <el-dropdown-item command="other">关闭其他标签</el-dropdown-item>
+                        <!-- <el-dropdown-item command="all">关闭所有</el-dropdown-item> -->
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -70,6 +71,10 @@ export default {
             });
             this.$store.commit("closeTagsOther", curItem);
         },
+        //转到使用教程页面
+        gotousetext() {
+             this.$router.push('/usetext');
+        },
         // 设置标签
         setTags(route) {
             const isExist = this.tagsList.some(item => {
@@ -87,7 +92,11 @@ export default {
             }
         },
         handleTags(command) {
-            command === "other" ? this.closeOther() : this.closeAll();
+            if (command == "usetext") {
+                this.gotousetext()
+            }else{
+                command === "other" ? this.closeOther() : this.closeAll();
+            }
         }
     },
     watch: {

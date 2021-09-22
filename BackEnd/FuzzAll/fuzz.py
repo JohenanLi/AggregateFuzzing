@@ -37,6 +37,7 @@ DIRS = {
 }
 
 from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from django_apscheduler.jobstores import DjangoJobStore
 # 1.实例化调度器
 scheduler = BackgroundScheduler(daemon=True)

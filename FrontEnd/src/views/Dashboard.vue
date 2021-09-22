@@ -332,7 +332,6 @@ export default {
       resultGet().then((res) => {
         // console.log(res.data);
         this.resultList = res.data;
-        console.log("this.resultList",this.resultList);
       });
     },
   },
